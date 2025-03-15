@@ -5,7 +5,6 @@ DROP TABLE Statistique CASCADE CONSTRAINTS;
 DROP TABLE Evenement CASCADE CONSTRAINTS;
 DROP TABLE Organisateur CASCADE CONSTRAINTS;
 DROP TABLE Message CASCADE CONSTRAINTS;
-DROP TABLE Envoi CASCADE CONSTRAINTS;
 
 -- Table Utilisateur 
 
@@ -17,7 +16,19 @@ CREATE TABLE Utilisateur
 	courriel VARCHAR2(55) UNIQUE,
 	numTel VARCHAR2(14) UNIQUE,
 	bio VARCHAR2(250),
-	motDePasse VARCHAR2(25)
+	motDePasse VARCHAR2(50)
+);
+
+-- Table Organisateur
+CREATE TABLE Organisateur (
+    id_organisateur NUMBER(10) PRIMARY KEY,
+    prenom VARCHAR2(55),
+    nom VARCHAR2(55),
+    courriel VARCHAR2(250) UNIQUE,
+    bio VARCHAR2(240),
+    nom_organisateur VARCHAR2(150),
+    mot_de_passe VARCHAR2(50),
+    nb_events NUMBER(10)
 );
 
 -- Table Evenement
@@ -26,19 +37,19 @@ CREATE TABLE Evenement (
     id_statistique NUMBER(10) UNIQUE, 
     id_organisateur NUMBER(10),
     nom_event VARCHAR2(50),
-    lieu VARCHAR2(25),
+    lieu VARCHAR2(100),
     date_debut VARCHAR2(25),
     date_fin VARCHAR2(25),
-    nb_benevoles_max NUMBER(3),
-    nb_participants_max NUMBER(3),
-    etat_benevole BOOLEAN,
-    categorie VARCHAR2(25),
-    description VARCHAR2(255),
-    etat NUMBER(25),
+    nb_benevoles_max NUMBER(10),
+    nb_participants_max NUMBER(10),
+    etat_benevole NUMBER(1) CHECK (etat_benevole IN(0,1)),
+    categorie VARCHAR2(80),
+    description VARCHAR2(500),
+    etat VARCHAR2(25),
     nb_inscriptions NUMBER(3),
     nb_benevoles_acceptes NUMBER(3),
-    complet_benevole BOOLEAN,
-    complet_visiteur BOOLEAN,
+    complet_benevole NUMBER(1) CHECK (complet_benevole IN(0,1)),
+    complet_visiteur NUMBER(1) CHECK (complet_visiteur IN(0,1)),
     CONSTRAINT fk_evenement_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur)
 );
 
@@ -49,9 +60,9 @@ CREATE TABLE Inscription
 	id_inscription NUMBER(10) PRIMARY KEY,
 	id_utilisateur NUMBER(10) REFERENCES Utilisateur(id_utilisateur), 
 	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
-	role VARCHAR2(25),
+	role VARCHAR2(80),
 	date_inscription DATE NOT NULL,
-	date_annulation DATE NOT NULL,
+	date_annulation DATE,
 	CONSTRAINT fk_inscription_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur), 
     CONSTRAINT fk_inscription_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
 );
@@ -64,7 +75,7 @@ CREATE TABLE Commentaire
 	id_commentaire NUMBER(10) PRIMARY KEY,
 	id_utilisateur NUMBER(10) REFERENCES Utilisateur(id_utilisateur), 
 	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
-	message VARCHAR2(255),
+	message VARCHAR2(500),
 	date_envoi DATE NOT NULL,
 	CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur), 
     CONSTRAINT fk_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
@@ -99,15 +110,35 @@ CREATE TABLE Message
 	CONSTRAINT fk_message_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
 );
 
--- Table Organisateur
-CREATE TABLE Organisateur (
-    id_organisateur NUMBER(10) PRIMARY KEY,
-    prenom VARCHAR2(55),
-    nom VARCHAR2(55),
-    courriel VARCHAR2(100) UNIQUE,
-    bio VARCHAR2(240),
-    nom_organisateur VARCHAR2(150),
-    mot_de_passe VARCHAR2(25),
-    nb_events NUMBER(10)
-);
+-- TESTS --
+--INSERT UTILISATEUR--
+INSERT INTO Utilisateur VALUES(1 , 'Camille' , 'Test' , 'camille.test@email.com' , '1234567890', 'Aime aider les autres' , 'motdepasse' ) ;
+--INSERT ORGANISATEUR--
+INSERT INTO Organisateur VALUES(1, 'Paul' , 'Valide' , 'paul.valide@organise.com' , 'Organisateur en tout genre' , 'organisation corp' , 'mdporganisateur', 5 ) ;
+--INSERT Evenement--
+INSERT INTO Evenement VALUES(1, 1, 1, 'Marathon caritatif', 'Montréal', TO_DATE('2025-05-01' , 'YYYY-MM-DD' ),  TO_DATE('2025-05-31' , 'YYYY-MM-DD' ), 50, 500, 1, 'Évènement à but non-lucratif', 'Nous organisons une course à but non-lucrative afin de récolter des fonds pour soutenir les organisations contre le cancer du pancréas', 'EN COURS', 100, 50, 1, 1 );
+--INSERT Inscription--
+INSERT INTO Inscription VALUES(1, 1, 1, 'BÉNÉVOLE', TO_DATE('2025-05-02' , 'YYYY-MM-DD' ), NULL);
+--INSERT COMMENTAIRE--
+INSERT INTO Commentaire VALUES(1, 1, 1, 'évènement incroyable avec une magnifique organisation, hâte au prochain!', TO_DATE('2025-06-05' , 'YYYY-MM-DD' ));
+--INSERT STATISTIQUES--
+INSERT INTO Statistique VALUES(1, 1, 500, 50, 200, 1000, 150);
+--INSERT MESSAGE--
+INSERT INTO Message VALUES(1, 1, 'SMS', 'BÉNÉVOLE', 'Bonjour, ne pas oublier de se présenter au guichet à 7h30 pour récupérer vos badges de bénévoles.', TO_DATE('2025-05-05', 'YYYY-MM-DD'));
 
+
+
+--TEST UTILISATEUR(DOIS ÉCHOUER : MÊME COURRIEL ET MÊME NUM) validé--
+INSERT INTO Utilisateur VALUES(2, 'Jean' , 'Marc' , 'camille.test@email.com' , '1234567890', 'Aime rien' , 'qwerty' ) ;
+
+--TEST ÉVÈNEMENT(DOIT ÉCHOUER id_organisateur non-existant donc doit échouer)--
+INSERT INTO Evenement VALUES(2, 2, 99, 'Conférence Test', 'Paris', '2025-06-10', '2025-06-12', 5, 50, 0, 'Technologie', 'Test clé étrangère', 1, 10, 3, 1, 0);
+
+--TEST INSCRIPTION (ID UTILISATEUR INEXISTANT)--
+INSERT INTO Inscription VALUES(2, 4, 1, 'Participant', TO_DATE('2025-04-10', 'YYYY-MM-DD'), NULL);
+
+--TEST COMMENTAIRE (DATE QUI ÉCHOUE)--
+INSERT INTO Commentaire VALUES (2, 1, 1, 'Test date vide', NULL);
+
+-- TEST MESSAGE AVEC ID_EVENEMENT QUI EXISTE PAS DONC DOIT ÉCHOUER--
+INSERT INTO Message VALUES (2, 99, 'SMS', 'BÉNÉVOLE', 'Test', TO_DATE('2025-05-05', 'YYYY-MM-DD'));
