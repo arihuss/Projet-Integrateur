@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary">#FCFFF5</color>
+    <color name="secondary">#7CC69C</color>
+    <color name="accent1">#7CC69C</color>
+    <color name="accent2">#FF9CCE</color>
+    <color name="accent2active">#E54F98</color>
+    <color name="accent3">#FFDF75</color>
+    <color name="textsurbg">#599159</color>
+    <color name="textbtn">#FFFFFF</color>
+    <color name="navbar">#CDE8A9</color>
+    <color name="textvignette">#234D23</color>
+    <color name="btnfiltre">#A7C77C</color>
+    <color name="vertfoncelogo">#3CAB6B</color>
+    <color name="vertpalelogo">#B0D957</color>
+    <color name="barrerecherche">#C2DE9C</color>
+    <color name="btndesactive">#7F7C7C</color>
+    <color name="txtcouleurfonce">#525050</color>
+    <color name="widgets">#F0F9E2</color>
 </resources>
