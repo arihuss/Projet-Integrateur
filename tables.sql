@@ -31,6 +31,19 @@ CREATE TABLE Organisateur (
     nb_events NUMBER(10)
 );
 
+
+-- Table Statistique
+
+CREATE TABLE Statistique
+(
+	id_statistique NUMBER(10) PRIMARY KEY,
+	nb_visiteurs NUMBER(3),
+	nb_benevoles NUMBER(3),
+	nb_likes NUMBER(10),
+	nb_vues NUMBER(10),
+	nb_partages NUMBER(10)
+);
+
 -- Table Evenement
 CREATE TABLE Evenement (
     id_evenement NUMBER(10) PRIMARY KEY,
@@ -50,8 +63,8 @@ CREATE TABLE Evenement (
     nb_benevoles_acceptes NUMBER(3),
     complet_benevole NUMBER(1) CHECK (complet_benevole IN(0,1)),
     complet_visiteur NUMBER(1) CHECK (complet_visiteur IN(0,1)),
-    CONSTRAINT fk_evenement_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur),
-    CONSTRAINT FK_id_evenement FOREIGN KEY (id_statistique) REFERENCES Statistique(id_statistique)
+    CONSTRAINT FK_id_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur),
+    CONSTRAINT FK_id_statistique FOREIGN KEY (id_statistique) REFERENCES Statistique(id_statistique)
 );
 
 -- Table Inscription
@@ -82,20 +95,6 @@ CREATE TABLE Commentaire
     CONSTRAINT fk_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
 );
 
-
--- Table Statistique
-
-CREATE TABLE Statistique
-(
-	id_statistique NUMBER(10) PRIMARY KEY,
-	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
-	nb_visiteurs NUMBER(3),
-	nb_benevoles NUMBER(3),
-	nb_likes NUMBER(10),
-	nb_vues NUMBER(10),
-	nb_partages NUMBER(10),
-	CONSTRAINT fk_statistique_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
-);
 
 
 -- Table Message
