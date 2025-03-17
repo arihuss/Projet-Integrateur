@@ -53,17 +53,17 @@ CREATE TABLE Evenement (
     lieu VARCHAR2(100),
     date_debut VARCHAR2(25),
     date_fin VARCHAR2(25),
-    nb_benevoles_max NUMBER(10),
-    nb_participants_max NUMBER(10),
+    nb_benevoles_max NUMBER(3),
+    nb_participants_max NUMBER(3),
     etat_benevole NUMBER(1) CHECK (etat_benevole IN(0,1)),
     categorie VARCHAR2(80),
     description VARCHAR2(500),
-    etat VARCHAR2(25) CHECK (etat IN ('en_cours', 'termine')),
+    etat VARCHAR2(25) CHECK (etat IN ('disponible', 'termine')),
     nb_inscriptions NUMBER(3),
     nb_benevoles_acceptes NUMBER(3),
     complet_benevole NUMBER(1) CHECK (complet_benevole IN(0,1)),
     complet_visiteur NUMBER(1) CHECK (complet_visiteur IN(0,1)),
-    CONSTRAINT FK_id_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur),
+    CONSTRAINT FK_id_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur) ON DELETE CASCADE,
     CONSTRAINT FK_id_statistique FOREIGN KEY (id_statistique) REFERENCES Statistique(id_statistique)
 );
 
@@ -77,8 +77,8 @@ CREATE TABLE Inscription
 	role VARCHAR2(25) CHECK (role IN ('benevole', 'visiteur', 'appliquant')),
 	date_inscription DATE NOT NULL,
 	date_annulation DATE,
-	CONSTRAINT fk_inscription_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur), 
-    CONSTRAINT fk_inscription_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
+	CONSTRAINT fk_inscription_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
+    CONSTRAINT fk_inscription_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
 
@@ -91,8 +91,8 @@ CREATE TABLE Commentaire
 	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
 	message VARCHAR2(500),
 	date_envoi DATE NOT NULL,
-	CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur), 
-    CONSTRAINT fk_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
+	CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
+    CONSTRAINT fk_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
 
@@ -107,7 +107,7 @@ CREATE TABLE Message
 	type_destinataire VARCHAR2(10),
 	message VARCHAR2(500),
 	date_envoi DATE,
-	CONSTRAINT fk_message_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
+	CONSTRAINT fk_message_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
 -- TESTS --
@@ -115,14 +115,14 @@ CREATE TABLE Message
 INSERT INTO Utilisateur VALUES(1 , 'Camille' , 'Test' , 'camille.test@email.com' , '1234567890', 'Aime aider les autres' , 'motdepasse' ) ;
 --INSERT ORGANISATEUR--
 INSERT INTO Organisateur VALUES(1, 'Paul' , 'Valide' , 'paul.valide@organise.com' , 'Organisateur en tout genre' , 'organisation corp' , 'mdporganisateur', 5 ) ;
+--INSERT STATISTIQUES--
+INSERT INTO Statistique VALUES(1, 500, 50, 200, 1000, 150);
 --INSERT Evenement--
-INSERT INTO Evenement VALUES(1, 1, 1, 'Marathon caritatif', 'Montréal', TO_DATE('2025-05-01' , 'YYYY-MM-DD' ),  TO_DATE('2025-05-31' , 'YYYY-MM-DD' ), 50, 500, 1, 'Évènement à but non-lucratif', 'Nous organisons une course à but non-lucrative afin de récolter des fonds pour soutenir les organisations contre le cancer du pancréas', 'EN COURS', 100, 50, 1, 1 );
+INSERT INTO Evenement VALUES(1, 1, 1, 'Marathon caritatif', 'Montréal', TO_DATE('2025-05-01' , 'YYYY-MM-DD' ),  TO_DATE('2025-05-31' , 'YYYY-MM-DD' ), 50, 500, 1, 'Évènement à but non-lucratif', 'Voici une description', 'disponible', 100, 50, 1, 1 );
 --INSERT Inscription--
-INSERT INTO Inscription VALUES(1, 1, 1, 'BÉNÉVOLE', TO_DATE('2025-05-02' , 'YYYY-MM-DD' ), NULL);
+INSERT INTO Inscription VALUES(1, 1, 1, 'benevole', TO_DATE('2025-05-02' , 'YYYY-MM-DD' ), NULL);
 --INSERT COMMENTAIRE--
 INSERT INTO Commentaire VALUES(1, 1, 1, 'évènement incroyable avec une magnifique organisation, hâte au prochain!', TO_DATE('2025-06-05' , 'YYYY-MM-DD' ));
---INSERT STATISTIQUES--
-INSERT INTO Statistique VALUES(1, 1, 500, 50, 200, 1000, 150);
 --INSERT MESSAGE--
 INSERT INTO Message VALUES(1, 1, 'SMS', 'BÉNÉVOLE', 'Bonjour, ne pas oublier de se présenter au guichet à 7h30 pour récupérer vos badges de bénévoles.', TO_DATE('2025-05-05', 'YYYY-MM-DD'));
 
