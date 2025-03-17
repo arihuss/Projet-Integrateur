@@ -14,9 +14,9 @@ CREATE TABLE Utilisateur
 	prenom VARCHAR2(55),
 	nom VARCHAR2(55),
 	courriel VARCHAR2(55) UNIQUE,
-	numTel VARCHAR2(14) UNIQUE,
+	num_tel VARCHAR2(14) UNIQUE,
 	bio VARCHAR2(250),
-	motDePasse VARCHAR2(50)
+	mot_de_passe VARCHAR2(50) CHECK(length(mot_de_passe) >= 8)
 );
 
 -- Table Organisateur
@@ -24,17 +24,17 @@ CREATE TABLE Organisateur (
     id_organisateur NUMBER(10) PRIMARY KEY,
     prenom VARCHAR2(55),
     nom VARCHAR2(55),
-    courriel VARCHAR2(250) UNIQUE,
+    courriel VARCHAR2(30) UNIQUE,
     bio VARCHAR2(240),
-    nom_organisateur VARCHAR2(150),
-    mot_de_passe VARCHAR2(50),
+    nom_organisateur VARCHAR2(30),
+    mot_de_passe VARCHAR2(50) CHECK(length(mot_de_passe) >= 8),
     nb_events NUMBER(10)
 );
 
 -- Table Evenement
 CREATE TABLE Evenement (
     id_evenement NUMBER(10) PRIMARY KEY,
-    id_statistique NUMBER(10) UNIQUE, 
+    id_statistique NUMBER(10), 
     id_organisateur NUMBER(10),
     nom_event VARCHAR2(50),
     lieu VARCHAR2(100),
@@ -45,12 +45,13 @@ CREATE TABLE Evenement (
     etat_benevole NUMBER(1) CHECK (etat_benevole IN(0,1)),
     categorie VARCHAR2(80),
     description VARCHAR2(500),
-    etat VARCHAR2(25),
+    etat VARCHAR2(25) CHECK (etat IN ('en_cours', 'termine')),
     nb_inscriptions NUMBER(3),
     nb_benevoles_acceptes NUMBER(3),
     complet_benevole NUMBER(1) CHECK (complet_benevole IN(0,1)),
     complet_visiteur NUMBER(1) CHECK (complet_visiteur IN(0,1)),
-    CONSTRAINT fk_evenement_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur)
+    CONSTRAINT fk_evenement_organisateur FOREIGN KEY (id_organisateur) REFERENCES Organisateur(id_organisateur),
+    CONSTRAINT FK_id_evenement FOREIGN KEY (id_statistique) REFERENCES Statistique(id_statistique)
 );
 
 -- Table Inscription
@@ -60,7 +61,7 @@ CREATE TABLE Inscription
 	id_inscription NUMBER(10) PRIMARY KEY,
 	id_utilisateur NUMBER(10) REFERENCES Utilisateur(id_utilisateur), 
 	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
-	role VARCHAR2(80),
+	role VARCHAR2(25) CHECK (role IN ('benevole', 'visiteur', 'appliquant')),
 	date_inscription DATE NOT NULL,
 	date_annulation DATE,
 	CONSTRAINT fk_inscription_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur), 
@@ -88,11 +89,11 @@ CREATE TABLE Statistique
 (
 	id_statistique NUMBER(10) PRIMARY KEY,
 	id_evenement NUMBER(10) REFERENCES Evenement(id_evenement),
-	nbVisiteurs NUMBER(3),
-	nbBenevoles NUMBER(3),
-	nbLikes NUMBER(10),
-	nbVues NUMBER(10),
-	nbPartages NUMBER(10),
+	nb_visiteurs NUMBER(3),
+	nb_benevoles NUMBER(3),
+	nb_likes NUMBER(10),
+	nb_vues NUMBER(10),
+	nb_partages NUMBER(10),
 	CONSTRAINT fk_statistique_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement)
 );
 
