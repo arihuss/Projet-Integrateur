@@ -13,6 +13,11 @@ form {
         width:15rem;
         padding:2rem;
         color:var(--text-sur-bg);
+
+      display:flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
         
         
              .login-edt{
