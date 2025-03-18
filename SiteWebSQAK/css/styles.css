@@ -19,16 +19,30 @@
 }
 
 
-header {
-        display: flex;
-        flex-direction: row;
-        background-color: var(--nav-bar);
-        
+.header {
+        display:flex;
+        justify-content: space-between;
+        background-color:var(--nav-bar);
+        align-items:center;
+        height:9rem;
+      
 
         .nav-bar {
             display:flex;
             flex-direction:row;
-            justify-content: space-between;
+            justify-content:space-between;
+            list-style:none;
+            
+            li {
+                margin:30px;
+                font-weight:bold;
+                font-size:35px;
+
+                a {
+                    text-decoration: none;
+                    color: var(--text-btn);
+                }
+            }
         }
 
         img {
