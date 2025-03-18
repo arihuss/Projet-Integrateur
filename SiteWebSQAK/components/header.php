@@ -1,13 +1,13 @@
 <html><nav>
    
     <div>
-      <a href="evenement.html"><img src="..\img\logo.svg" alt=""></a>
+      <a href=".\evenement.php"><img src=".\img\logo.svg" alt=""></a>
     </div>
 
       <ul>
-          <li><a href="../evenement.html">Accueil</a></li>
-          <li><a href="../profil-organisateur.html">Profil</a></li>
-      <li><a href="../settings.html">Paramètres</a></li>
+          <li><a href=".\evenement.php">Accueil</a></li>
+          <li><a href=".\profil-organisateur.php">Profil</a></li>
+      <li><a href=".\settings.php">Paramètres</a></li>
       </ul>
 
   </nav> 
