@@ -1,4 +1,6 @@
 package com.sarah.applicationsqak;
 
-public class Settings {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Settings extends AppCompatActivity {
 }

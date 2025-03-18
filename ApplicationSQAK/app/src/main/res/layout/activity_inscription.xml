@@ -7,4 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".Inscription">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="260dp"
+        android:layout_height="108dp"
+        android:text="Page de mes inscriptions"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="286dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

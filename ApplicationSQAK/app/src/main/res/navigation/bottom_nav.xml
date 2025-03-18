@@ -3,16 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav"
-    app:startDestination="@id/accueil">
+    app:startDestination="@id/principaleEvenements">
 
-    <activity
-        android:id="@+id/accueil"
-        android:name="com.sarah.applicationsqak.Accueil"
-        android:label="activity_accueil"
-        tools:layout="@layout/activity_accueil" />
     <activity
         android:id="@+id/inscription"
         android:name="com.sarah.applicationsqak.Inscription"
         android:label="activity_inscription"
         tools:layout="@layout/activity_inscription" />
+    <activity
+        android:id="@+id/profilUtilisateur"
+        android:name="com.sarah.applicationsqak.ProfilUtilisateur"
+        android:label="ProfilUtilisateur" />
+    <activity
+        android:id="@+id/settings"
+        android:name="com.sarah.applicationsqak.Settings"
+        android:label="Settings" />
+    <activity
+        android:id="@+id/principaleEvenements"
+        android:name="com.sarah.applicationsqak.PrincipaleEvenements"
+        android:label="activity_principale"
+        tools:layout="@layout/activity_principale" />
 </navigation>
