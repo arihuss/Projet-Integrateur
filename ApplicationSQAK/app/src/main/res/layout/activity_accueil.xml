@@ -85,4 +85,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        app:srcCompat="@drawable/Logo"
+        tools:layout_editor_absoluteX="-20dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
