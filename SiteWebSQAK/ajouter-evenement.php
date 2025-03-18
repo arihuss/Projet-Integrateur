@@ -9,9 +9,11 @@
 
 <body>
     <div class="container">
+
         <h2>Ajouter un événement</h2>
 
         <form action="#" method="POST">
+
             <label for="photo">Choisir nouvelle photo:</label>
             <input type="file" id="photo" name="photo" class="file-input">
 
@@ -31,5 +33,28 @@
                     <input type="text" id="lieu" name="lieu" required>
                 </div>
             </div>
+            <div class="row">
+                <div>
+                    <label for="date-debut">Date début:</label>
+                    <input type="date" id="date-debut" name="date-debut" required>
+                </div>
+                <div>
+                    <label for="date-fin">Date fin:</label>
+                    <input type="date" id="date-fin" name="date-fin" required>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="heure-debut">Heure début:</label>
+                    <input type="time" id="heure-debut" name="heure-debut" required>
+                </div>
+                <div>
+                    <label for="heure-fin">Heure fin:</label>
+                    <input type="time" id="heure-fin" name="heure-fin" required>
+                </div>
+            </div>
 
            
+</body>
+
+</html>
