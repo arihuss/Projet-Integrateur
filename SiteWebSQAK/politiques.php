@@ -24,7 +24,7 @@
             un environnement sûr, respectueux et efficace pour tous, veuillez lire attentivement 
             la politique d'utilisation suivante : &nbsp;</p>
         
-        <h3>Événements autorisés</h3>
+        <h2>Événements autorisés</h2>
         <p>Événements nécessitant des bénévoles : Les événements qui appellent à la participation 
            de bénévoles pour des causes sociales, environnementales, ou communautaires. <br>
            Projets scolaires : Les événements liés à des projets ou des initiatives scolaires visant à promouvoir l'éducation,
@@ -33,11 +33,11 @@
            caritatives ou des projets de bienfaisance.
         </p>
 
-        <h3>Exclusion d'événements commerciaux</h3>
+        <h2>Exclusion d'événements commerciaux</h2>
         <p>Les événements à but lucratif, commerciaux, ou visant à promouvoir des produits ou services 
            pour un profit personnel ou d'entreprise ne sont pas autorisés.</p>
 
-        <h3>Responsabilités des utilisateurs</h3>
+        <h2>Responsabilités des utilisateurs</h2>
         <p>Les utilisateurs sont responsables de la validité et de l'éthique des événements qu'ils publient.
            Ils s'engagent à respecter les lois en vigueur et à ne pas organiser ou promouvoir des événements violant les droits d'autrui 
            ou encourageant des activités illégales.</p>
