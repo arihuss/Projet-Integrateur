@@ -11,7 +11,7 @@
 
  <div id="profil-applicant">
        <h2>Profil de l'applicant </h2>
-       <img src="..\img\profilapplicant.svg" alt="image-profil">
+       <img src="..\img\profilapplicant.svg" alt="img-profil">
        <p id="nom-applicant">Liliane Belvier</p>
        <div>
             <p>Courriel:<br>
@@ -34,7 +34,7 @@
         <p>27 janvier 2025 </p>
    </div>
    <div>
-        <img src="..\img\event-arbre.svg" alt="">         
+        <img src="..\img\event-arbre.svg" alt="img-evenement">         
         <p>Ramassage déchets <br>
            Lieu: plage Oka <br>
            Organisation: Terre-Sauve
