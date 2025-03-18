@@ -14,8 +14,10 @@
         <form action="#" method="POST">
             <label for="photo">Choisir nouvelle photo:</label>
             <input type="file" id="photo" name="photo" class="file-input">
+
             <label for="titre">Titre de l'événement:</label>
             <input type="text" id="titre" name="titre" required>
+
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
 
@@ -30,4 +32,5 @@
                 </div>
             </div>
 
+          
            
