@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>SQAK - Modifier événement</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/mod-even.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -14,13 +15,6 @@
         include("components/header.php")
         ?>
     </header>
-
-    <footer>
-
-<?php
-include("components/footer.php");
-?>
-</footer>
 
 <body>
     <div class="container">
@@ -89,6 +83,12 @@ include("components/footer.php");
 
            
 </body>
+<footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 </body>
 
 </html>
