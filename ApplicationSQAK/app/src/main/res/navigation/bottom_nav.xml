@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/accueil">
+
+    <activity
+        android:id="@+id/accueil"
+        android:name="com.sarah.applicationsqak.Accueil"
+        android:label="activity_accueil"
+        tools:layout="@layout/activity_accueil" />
+    <activity
+        android:id="@+id/inscription"
+        android:name="com.sarah.applicationsqak.Inscription"
+        android:label="activity_inscription"
+        tools:layout="@layout/activity_inscription" />
+</navigation>
