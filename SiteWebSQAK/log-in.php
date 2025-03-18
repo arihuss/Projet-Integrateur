@@ -22,10 +22,10 @@
     <h1>Connexion</h1>
     <form action="" method="POST" >
         <label for="courriel-connexion">Courriel:</label> <br>
-        <input class="login-edt" id="courriel-connexion" type="email" required><br><br>
+        <input id="courriel-connexion" type="email" required><br><br>
         <label for="mdp-connexion">Mot de passe:</label> <br>
-        <input class="login-edt" id="mdp-connexion" type="text" minlength="8" required><br><br><br>
-        <a class="btn-jaune" href="evenement.php">Connexion</a><br><br>
+        <input id="mdp-connexion" type="text" minlength="8" required><br><br>
+        <a class="btn-jaune" href="evenement.php">Connexion</a><br>
         <a href="mdp-oublie" > Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
     </form>
 </div>
