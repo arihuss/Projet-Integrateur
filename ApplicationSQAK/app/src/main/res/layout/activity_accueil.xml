@@ -5,4 +5,137 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Accueil"/>
+    android:background="#FCFFF5"
+    tools:context=".Accueil">
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="334dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Se connecter"
+        android:textSize="26sp"
+        app:backgroundTint="#FFDE71"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="549dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="272dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="S'inscrire"
+        android:textSize="26sp"
+        app:backgroundTint="#FFDE71"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="671dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="En invité"
+        android:textSize="26sp"
+        app:backgroundTint="#FF9CCE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="621dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="233dp"
+        android:text="ou"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="#599159"
+        android:fontFamily="@font/inter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="475dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-55dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="424dp"
+        app:srcCompat="@drawable/Logo"
+        tools:layout_editor_absoluteX="-32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="475dp"
+        android:text="Travaillons ensemble pour l'avenir..."
+        android:fontFamily="@font/inter"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="#599159"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="334dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="530dp"
+        android:text="Bienvenue !"
+        android:textColor="#599159"
+        android:textAlignment="center"
+        android:fontFamily="@font/inter"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
