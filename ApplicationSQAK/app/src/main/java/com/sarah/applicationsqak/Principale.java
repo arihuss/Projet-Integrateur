@@ -7,8 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
-public class PrincipaleEvenements extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public class Principale extends AppCompatActivity {
+
+    private BottomNavigationView bottomNav;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +29,17 @@ public class PrincipaleEvenements extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Liaison des composantes avec la vue
+        bottomNav = findViewById(R.id.bottomNavigationView);
+        navController = Navigation.findNavController(this, R.id.fgContainer);
+
+        // Set-up du nav
+        NavigationUI.setupWithNavController(bottomNav, navController);
+
+
+
+
+
     }
 }

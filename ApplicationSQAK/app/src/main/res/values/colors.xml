@@ -25,7 +25,7 @@
     <color name="accent2Dm">#EF95C2</color>
     <color name="accent2activeDm">#C42E7A</color>
     <color name="accent3Dm">#E5BF45</color>
-    <color name="textsurbgDm">6D9E6D</color>
+    <color name="textsurbgDm">#6D9E6D</color>
     <color name="textbtnDm">#FFFFFF</color>
     <color name="navbarDm">#2F442E</color>
     <color name="textvignetteDm">#BDDBBD</color>
@@ -35,6 +35,6 @@
     <color name="barrerechercheDm">#81BE7F</color>
     <color name="btndesactiveDm">#494343</color>
     <color name="txtcouleurfonceDm">#747070</color>
-    <color name="widgetsDm">2A2D27</color>
+    <color name="widgetsDm">#2A2D27</color>
 
 </resources>

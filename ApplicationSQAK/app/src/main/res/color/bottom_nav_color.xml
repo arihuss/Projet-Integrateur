@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected item color (dark pink) -->
+    <item android:color="@color/accent2active" android:state_checked="true"/>
 
-    <selector xmlns:android="http://schemas.android.com/apk/res/android">
-        <!-- Selected item (dark pink) -->
-        <item android:color="@colors/accent2active" android:state_checked="true"/>
+    <!-- Unselected item color (pink) -->
+    <item android:color="@color/accent2"/>
+</selector>
 
-        <!-- Unselected items (custom color) -->
-        <item android:color="@d"/>
-    </selector>
 
