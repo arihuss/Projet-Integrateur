@@ -8,10 +8,15 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
 
  <div id="profil-applicant">
        <h2>Profil de l'applicant </h2>
-       <img src="..\img\profilapplicant.svg" alt="img-profil">
+       <img src=".\img\profilapplicant.svg" alt="img-profil">
        <p id="nom-applicant">Liliane Belvier</p>
        <div>
             <p>Courriel:<br>
@@ -25,7 +30,6 @@
         </div>
 </div>
 
-
 <div id="experience-applicant">
  <h2>Expériences de bénévolat</h2>
 
@@ -34,7 +38,7 @@
         <p>27 janvier 2025 </p>
    </div>
    <div>
-        <img src="..\img\event-arbre.svg" alt="img-evenement">         
+        <img src=".\img\event-arbre.svg" alt="img-evenement">         
         <p>Ramassage déchets <br>
            Lieu: plage Oka <br>
            Organisation: Terre-Sauve
@@ -44,7 +48,12 @@
 
 </div>
 
+<footer>
 
+<?php
+include("components/footer.php");
+?>
+</footer>
 
 </body>
 </html>

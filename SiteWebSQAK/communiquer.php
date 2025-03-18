@@ -6,6 +6,18 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
+
+    <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
     <div class="content">
         <form id="communicationForm">

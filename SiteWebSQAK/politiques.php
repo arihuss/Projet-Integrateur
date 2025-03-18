@@ -8,6 +8,11 @@
 </head>
 
 <body class="Politiques">
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
     <div>
 
         <h3>Politiques de conditions d'utilisation</h3>
@@ -44,6 +49,13 @@
    
 
     </div>
+
+    <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
 </body>
 

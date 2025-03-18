@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
     <div class="container">
 
         <h2>Ajouter un événement</h2>
@@ -71,6 +76,13 @@
         </form>
     </div>
 
+
+            <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
            
 </body>
