@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <title>SQAK - Politiques d'utilisation</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/politiques.css">
 </head>
 
-<body class="Politiques">
+<body>
 <header>
         <?php
         include("components/header.php")
         ?>
     </header>
-    <div>
 
-        <h3>Politiques de conditions d'utilisation</h3>
+    <div class="container">
+
+        <h2>Politiques de conditions d'utilisation:</h2>
         <p class="txt-politique">Bienvenue sur SKAQ ! Nous sommes ravis de vous accueillir et de 
             vous permettre de participer à des événements à but non lucratif. Afin de maintenir 
             un environnement sûr, respectueux et efficace pour tous, veuillez lire attentivement 
             la politique d'utilisation suivante : &nbsp;</p>
         
+        <h3>Événements autorisés</h3>
         <p class="txt-politique">Événements nécessitant des bénévoles : Les événements qui appellent à la participation 
            de bénévoles pour des causes sociales, environnementales, ou communautaires. <br>
            Projets scolaires : Les événements liés à des projets ou des initiatives scolaires visant à promouvoir l'éducation,
@@ -38,7 +41,7 @@
            Ils s'engagent à respecter les lois en vigueur et à ne pas organiser ou promouvoir des événements violant les droits d'autrui 
            ou encourageant des activités illégales.</p>
         
-        <h3>Politiques de confidentialité</h3>
+        <h2>Politiques de confidentialité:</h2>
         <p class="txt-politique">La confidentialité de vos données est une priorité pour nous. Cette politique vise à vous informer sur
            la manière dont nous collectons, utilisons et protégeons vos informations personnelles.<br>
 

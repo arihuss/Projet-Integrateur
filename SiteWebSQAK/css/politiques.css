@@ -1,0 +1,39 @@
+
+:root{
+    --primary: #FCFFF5;
+    --secondary:#DBECC5;
+    --accent1: #7CC69C;
+    --accent2:#FF9CCE;
+    --accent2-active:#E54F9B;
+    --accent3:#FFDF75;
+    --text-sur-bg:#599159;
+    --text-btn: #FFFFFF;
+    --nav-bar:#CDE8A9;
+    --text-vignette:#234D23;
+    --btn-filtre:#A7C77C;
+    --vert-fonce-logo:#3CAB6B;
+    --vert-pale-logo:#B0D957;
+    --barre-recherche: #C2DE9C;
+    --btn-desactive:#7F7C7C;
+    --txt-couleur-fonce:#525050;
+    --widgets:#F0F9E2;
+}
+
+
+.container {
+
+    padding-top: 3rem;
+
+    h3,h2 {
+        text-align: center;
+        color: var(--text-sur-bg);
+    }
+}
+
+.txt-politique {
+    background-color: var(--secondary);
+    border-radius: 15px;
+    padding: 1rem 3rem;
+    margin-bottom: 2rem;
+    line-height: 1.5rem;
+}

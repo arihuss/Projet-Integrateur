@@ -54,6 +54,10 @@
 
 body{
         background-color: var(--primary);
+
+        .container {
+            margin: 0rem 4rem;
+        }
     }
 
 h1{
