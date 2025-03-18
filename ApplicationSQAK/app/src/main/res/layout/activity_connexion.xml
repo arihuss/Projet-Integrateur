@@ -5,4 +5,42 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Connexion"/>
+    android:background="#FCFFF5"
+    tools:context=".Connexion">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="475dp"
+        android:layout_height="475dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-55dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="424dp"
+        app:srcCompat="@drawable/logo"
+        tools:layout_editor_absoluteX="-32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSeConnecter"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="551dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="253dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Se connecter"
+        android:textSize="26sp"
+        app:backgroundTint="#FFDE71"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

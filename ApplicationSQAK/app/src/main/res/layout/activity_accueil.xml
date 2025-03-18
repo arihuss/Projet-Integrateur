@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSeConnecter"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:layout_marginStart="85dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSinscrire"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:layout_marginStart="85dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnInvite"
         android:layout_width="225dp"
         android:layout_height="55dp"
         android:layout_marginStart="89dp"
@@ -70,13 +70,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtOu"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="125dp"
-        android:layout_marginTop="621dp"
+        android:layout_marginTop="615dp"
         android:layout_marginEnd="125dp"
-        android:layout_marginBottom="233dp"
+        android:layout_marginBottom="235dp"
         android:text="ou"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgLogo"
         android:layout_width="475dp"
         android:layout_height="475dp"
         android:layout_marginStart="0dp"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtSlogan"
         android:layout_width="380dp"
         android:layout_height="70dp"
         android:layout_marginStart="125dp"
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtBienvenue"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginStart="125dp"
@@ -137,5 +137,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewLigne1"
+        android:layout_width="50dp"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="228dp"
+        android:layout_height="1dp"
+        android:background="#599159"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/viewLigne2"
+        android:layout_width="50dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="228dp"
+        android:layout_height="1dp"
+        android:background="#599159"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
