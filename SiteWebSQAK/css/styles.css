@@ -21,3 +21,8 @@
 body{
         background-color: var(--primary);
     }
+
+h1{
+    color:var(--text-sur-bg);
+    font-size: 40px;
+}
