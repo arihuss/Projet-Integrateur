@@ -13,9 +13,10 @@
     --vert-fonce-logo: #3CAB6B;
     --vert-pale-logo: #B0D957;
     --barre-recherche: #C2DE9C;
-    --btn-desactive: #7F7C7C;
-    --txt-couleur-fonce: #525050;
-    --widgets: #F0F9E2;
+    --btn-desactive:#7F7C7C;
+    --txt-couleur-fonce:#525050;
+    --widgets:#F0F9E2;
+    --bg-form: #F0F9E2;
 }
 
 
@@ -55,13 +56,7 @@ body{
         background-color: var(--primary);
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
-        
-
-        .container {
-            padding-top: 3rem;
-            margin: 0rem 4rem;
-        }
-
+    
         p {
             background-color: var(--secondary);
             border-radius: 15px;
@@ -71,9 +66,16 @@ body{
         }
     }
 
+.container {
+        padding-top: 3rem;
+        margin: 0rem 4rem;
+        padding-bottom: 4rem;
+    }
+
 h1{
     color:var(--text-sur-bg);
     font-size:40px;
+    text-align: center;
 }
 
 h2,h3 {
