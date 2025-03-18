@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_nav">
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/principaleEvenements">
 
     <activity
         android:id="@+id/inscription"
@@ -17,4 +18,9 @@
         android:id="@+id/settings"
         android:name="com.sarah.applicationsqak.Settings"
         android:label="Settings" />
+    <activity
+        android:id="@+id/principaleEvenements"
+        android:name="com.sarah.applicationsqak.PrincipaleEvenements"
+        android:label="activity_principale"
+        tools:layout="@layout/activity_principale" />
 </navigation>

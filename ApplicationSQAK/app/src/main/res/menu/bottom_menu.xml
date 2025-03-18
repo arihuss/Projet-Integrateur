@@ -2,8 +2,20 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Evenements" android:icon="@drawable/star_solid"/>
-    <item android:title="Inscriptions" android:icon="@drawable/bookmark_vector" />
-    <item android:title="Profil" android:icon="@drawable/user_vector" />
-    <item android:title="Settings" android:icon="@drawable/menu_vector" />
+    <item
+        android:id="@+id/principaleEvenements"
+        android:icon="@drawable/star_solid"
+        android:title="Evenements" />
+    <item
+        android:id="@+id/inscription"
+        android:icon="@drawable/bookmark_vector"
+        android:title="Inscriptions" />
+    <item
+        android:id="@+id/profilUtilisateur"
+        android:icon="@drawable/user_vector"
+        android:title="Profil" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/menu_vector"
+        android:title="Settings" />
 </menu>

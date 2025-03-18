@@ -12,21 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/navbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView3"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="499dp"
-        android:layout_height="760dp"
-        app:defaultNavHost="true"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/bottom_nav" />
+        app:menu="@menu/bottom_menu" />
+
+
 
     <TextView
         android:id="@+id/textView"
@@ -36,5 +28,8 @@
         android:textSize="34sp"
         tools:layout_editor_absoluteX="120dp"
         tools:layout_editor_absoluteY="286dp" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
