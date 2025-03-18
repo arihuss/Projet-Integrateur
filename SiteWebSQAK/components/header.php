@@ -1,4 +1,4 @@
-<html>
+<header>
   
 <nav class="header">
    
@@ -11,4 +11,4 @@
       </ul>
 
 </nav> 
-  </html>
+  </header>

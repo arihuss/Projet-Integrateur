@@ -1,22 +1,14 @@
-<div>
-    <section>
-      <h2>Contact:</h2>
-  
-      <div>
-        <a class="fa-solid fa-envelope" href="mailto:Skaq.Organisation@gmail.com">Skaq.Organisation@gmail.com</a>
-      </div>
-
-      <div>
-        <a class="fa-solid fa-star" href="politiques.html">Politiques de conditions d'utilisation et confidentialité</a>
-      </div>
-    </section>
-  
-   
+<footer class="footer">
+    
+  <div>
+      <h3>Contact</h3>
+        <a href="mailto:Skaq.Organisation@gmail.com"><i class="fa-solid fa-envelope"></i>Skaq.Organisation@gmail.com</a>
+        <a href="politiques.html"><i class="fa-solid fa-star"></i>Politiques de conditions d'utilisation et confidentialité</a>
+    </div>
   
   <div>
-    <div>
-      <img src="..\img\logo.svg" alt="">
-      <h3>© 2025 SKAQ. Tous droits réservés.</h3>
+      <img src=".\img\logo.svg" alt="">
+      <p>© 2025 SKAQ. Tous droits réservés.</p>
     </div>
 
-  </div>
+</footer>
