@@ -79,7 +79,9 @@
         android:layout_marginBottom="233dp"
         android:text="ou"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="16sp"
+        android:textColor="#599159"
+        android:fontFamily="@font/inter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,19 +103,39 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="304dp" />
+        android:id="@+id/textView2"
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="475dp"
+        android:text="Travaillons ensemble pour l'avenir..."
+        android:fontFamily="@font/inter"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="#599159"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="387dp" />
+        android:id="@+id/textView3"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="334dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="530dp"
+        android:text="Bienvenue !"
+        android:textColor="#599159"
+        android:textAlignment="center"
+        android:fontFamily="@font/inter"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
