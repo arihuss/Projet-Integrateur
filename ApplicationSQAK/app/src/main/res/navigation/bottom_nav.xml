@@ -3,24 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav"
-    app:startDestination="@id/principaleEvenements">
-
-    <activity
-        android:id="@+id/inscription"
-        android:name="com.sarah.applicationsqak.Inscription"
-        android:label="activity_inscription"
-        tools:layout="@layout/activity_inscription" />
-    <activity
-        android:id="@+id/profilUtilisateur"
-        android:name="com.sarah.applicationsqak.ProfilUtilisateur"
-        android:label="ProfilUtilisateur" />
-    <activity
-        android:id="@+id/settings"
-        android:name="com.sarah.applicationsqak.Settings"
-        android:label="Settings" />
-    <activity
-        android:id="@+id/principaleEvenements"
-        android:name="com.sarah.applicationsqak.PrincipaleEvenements"
-        android:label="activity_principale"
-        tools:layout="@layout/activity_principale" />
+    app:startDestination="@id/eventsFragment">
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.sarah.applicationsqak.EventsFragment"
+        android:label="fragment_events"
+        tools:layout="@layout/fragment_events" />
+    <fragment
+        android:id="@+id/inscriptionsFragment"
+        android:name="com.sarah.applicationsqak.InscriptionsFragment"
+        android:label="fragment_inscriptions"
+        tools:layout="@layout/fragment_inscriptions" />
+    <fragment
+        android:id="@+id/profilUserFragment"
+        android:name="com.sarah.applicationsqak.ProfilUserFragment"
+        android:label="fragment_profil_user"
+        tools:layout="@layout/fragment_profil_user" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sarah.applicationsqak.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

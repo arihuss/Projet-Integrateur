@@ -16,7 +16,7 @@
             android:name=".Evenement"
             android:exported="false" />
         <activity
-            android:name=".PrincipaleEvenements"
+            android:name=".Principale"
             android:exported="false" />
         <activity
             android:name=".Confirmation"
