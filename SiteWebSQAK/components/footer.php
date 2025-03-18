@@ -1,13 +1,13 @@
-<div>
+<div class="footer">
     <section>
-      <h2>Contact:</h2>
+      <h3>Contact:</h3>
   
       <div>
-        <a class="fa-solid fa-envelope" href="mailto:Skaq.Organisation@gmail.com">Skaq.Organisation@gmail.com</a>
+        <a href="mailto:Skaq.Organisation@gmail.com"><i class="fa-solid fa-envelope"></i>Skaq.Organisation@gmail.com</a>
       </div>
 
       <div>
-        <a class="fa-solid fa-star" href="politiques.html">Politiques de conditions d'utilisation et confidentialité</a>
+        <a href="politiques.html"><i class="fa-solid fa-star"></i>Politiques de conditions d'utilisation et confidentialité</a>
       </div>
     </section>
   

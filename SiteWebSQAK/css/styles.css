@@ -36,13 +36,16 @@ header {
         }
 }
 
-
-
 body{
         background-color: var(--primary);
+        font-family: Arial, Helvetica, sans-serif;
     }
 
 h1{
     color:var(--text-sur-bg);
     font-size: 40px;
+}
+
+footer{
+    background-color: var(--nav-bar);
 }
