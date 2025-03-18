@@ -16,13 +16,19 @@
             android:name=".Evenement"
             android:exported="false" />
         <activity
-            android:name=".Principale"
+            android:name=".PrincipaleEvenements"
             android:exported="false" />
         <activity
             android:name=".Confirmation"
             android:exported="false" />
         <activity
             android:name=".Inscription"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilUtilisateur"
+            android:exported="false" />
+        <activity
+            android:name=".Settings"
             android:exported="false" />
         <activity
             android:name=".Connexion"

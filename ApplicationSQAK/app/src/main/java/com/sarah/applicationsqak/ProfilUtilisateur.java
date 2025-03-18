@@ -1,4 +1,6 @@
 package com.sarah.applicationsqak;
 
-public class ProfilUtilisateur {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ProfilUtilisateur extends AppCompatActivity {
 }
