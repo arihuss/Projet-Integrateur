@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
     <h2>Connexion</h2>
     <form action="" method="POST" >
         <label for="courriel-connexion">Courriel:</label>
@@ -17,6 +22,13 @@
         <input type="submit" value="Connexion">
         <a href="mdp-oublie" > Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
     </form>
+
+    <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
 </body>
 

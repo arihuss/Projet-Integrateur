@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
     <div class="container">
 
         <h2>Ajouter un événement</h2>
@@ -53,6 +58,13 @@
                     <input type="time" id="heure-fin" name="heure-fin" required>
                 </div>
             </div>
+
+            <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
            
 </body>

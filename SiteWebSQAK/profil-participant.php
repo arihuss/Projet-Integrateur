@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
 
  <div id="profil-applicant">
        <h2>Profil de l'applicant </h2>
@@ -43,7 +48,12 @@
 
 </div>
 
+<footer>
 
+<?php
+include("components/footer.php");
+?>
+</footer>
 
 </body>
 </html>

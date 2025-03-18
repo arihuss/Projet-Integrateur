@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
     <form action="" method="POST">
         <h2> Inscription </h2>
     <div>
@@ -40,6 +45,13 @@
 
     <input type="submit" value="Inscription">
  </form> 
+
+ <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 </body>
 
 </html>

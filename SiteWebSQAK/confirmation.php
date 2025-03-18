@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<header>
+        <?php
+        include("components/header.php")
+        ?>
+    </header>
 
     <form action="" method="POST" >
         <div>
@@ -20,6 +25,13 @@
         <a href="code-renvoye" > Renvoyez le code</a> <!-- code a renvoyer a changer-->
         </div>
     </form>
+
+    <footer>
+
+<?php
+include("components/footer.php");
+?>
+</footer>
 
 </body>
 
