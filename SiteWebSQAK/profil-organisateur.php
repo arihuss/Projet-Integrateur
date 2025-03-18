@@ -14,12 +14,13 @@
         include("components/header.php")
         ?>
     </header>
+    <div class="container">
     <h1>Mon Profil</h1>
     <a href="modifier-profil.html">Modifier</a>
     <div>
         <img src="img\HemaQuebecLogo.jpg">
         <p>Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec efficience aux besoins de la population québécoise en sang et autres produits biologiques d'origine humaine de qualité.</p>
-    </div>
+    </div></div>
 
     <footer>
 
