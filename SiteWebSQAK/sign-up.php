@@ -18,7 +18,7 @@
 </header>
 
 <div class="container">
-    <form action="" method="POST">
+<form action="" method="POST">
         <h2> Inscription </h2>
 
 <div id="form-section">
