@@ -1,17 +1,28 @@
-#entete-profil{
+#entete-profil {
     display: flex;
     flex-direction: row;
-    justify-content: space-between
-    
+    justify-content: space-between;
+    align-items: center;
 }
 
-body{
-    background-color: red;
-}
-#profil-content{
-    img{
-        width: 100px;
-    }
+#profil-content {
     display: flex;
     flex-direction: row;
+    gap: 20px;
+
+    div {
+        width:1000px;
+        h2 {
+            text-align: left !important;
+        }
+    }
+
+
+    img {
+        border-radius: 100%;
+        width: 215px;
+        height: 200px;
+        border: 10px solid var(--secondary);
+    }
+
 }
