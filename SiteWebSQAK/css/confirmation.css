@@ -1,41 +1,35 @@
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    div a:not(.btn-jaune) {
+        text-decoration: none;
+        color:var(--text-sur-bg);
+    }
     
 }
 
 form{
         background-color: var(--bg-form);
-        width: 15rem;
-        padding: 3rem;
+        width: 35rem;
+        padding-bottom: 2rem;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
         border-radius: 15px;
         
-        
              input{
                 background-color: var(--secondary);
                 border-radius: 5px;
                 height: 2.5rem;
                 border: none;
-                min-width: 14rem;
-             }
-
-             
-              label {
-                  align-self: flex-start;
-                  color: var(--text-sur-bg);
-                  padding-left: 0.3rem;   
-              }  
-             
-
-             a:not(.btn-jaune){
-                color: var(--text-sur-bg);
-                text-decoration: none;
+                width: 100%; 
+                max-width: 16rem; 
+                text-align: center; 
+                display: block; 
+                margin: 0 auto; 
              }
 
 }

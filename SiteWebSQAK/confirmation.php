@@ -5,34 +5,36 @@
     <meta charset="UTF-8">
     <title>SQAK - Authentifier son compte</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/confirmation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-<header>
+    <header>
         <?php
         include("components/header.php")
         ?>
     </header>
 
-    <form action="" method="POST" >
+    <div class="container">
+        <form action="" method="POST" >
+                <h2>Entrez le code de confirmation</h2>
+                 <input id="code-confirmation" type="text" required>
+        </form>
+        <br>
         <div>
-            <h2>Entrez le code de confirmation</h2>
-             <input id="code-confirmation" type="text" required> 
+            <a class="btn-jaune" href="page-principale.php">Confirmer</a><br>
+            <a href="code-renvoye" > Renvoyez le code</a> <!-- code a renvoyer a changer-->
         </div>
-
-        <div>
-        <input type="submit" value="Confirmer" required>
-        <a href="code-renvoye" > Renvoyez le code</a> <!-- code a renvoyer a changer-->
-        </div>
-    </form>
+        
+       
+    </div>
 
     <footer>
-
-<?php
-include("components/footer.php");
-?>
-</footer>
+        <?php
+        include("components/footer.php");
+        ?>
+    </footer>
 
 </body>
 
