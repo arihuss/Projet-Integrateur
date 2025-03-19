@@ -1,0 +1,31 @@
+#section-profil {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;  
+}
+
+#profil-appliquant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 5rem;
+
+    img {
+        width: 10rem;
+        border-radius: 100%;
+        border: 4px solid var(--secondary);
+
+    }
+
+    .btn-jaune {
+        margin-top: 1rem;
+        width: 90%;
+    }
+}
+
+
+#experience-appliquant {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

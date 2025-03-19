@@ -18,23 +18,22 @@
     </header>
 
 <div class="container" id="section-profil">
- <div id="profil-applicant">
+ <div id="profil-appliquant">
        <h2>Profil de l'applicant </h2>
        <img src=".\img\profilapplicant.svg" alt="img-profil">
-       <p id="nom-applicant">Liliane Belvier</p>
+       <h3 id="nom-applicant">Liliane Belvier</h3>
        <div>
             <p>Courriel:<br>
-               Liliane.belvier@hotmail.com
-            </p>  
-            <p>
+               Liliane.belvier@hotmail.com<br><br>
+               
                Numéro de téléphone:<br>
                514-678-0955
+            <a class="btn-jaune" href="contacter"> Contacter </a>
             </p>
-            <a href="contacter"> Contacter </a>
         </div>
 </div>
 
-<div id="experience-applicant">
+<div id="experience-appliquant">
  <h2>Expériences de bénévolat</h2>
 
  <div>
