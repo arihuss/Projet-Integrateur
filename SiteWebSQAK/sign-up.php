@@ -56,7 +56,7 @@
     </div>
 
     <div id="btn-container">
-        <a class="btn-rose" href="connexion.php">Inscription</a>
+        <a class="btn-rose" href="log-in.php">Inscription</a>
     </div>
     </form> 
 </div>
