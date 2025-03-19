@@ -24,7 +24,7 @@
        <img src=".\img\profilapplicant.svg" alt="img-profil">
        <h3 id="nom-applicant">Liliane Belvier</h3>
        
-            <p>Courriel:<br>
+            <p class="content">Courriel:<br>
                Liliane.belvier@hotmail.com<br><br>
                
                Numéro de téléphone:<br>
@@ -39,9 +39,9 @@
 <div id="experience-appliquant">
  <h2>Expériences de bénévolat</h2>
 
-        <p>27 janvier 2025 </p>
+        <p class="content">27 janvier 2025 </p>
         <img src=".\img\event-arbre.svg" alt="img-evenement">         
-        <p>Ramassage déchets <br>
+        <p class="content">Ramassage déchets <br>
            Lieu: plage Oka <br>
            Organisation: Terre-Sauve
         </p>

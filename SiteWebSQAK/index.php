@@ -16,7 +16,7 @@
         include("components/header.php")
         ?>
     </header>
-    <p>hello,world</p>
+    <p class="content">hello,world</p>
 
     <footer>
 

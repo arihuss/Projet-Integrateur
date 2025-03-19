@@ -10,11 +10,7 @@
 </head>
 
 <body>
-<header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+<header><?php include("components/header.php")?></header>
     <div class="container">
 
         <h2>Ajouter un événement</h2>

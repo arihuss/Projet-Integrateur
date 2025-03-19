@@ -11,11 +11,7 @@
 </head>
 
 <body>
-    <header>
-        <?php
-        include("components/header.php")
-            ?>
-    </header>
+    <header><?php include("components/header.php")?></header>
     <div class="container">
         <div id="entete-profil">
             <h1>Mon Profil</h1>
@@ -25,7 +21,8 @@
             <img src="img\HemaQuebecLogo.jpg">
             <div>
                 <h2>Hema-Quebec</h2>
-                <p>Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec efficience aux
+                <p class="content">Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec
+                    efficience aux
                     besoins de la population québécoise en sang et autres produits biologiques d'origine humaine de
                     qualité.
                 </p>
@@ -33,12 +30,7 @@
         </div>
     </div>
 
-    <footer>
-
-        <?php
-        include("components/footer.php");
-        ?>
-    </footer>
+    <footer> <?php include("components/footer.php"); ?></footer>
 </body>
 
 </html>
