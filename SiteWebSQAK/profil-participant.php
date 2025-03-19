@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>SQAK - Profil participant</title>
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/profil-participant.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
@@ -16,6 +17,7 @@
         ?>
     </header>
 
+<div class="container" id="section-profil">
  <div id="profil-applicant">
        <h2>Profil de l'applicant </h2>
        <img src=".\img\profilapplicant.svg" alt="img-profil">
@@ -47,7 +49,7 @@
         </p>
    </div>
  </div>
-
+</div>
 </div>
 
 <footer>

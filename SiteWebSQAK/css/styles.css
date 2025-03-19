@@ -58,14 +58,16 @@ body{
         font-family: 'Inter';
         margin: 0;
     
-        p {
-            background-color: var(--secondary);
-            border-radius: 15px;
-            padding: 1rem 3rem;
-            margin-bottom: 2rem;
-            line-height: 1.5rem;
-        }
-    }
+        
+            p {
+                background-color: var(--secondary);
+                border-radius: 15px;
+                padding: 1rem 3rem;
+                margin-bottom: 2rem;
+                line-height: 1.5rem;
+         }
+    
+}
 
 .container {
         padding-top: 3rem;
