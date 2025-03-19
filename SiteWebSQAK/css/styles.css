@@ -55,7 +55,7 @@
 
 body{
         background-color: var(--primary);
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Inter';
         margin: 0;
     
         p {
@@ -71,6 +71,7 @@ body{
         padding-top: 3rem;
         margin: 0rem 4rem;
         padding-bottom: 4rem;
+
     }
 
 h1{
@@ -120,20 +121,29 @@ h3 {
     justify-content: center;
 }
 
-
-
-
 footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 0.5rem 2.5rem;
     align-items: center;
+    vertical-align: middle;
+    height: 145px;
 
     background-color: var(--nav-bar);
     margin-top: 0;
     width: 100%;
     box-sizing: border-box;
+
+    h3{
+        font-size: 16px;
+    }
+
+    i{
+        width: 2rem;
+        color: var(--text-vignette);
+        font-size: 24px;
+    }
 
     #contact {
         display: flex;
@@ -141,7 +151,6 @@ footer {
         align-items: flex-start;
 
         a {
-            text-decoration: none;
             color: var(--text-sur-bg)
         }
     }
