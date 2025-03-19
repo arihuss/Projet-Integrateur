@@ -42,5 +42,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtCourriel"
+        android:layout_width="275dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="327dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="492dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#DBECC5"
+        android:ems="10"
+        android:hint="  temporaire"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtMotDePasse"
+        android:layout_width="275dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="437dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="382dp"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="#DBECC5"
+        android:ems="10"
+        android:hint=" temp "
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
