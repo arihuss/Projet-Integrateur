@@ -18,7 +18,9 @@
     </header>
 
 <div class="container" id="section-profil">
+
  <div id="profil-appliquant">
+ <i class="fa-solid fa-circle-left"></i>
 
        <h2>Profil de l'applicant </h2>
        <img src=".\img\profilapplicant.svg" alt="img-profil">
@@ -39,12 +41,21 @@
 <div id="experience-appliquant">
  <h2>Expériences de bénévolat</h2>
 
-        <p class="content">27 janvier 2025 </p>
-        <img src=".\img\event-arbre.svg" alt="img-evenement">         
-        <p class="content">Ramassage déchets <br>
-           Lieu: plage Oka <br>
-           Organisation: Terre-Sauve
-        </p>
+      <div id="experience">
+        <div id="date">
+            <h3>27 <br> janvier <br> 2025</h3>
+        </div>
+        <div id="info">   
+            <img src=".\img\event-arbre.svg" alt="img-evenement">   
+            <p clas="content">   
+               Ramassage déchets <br>
+               Lieu: plage Oka <br>
+               Organisation: Terre-Sauve
+            </p>
+        </div>
+      </div>
+
+
 </div>
 </div>
  
