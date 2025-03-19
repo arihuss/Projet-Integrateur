@@ -21,11 +21,15 @@
             <h1>Mon Profil</h1>
             <a href="modifier-profil.php" class="btn-rose">Modifier</a>
         </div>
-        <div>
+        <div id="profil-content">
             <img src="img\HemaQuebecLogo.jpg">
-            <p>Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec efficience aux
-                besoins de la population québécoise en sang et autres produits biologiques d'origine humaine de qualité.
-            </p>
+            <div>
+                <h2>Hema-Quebec</h2>
+                <p>Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec efficience aux
+                    besoins de la population québécoise en sang et autres produits biologiques d'origine humaine de
+                    qualité.
+                </p>
+            </div>
         </div>
     </div>
 
