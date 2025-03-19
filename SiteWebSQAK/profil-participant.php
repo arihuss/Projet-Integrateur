@@ -19,43 +19,40 @@
 
 <div class="container" id="section-profil">
  <div id="profil-appliquant">
+
        <h2>Profil de l'applicant </h2>
        <img src=".\img\profilapplicant.svg" alt="img-profil">
        <h3 id="nom-applicant">Liliane Belvier</h3>
-       <div>
+       
             <p>Courriel:<br>
                Liliane.belvier@hotmail.com<br><br>
                
                Numéro de téléphone:<br>
                514-678-0955
-            <a class="btn-jaune" href="contacter"> Contacter </a>
+               <a class="btn-jaune" href="contacter"> Contacter </a>
             </p>
-        </div>
-</div>
+
+   </div>
+        
+
 
 <div id="experience-appliquant">
  <h2>Expériences de bénévolat</h2>
 
- <div>
-    <div>
         <p>27 janvier 2025 </p>
-   </div>
-   <div>
         <img src=".\img\event-arbre.svg" alt="img-evenement">         
         <p>Ramassage déchets <br>
            Lieu: plage Oka <br>
            Organisation: Terre-Sauve
         </p>
-   </div>
- </div>
 </div>
 </div>
+ 
 
 <footer>
-
-<?php
-include("components/footer.php");
-?>
+   <?php
+   include("components/footer.php");
+   ?>
 </footer>
 
 </body>
