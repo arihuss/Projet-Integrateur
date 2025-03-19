@@ -26,7 +26,7 @@
        <img src=".\img\profilapplicant.svg" alt="img-profil">
        <h3 id="nom-applicant">Liliane Belvier</h3>
        
-            <p>Courriel:<br>
+            <p class="content">Courriel:<br>
                Liliane.belvier@hotmail.com<br><br>
                
                Numéro de téléphone:<br>
@@ -47,7 +47,7 @@
         </div>
         <div id="info">   
             <img src=".\img\event-arbre.svg" alt="img-evenement">   
-            <p>   
+            <p clas="content">   
                Ramassage déchets <br>
                Lieu: plage Oka <br>
                Organisation: Terre-Sauve

@@ -1,0 +1,32 @@
+
+h2{
+    text-align: left;
+}
+#parametres{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.btn-param{
+    border:none;
+    background-color: var(--secondary);
+    margin-bottom: 2rem;
+    text-align: left;
+    text-decoration: none;
+    color:var(--text-vignette);
+    border-radius: 15px;
+    height: 2rem;
+
+    p{
+        background-color: none !important;
+    }
+
+    
+}
