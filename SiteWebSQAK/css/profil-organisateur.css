@@ -8,19 +8,27 @@
 #profil-content {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    gap:10px;
+
 
     div {
         width:1000px;
         h2 {
             text-align: left !important;
         }
+
+        p{
+            color: var(--text-vignette);
+            background-color: var(--widgets);
+        }
     }
 
 
     img {
         border-radius: 100%;
-        width: 215px;
+        width: 200px;
         height: 200px;
         border: 10px solid var(--secondary);
     }
