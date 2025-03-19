@@ -18,7 +18,7 @@
 </header>
 
 <div class="container">
-<form action="" method="POST">
+<form action="log-in.php" method="POST">
         <h2> Inscription </h2>
 
 <div id="form-section">
@@ -38,7 +38,7 @@
     <div class="form-column">
         <h3>Organisation</h3>
         <label for="organisation-ins">Nom de l'organisation:</label>
-        <input id="organistaion-ins" type="text"> 
+        <input id="organisation-ins" type="text"> 
     </div>
 </div>
 
@@ -50,14 +50,14 @@
         <input id="tel-ins" type="tel" placeholder="514-222-2222" pattern="^\d{3}-\d{3}-\d{4}$" required> 
         <br>
         <label for="mdp-ins">Mot de passe:</label>
-        <input id="mdp-ins" type="text" minlength="8" required> 
+        <input id="mdp-ins" type="password" minlength="8" required> 
         <br>
         <label for="Cmdp-ins">Confirmation de mot de passe:</label>
-        <input id="Cmdp-ins" type="text" required> 
+        <input id="Cmdp-ins" type="password" required> 
     </div>
 
     <div id="btn-container">
-        <a class="btn-rose" href="log-in.php">Inscription</a>
+        <input class="btn-rose" type="submit" value="Inscription">
     </div>
     </form> 
 </div>
