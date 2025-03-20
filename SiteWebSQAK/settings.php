@@ -26,7 +26,7 @@
         <div id="parametres">
             <button class="btn-param" onclick="toggleDarkMode()"><p>Changer le theme</p><p id="mode">Light Mode</p></button>
             <a href="index.php" class="btn-param">Se deconnecter</a>
-            <a href="index.php" class="btn-param">Supprimer mon compte</a>
+            <a href="index.php" class="btn-param" onclick="confirmSupprimer(event)">Supprimer mon compte</a>
         </div>
     </div>
     <footer><?php include("components/footer.php"); ?></footer>

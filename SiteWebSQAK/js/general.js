@@ -31,3 +31,12 @@ function applySavedMode() {
 
 applySavedMode();
 
+function confirmSupprimer(event) {
+    let confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ?");
+    if (!confirmation) {
+        event.preventDefault();
+        return false;
+    }
+    return true;
+}
+
