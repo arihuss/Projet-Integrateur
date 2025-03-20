@@ -13,7 +13,7 @@
 <body>
   <header><?php include("components/header.php")?></header>
 
-  <footer> <?php include("components/footer.php"); ?> </footer>
+  <footer><?php include("components/footer.php"); ?> </footer>
   <script src="js/general.js"></script>
 </body>
 
