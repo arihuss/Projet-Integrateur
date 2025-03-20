@@ -20,6 +20,12 @@
         margin-top: 1rem;
         width: 90%;
     }
+
+    i {
+        width: 2rem;
+        color: var(--text-sur-bg);
+        align-self: flex-start;
+    }
 }
 
 

@@ -20,7 +20,7 @@
 <div class="container" id="section-profil">
 
  <div id="profil-appliquant">
- <i class="fa-solid fa-circle-left"></i>
+ <a href="evenement.php"><i class="fa-solid fa-circle-left"></i></a>
 
        <h2>Profil de l'applicant </h2>
        <img src=".\img\profilapplicant.svg" alt="img-profil">
@@ -47,7 +47,7 @@
         </div>
         <div id="info">   
             <img src=".\img\event-arbre.svg" alt="img-evenement">   
-            <p clas="content">   
+            <p class="content">   
                Ramassage déchets <br>
                Lieu: plage Oka <br>
                Organisation: Terre-Sauve
