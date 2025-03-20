@@ -1,32 +1,41 @@
-
-h2{
+h2 {
     text-align: left;
 }
-#parametres{
+
+#parametres {
     display: flex;
     flex-direction: column;
-}
 
-button{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-}
-
-.btn-param{
-    border:none;
-    background-color: var(--secondary);
-    margin-bottom: 2rem;
-    text-align: left;
-    text-decoration: none;
-    color:var(--text-vignette);
-    border-radius: 15px;
-    height: 2rem;
-
-    p{
-        background-color: none !important;
+    button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 20px;
     }
 
-    
+    a {
+        display: flex;
+    }
+
+    .btn-param {
+        border: none;
+        background-color: var(--secondary);
+        margin-bottom: 1rem;
+        text-align: left;
+        text-decoration: none;
+        color: var(--text-vignette);
+        border-radius: 15px;
+        height: 4rem;
+        font-size: 20px;
+        align-items: center;
+        padding: 0 1rem;
+
+        #mode {
+            font-size: 16px;
+        }
+    }
+
+    .btn-param:hover {
+        background-color: var(--secondary-hover);
+    }
 }

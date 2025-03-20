@@ -13,7 +13,7 @@
 <body>
     <header><?php include("components/header.php") ?></header>
     <div class=container>
-        <h1>A Propos</h1>
+        <h1>À Propos</h1>
         <p class="content">SQAK est une organisation dédiée à la mise en valeur des organismes à but non lucratif en facilitant la
             connexion
             entre bénévoles, visiteurs et événements. Grâce à notre application intuitive et interactive, nous
@@ -22,11 +22,11 @@
             interface
             web offre aux organisateurs un outil efficace pour planifier, publier et gérer leurs événements, optimisant
             ainsi leur visibilité et leur impact communautaire.</p>
-        <h2>Parametres</h2>
+        <h2>Paramètres</h2>
         <div id="parametres">
-            <button class="btn-param"><p>Changer le theme</p><p>Light Mode</p></button>
-            <a href="index.html" class="btn-param">Se deconnecter</a>
-            <a href="index.html" class="btn-param">Supprimer mon compte</a>
+            <button class="btn-param"><p>Changer le theme</p><p id="mode">Light Mode</p></button>
+            <a href="index.php" class="btn-param">Se deconnecter</a>
+            <a href="index.php" class="btn-param">Supprimer mon compte</a>
         </div>
     </div>
     <footer><?php include("components/footer.php"); ?></footer>
