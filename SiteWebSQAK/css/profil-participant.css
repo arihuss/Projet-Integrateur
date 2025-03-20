@@ -20,12 +20,20 @@
         margin-top: 1rem;
         width: 90%;
     }
+}
 
-    i {
-        width: 2rem;
-        color: var(--text-sur-bg);
-        align-self: flex-start;
-    }
+#profil-appliquant a:not(.btn-jaune) {
+    display: flex; 
+    justify-content: flex-start;  
+    width: 100%; 
+    text-decoration: none;
+}
+
+#profil-appliquant i {
+    font-size: 2rem;  
+    color: var(--text-sur-bg);
+    padding-left: 1rem;
+ 
 }
 
 
