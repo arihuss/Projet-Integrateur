@@ -26,7 +26,7 @@
         <input id="courriel-connexion" type="email" required><br><br>
         <label for="mdp-connexion">Mot de passe:</label> <br>
         <input id="mdp-connexion" type="text" minlength="8" required><br><br>
-        <input class="btn-jaune" type="submit" value="Connexion">
+        <input class="btn-jaune" type="submit" value="Connexion"><br>
         <a href="mdp-oublie" > Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
     </form>
 </div>
