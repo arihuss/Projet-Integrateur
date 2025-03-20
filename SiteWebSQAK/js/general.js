@@ -32,7 +32,7 @@ function applySavedMode() {
 applySavedMode();
 
 function confirmSupprimer(event) {
-    let confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ?");
+    let confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cet element ?");
     if (!confirmation) {
         event.preventDefault();
         return false;

@@ -17,6 +17,7 @@
     --txt-couleur-fonce: #525050;
     --widgets: #F0F9E2;
     --secondary-hover: #c5dba8;
+    --accent3-active:#d1b148;
 }
 
 .dark-mode{
@@ -38,6 +39,7 @@
     --txt-couleur-fonce: #747070;
     --widgets: #2A2D27;
     --secondary-hover: #11271a;
+    --accent3-active:#d1b148;
 }
 
 .header {
@@ -124,6 +126,11 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    border:none;
+}
+
+.btn-jaune:hover{
+    background-color: var(--accent3-active);
 }
 
 .btn-rose {
@@ -139,6 +146,10 @@ h3 {
     align-items: center;
     justify-content: center;
     border: none;
+}
+
+.btn-rose:hover{
+    background-color: var(--accent2-active);
 }
 
 footer {
