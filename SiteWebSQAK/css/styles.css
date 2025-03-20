@@ -59,6 +59,8 @@
         justify-content: space-between;
         list-style: none;
 
+       
+
         li {
             margin: 30px;
             font-weight: bold;
@@ -71,7 +73,17 @@
         }
 
     }
+} 
+
+.nav-txt:hover{
+    text-decoration: underline;
+    color:var(--text-btn);
 }
+
+.nav-txt.active{
+            text-decoration: underline;
+            font-weight: bold;
+        }
 
 
 body {
@@ -120,12 +132,12 @@ h3 {
 .btn-jaune {
     background-color: var(--accent3);
     border-radius: 5px;
-    height: 2rem;
+    height: 2.8rem;
+    width: 9rem;
     color: white;
     font-weight: bold;
     padding: 0.3rem 0.6rem;
     text-decoration: none;
-    min-width: 7rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -197,3 +209,4 @@ footer {
         }
     }
 }
+
