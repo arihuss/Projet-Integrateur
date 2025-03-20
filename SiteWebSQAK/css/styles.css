@@ -135,12 +135,12 @@ h3 {
 .btn-rose {
     background-color: var(--accent2);
     border-radius: 5px;
-    height: 2rem;
+    height: 2.8rem;
+    width: 9rem;
     color: white;
     font-weight: bold;
     padding: 0.3rem 0.6rem;
     text-decoration: none;
-    min-width: 7rem;
     display: flex;
     align-items: center;
     justify-content: center;
