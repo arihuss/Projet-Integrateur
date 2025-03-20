@@ -21,12 +21,12 @@
 
 <div class="container">
     <h1>Connexion</h1>
-    <form action="" method="POST" >
+    <form action="page-principale.php" method="POST" >
         <label for="courriel-connexion">Courriel:</label> <br>
         <input id="courriel-connexion" type="email" required><br><br>
         <label for="mdp-connexion">Mot de passe:</label> <br>
         <input id="mdp-connexion" type="text" minlength="8" required><br><br>
-        <a class="btn-jaune" href="evenement.php">Connexion</a><br>
+        <input class="btn-jaune" type="submit" value="Connexion">
         <a href="mdp-oublie" > Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
     </form>
 </div>
