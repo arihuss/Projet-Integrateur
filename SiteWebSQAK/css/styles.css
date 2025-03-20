@@ -75,17 +75,6 @@
     }
 } 
 
-.nav-txt:hover{
-    text-decoration: underline;
-    color:var(--text-btn);
-}
-
-.nav-txt.active{
-            text-decoration: underline;
-            font-weight: bold;
-        }
-
-
 body {
     background-color: var(--primary);
     font-family: 'Inter';
@@ -209,4 +198,13 @@ footer {
         }
     }
 }
+
+.nav-txt:hover{
+    text-decoration: underline !important;
+    transition: text-decoration 2s;
+}
+
+.active{
+            text-decoration: underline !important;
+        }
 
