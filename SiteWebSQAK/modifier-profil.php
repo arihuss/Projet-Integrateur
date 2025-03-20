@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header><?php include("components/header.php")?></header>
+    <header><?php include("components/header.php") ?></header>
 
     <div class="container">
         <form action="" method="POST">
@@ -63,7 +63,7 @@
         </form>
     </div>
 
-    <footer><?php include("components/footer.php");?></footer>
+    <footer><?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
 </body>
 

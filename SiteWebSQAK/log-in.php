@@ -11,10 +11,7 @@
 </head>
 
 <body>
-
     <header><?php include("components/header.php") ?></header>
-
-
     <div class="container">
         <h1>Connexion</h1>
         <form action="page-principale.php" method="POST">
@@ -26,10 +23,7 @@
             <a href="mdp-oublie"> Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
         </form>
     </div>
-
     <footer><?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
-
 </body>
-
 </html>
