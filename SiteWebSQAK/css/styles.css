@@ -13,10 +13,10 @@
     --vert-fonce-logo: #3CAB6B;
     --vert-pale-logo: #B0D957;
     --barre-recherche: #C2DE9C;
-    --btn-desactive:#7F7C7C;
-    --txt-couleur-fonce:#525050;
-    --widgets:#F0F9E2;
-    --bg-form: #F0F9E2;
+    --btn-desactive: #7F7C7C;
+    --txt-couleur-fonce: #525050;
+    --widgets: #F0F9E2;
+    --secondary-hover: #c5dba8;
 }
 
 
@@ -29,7 +29,7 @@
     background-color: var(--nav-bar);
 
     img {
-        width:225px; 
+        width: 225px;
     }
 
     .nav-bar {
@@ -49,54 +49,54 @@
             }
         }
 
-        }
+    }
 }
 
 
-body{
-        background-color: var(--primary);
-        font-family: 'Inter';
-        margin: 0;
-    
-        
-            .content{
-                background-color: var(--secondary);
-                border-radius: 15px;
-                padding: 1rem 3rem;
-                margin-bottom: 2rem;
-            }
-            p {
-                line-height: 1.5rem;
-                color:var(--text-vignette)
-         }
-    
+body {
+    background-color: var(--primary);
+    font-family: 'Inter';
+    margin: 0;
+
+    .content {
+        background-color: var(--secondary);
+        border-radius: 15px;
+        padding: 1rem 3rem;
+        margin-bottom: 2rem;
+    }
+
+    p {
+        line-height: 1.5rem;
+        color: var(--text-vignette)
+    }
+
 }
 
 .container {
-        padding-top: 3rem;
-        margin: 0rem 4rem;
-        padding-bottom: 4rem;
-    }
+    padding-top: 3rem;
+    margin: 0rem 4rem;
+    padding-bottom: 4rem;
+}
 
-h1{
-    color:var(--text-sur-bg);
-    font-size:40px;
+h1 {
+    color: var(--text-sur-bg);
+    font-size: 40px;
     text-align: center;
 }
 
 h2 {
     text-align: center;
-    font-size:30px;
+    font-size: 30px;
     color: var(--text-sur-bg);
 
 }
 
 h3 {
     color: var(--text-sur-bg);
-    
+
 }
 
-.btn-jaune{
+.btn-jaune {
     background-color: var(--accent3);
     border-radius: 5px;
     height: 2rem;
@@ -111,7 +111,7 @@ h3 {
 }
 
 
-.btn-rose{
+.btn-rose {
     background-color: var(--accent2);
     border-radius: 5px;
     height: 2rem;
@@ -140,11 +140,11 @@ footer {
     width: 100%;
     box-sizing: border-box;
 
-    h3{
+    h3 {
         font-size: 16px;
     }
 
-    i{
+    i {
         width: 2rem;
         color: var(--text-vignette);
         font-size: 24px;
@@ -165,7 +165,7 @@ footer {
         flex-direction: column;
         align-items: flex-end;
 
-        h3{
+        h3 {
             margin-bottom: 0;
         }
 

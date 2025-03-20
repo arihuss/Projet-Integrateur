@@ -11,7 +11,7 @@
 }
 
 form{
-        background-color: var(--bg-form);
+        background-color: var(--widgets);
         width: 35rem;
         padding-bottom: 2rem;
         display: flex;
