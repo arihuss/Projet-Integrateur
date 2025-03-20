@@ -2,28 +2,19 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>SQAK - Événement</title>
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>SQAK - Événement</title>
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 
 <body>
-<header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+  <header><?php include("components/header.php")?></header>
 
-    <footer>
-
-<?php
-include("components/footer.php");
-?>
-</footer>
-
+  <footer> <?php include("components/footer.php"); ?> </footer>
+  <script src="js/general.js"></script>
 </body>
 
 </html>

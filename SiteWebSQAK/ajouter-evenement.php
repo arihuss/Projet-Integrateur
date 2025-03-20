@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<header><?php include("components/header.php")?></header>
+    <header><?php include("components/header.php") ?></header>
     <div class="container">
 
         <h2>Ajouter un événement</h2>
@@ -73,16 +73,8 @@
             </div>
         </form>
     </div>
-
-
-            <footer>
-
-<?php
-include("components/footer.php");
-?>
-</footer>
-
-           
+    <footer><?php include("components/footer.php"); ?> </footer>
+    <script src="js/general.js"></script>
 </body>
 
 </html>

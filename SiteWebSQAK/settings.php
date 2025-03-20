@@ -24,12 +24,13 @@
             ainsi leur visibilité et leur impact communautaire.</p>
         <h2>Paramètres</h2>
         <div id="parametres">
-            <button class="btn-param"><p>Changer le theme</p><p id="mode">Light Mode</p></button>
+            <button class="btn-param" onclick="toggleDarkMode()"><p>Changer le theme</p><p id="mode">Light Mode</p></button>
             <a href="index.php" class="btn-param">Se deconnecter</a>
             <a href="index.php" class="btn-param">Supprimer mon compte</a>
         </div>
     </div>
     <footer><?php include("components/footer.php"); ?></footer>
+    <script src="js/general.js"></script>
 </body>
 
 </html>

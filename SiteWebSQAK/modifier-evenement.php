@@ -11,11 +11,7 @@
 </head>
 
 <body>
-<header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+<header><?php include("components/header.php")?></header>
 
 <body>
     <div class="container">
@@ -84,12 +80,8 @@
 
            
 </body>
-<footer>
-
-<?php
-include("components/footer.php");
-?>
-</footer>
+<footer><?php include("components/footer.php");?></footer>
+<script src="js/general.js"></script>
 </body>
 
 </html>

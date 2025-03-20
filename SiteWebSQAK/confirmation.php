@@ -11,32 +11,22 @@
 </head>
 
 <body>
-    <header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+    <header><?php include("components/header.php") ?></header>
 
     <div class="container">
-        <form action="" method="POST" >
-                <h2>Entrez le code de confirmation</h2>
-                 <input id="code-confirmation" type="text" required>
+        <form action="" method="POST">
+            <h2>Entrez le code de confirmation</h2>
+            <input id="code-confirmation" type="text" required>
         </form>
         <br>
         <div>
             <a class="btn-jaune" href="page-principale.php">Confirmer</a><br>
-            <a href="code-renvoye" > Renvoyez le code</a> <!-- code a renvoyer a changer-->
+            <a href="code-renvoye"> Renvoyez le code</a> <!-- code a renvoyer a changer-->
         </div>
-        
-       
     </div>
 
-    <footer>
-        <?php
-        include("components/footer.php");
-        ?>
-    </footer>
-
+    <footer><?php include("components/footer.php"); ?> </footer>
+    <script src="js/general.js"></script>
 </body>
 
 </html>

@@ -63,6 +63,7 @@
     </div>
 
     <footer> <?php include("components/footer.php"); ?> </footer>
+    <script src="js/general.js"></script>
 
 </body>
 

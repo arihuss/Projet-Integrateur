@@ -19,6 +19,27 @@
     --secondary-hover: #c5dba8;
 }
 
+.dark-mode{
+    --primary: #282626;
+    --secondary: #143D26;
+    --accent1: #3CAB6B;
+    --accent2: #EF95C2;
+    --accent2-active: #C42E7A;
+    --accent3: #E5BF45;
+    --text-sur-bg: #6D9E6D;
+    --text-btn: #FFFFFF;
+    --nav-bar: #2F442E;
+    --text-vignette: #BDDBBD;
+    --btn-filtre: #61AC5E;
+    --vert-fonce-logo: #3CAB6B;
+    --vert-pale-logo: #B0D957;
+    --barre-recherche: #81BE7F;
+    --btn-desactive: #494343;
+    --txt-couleur-fonce: #747070;
+    --widgets: #2A2D27;
+    --secondary-hover: #11271a;
+}
+
 
 .header {
     display: flex;

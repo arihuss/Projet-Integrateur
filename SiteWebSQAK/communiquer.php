@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>SQAK - Communiquer</title>
@@ -7,23 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
+
 <body>
-<header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+    <header> <?php include("components/header.php") ?></header>
 
-    <footer>
 
-<?php
-include("components/footer.php");
-?>
-</footer>
 
     <div class="content">
         <form id="communicationForm">
-        <h2 class="section-title">Moyen de communication</h2>
+            <h2 class="section-title">Moyen de communication</h2>
             <div class="checkbox-group">
                 <input type="checkbox" id="sms"> <label for="sms">SMS</label>
                 <input type="checkbox" id="email"> <label for="email">Courriel</label>
@@ -46,6 +39,8 @@ include("components/footer.php");
             </div>
         </form>
     </div>
-
+    <footer> <?php include("components/footer.php"); ?> </footer>
+    <script src="js/general.js"></script>
 </body>
+
 </html>

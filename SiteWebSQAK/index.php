@@ -11,19 +11,11 @@
 </head>
 
 <body>
-    <header>
-        <?php
-        include("components/header.php")
-        ?>
-    </header>
+    <header><?php include("components/header.php") ?></header>
     <p class="content">hello,world</p>
 
-    <footer>
-
-    <?php
-    include("components/footer.php");
-    ?>
-  </footer>
+    <footer><?php include("components/footer.php"); ?></footer>
+    <script src="js/general.js"></script>
 </body>
 
 </html>
