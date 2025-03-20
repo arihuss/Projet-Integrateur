@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-column">
-        <h3>Organisation</h3>
+        <h3 id="org-titre">Organisation</h3>
         <label for="organisation-ins">Nom de l'organisation:</label>
         <input id="organisation-ins" type="text"> 
     </div>
