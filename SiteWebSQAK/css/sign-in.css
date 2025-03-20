@@ -54,7 +54,7 @@ form {
 }
 
 
-input:not(#file-photo){
+input:not(#file-photo,#btn-inscription){
     background-color: var(--secondary);
     border-radius: 15px;
     height: 1rem;
@@ -88,7 +88,7 @@ label {
     left: 60%;
 }
 
-
+/*
 #file-upload {
     display: flex;
     gap: 1rem; 
@@ -131,4 +131,4 @@ label {
 
 #org-titre{
     height: 5rem;
-}
+}*/

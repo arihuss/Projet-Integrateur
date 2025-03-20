@@ -53,7 +53,7 @@
     </div>
 
     <div id="btn-container">
-        <input class="btn-rose" type="submit" value="Inscription">
+        <input id="btn-inscription" class="btn-rose" type="submit" value="Inscription">
     </div>
     </form> 
 </div>
