@@ -1,9 +1,30 @@
-function toggleDarkMode(){
-    document.documentElement.classList.toggle("dark-mode");
+function toggleDarkMode() {
+    const isDarkMode = document.documentElement.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+    updateButtonText();
+}
+
+function updateButtonText() {
     let modeButton = document.getElementById("mode");
-    if (document.documentElement.classList.contains("dark-mode")){
-        modeButton.innerHTML="Dark Mode";
-    }else{
-        modeButton.innerHTML="Light Mode";
+    if (document.documentElement.classList.contains("dark-mode")) {
+        modeButton.innerHTML = "Dark Mode";
+    } else {
+        modeButton.innerHTML = "Light Mode";
     }
 }
+
+function applySavedMode() {
+    const savedMode = localStorage.getItem("darkMode");
+    if (savedMode === "enabled") {
+        document.documentElement.classList.add("dark-mode");
+    } else if (savedMode === "disabled") {
+        document.documentElement.classList.remove("dark-mode");
+    } else {
+        if (window.matchMedia("(prefers-color-scheme:dark)").matches) {
+            document.documentElement.classList.add("dark-mode");
+        }
+    }
+    updateButtonText();
+}
+
+applySavedMode();
