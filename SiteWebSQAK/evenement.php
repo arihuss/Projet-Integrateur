@@ -80,7 +80,8 @@
 </div>
 
 
-<span id="btn-com"><button class="btn-rose">Communiquer</button></span>
+<span id="btn-com"><a class="btn-rose" href="communiquer.php" >Communiquer</a></span>
+
 
 <h2>Commentaires</h2>
 
