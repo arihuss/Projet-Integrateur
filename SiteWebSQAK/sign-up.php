@@ -43,7 +43,7 @@
         <input id="courriel-ins" type="email" required> 
         <br>
         <label for="tel-ins">Numéro de téléphone:</label>
-        <input id="tel-ins" type="tel" placeholder="514-222-2222" pattern="^\d{3}-\d{3}-\d{4}$" required> 
+        <input id="tel-ins" type="tel" placeholder="514-222-2222" pattern="^\d{3}-\d{3}-\d{4}$"> 
         <br>
         <label for="mdp-ins">Mot de passe:</label>
         <input id="mdp-ins" type="password" minlength="8" required> 
