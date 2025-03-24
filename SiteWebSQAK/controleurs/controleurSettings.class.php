@@ -1,7 +1,7 @@
 <?php
 include_once("controleur.abstract.class.php");
 
-class SeDeconnecter extends Controleur{
+class Settings extends Controleur{
 
     
 		public function __construct() {
@@ -17,7 +17,7 @@ class SeDeconnecter extends Controleur{
 		{
 				
 
-			return "????.php";
+			return "settings.php";
 		}
 
 }
