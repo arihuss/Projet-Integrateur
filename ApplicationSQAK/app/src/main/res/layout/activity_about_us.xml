@@ -46,6 +46,6 @@
         app:autoSizeTextType="uniform"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="276dp" />
+        tools:layout_editor_absoluteY="280dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
