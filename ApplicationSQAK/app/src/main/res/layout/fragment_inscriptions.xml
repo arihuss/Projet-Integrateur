@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".InscriptionsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.sarah.applicationsqak.vues.EventFilterView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Page Inscriptions" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>
