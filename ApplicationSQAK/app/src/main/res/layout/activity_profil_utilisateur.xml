@@ -22,7 +22,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtNomUser"
         android:layout_width="91dp"
         android:layout_height="32dp"
         android:text="TextView"
@@ -30,20 +30,22 @@
         android:textSize="20sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="75dp" />
+        tools:layout_editor_absoluteY="75dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/txtBioUser"
         android:layout_width="180dp"
         android:layout_height="96dp"
         android:text="TextView"
         android:textColor="@color/textsurbg"
         android:textSize="16sp"
         tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="107dp" />
+        tools:layout_editor_absoluteY="107dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtExperienceBenevolat"
         android:layout_width="321dp"
         android:layout_height="32dp"
         android:text="Expérience de Bénévolat"
@@ -52,16 +54,19 @@
         android:textSize="20sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="237dp" />
+        tools:layout_editor_absoluteY="237dp"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="352dp"
         android:layout_height="354dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="318dp">
+        tools:layout_editor_absoluteY="318dp"
+        tools:ignore="MissingConstraints">
 
         <ListView
+            android:id="@+id/lvExpUser"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
