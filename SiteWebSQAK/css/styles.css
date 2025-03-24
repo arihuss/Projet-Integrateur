@@ -95,6 +95,7 @@ body {
     padding-top: 3rem;
     margin: 0rem 4rem;
     padding-bottom: 4rem;
+    min-height: 35rem;
 }
 
 h1 {
@@ -131,6 +132,7 @@ h3 {
 
 .btn-jaune:hover{
     background-color: var(--accent3-active);
+    transition: 0.2s linear;
 }
 
 .btn-rose {
@@ -150,6 +152,7 @@ h3 {
 
 .btn-rose:hover{
     background-color: var(--accent2-active);
+    transition: 0.2s linear;
 }
 
 footer {

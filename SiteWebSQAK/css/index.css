@@ -1,0 +1,99 @@
+h3{
+    text-align: center;
+}
+
+#fleurs{
+    width: 100%;
+    margin-top: 2.5rem;
+}
+
+#accueil-card{
+    background-image: url("../img/fleurs.svg");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+
+    #logo-accueil{
+        object-fit: cover;
+        width: 700px;
+        height: 170px;
+        margin-top: 5rem;
+    }
+
+    h1{
+        margin-bottom: 0;
+        font-weight: lighter;
+    }
+
+    h3{
+        font-weight: lighter;
+        margin-bottom: 3.5rem;
+    }
+    
+    #btn-container{
+        display: flex;
+        flex-direction: row;
+        gap:5rem;
+        justify-content: center;
+    }
+
+}
+
+#fonction{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p{
+        width: 215px;
+        height: 200px;
+        text-align: center;
+        color: var(--text-sur-bg);
+        font-weight: bold;
+
+        i{
+           font-size: 90px;
+           margin: 1rem auto;
+        }
+    }
+}
+
+#reviews{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap:3rem;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 7rem;
+
+    .revue{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--secondary);
+        border-radius: 15px;
+        border: 4px solid var(--accent1);
+        width: 300px;
+        height: 400px;
+        padding: 2rem;
+        margin-bottom:1rem;
+
+        .img-revue{
+            border-radius: 100%;
+            width: 75px;
+            height: 75px;
+        }
+
+        h3{
+            margin-bottom: 0;
+        }
+
+        p{
+            color:var(--text-sur-bg);
+        }
+    }
+}
