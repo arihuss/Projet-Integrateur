@@ -17,7 +17,6 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="424dp"
         app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="-32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,5 +77,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="792dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="24dp"
+        app:srcCompat="@drawable/fleche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtMdpOublie"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="219dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Mot de passe oublié?"
+        android:textAlignment="center"
+        android:textColor="#6B8E23"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

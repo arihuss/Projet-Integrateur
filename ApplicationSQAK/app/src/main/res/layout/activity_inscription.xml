@@ -2,17 +2,144 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFBEF"
     tools:context=".Inscription">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="260dp"
-        android:layout_height="108dp"
-        android:text="Page de mes inscriptions"
-        android:textSize="34sp"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="286dp" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="425dp"
+        android:layout_height="425dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-155dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="424dp"
+        app:srcCompat="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/edtPrenom"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Prénom"
+        android:background="@drawable/rounded_input"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        android:layout_marginTop="30dp"
+        android:textColorHint="#6B8E23"/>
+
+    <EditText
+        android:id="@+id/edtNom"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Nom"
+        android:background="@drawable/rounded_input"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtPrenom"
+        android:layout_marginTop="15dp"
+        android:textColorHint="#6B8E23"/>
+
+    <EditText
+        android:id="@+id/edtCourriel"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Courriel"
+        android:background="@drawable/rounded_input"
+        android:paddingStart="10dp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtNom"
+        android:layout_marginTop="15dp"
+        android:textColorHint="#6B8E23"/>
+
+    <EditText
+        android:id="@+id/edtTelephone"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Numéro de téléphone"
+        android:background="@drawable/rounded_input"
+        android:paddingStart="10dp"
+        android:inputType="phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtCourriel"
+        android:layout_marginTop="15dp"
+        android:textColorHint="#6B8E23"/>
+
+    <EditText
+        android:id="@+id/edtMotDePasse"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Mot de passe"
+        android:background="@drawable/rounded_button"
+        android:paddingStart="10dp"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:textColorHint="#6B8E23"/>
+
+    <EditText
+        android:id="@+id/edtConfirmationMotDePasse"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Confirmation de mot de passe"
+        android:background="@drawable/rounded_input"
+        android:paddingStart="10dp"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="#6B8E23"/>
+
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="551dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="253dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="S'inscrire"
+        android:textSize="26sp"
+        app:backgroundTint="#FFDE71"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="792dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/fleche"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

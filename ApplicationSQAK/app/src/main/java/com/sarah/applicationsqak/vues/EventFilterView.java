@@ -11,7 +11,7 @@ import com.sarah.applicationsqak.R;
 
 public class EventFilterView extends LinearLayout {
 
-    private Spinner spinnerCategory, spinnerDate;
+    private Spinner spinnerLocation, spinnerDate;
     private Button buttonApply;
 
     public EventFilterView(Context context, AttributeSet attrs) {
@@ -22,12 +22,13 @@ public class EventFilterView extends LinearLayout {
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.event_filter, this, true);
 
-        spinnerCategory = findViewById(R.id.spinnerCategory);
-        spinnerDate = findViewById(R.id.spinnerDate);
+        // Liaisions avec la vue
+        //spinnerLocation = findViewById(R.id.spinnerLocation);
+        //spinnerDate = findViewById(R.id.spinnerDate);
     }
 
     public String getSelectedCategory() {
-        return spinnerCategory.getSelectedItem().toString();
+        return spinnerLocation.getSelectedItem().toString();
     }
 
     public String getSelectedDate() {
