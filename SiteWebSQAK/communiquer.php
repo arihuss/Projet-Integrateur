@@ -11,12 +11,13 @@
 </head>
 
 <body>
-    <header> <?php include("components/header.php") ?></header>
+    <header> <?php include("components/header.php") ?> </header>
 
-   
     <form id="communicationForm">
+      
         <div class="section-flex">
 
+        
             <div class="section-block">
                 <h2 class="section-title">Moyen de communication</h2>
                 <div class="checkbox-group">
@@ -35,21 +36,18 @@
                     <input type="checkbox" id="invites"> <label for="invites">Invités</label>
                 </div>
             </div>
+
+        </div>
+
+        <!-- SECTION : Message intégré dans le formulaire -->
+        <label for="message" class="section-title message-label">Message *</label>
+        <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+
+        <div class="buttons">
+            <button type="submit" class="btn btn-send">Envoyer</button>
+            <button type="button" class="btn btn-back" onclick="history.back()">Revenir</button>
         </div>
     </form>
-
-    <!-- SECTION : Zone de message (dans bloc séparé) -->
-    <div class="message-box">
-        <form>
-            <label for="message" class="section-title message-label">Message *</label>
-            <textarea id="message" name="message" placeholder="Votre message" required></textarea>
-
-            <div class="buttons">
-                <button type="submit" class="btn btn-send">Envoyer</button>
-                <button type="button" class="btn btn-back" onclick="history.back()">Revenir</button>
-            </div>
-        </form>
-    </div>
 
     <footer> <?php include("components/footer.php"); ?> </footer>
     <script src="js/general.js"></script>
