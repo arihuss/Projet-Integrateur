@@ -41,7 +41,7 @@
         android:fontFamily="@font/inter_bold"
         android:insetTop="0dp"
         android:insetBottom="0dp"
-        android:text="S'inscrire"
+        android:text="Sinscrire"
         android:textSize="26sp"
         app:backgroundTint="#FFDE71"
         app:layout_constraintBottom_toBottomOf="parent"

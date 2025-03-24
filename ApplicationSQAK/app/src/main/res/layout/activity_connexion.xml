@@ -71,7 +71,7 @@
         android:background="@drawable/rounded_button"
         app:backgroundTint="#DBECC5"
         android:ems="10"
-        android:hint="temp "
+        android:hint="temp"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

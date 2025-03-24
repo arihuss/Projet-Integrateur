@@ -116,7 +116,7 @@
             android:text="Supprimer mon compte"
             android:textAlignment="textStart"
             android:textColor="@color/textvignette"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
