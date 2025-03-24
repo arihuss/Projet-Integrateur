@@ -8,8 +8,8 @@
 
 
     <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="135dp"
+        android:layout_width="70dp"
+        android:layout_height="113dp"
         android:background="@drawable/bg_left"
         android:gravity="center"
         android:orientation="vertical"
@@ -30,8 +30,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="329dp"
-        android:layout_height="135dp"
+        android:layout_width="312dp"
+        android:layout_height="113dp"
         android:layout_marginStart="70dp"
         android:background="@drawable/bg_right"
         android:gravity="center_vertical"
