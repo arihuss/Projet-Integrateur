@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".vues.ModifierProfil"
+            android:name=".ModifierProfil"
             android:exported="false" />
         <activity
             android:name=".AboutUs"
@@ -33,12 +33,7 @@
         <activity
             android:name=".Inscription"
             android:exported="false" />
-        <activity
-            android:name=".ProfilUtilisateur"
-            android:exported="false" />
-        <activity
-            android:name=".Settings"
-            android:exported="false" />
+
         <activity
             android:name=".Connexion"
             android:exported="false" />

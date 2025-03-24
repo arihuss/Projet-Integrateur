@@ -18,7 +18,7 @@
         <Button
             android:id="@+id/btnFiltreTout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:backgroundTint="@color/accent3"
             android:padding="12dp"
             android:text="Tout"
@@ -28,21 +28,21 @@
         <Spinner
             android:id="@+id/spinnerLocation"
             android:layout_width="wrap_content"
-            android:minWidth="95dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/event_filter_custom_spinner"
+            android:entries="@array/event_dates"
+            android:minWidth="95dp"
             android:padding="12dp"
             android:popupBackground="@color/textbtn"
             android:spinnerMode="dialog"
-            android:entries="@array/event_dates"
             android:textAlignment="center" />
 
         <Button
             android:id="@+id/btnFilreVisiteur"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:backgroundTint="@color/btnfiltre"
             android:padding="12dp"
             android:text="Visiteur"
@@ -52,7 +52,7 @@
         <Button
             android:id="@+id/btnFiltreBenevole"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:backgroundTint="@color/btnfiltre"
             android:padding="12dp"
             android:text="Benevole"
@@ -61,15 +61,15 @@
         <Spinner
             android:id="@+id/spinnerEtat"
             android:layout_width="wrap_content"
-            android:minWidth="95dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/event_filter_custom_spinner"
+            android:entries="@array/event_etat"
+            android:minWidth="95dp"
             android:padding="12dp"
             android:popupBackground="@color/textbtn"
             android:spinnerMode="dialog"
-            android:entries="@array/event_etat"
             android:textAlignment="center" />
 
 
