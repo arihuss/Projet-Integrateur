@@ -1,14 +1,33 @@
 <?php
 include_once(__DIR__ . "../organisateur.class.php");
+include_once(__DIR__ . "/DAO.interface.php");
 
-class OrganisateurDAO {
+class OrganisateurDAO implements DAO{
+
+    /**
+     * Cette méthode retourne l'objet dont la clé primaire a été reçue en paramètre
+     * @param int $id La clé primaire de l'objet à chercher
+     * @return object|null L'objet trouvé ou null si non-trouvé
+     */
+    static public function findById(int $id): ?Organisateur {
+        //a completer
+    }
+
+    /**
+     * Retourne une liste de tous les objets de la table
+     * @return array
+     */
+    static public function findAll():array{
+        //a completer
+        return [0];
+    }
 
     /**
      * Creer un nouvel organisateur au sign-up
      * @param object $object 
      * @return bool true si successful
      */
-    static public function creerOrganisateur(object $object):bool{
+    static public function save(object $object):bool{
        //a completer
         return false;
     }
@@ -18,7 +37,7 @@ class OrganisateurDAO {
      * @param object $object
      * @return bool true si successful
      */
-    static public function modifierOrganisateur(object $object):bool{
+    static public function update(object $object):bool{
         //a completer
         return false;
     }
@@ -28,7 +47,7 @@ class OrganisateurDAO {
      * @param object $object
      * @return bool true si successful
      */
-    static public function deleteOrganisateur(object $object):bool{
+    static public function delete(object $object):bool{
         //a completer
         return false;
     }
