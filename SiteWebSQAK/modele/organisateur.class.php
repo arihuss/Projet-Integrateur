@@ -9,7 +9,7 @@ class Organisateur implements JsonSerializable
     private string $biographie;
     private ?string $nomOrganisateur;
     private string $motDePasse;
-    private string $nbEvents;
+    private int $nbEvents;
     
     //Constructeur
 
@@ -21,7 +21,7 @@ class Organisateur implements JsonSerializable
         string $biographie,
         ?string $nomOrganisateur,
         string $motDePasse,
-        string $nbEvents
+        int $nbEvents
     ){
         $this->id = $id;
         $this->prenom = $prenom;
@@ -69,7 +69,7 @@ class Organisateur implements JsonSerializable
          return $this->motDePasse;
      }
  
-     public function getNbEvents(): string
+     public function getNbEvents(): int
      {
          return $this->nbEvents;
      }
@@ -110,7 +110,7 @@ class Organisateur implements JsonSerializable
          $this->motDePasse = $motDePasse;
      }
  
-     public function setNbEvents(string $nbEvents): void
+     public function setNbEvents(int $nbEvents): void
      {
          $this->nbEvents = $nbEvents;
      }
