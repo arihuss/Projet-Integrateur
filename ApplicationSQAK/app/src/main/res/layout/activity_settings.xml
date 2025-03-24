@@ -1,15 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="260dp"
-        android:layout_height="108dp"
-        android:text="Page settings"
-        android:textSize="34sp"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="142dp" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navbar"
+        app:itemIconSize="35dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fgContainer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="409dp"
+            android:layout_height="649dp"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/bottom_nav" />
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="35dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="37dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="80dp" />
+
+    <LinearLayout
+        android:layout_width="336dp"
+        android:layout_height="304dp"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        tools:layout_editor_absoluteY="80dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnModifProfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="Modifier profil"
+            android:textAlignment="textStart"
+            android:textColor="@color/textvignette"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="Changer le thème"
+            android:textAlignment="textStart"
+            android:textColor="@color/textvignette"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="Plus sur SQAK"
+            android:textAlignment="textStart"
+            android:textColor="@color/textvignette"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeconnecter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="Se déconnecter"
+            android:textAlignment="viewStart"
+            android:textColor="@color/textvignette"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSupprimerCompte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Supprimer mon compte"
+            android:textAlignment="textStart"
+            android:textColor="@color/textvignette"
+            android:background="@drawable/rounded_button"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"/>
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
