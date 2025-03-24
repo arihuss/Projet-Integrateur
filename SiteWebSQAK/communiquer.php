@@ -13,44 +13,51 @@
 <body>
     <header> <?php include("components/header.php") ?> </header>
 
-    <form id="communicationForm">
+    <div class="container">
+  <form id="communicationForm">
+    <div class="section-flex">
       
-        <div class="section-flex">
-
-        
-            <div class="section-block">
-                <h2 class="section-title">Moyen de communication</h2>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="sms"> <label for="sms">SMS</label>
-                    <input type="checkbox" id="email"> <label for="email">Courriel</label>
-                    <input type="checkbox" id="notification"> <label for="notification">Notification</label>
-                </div>
-            </div>
-
-      
-            <div class="section-block">
-                <h2 class="section-title">Destinataires</h2>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="appliquants"> <label for="appliquants">Appliquants</label>
-                    <input type="checkbox" id="benevoles"> <label for="benevoles">Bénévoles</label>
-                    <input type="checkbox" id="invites"> <label for="invites">Invités</label>
-                </div>
-            </div>
-
+      <!-- COLONNE GAUCHE -->
+      <div class="left-column">
+        <div class="section-block">
+          <h2 class="section-title">Moyen de communication</h2>
+          <div class="checkbox-group">
+            <input type="checkbox" id="sms"> <label for="sms">SMS</label>
+            <input type="checkbox" id="email"> <label for="email">Courriel</label>
+            <input type="checkbox" id="notification"> <label for="notification">Notification</label>
+          </div>
         </div>
 
-        <!-- SECTION : Message intégré dans le formulaire -->
-        <label for="message" class="section-title message-label">Message *</label>
-        <textarea id="message" name="message" placeholder="Votre message" required></textarea>
-
-        <div class="buttons">
-            <button type="submit" class="btn btn-send">Envoyer</button>
-            <button type="button" class="btn btn-back" onclick="history.back()">Revenir</button>
+        <div class="message-block">
+          <label for="message" class="section-title">Message *</label>
+          <textarea id="message" name="message" placeholder="Votre message" required></textarea>
         </div>
-    </form>
+      </div>
+
+      <!-- COLONNE DROITE -->
+      <div class="right-column section-block">
+        <h2 class="section-title">Destinataires</h2>
+        <div class="checkbox-group">
+          <input type="checkbox" id="appliquants"> <label for="appliquants">Appliquants</label>
+          <input type="checkbox" id="benevoles"> <label for="benevoles">Bénévoles</label>
+          <input type="checkbox" id="invites"> <label for="invites">Invités</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="btn-jaune">Envoyer</button>
+      <button type="button" class="btn-rose" onclick="history.back()">Revenir</button>
+    </div>
+  </form>
+</div>
+
+
+
 
     <footer> <?php include("components/footer.php"); ?> </footer>
     <script src="js/general.js"></script>
 </body>
+
 
 </html>
