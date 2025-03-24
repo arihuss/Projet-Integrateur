@@ -56,8 +56,8 @@
 
 <div id="btns">
   <button class="btn-rose">Applications</button>
-  <button class="btn-jaune">Benevoles</button>
-  <button class="btn-jaune">Invites</button>
+  <button class="btn-jaune">Bénévoles</button>
+  <button class="btn-jaune">Invités</button>
 </div>
 
 <h2>Statistiques</h2>
