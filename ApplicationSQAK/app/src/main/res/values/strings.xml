@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
         <string-array name="event_dates">
+            <item>Date</item>
             <item>Today</item>
             <item>Tomorrow</item>
             <item>This Week</item>
@@ -11,10 +12,17 @@
         </string-array>
 
     <string-array name="event_locations">
+        <item>Lieu</item>
         <item>Montreal</item>
         <item>Laval</item>
         <item>Quebec</item>
         <item>Brossard</item>
+    </string-array>
+
+    <string-array name="event_etat">
+        <item>Etat</item>
+        <item>Complet</item>
+        <item>Disponible</item>
     </string-array>
 
 </resources>
