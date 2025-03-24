@@ -2,4 +2,19 @@
     <string name="app_name">Application SQAK</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+        <string-array name="event_dates">
+            <item>Today</item>
+            <item>Tomorrow</item>
+            <item>This Week</item>
+            <item>This Month</item>
+        </string-array>
+
+    <string-array name="event_locations">
+        <item>Montreal</item>
+        <item>Laval</item>
+        <item>Quebec</item>
+        <item>Brossard</item>
+    </string-array>
+
 </resources>

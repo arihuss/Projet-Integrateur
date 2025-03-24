@@ -16,15 +16,16 @@
         android:elevation="4dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnFilterTout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="@color/accent3"
             android:text="Tout"
             app:cornerRadius="15dp" />
 
         <Spinner
-            android:id="@+id/spinnerCategory"
+            android:id="@+id/spinnerLocation"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -33,29 +34,10 @@
             android:padding="12dp"
             android:popupBackground="@color/textbtn"
             android:spinnerMode="dialog"
+            android:entries="@array/event_dates"
             android:textAlignment="center" />
 
 
-
-        <Spinner
-            android:id="@+id/spinnerDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="8dp"
-            android:entries="@array/event_dates"/>
-
-        <Spinner
-            android:id="@+id/spinnerLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="8dp"
-            android:entries="@array/event_locations"/>
-
-        <Switch
-            android:id="@+id/switchOnline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Online"/>
 
     </LinearLayout>
 
