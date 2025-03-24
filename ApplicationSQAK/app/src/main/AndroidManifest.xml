@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".vues.ModifierProfil"
+            android:name=".ModifierProfil"
             android:exported="false" />
         <activity
             android:name=".AboutUs"
@@ -26,30 +26,27 @@
             android:exported="false" />
         <activity
             android:name=".Principale"
-            android:exported="false" />
-        <activity
-            android:name=".Confirmation"
-            android:exported="false" />
-        <activity
-            android:name=".Inscription"
-            android:exported="false" />
-        <activity
-            android:name=".ProfilUtilisateur"
-            android:exported="false" />
-        <activity
-            android:name=".Settings"
-            android:exported="false" />
-        <activity
-            android:name=".Connexion"
-            android:exported="false" />
-        <activity
-            android:name=".Accueil"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Confirmation"
+            android:exported="false" />
+        <activity
+            android:name=".Inscription"
+            android:exported="false" />
+
+        <activity
+            android:name=".Connexion"
+            android:exported="false" />
+        <activity
+            android:name=".Accueil"
+            android:exported="false">
+
         </activity>
 
         <meta-data
