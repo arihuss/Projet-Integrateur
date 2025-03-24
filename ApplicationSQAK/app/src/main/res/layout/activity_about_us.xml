@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:textAlignment="center"
+    tools:context=".AboutUs">
+
+    <ImageView
+        android:id="@+id/imgLogoAboutUs"
+        android:layout_width="610dp"
+        android:layout_height="452dp"
+        app:srcCompat="@drawable/logo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-100dp"
+        tools:layout_editor_absoluteY="-40dp" />
+
+    <ImageButton
+        android:id="@+id/imgbtnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:contentDescription="Retour"
+        android:elevation="0dp"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/fleche"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="285dp"
+        android:layout_height="343dp"
+        android:background="@drawable/background_text_aboutus"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
+        android:text="SQAK est une organisation dédiée à la mise en valeur des organismes à but non lucratif en facilitant la connexion entre bénévoles, visisteurs et événements. Grâce à notre application intuitive et interactive, nous permettons aux utilisateurs de découvrir et de participer facilement à des initiatives engagées. De plus, notre interface web offre aux organisateurs un outil efficace pour planifier, publier et gérer leurs événements, optimisant ainsi leur visibilité et leur impact communautaire."
+        android:textAlignment="center"
+        android:textColor="@color/textvignette"
+        app:autoSizeTextType="uniform"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="276dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

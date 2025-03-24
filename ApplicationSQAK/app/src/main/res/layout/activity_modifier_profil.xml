@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    tools:context=".vues.ModifierProfil">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="233dp"
+        android:layout_height="26dp"
+        android:text="Choisir nouvelle photo:"
+        android:textColor="@color/textsurbg"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="124dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="63dp"
+        android:layout_height="56dp"
+        android:background="@null"
+        android:contentDescription="Retour"
+        android:elevation="0dp"
+        android:padding="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/fleche"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="104dp"
+        android:layout_height="39dp"
+        android:backgroundTint="@color/accent2Dm"
+        android:text="Choisir"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        tools:layout_editor_absoluteX="288dp"
+        tools:layout_editor_absoluteY="111dp" />
+
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="424dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="171dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="Prénom:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Nom:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Courriel:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Numéro de téléphone:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Bio:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingBottom="20dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Mot de passe:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Confirmation de mot de passe:"
+            android:textColor="@color/textsurbg"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/editTextText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_modifier_profil"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button3"
+        android:layout_width="234dp"
+        android:layout_height="59dp"
+        android:background="@drawable/sauvegarder"
+        android:text="Sauvegarder"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="620dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
