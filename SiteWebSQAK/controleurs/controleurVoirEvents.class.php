@@ -1,7 +1,7 @@
 <?php
 include_once("controleur.abstract.class.php");
 
-class Accueil extends Controleur{
+class VoirEvents extends Controleur{
 
     
 		public function __construct() {
@@ -17,7 +17,7 @@ class Accueil extends Controleur{
 		{
 				
 
-			return "index.php";
+			return "page-principale.php";
 		}
 
 }

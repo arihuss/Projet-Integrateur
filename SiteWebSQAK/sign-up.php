@@ -14,7 +14,7 @@
 <header><?php include("components/header.php")?></header>
 
 <div class="container">
-<form action="log-in.php" method="POST">
+<form action="confirmation.php" method="POST">
         <h2> Inscription </h2>
 
 <div id="form-section">

@@ -20,7 +20,7 @@
         </form>
         <br>
         <div>
-            <a class="btn-jaune" href="page-principale.php">Confirmer</a><br>
+            <a class="btn-jaune" href="log-in.php">Confirmer</a><br>
             <a href="code-renvoye"> Renvoyez le code</a> <!-- code a renvoyer a changer-->
         </div>
     </div>
