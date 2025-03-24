@@ -5,7 +5,7 @@ include_once(__DIR__ . "/DAO.interface.php");
 class OrganisateurDAO implements DAO{
 
     /**
-     * Cette méthode retourne l'objet dont la clé primaire a été reçue en paramètre
+     * Cette méthode retourne l'organisateur dont la clé primaire a été reçue en paramètre
      * @param int $id La clé primaire de l'objet à chercher
      * @return object|null L'objet trouvé ou null si non-trouvé
      */
@@ -15,6 +15,7 @@ class OrganisateurDAO implements DAO{
 
     /**
      * Retourne une liste de tous les objets de la table
+     * PAS SUPPOSE MARCHER POUR ORGANISATEUR
      * @return array
      */
     static public function findAll():array{
