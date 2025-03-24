@@ -13,10 +13,10 @@
 <body>
     <header> <?php include("components/header.php") ?></header>
 
-    <!-- SECTION : Moyens de communication + Destinataires (sans bloc coloré) -->
+   
     <form id="communicationForm">
         <div class="section-flex">
-            <!-- Moyens de communication -->
+
             <div class="section-block">
                 <h2 class="section-title">Moyen de communication</h2>
                 <div class="checkbox-group">
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <!-- Destinataires -->
+      
             <div class="section-block">
                 <h2 class="section-title">Destinataires</h2>
                 <div class="checkbox-group">

@@ -176,3 +176,50 @@ h2:not(#statistiques span h2){
   .couleur-benevoles {
     background-color: var(--accent2);
   }
+
+  #section-liste {
+    padding-top: 2rem;
+  }
+
+  #liste {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    padding: 15px 20px;
+    border-bottom: 2px solid var(--text-sur-bg); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    position: relative; 
+}
+  
+  #liste i {
+    font-size: 35px;
+    margin-right: 10px;
+  }
+  
+  #liste a {
+    flex: 1;
+    text-decoration: none;
+    color: var(--text-sur-bg);
+    font-weight: 500;
+    padding-left: 3rem;
+  }
+  
+  #liste p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-sur-bg);
+    white-space: nowrap;
+  }
+  
+  
+  #liste i.fa-circle-xmark {
+    color: var(--accent2);
+    width: 2rem;
+  }
+  
+  #liste i.fa-circle-check {
+    color: var(--accent1);
+    width: 2rem;
+  }

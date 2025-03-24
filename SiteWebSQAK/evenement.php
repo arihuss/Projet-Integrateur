@@ -60,6 +60,34 @@
   <button class="btn-jaune">Invités</button>
 </div>
 
+<div id="section-liste">
+<div id="liste">
+  <i class="fa-solid fa-circle-xmark"></i>
+  <i class="fa-solid fa-circle-check"></i>
+  <a href="profil-participant.php">Liliane Belvier</a>
+  <p>16/12/24</p>
+</div>
+<div id="liste">
+  <i class="fa-solid fa-circle-xmark"></i>
+  <i class="fa-solid fa-circle-check"></i>
+  <a href="profil-participant.php">Liliane Belvier</a>
+  <p>16/12/24</p>
+</div>
+<div id="liste">
+  <i class="fa-solid fa-circle-xmark"></i>
+    <i class="fa-solid fa-circle-check"></i>
+<a href="profil-participant.php">Liliane Belvier</a>
+  <p>16/12/24</p>
+</div>
+<div id="liste">
+  <i class="fa-solid fa-circle-xmark"></i>
+  <i class="fa-solid fa-circle-check"></i>
+  <a href="profil-participant.php">Liliane Belvier</a>
+  <p>16/12/24</p>
+</div>
+</div>
+
+
 <h2>Statistiques</h2>
 
 <div id="graphique-container">
