@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="10dp">
 
 
     <LinearLayout
@@ -30,8 +30,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="312dp"
-        android:layout_height="113dp"
+        android:layout_width="297dp"
+        android:layout_height="112dp"
         android:layout_marginStart="70dp"
         android:background="@drawable/bg_right"
         android:gravity="center_vertical"
@@ -40,7 +40,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgEventUser"
             android:layout_width="98dp"
             android:layout_height="99dp"
             android:layout_marginStart="8dp"
@@ -58,7 +58,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/txtNomEventUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
@@ -68,7 +68,7 @@
                 android:textColor="@color/textvignette" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/txtLieuUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
@@ -78,7 +78,7 @@
                 android:textColor="@color/textvignette" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/txtOrganisationUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="10dp"
