@@ -3,6 +3,8 @@
 class Evenement implements JsonSerializable
 {
     private int $id;
+    private int $idStats;
+    private int $idOrganisateur;
     private string $nom;
     private string $lieu;
     private string $dateDebut;
@@ -21,6 +23,8 @@ class Evenement implements JsonSerializable
     // Constructeur
     public function __construct(
         int $id,
+        int $idStats,
+        int $idOrganisateur,
         string $nom,
         string $lieu,
         string $dateDebut,
@@ -37,6 +41,8 @@ class Evenement implements JsonSerializable
         bool $completVisiteur
     ) {
         $this->id = $id;
+        $this->idStats = $idStats;
+        $this->idOrganisateur = $idOrganisateur;
         $this->nom = $nom;
         $this->lieu = $lieu;
         $this->dateDebut = $dateDebut;
@@ -55,6 +61,8 @@ class Evenement implements JsonSerializable
 
     // Getters
     public function getId(): int { return $this->id; }
+    public function getIdStats():int{return $this->idStats;}
+    public function getIdOrganisateur():int{return $this->idOrganisateur;}
     public function getNom(): string { return $this->nom; }
     public function getLieu(): string { return $this->lieu; }
     public function getDateDebut(): string { return $this->dateDebut; }
@@ -72,6 +80,8 @@ class Evenement implements JsonSerializable
 
     // Setters
     public function setId(int $id): void { $this->id = $id; }
+    public function setIdStats(int $idStats):void{$this->idStats=$idStats;}
+    public function setIdOrganisateur(int $idOrganisateur):void{$this->idOrganisateur=$idOrganisateur;}
     public function setNom(string $nom): void { $this->nom = $nom; }
     public function setLieu(string $lieu): void { $this->lieu = $lieu; }
     public function setDateDebut(string $dateDebut): void { $this->dateDebut = $dateDebut; }
@@ -92,6 +102,8 @@ class Evenement implements JsonSerializable
     {
         return [
             'id' => $this->id,
+            'idStats'=>$this->idStats,
+            'idOrganisateur'=>$this->idOrganisateur,
             'nom' => $this->nom,
             'lieu' => $this->lieu,
             'dateDebut' => $this->dateDebut,
