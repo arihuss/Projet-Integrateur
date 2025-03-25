@@ -35,9 +35,11 @@
 
     <TextView
         android:id="@+id/txtDescription"
-        android:layout_width="285dp"
-        android:layout_height="343dp"
+        android:layout_width="278dp"
+        android:layout_height="378dp"
         android:background="@drawable/background_text_aboutus"
+        android:fontFamily="@font/inter"
+        android:lineSpacingExtra="4sp"
         android:paddingLeft="25dp"
         android:paddingTop="25dp"
         android:paddingRight="25dp"
@@ -47,7 +49,7 @@
         android:textColor="@color/textvignette"
         app:autoSizeTextType="uniform"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="280dp" />
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="269dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
