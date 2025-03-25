@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/secondary"
-        app:shapeAppearanceOverlay="@style/CircleImageViewStyle"
         app:strokeColor="@color/secondary"
         app:strokeWidth="6dp"
         android:padding="8dp"

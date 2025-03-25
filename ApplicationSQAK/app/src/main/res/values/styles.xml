@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="CircleImageViewStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-        <solid android:color="@color/navbar" />
-    </style>
+
 </resources>
