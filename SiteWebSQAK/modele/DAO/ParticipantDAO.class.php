@@ -9,7 +9,7 @@ class ParticipantDAO implements DAO{
      * @param int $id La clé primaire de l'objet à chercher
      * @return object|null L'objet trouvé ou null si non-trouvé
      */
-    static public function findById(int $id): ?Organisateur {
+    static public function findById(int $id): ?Participant {
         //a completer
     }
 
