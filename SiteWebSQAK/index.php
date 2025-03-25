@@ -12,6 +12,19 @@
 
 <body>
     <header><?php include("components/header.php") ?></header>
+<!--Steps pour continuer:
+    Regarder si on a besoin de js et l'implementer
+    Creer du code pour recuperer controleur dans index
+    Definir la classe controleur dans le abstract
+    Remplacer les href par des actions
+    Faire les fonctions DAO et les tester
+    Figure out comment controler le fait que seul les organisateurs peuvent acceder aux autres pages
+    Enlever le menu dans la page index (elements de la nav)
+    Remplir les fonctions executerAction() dans tous les controleurs
+    Faire des fichiers JSON
+    Mettre la bd sur phpMyAdmin
+    Tester les fonctions sur la platerforme utiliser dans le cours de Program Web
+    -->
     <div class="container">
         <div id="accueil-card">
             <img id="logo-accueil" src="img/logo.svg">
