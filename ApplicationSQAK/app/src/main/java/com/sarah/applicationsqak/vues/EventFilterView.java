@@ -11,8 +11,8 @@ import com.sarah.applicationsqak.R;
 
 public class EventFilterView extends LinearLayout {
 
-    private Spinner spinnerLocation, spinnerDate;
-    private Button buttonApply;
+    private Spinner spLocation, spEtat;
+    private Button btnBenevole, btnVisiteur, btnTout;
 
     public EventFilterView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -23,19 +23,23 @@ public class EventFilterView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.event_filter, this, true);
 
         // Liaisions avec la vue
-        //spinnerLocation = findViewById(R.id.spinnerLocation);
-        //spinnerDate = findViewById(R.id.spinnerDate);
+        spLocation = findViewById(R.id.spLocation);
+        spEtat = findViewById(R.id.spEtat);
+        btnVisiteur = findViewById(R.id.btnFiltreVisiteur);
+        btnBenevole = findViewById(R.id.btnFiltreBenevole);
+        btnTout = findViewById(R.id.btnFiltreTout);
+
     }
 
     public String getSelectedCategory() {
-        return spinnerLocation.getSelectedItem().toString();
+        return spLocation.getSelectedItem().toString();
     }
 
-    public String getSelectedDate() {
-        return spinnerDate.getSelectedItem().toString();
+    public String getSelectedEtat() {
+        return spEtat.getSelectedItem().toString();
     }
 
-    public void setOnFilterApplyListener(OnClickListener listener) {
-        buttonApply.setOnClickListener(listener);
-    }
+//    public void setOnFilterApplyListener(OnClickListener listener) {
+//        buttonApply.setOnClickListener(listener);
+//    }
 }
