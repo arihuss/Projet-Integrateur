@@ -1,0 +1,81 @@
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.header-row h2 {
+    margin: 0;
+    font-size: 30px;
+    color: var(--text-sur-bg);
+}
+
+.add-button {
+    background-color: var(--accent3);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-button:hover {
+    background-color: var(--accent3-active);
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-items: center;
+}
+
+.event-card {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.event-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+}
+
+.event-title {
+    background-color: var(--text-vignette);
+    color: white;
+    padding: 0.8rem 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.event-date {
+    background-color: var(--accent2);
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+    width: 100%;
+}
+
+.event{
+    text-decoration: none;
+    width:260px ;
+    
+}

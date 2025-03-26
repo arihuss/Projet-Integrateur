@@ -78,7 +78,7 @@ body {
     font-family: 'Inter';
     margin: 0;
 
-    .content {
+    .content{
         background-color: var(--secondary);
         border-radius: 15px;
         padding: 1rem 3rem;
