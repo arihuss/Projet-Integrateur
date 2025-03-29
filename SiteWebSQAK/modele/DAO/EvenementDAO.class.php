@@ -2,7 +2,7 @@
 include_once(__DIR__ . "../evenement.class.php");
 include_once(__DIR__ . "/DAO.interface.php");
 
-class EvenementDAO {
+class EvenementDAO implements DAO{
      /**
      * Cette méthode retourne l'objet dont la clé primaire a été reçue en paramètre
      * @param int $id La clé primaire de l'objet à chercher
