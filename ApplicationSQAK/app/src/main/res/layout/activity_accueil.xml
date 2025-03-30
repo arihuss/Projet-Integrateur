@@ -24,7 +24,6 @@
         android:text="Se connecter"
         android:textSize="26sp"
         app:backgroundTint="#FFDE71"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +43,6 @@
         android:text="Sinscrire"
         android:textSize="26sp"
         app:backgroundTint="#FFDE71"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +62,6 @@
         android:text="En invité"
         android:textSize="26sp"
         app:backgroundTint="#FF9CCE"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,7 +79,6 @@
         android:textSize="16sp"
         android:textColor="#599159"
         android:fontFamily="@font/inter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -97,7 +93,6 @@
         android:layout_marginBottom="424dp"
         app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="-32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -115,7 +110,6 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textColor="#599159"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +127,6 @@
         android:textAlignment="center"
         android:fontFamily="@font/inter"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -142,12 +135,11 @@
         android:id="@+id/viewLigne1"
         android:layout_width="50dp"
         android:layout_marginStart="175dp"
-        android:layout_marginTop="615dp"
+        android:layout_marginTop="628dp"
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="228dp"
         android:layout_height="1dp"
         android:background="#599159"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -156,12 +148,11 @@
         android:id="@+id/viewLigne2"
         android:layout_width="50dp"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="615dp"
+        android:layout_marginTop="628dp"
         android:layout_marginEnd="175dp"
         android:layout_marginBottom="228dp"
         android:layout_height="1dp"
         android:background="#599159"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
