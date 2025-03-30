@@ -11,7 +11,11 @@
 </head>
 
 <body>
-    <header><?php include("components/header.php") ?></header>
+    <header>
+        <div class="header">
+            <a href=".\page-principale.php"><img src=".\img\logo.svg" alt=""></a>
+        </div> 
+    </header>
 <!--Steps pour continuer:
     Regarder si on a besoin de js et l'implementer
     Creer du code pour recuperer controleur dans index
