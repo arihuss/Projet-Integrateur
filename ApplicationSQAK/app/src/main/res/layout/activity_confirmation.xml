@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFBEF"
+    android:id="@+id/main"
+    android:background="@color/primary"
     tools:context=".Confirmation">
 
     <ImageView
@@ -23,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Entrez le code de confirmation :"
-        android:textColor="#4A7047"
+        android:textColor="@color/textsurbg"
         android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/imageLogo"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +33,13 @@
 
     <EditText
         android:id="@+id/edtCodeConfirmation"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="275dp"
+        android:layout_height="55dp"
         android:hint="•••••"
         android:inputType="number"
         android:textAlignment="center"
         android:background="@drawable/rounded_button"
-        app:backgroundTint="#DBECC5"
+        app:backgroundTint="@color/secondary"
         app:layout_constraintTop_toBottomOf="@id/txtInstruction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,13 +49,15 @@
 
     <Button
         android:id="@+id/btnConfirmer"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
         android:text="Confirmer"
         android:background="@drawable/rounded_button"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#FFDE71"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:textSize="26sp"
+        app:backgroundTint="@color/accent3"
         app:layout_constraintTop_toBottomOf="@id/edtCodeConfirmation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,15 +66,19 @@
 
     <TextView
         android:id="@+id/txtRenvoyerCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="129dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:focusable="true"
         android:text="Renvoyer le code"
-        android:textColor="#4A7047"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/btnConfirmer"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:textColor="@color/textsurbg"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmer" />
 
     <ImageView
         android:id="@+id/btnRetour"

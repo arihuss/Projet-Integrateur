@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FCFFF5"
+    android:background="@color/primary"
     tools:context=".Connexion">
 
     <ImageView
@@ -35,7 +35,7 @@
         android:insetBottom="0dp"
         android:text="Se connecter"
         android:textSize="26sp"
-        app:backgroundTint="#FFDE71"
+        app:backgroundTint="@color/accent3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="492dp"
         android:background="@drawable/rounded_button"
-        app:backgroundTint="#DBECC5"
+        app:backgroundTint="@color/secondary"
         android:ems="10"
         android:hint="temporaire"
         android:inputType="textEmailAddress"
@@ -66,7 +66,7 @@
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="382dp"
         android:background="@drawable/rounded_button"
-        app:backgroundTint="#DBECC5"
+        app:backgroundTint="@color/secondary"
         android:ems="10"
         android:hint="temp"
         android:inputType="textPassword"
@@ -102,7 +102,7 @@
         android:focusable="true"
         android:text="Mot de passe oublié?"
         android:textAlignment="center"
-        android:textColor="#6B8E23"
+        android:textColor="@color/textsurbg"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
