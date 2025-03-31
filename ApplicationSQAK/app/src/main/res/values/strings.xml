@@ -27,6 +27,7 @@
     <string name="invit">Invité</string>
     <string name="commentaires">Commentaires</string>
     <string name="publier">Publier</string>
+    <string name="v_nements">Événements</string>
 
     <string-array name="event_dates">
             <item>Date</item>
