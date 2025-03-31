@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/secondary"
     android:orientation="vertical"
     android:scrollbars="none">
 
@@ -34,7 +35,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/event_filter_custom_spinner"
-                android:entries="@array/event_dates"
                 android:minWidth="95dp"
                 android:popupBackground="@color/textbtn"
                 android:spinnerMode="dialog"
@@ -71,7 +71,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/event_filter_custom_spinner"
-                android:entries="@array/event_etat"
                 android:minWidth="95dp"
                 android:popupBackground="@color/textbtn"
                 android:spinnerMode="dialog"
@@ -88,7 +87,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:minWidth="100dp" />
+            android:background="@color/barrerecherche"
+            android:minWidth="100dp"
+            android:queryHint="Rechercher..." />
 
         <Button
             android:id="@+id/btnRecherche"

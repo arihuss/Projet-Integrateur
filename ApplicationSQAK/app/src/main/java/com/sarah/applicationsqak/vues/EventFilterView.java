@@ -3,6 +3,7 @@ package com.sarah.applicationsqak.vues;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -29,9 +30,21 @@ public class EventFilterView extends LinearLayout {
         btnBenevole = findViewById(R.id.btnFiltreBenevole);
         btnTout = findViewById(R.id.btnFiltreTout);
 
+        // Adapters
+        //ArrayAdapter<CharSequence> adapterLocation = ArrayAdapter.createFromResource(context, R.array.event_locations, R.layout.event_filter_spinner_item);
+        //adapterLocation.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spLocation.setAdapter(adapterLocation);
+
+        ArrayAdapter<CharSequence> adapterEtat = ArrayAdapter.createFromResource(context, R.array.event_etat, R.layout.event_filter_spinner_item);
+        spEtat.setAdapter(adapterEtat);
+
     }
 
-    public String getSelectedCategory() {
+    public Spinner getSpLocation() {
+        return spLocation;
+    }
+
+    public String getSelectedLocation() {
         return spLocation.getSelectedItem().toString();
     }
 
@@ -39,7 +52,5 @@ public class EventFilterView extends LinearLayout {
         return spEtat.getSelectedItem().toString();
     }
 
-//    public void setOnFilterApplyListener(OnClickListener listener) {
-//        buttonApply.setOnClickListener(listener);
-//    }
+
 }
