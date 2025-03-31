@@ -76,23 +76,26 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         btnModifier = view.findViewById(R.id.btnModifProfil);
         btnPlus = view.findViewById(R.id.btnPlus);
-        AppCompatButton btnTheme = view.findViewById(R.id.btnTheme); // Ajout du bouton
 
         btnModifier.setOnClickListener(this);
         btnPlus.setOnClickListener(this);
 
-        // Récupérer les préférences pour le mode sombre
+
+        // section DarkMode
+        AppCompatButton btnTheme = view.findViewById(R.id.btnTheme);
+
+        // section DarkMode : Récupérer les préférences pour DM
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
         boolean isDarkModeEnabled = sharedPreferences.getBoolean(DARK_MODE_KEY, false);
 
-        // Mettre à jour le texte du bouton selon le mode actuel
+        // section DarkMode : Mettre à jour le texte du bouton
         updateThemeButtonText(btnTheme, isDarkModeEnabled);
 
-        // Gestion du clic sur le bouton
+        // section DarkMode : Gestion du clic bouton
         btnTheme.setOnClickListener(v -> {
             boolean newDarkModeState = !isDarkModeEnabled;
 
-            // Appliquer le mode sombre ou clair
+            // Appliquer mode sombre ou clair
             if (newDarkModeState) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
