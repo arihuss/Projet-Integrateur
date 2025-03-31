@@ -9,31 +9,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_left">
+        android:background="@drawable/bg_top">
 
         <TextView
             android:id="@+id/tvOrgEvents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:fontFamily="@font/inter"
             android:text="Organisation Coeur St-Paul"
             android:textColor="@color/textbtn"
+            android:textSize="16sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="142dp"
-            tools:layout_editor_absoluteY="158dp" />
+            app:layout_constraintStart_toEndOf="@+id/cardViewOrgEvents"
+            tools:layout_editor_absoluteY="16dp" />
 
         <TextView
             android:id="@+id/tvNameEvents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/inter"
+            android:text="Guignolée Noël"
+            android:textColor="@color/textvignette"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrgEvents"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewOrgEvents"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="6dp"
+            android:layout_width="67dp"
+            android:layout_height="67dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             app:cardCornerRadius="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
