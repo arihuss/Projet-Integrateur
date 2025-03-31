@@ -44,7 +44,7 @@
         android:layout_width="332dp"
         android:layout_height="399dp"
         android:layout_marginTop="244dp"
-        android:background="@drawable/background_text_aboutus"
+        android:background="@drawable/background_text"
         android:fontFamily="@font/inter"
         android:lineSpacingExtra="4sp"
         android:paddingLeft="25dp"

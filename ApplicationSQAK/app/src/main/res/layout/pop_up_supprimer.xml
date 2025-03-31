@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer votre compte?"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/textbtn"
+            android:textSize="30sp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSupprimerPop"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Supprimer"
+                android:textSize="12sp"
+                android:textColor="@color/textbtn"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/textbtn"
+                android:backgroundTint="@color/accent2"
+                android:padding="12dp"
+                android:fontFamily="@font/inter"
+                android:layout_marginEnd="10dp">
+                
+            </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRevenirPop"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Revenir"
+                android:textSize="12sp"
+                android:textColor="@color/textbtn"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/textbtn"
+                android:backgroundTint="@color/accent2"
+                android:padding="12dp"
+                android:fontFamily="@font/inter"
+                android:layout_marginEnd="10dp">
+                
+            </com.google.android.material.button.MaterialButton>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
