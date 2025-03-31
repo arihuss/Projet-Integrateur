@@ -1,0 +1,19 @@
+<resources>
+    <color name="primary">#282626</color>
+    <color name="secondary">#143D26</color>
+    <color name="accent1">#3CAB6B</color>
+    <color name="accent2">#EF95C2</color>
+    <color name="accent2active">#C42E7A</color>
+    <color name="accent3">#E5BF45</color>
+    <color name="textsurbg">#6D9E6D</color>
+    <color name="textbtn">#FFFFFF</color>
+    <color name="navbar">#2F442E</color>
+    <color name="textvignette">#BDDBBD</color>
+    <color name="btnfiltre">#A7C77C</color>
+    <color name="vertfoncelogo">#61AC5E</color>
+    <color name="vertpalelogo">#B0D957</color>
+    <color name="barrerecherche">#81BE7F</color>
+    <color name="btndesactive">#494343</color>
+    <color name="txtcouleurfonce">#747070</color>
+    <color name="widgets">#2A2D27</color>
+</resources>

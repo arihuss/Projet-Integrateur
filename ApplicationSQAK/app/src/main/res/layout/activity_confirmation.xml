@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:background="@color/primary"
     tools:context=".Confirmation">
 
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="475dp"
+        android:layout_height="475dp"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="0dp"/>
+
+    <TextView
+        android:id="@+id/txtInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entrez le code de confirmation :"
+        android:textColor="@color/textsurbg"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/imageLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-50dp"/>
+
+    <EditText
+        android:id="@+id/edtCodeConfirmation"
+        android:layout_width="275dp"
+        android:layout_height="55dp"
+        android:hint="•••••"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:background="@drawable/rounded_button"
+        app:backgroundTint="@color/secondary"
+        app:layout_constraintTop_toBottomOf="@id/txtInstruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"/>
+
+
+    <Button
+        android:id="@+id/btnConfirmer"
+        android:layout_width="225dp"
+        android:layout_height="55dp"
+        android:text="Confirmer"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/inter_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:textSize="26sp"
+        app:backgroundTint="@color/accent3"
+        app:layout_constraintTop_toBottomOf="@id/edtCodeConfirmation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="36dp"
+        android:layout_marginHorizontal="82dp"/>
+
+    <TextView
+        android:id="@+id/txtRenvoyerCode"
+        android:layout_width="129dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Renvoyer le code"
+        android:textAlignment="center"
+        android:textColor="@color/textsurbg"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmer" />
+
+    <ImageView
+        android:id="@+id/btnRetour"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/fleche"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Bouton retour"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
