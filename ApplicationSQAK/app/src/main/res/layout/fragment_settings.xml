@@ -47,7 +47,9 @@
         android:textAlignment="textStart"
         android:textColor="@color/textvignette"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" >
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPlus"

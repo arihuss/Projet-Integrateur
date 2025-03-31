@@ -19,6 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/txtPrenom"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="198dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/pr_nom"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edtPrenom"
         android:layout_width="275dp"
@@ -31,8 +48,25 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/pr_nom"
+        android:hint=""
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNom"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="273dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/nom"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,8 +83,25 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/nom"
+        android:hint=""
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtCourriel"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/courriel"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,8 +118,25 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/courriel"
+        android:hint="@string/exemple_email"
         android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTel"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="423dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/num_ro_de_t_l_phone"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +153,7 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/num_ro_de_t_l_phone"
+        android:hint="123 456 7890"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

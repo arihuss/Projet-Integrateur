@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import com.sarah.applicationsqak.vues.EventFilterView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +63,21 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.event_filter, container, false);
+        return inflater.inflate(R.layout.fragment_events, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Liaison de la vue personnalisée 'EventFilterView'
+        EventFilterView eventView = view.findViewById(R.id.eventFilterView);
+
+        // Prendre le spinner de la vue
+        Spinner spLocation = eventView.getSpLocation();
+
+        // ArrayAdapter setup
+        ArrayAdapter<CharSequence> adapterLocation = ArrayAdapter.createFromResource(requireContext(), R.array.event_locations, R.layout.event_filter_spinner_item);
+        spLocation.setAdapter(adapterLocation);
     }
 }
