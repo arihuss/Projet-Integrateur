@@ -216,7 +216,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/cardViewUser" />
+        app:layout_constraintStart_toEndOf="@+id/cardViewOrgEvents" />
 
     <TextView
         android:id="@+id/tvNbLikes"
@@ -255,7 +255,7 @@
         app:srcCompat="@drawable/coeur_icon" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewUser"
+        android:id="@+id/cardViewOrgEvents"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -264,7 +264,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline">
 
         <ImageView
-            android:id="@+id/imgProfileComment"
+            android:id="@+id/imgProfileEvents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/avatars" />

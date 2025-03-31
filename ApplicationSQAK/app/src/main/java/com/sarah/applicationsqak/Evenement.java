@@ -32,7 +32,7 @@ public class Evenement extends AppCompatActivity {
         tvLieuEvent = findViewById(R.id.tvLieuEvent);
         tvNomEvent = findViewById(R.id.tvNomEvent);
         tvNomOrganisateur = findViewById(R.id.tvNomOrganisateur);
-        imgProfileOrg = findViewById(R.id.imgProfileComment);
+        imgProfileOrg = findViewById(R.id.imgProfileEvents);
         tvNbLikes = findViewById(R.id.tvNbLikes);
 
 
