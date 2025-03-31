@@ -22,6 +22,11 @@
     <string name="confirmation_du_mot_de_passe">Confirmation du mot de passe:</string>
     <string name="exemple_email">exemple@abc.com</string>
     <string name="mdp_hint">••••••••</string>
+    <string name="assister_l_v_nement_comme">Assister à l\'événement comme</string>
+    <string name="b_n_vole">Bénévole</string>
+    <string name="invit">Invité</string>
+    <string name="commentaires">Commentaires</string>
+    <string name="publier">Publier</string>
 
     <string-array name="event_dates">
             <item>Date</item>
