@@ -17,11 +17,10 @@ public class Accueil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Charger les préférences avant d'afficher l'UI
+        // preferences systeme sil y a lieu
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean isDarkModeEnabled = sharedPreferences.getBoolean(DARK_MODE_KEY, false);
 
-        // Appliquer le mode sombre si activé
         if (isDarkModeEnabled) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
@@ -31,13 +30,11 @@ public class Accueil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
-        // Récupérer le Switch
+        // mettre la switch active si dark mode pref systeme
         switchDarkMode = findViewById(R.id.switchDarkMode);
-
-        // Mettre à jour l'état du Switch
         switchDarkMode.setChecked(isDarkModeEnabled);
 
-        // Gérer le changement de mode avec le Switch
+        // Switch changement de mode light/dark
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -45,10 +42,8 @@ public class Accueil extends AppCompatActivity {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
 
-            // Sauvegarder l'état du mode sombre
             sharedPreferences.edit().putBoolean(DARK_MODE_KEY, isChecked).apply();
 
-            // Redémarrer l'activité pour appliquer le changement
             restartActivity();
         });
 
@@ -76,7 +71,7 @@ public class Accueil extends AppCompatActivity {
         });
     }
 
-    // Fonction pour redémarrer l'activité et appliquer le changement de mode
+    // Fonction pour redémarrer l'activité et mettre DM
     private void restartActivity() {
         Intent intent = getIntent();
         finish();
