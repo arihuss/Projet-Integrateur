@@ -11,6 +11,17 @@
     <string name="logosqak">logoSqak</string>
     <string name="mot_de_passe_oubli">Mot de passe oublié?</string>
     <string name="bouton_retour">Bouton retour</string>
+    <string name="code">•••••</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="renvoyer_le_code">Renvoyer le code</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="nom">Nom</string>
+    <string name="courriel">Courriel</string>
+    <string name="num_ro_de_t_l_phone">Numéro de Téléphone</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="confirmation_du_mot_de_passe">Confirmation du mot de passe</string>
+    <string name="exemple_email">exemple@abc.com</string>
+    <string name="mdp_hint">••••••••</string>
 
     <string-array name="event_dates">
             <item>Date</item>
