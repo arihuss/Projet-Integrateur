@@ -22,7 +22,7 @@
         android:insetBottom="0dp"
         android:text="@string/se_connecter"
         android:textSize="26sp"
-        app:backgroundTint="#FFDE71"
+        app:backgroundTint="@color/accent3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
         android:insetBottom="0dp"
         android:text="@string/sinscrire"
         android:textSize="26sp"
-        app:backgroundTint="#FFDE71"
+        app:backgroundTint="@color/accent3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
         android:insetBottom="0dp"
         android:text="@string/en_invit"
         android:textSize="26sp"
-        app:backgroundTint="#FF9CCE"
+        app:backgroundTint="@color/accent2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -73,7 +73,7 @@
         android:text="@string/ou"
         android:textAlignment="center"
         android:textSize="16sp"
-        android:textColor="#599159"
+        android:textColor="@color/textsurbg"
         android:fontFamily="@font/inter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
         android:fontFamily="@font/inter"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:textColor="#599159"
+        android:textColor="@color/textsurbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -117,7 +117,7 @@
         android:layout_marginTop="334dp"
         android:layout_marginEnd="125dp"
         android:text="@string/bienvenue"
-        android:textColor="#599159"
+        android:textColor="@color/textsurbg"
         android:textAlignment="center"
         android:fontFamily="@font/inter"
         android:textSize="24sp"
@@ -132,7 +132,7 @@
         android:layout_marginTop="628dp"
         android:layout_marginEnd="75dp"
         android:layout_height="1dp"
-        android:background="#599159"
+        android:background="@color/textsurbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -144,9 +144,23 @@
         android:layout_marginTop="628dp"
         android:layout_marginEnd="175dp"
         android:layout_height="1dp"
-        android:background="#599159"
+        android:background="@color/textsurbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <Switch
+        android:id="@+id/switchDarkMode"
+        android:layout_height="50dp"
+        android:text="Mode Sombre"
+        android:layout_width="150dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="758dp"
+        android:layout_marginEnd="125dp"
+        app:backgroundTint="@color/accent3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

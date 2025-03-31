@@ -19,22 +19,4 @@
     <color name="txtcouleurfonce">#525050</color>
     <color name="widgets">#F0F9E2</color>
 
-    <color name="primaryDm">#282626</color>
-    <color name="secondaryDm">#143D26</color>
-    <color name="accent1Dm">#3CAB6B</color>
-    <color name="accent2Dm">#EF95C2</color>
-    <color name="accent2activeDm">#C42E7A</color>
-    <color name="accent3Dm">#E5BF45</color>
-    <color name="textsurbgDm">#6D9E6D</color>
-    <color name="textbtnDm">#FFFFFF</color>
-    <color name="navbarDm">#2F442E</color>
-    <color name="textvignetteDm">#BDDBBD</color>
-    <color name="btnfiltreDm">#A7C77C</color>
-    <color name="vertfoncelogoDm">#61AC5E</color>
-    <color name="vertpalelogoDm">#B0D957</color>
-    <color name="barrerechercheDm">#81BE7F</color>
-    <color name="btndesactiveDm">#494343</color>
-    <color name="txtcouleurfonceDm">#747070</color>
-    <color name="widgetsDm">#2A2D27</color>
-
 </resources>
