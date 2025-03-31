@@ -12,6 +12,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Switch;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SettingsFragment#newInstance} factory method to
@@ -29,6 +43,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private String mParam2;
     Button btnModifier, btnPlus, btnSupp, btnSuppPop, btnRePop;
     Dialog dialog;
+
+
+    //pour dark mode
+    private Switch switchDarkMode;
+    private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "AppPrefs";
+    private static final String DARK_MODE_KEY = "dark_mode";
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -87,9 +108,47 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btnRePop.setOnClickListener(this);
 
 
-        // Inflate the layout for this fragment
+
+
+        // section DarkMode
+        AppCompatButton btnTheme = view.findViewById(R.id.btnTheme);
+
+        // section DarkMode : Récupérer les préférences pour DM
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+        boolean isDarkModeEnabled = sharedPreferences.getBoolean(DARK_MODE_KEY, false);
+
+        // section DarkMode : Mettre à jour le texte du bouton
+        updateThemeButtonText(btnTheme, isDarkModeEnabled);
+
+        // section DarkMode : Gestion du clic bouton
+        btnTheme.setOnClickListener(v -> {
+            boolean newDarkModeState = !isDarkModeEnabled;
+
+            // Appliquer mode sombre ou clair
+            if (newDarkModeState) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+
+            // Sauvegarder la préférence utilisateur
+            sharedPreferences.edit().putBoolean(DARK_MODE_KEY, newDarkModeState).apply();
+
+            // Recharger l'activité pour appliquer le changement
+            requireActivity().recreate();
+        });
+
         return view;
 
+    }
+
+    //changer ecriture du bouton
+    private void updateThemeButtonText(AppCompatButton btnTheme, boolean isDarkModeEnabled) {
+        if (isDarkModeEnabled) {
+            btnTheme.setText("Passer en mode clair");
+        } else {
+            btnTheme.setText("Passer en mode sombre");
+        }
     }
 
     @Override
@@ -114,6 +173,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             dialog.show();
         }
 
+
         // Les boutons Supprimer et Retour du pop up
         //Supprime le compte + reviens à la page d'accueil
         if(v == btnSuppPop){
@@ -131,3 +191,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     }
 }
+
+
+
+
+
+
+
