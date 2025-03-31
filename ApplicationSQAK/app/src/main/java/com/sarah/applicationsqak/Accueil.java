@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -69,6 +71,11 @@ public class Accueil extends AppCompatActivity {
             Intent intent = new Intent(Accueil.this, Principale.class);
             startActivity(intent);
         });
+
+        //Affichage du pop up de la suppression du compte qui vient de SettingsFragment
+        if(getIntent().getBooleanExtra("Suppression_compte", false)){
+            Toast.makeText(Accueil.this, "Compte supprimé avec Succès!", Toast.LENGTH_LONG).show();
+        }
     }
 
     // Fonction pour redémarrer l'activité et mettre DM

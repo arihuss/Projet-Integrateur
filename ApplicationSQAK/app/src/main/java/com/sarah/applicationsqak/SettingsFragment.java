@@ -1,5 +1,6 @@
 package com.sarah.applicationsqak;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +27,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button btnModifier, btnPlus;
+    Button btnModifier, btnPlus, btnSupp, btnSuppPop, btnRePop;
+    Dialog dialog;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -66,9 +69,22 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         btnModifier = view.findViewById(R.id.btnModifProfil);
         btnPlus = view.findViewById(R.id.btnPlus);
+        btnSupp = view.findViewById(R.id.btnSupprimerCompte);
+
+        //Pop Up Supprimer Compte
+        dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.pop_up_supprimer);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+
+        btnSuppPop = dialog.findViewById(R.id.btnSupprimerPop);
+        btnRePop = dialog.findViewById(R.id.btnRevenirPop);
 
         btnModifier.setOnClickListener(this);
         btnPlus.setOnClickListener(this);
+        btnSupp.setOnClickListener(this);
+        btnSuppPop.setOnClickListener(this);
+        btnRePop.setOnClickListener(this);
 
 
         // Inflate the layout for this fragment
@@ -79,17 +95,38 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        //Click sur le bouton MODIFIER PROFIL qui redirige vers modifier profil
         if (v == btnModifier) {
 
             Intent intention1;
             intention1 = new Intent(getActivity(), ModifierProfil.class);
             startActivity(intention1);
 
+        //Click sur le bouton PLUS sur SQAK qui emmène à la page about us
         } else if (v ==btnPlus){
 
             Intent intention2;
             intention2 = new Intent(getActivity(), AboutUs.class);
             startActivity(intention2);
+
+        //Click sur le bouton SUPPRIMER MON COMPTE qui affiche un pop up certifiant la suppression du compte de l'utilisateur
+        } else if (v == btnSupp){
+            dialog.show();
+        }
+
+        // Les boutons Supprimer et Retour du pop up
+        //Supprime le compte + reviens à la page d'accueil
+        if(v == btnSuppPop){
+            //compléter le futur afin de pouvoir supprimer le compte
+            Intent intention3;
+            intention3 = new Intent(getActivity(), Accueil.class);
+            intention3.putExtra("Suppression_compte", true);
+            startActivity(intention3);
+            dialog.dismiss();
+
+        //retour à la page des paramètres
+        } else if(v == btnRePop){
+            dialog.dismiss();
         }
 
     }
