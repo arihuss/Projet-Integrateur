@@ -91,6 +91,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtMotDePasse"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="498dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/mot_de_passe"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edtMotDePasse"
         android:layout_width="275dp"
@@ -103,8 +120,25 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/mot_de_passe"
+        android:hint="@string/mdp_hint"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtConfMDP"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="573dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/confirmation_du_mot_de_passe"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -121,7 +155,7 @@
         android:ems="30"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:hint="@string/confirmation_du_mot_de_passe"
+        android:hint="@string/mdp_hint"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

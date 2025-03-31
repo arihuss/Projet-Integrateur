@@ -21,6 +21,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/txtCourriel"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/courriel"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btnSeConnecter"
         android:layout_width="225dp"
@@ -54,6 +71,23 @@
         android:ems="30"
         android:hint="@string/exemple_email"
         android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMotDePasse"
+        android:layout_width="275dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginEnd="85dp"
+        android:text="@string/mot_de_passe"
+        android:textColor="@color/textsurbg"
+        android:fontFamily="@font/inter"
+        android:textSize="16sp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
