@@ -12,20 +12,20 @@
         android:id="@+id/textView"
         android:layout_width="233dp"
         android:layout_height="26dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="112dp"
         android:text="Choisir nouvelle photo:"
         android:textColor="@color/textsurbg"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="63dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="45dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
         android:background="@null"
         android:contentDescription="Retour"
         android:elevation="0dp"
@@ -33,7 +33,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/fleche"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -42,26 +42,27 @@
         android:id="@+id/button2"
         android:layout_width="113dp"
         android:layout_height="40dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="104dp"
         android:backgroundTint="@color/accent2"
         android:text="Choisir"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="318dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="172dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="152dp"
+        android:paddingStart="5dp"
         android:paddingBottom="10dp"
         android:text="Prénom:"
         android:textColor="@color/textsurbg"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,185 +71,216 @@
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="318dp"
-        android:layout_height="28dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="44dp"
         android:background="@drawable/rounded_button"
         android:ems="30"
         android:inputType="text"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textSize="16sp"
-        android:hint=""
+        android:paddingStart="10dp"
+        android:text="Élie"
+        android:textColor="@color/textvignette"
+        android:textSize="15sp"
         app:backgroundTint="@color/secondary"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="202dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="318dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="230dp"
+        android:layout_height="37dp"
+        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Nom:"
         android:textColor="@color/textsurbg"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="318dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="268dp"
+        android:layout_height="26dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
         android:inputType="text"
-        android:textSize="12sp"
+        android:paddingStart="10dp"
+        android:text="Yaffa"
+        android:textColor="@color/textvignette"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="318dp"
         android:layout_height="38dp"
-        android:layout_marginTop="295dp"
+        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Courriel:"
         android:textColor="@color/textsurbg"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
 
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="318dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="333dp"
+        android:layout_height="26dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
         android:inputType="text"
-        android:textSize="16sp"
+        android:paddingStart="10dp"
+        android:text="elie.yaffa@bakelcity.com"
+        android:textColor="@color/textvignette"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="318dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="369dp"
+        android:layout_width="317dp"
+        android:layout_height="40dp"
+        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Numéro de téléphone:"
         android:textColor="@color/textsurbg"
-        android:textSize="12sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
 
     <EditText
         android:id="@+id/editTextText4"
         android:layout_width="318dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="404dp"
+        android:layout_height="26dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="phone"
+        android:paddingStart="10dp"
+        android:text="221"
+        android:textColor="@color/textvignette"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="318dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="426dp"
+        android:layout_height="38dp"
+        android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Bio:"
         android:textColor="@color/textsurbg"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+
+    <EditText
+        android:id="@+id/editTextText5"
+        android:layout_width="318dp"
+        android:layout_height="50dp"
+        android:background="@drawable/edit_text_modifier_profil"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:text="18 gamos grosse villa 92i sur le corbillard, pour tous mes trafiques bizarres, pour tous mes classiques biaaatch negro on vit large, bakel village, quand tu me regardes tu vois e=le best numéro 7 sur le visage"
+        android:textColor="@color/textvignette"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <LinearLayout
-        android:layout_width="278dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="528dp">
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="315dp"
+        android:layout_height="41dp"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Mot de passe:"
+        android:textColor="@color/textsurbg"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
 
-        <EditText
-            android:id="@+id/editTextText5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_modifier_profil"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingBottom="20dp"
-            android:textSize="12sp" />
+    <EditText
+        android:id="@+id/editTextText6"
+        android:layout_width="316dp"
+        android:layout_height="26dp"
+        android:background="@drawable/edit_text_modifier_profil"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:text="booba92i"
+        android:textColor="@color/textvignette"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Mot de passe:"
-            android:textColor="@color/textsurbg"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="315dp"
+        android:layout_height="39dp"
+        android:paddingStart="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Confirmation de mot de passe:"
+        android:textColor="@color/textsurbg"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
 
-        <EditText
-            android:id="@+id/editTextText6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_modifier_profil"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="Confirmation de mot de passe:"
-            android:textColor="@color/textsurbg"
-            android:textSize="12sp" />
-
-        <EditText
-            android:id="@+id/editTextText7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_modifier_profil"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="12sp" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/editTextText7"
+        android:layout_width="318dp"
+        android:layout_height="26dp"
+        android:background="@drawable/edit_text_modifier_profil"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:text="booba92i"
+        android:textColor="@color/textvignette"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
-        android:layout_width="234dp"
-        android:layout_height="59dp"
+        android:layout_width="183dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/sauvegarder"
         android:text="Sauvegarder"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="656dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
