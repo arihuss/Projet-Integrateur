@@ -28,6 +28,7 @@
     <string name="commentaires">Commentaires</string>
     <string name="publier">Publier</string>
     <string name="v_nements">Événements</string>
+    <string name="mes_inscriptions">Mes Inscriptions</string>
 
     <string-array name="event_dates">
             <item>Date</item>

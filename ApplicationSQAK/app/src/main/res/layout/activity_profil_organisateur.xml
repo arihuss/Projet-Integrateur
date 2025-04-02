@@ -116,6 +116,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline9" />
 
     <ListView
+        android:id="@+id/lvMesEventsOrg"
         android:layout_width="409dp"
         android:layout_height="465dp"
         android:layout_marginStart="1dp"

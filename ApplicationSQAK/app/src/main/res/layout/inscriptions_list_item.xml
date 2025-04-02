@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="113dp"
+        android:background="@drawable/bg_left"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvDateInscr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="27 Mars 2025"
+            android:textAlignment="center"
+            android:textColor="@color/primary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="113dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/bg_right"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+
+        <ImageView
+            android:id="@+id/imgEventInscr"
+            android:layout_width="98dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="8dp"
+            android:padding="4dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNomEventInscr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="10dp"
+                android:paddingBottom="10dp"
+                android:text="Ramssage de déchets"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textvignette" />
+
+            <TextView
+                android:id="@+id/tvLieuEventInscr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingStart="10dp"
+                android:paddingBottom="10dp"
+                android:text="Lieu: Plage Oka"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textvignette" />
+
+            <TextView
+                android:id="@+id/tvNomOrgInscr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
+                android:text="Organisation: Terre-Sauve"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textvignette" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
