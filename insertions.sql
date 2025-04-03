@@ -7,7 +7,7 @@ VALUES ('Camille', 'Test', 'camille.test@email.com', '1234567890', 'Aime aider l
        ('Sophie', 'Lemoine', 'sophie.lemoine@email.com', '3344556677', 'Voyageuse dans l’âme', 'globetrotter'),
        ('Lucas', 'Bernard', 'lucas.bernard@email.com', '4455667788', 'Joueur de football amateur', 'goalkeeper'),
        ('Emma', 'Dubois', 'emma.dubois@email.com', '5566778899', 'Adore cuisiner', 'chocolat'),
-       ('Hugo', 'Morel', 'hugo.morel@email.com', '6677889900', 'Passionné de cinéma', 'popcorn'),
+       ('Hugo', 'Morel', 'hugo.morel@email.com', '6677889900', 'Passionné de cinéma', 'popcorn1'),
        ('Léa', 'Fournier', 'lea.fournier@email.com', '7788990011', 'Amatrice de lecture', 'livres123'),
        ('Nathan', 'Rousseau', 'nathan.rousseau@email.com', '8899001122', 'Adepte de jeux vidéo', 'gamerlife');
 

@@ -76,8 +76,8 @@ CREATE TABLE Inscription (
     role ENUM('benevole', 'visiteur', 'appliquant') NOT NULL,
     date_inscription DATE NOT NULL,
     date_annulation DATE DEFAULT NULL,
-    CONSTRAINT FK_id_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
-    CONSTRAINT FK_id_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
+    CONSTRAINT FK_inscription_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
+    CONSTRAINT FK_inscription_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
 -- Table Commentaire
@@ -87,8 +87,8 @@ CREATE TABLE Commentaire (
     id_evenement INT(10),
     message VARCHAR(500),
     date_envoi DATE NOT NULL,
-    CONSTRAINT FK_id_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
-    CONSTRAINT FK_id_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
+    CONSTRAINT FK_commentaire_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur) ON DELETE CASCADE, 
+    CONSTRAINT FK_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
 -- Table Message
@@ -99,6 +99,6 @@ CREATE TABLE Message (
     type_destinataire VARCHAR(10),
     message VARCHAR(500),
     date_envoi DATE,
-    CONSTRAINT FK_id_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
+    CONSTRAINT FK_message_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
