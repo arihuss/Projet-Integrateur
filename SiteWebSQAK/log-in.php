@@ -12,13 +12,14 @@
 
 <body>
     <header><?php include("components/header.php") ?></header>
+
     <div class="container">
         <h1>Connexion</h1>
-        <form action="page-principale.php" method="POST">
+        <form action="index.php?action=seConnecter" method="POST">
             <label for="courriel-connexion">Courriel:</label> <br>
-            <input id="courriel-connexion" type="email" required><br><br>
+            <input id="courriel-connexion" type="email" name="courriel" required><br><br>
             <label for="mdp-connexion">Mot de passe:</label> <br>
-            <input id="mdp-connexion" type="text" minlength="8" required><br><br>
+            <input id="mdp-connexion" type="text" minlength="8" name="mot_de_passe" required><br><br>
             <input class="btn-jaune" type="submit" value="Connexion"><br>
             <a href="mdp-oublie"> Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
         </form>

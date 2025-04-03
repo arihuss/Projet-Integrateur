@@ -163,5 +163,40 @@ class OrganisateurDAO implements DAO{
 
         return $requete->execute();
     }
+
+    
+    /**
+     * Cette méthode retourne l'organisateur dont le email a été reçue en paramètre
+     * @param int $courriel La courriel de l'objet à chercher
+     * @return object|null L'objet trouvé ou null si non-trouvé
+     */
+
+     static public function findByEmail(string $courriel): ?Organisateur {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Connexion BD échouée");
+        }
+    
+        $requete = $connexion->prepare("SELECT * FROM Organisateur WHERE courriel = :courriel");
+        $requete->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+        $requete->execute();
+    
+        if ($requete->rowCount() === 0) return null;
+    
+        $enr = $requete->fetch();
+        return new Organisateur(
+            $enr['id_organisateur'],
+            $enr['prenom'],
+            $enr['nom'],
+            $enr['courriel'],
+            $enr['bio'],
+            $enr['nom_organisateur'],
+            $enr['mot_de_passe'],
+            $enr['nb_events']
+        );
 }
+
+}
+
 ?>
