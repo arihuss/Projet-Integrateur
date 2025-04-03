@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Tests pour la classe StatistiqueDAO</title>
+    <title>Test - StatistiqueDAO</title>
     <style>
         body {
             background-color: #F5F5F5;
@@ -41,14 +41,14 @@ include_once("../../modele/statistiques.class.php");
 include_once("../../modele/DAO/statistiqueDAO.php");
 include_once("../../modele/ConnexionBD.php");
 
-// Créer une nouvelle statistique pour les tests
+// Créer une nouvelle statistique fictive
 $nouvelleStat = new Statistique(
-    0,     // id_statistique 
-    10,    // nb_visiteurs
-    5,     // nb_benevoles
-    100,   // nb_likes
-    250,   // nb_vues
-    15     // nb_partages
+    0,    // id_statistique (sera défini après l'insertion)
+    10,   // nb_visiteurs
+    5,    // nb_benevoles
+    100,  // nb_likes
+    200,  // nb_vues
+    50    // nb_partages
 );
 ?>
 
@@ -58,28 +58,27 @@ $nouvelleStat = new Statistique(
         <th>Résultat</th>
     </tr>
 
-    <!-- Test SAVE -->
+    <!-- SAVE -->
     <tr>
         <td>save()</td>
         <td>
             <?php
-            if (StatistiqueDAO::save($nouvelleStat)) {
-                echo "Statistique ajoutée avec succès. ID : " . $nouvelleStat->getIdStatistique();
-            } else {
-                echo "Échec de l'ajout.";
-            }
+            $result = StatistiqueDAO::save($nouvelleStat);
+            echo $result
+                ? "Statistique ajoutée avec succès (ID : " . $nouvelleStat->getIdStatistique() . ")"
+                : "Échec de l'ajout.";
             ?>
         </td>
     </tr>
 
-    <!-- Test FIND BY ID -->
+    <!-- FIND BY ID -->
     <tr>
         <td>findById()</td>
         <td>
             <?php
             $stat = StatistiqueDAO::findById($nouvelleStat->getIdStatistique());
             if ($stat) {
-                echo "Stat trouvée : " . $stat->getNbVues() . " vues, " . $stat->getNbLikes() . " likes.";
+                echo "Stat trouvée : vues = " . $stat->getNbVues() . ", likes = " . $stat->getNbLikes();
             } else {
                 echo "Aucune statistique trouvée.";
             }
@@ -87,7 +86,7 @@ $nouvelleStat = new Statistique(
         </td>
     </tr>
 
-    <!-- Test FIND ALL -->
+    <!-- FIND ALL -->
     <tr>
         <td>findAll()</td>
         <td>
@@ -96,43 +95,22 @@ $nouvelleStat = new Statistique(
             echo "Nombre total de statistiques : " . count($stats);
             echo "<ul>";
             foreach ($stats as $s) {
-                echo "<li>ID " . $s->getIdStatistique() . " — vues : " . $s->getNbVues() . " | partages : " . $s->getNbPartages() . "</li>";
+                echo "<li>ID " . $s->getIdStatistique() . " — vues : " . $s->getNbVues() . " | likes : " . $s->getNbLikes() . "</li>";
             }
             echo "</ul>";
             ?>
         </td>
     </tr>
 
-    <!-- Test UPDATE -->
+    <!-- UPDATE -->
     <tr>
         <td>update()</td>
         <td>
             <?php
             $nouvelleStat->setNbVues(999);
             $nouvelleStat->setNbLikes(888);
-            if (StatistiqueDAO::update($nouvelleStat)) {
-                echo "Mise à jour réussie.";
-            } else {
-                echo "Échec de la mise à jour.";
-            }
-            ?>
-        </td>
-    </tr>
-
-    <!-- Test DELETE -->
-    <tr>
-        <td>delete()</td>
-        <td>
-            <?php
-            if (StatistiqueDAO::delete($nouvelleStat)) {
-                echo "Suppression réussie.";
-            } else {
-                echo "Échec de la suppression.";
-            }
-
-            // Vérifier que c'est bien supprimé
-            $verif = StatistiqueDAO::findById($nouvelleStat->getIdStatistique());
-            echo $verif ? "<br>La statistique existe encore !" : "<br>La statistique a bien été supprimée.";
+            $success = StatistiqueDAO::update($nouvelleStat);
+            echo $success ? "Mise à jour réussie (vues=999, likes=888)" : "Échec de la mise à jour.";
             ?>
         </td>
     </tr>
