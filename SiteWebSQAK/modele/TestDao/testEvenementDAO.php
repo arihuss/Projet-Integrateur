@@ -43,14 +43,14 @@ include_once("../../modele/DAO/evenementDAO.class.php");
 // Créer un nouvel événement fictif pour les tests
 $nouvelEvenement = new Evenement(
     0,  // id (sera généré)
-    1,  // idStats
-    1,  // idOrganisateur
+    11,  // idStats
+    21,  // idOrganisateur
     "Test DAO", // nom
     "Montréal", // lieu
     "2025-04-01", // dateDebut
     "2025-04-02", // dateFin
-    10, // nbBenevolesMax
-    100, // nbParticipantsMax
+    50, // nbBenevolesMax
+    300, // nbParticipantsMax
     true, // etatBenevole
     "Culture", // categorie
     "Test d'insertion DAO", // description
