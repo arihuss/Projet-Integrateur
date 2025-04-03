@@ -45,9 +45,8 @@
     <h1>Tests pour la classe OrganisateurDAO</h1>
 
     <?php
-    include_once("../../modele/organisateur.class.php");
-    include_once("../../modele/DAO/OrganisateurDAO.class.php");
-
+    include_once(__DIR__ . '/../organisateur.class.php');
+    include_once(__DIR__ . '/../DAO/OrganisateurDAO.class.php');
     ?>
 
     <table>
@@ -57,11 +56,26 @@
         </tr>
         <tr>
             <td>
+                <h2>Test Connexion</h2>
+            </td>
+            <td>
+                <?php
+                try {
+                    $db = ConnexionBD::getInstance();
+                    echo "Connexion réussie !";
+                } catch (Exception $e) {
+                    echo "Erreur : " . $e->getMessage();
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <h2>Methode findById</h2>
             </td>
             <td>
                 <?php
-                echo "<h3>Recherche de l'organisateur avec un ID existant: BESOIN DE FAIRE UN INSERT DANS LA BD</h3>";
+                echo "<h3>Recherche de l'organisateur avec un ID existant: </h3>";
                 $unOrganisateur = OrganisateurDAO::findById(1);
                 echo "<ul><li>Organisateur 1: " . ($unOrganisateur ? $unOrganisateur : "n'existe pas") . "</li></ul>";
 
@@ -81,7 +95,7 @@
                 echo "<h3>Insertion d'un nouvel organisateur :</h3>";
 
                 // Création d'un nouvel organisateur
-                $nouveauOrganisateur = new Organisateur(0, 'Mario', 'Bros', 'mario.bros@itsame.com', 'Hello, its A ME, MARIO', null, 'luigi123', 10);
+                $nouveauOrganisateur = new Organisateur(null,'Mario', 'Bros', 'mroi.bros@itsame.com', 'Hello, its A ME, MARIO', null, 'luigi123', 10);
 
                 try {
 
@@ -92,7 +106,7 @@
                         echo "<ul><li>Insertion réussie. ID généré : " . $nouveauOrganisateur->getId() . "</li></ul>";
 
                         // Vérification des données insérées
-                        $organisateurInsere = OrganisateurDAO::findById($nouveauUser->getId());
+                        $organisateurInsere = OrganisateurDAO::findById($nouveauOrganisateur->getId());
                         echo "<ul><li>Organisateur inséré : " . ($organisateurInsere ? $organisateurInsere : "n'existe pas") . "</li></ul>";
                     } else {
                         echo "<ul><li>Insertion échouée.</li></ul>";

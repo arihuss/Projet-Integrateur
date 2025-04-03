@@ -1,6 +1,7 @@
 <?php
-include_once(__DIR__ . "../organisateur.class.php");
+include_once(__DIR__ . '/../organisateur.class.php');
 include_once(__DIR__ . "/DAO.interface.php");
+include_once(__DIR__ . '/../DAO/connexionBD.class.php');
 
 class OrganisateurDAO implements DAO{
 
@@ -89,7 +90,7 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':bio',$bio,PDO::PARAM_STR);
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
-        $requete->bindParam(':nbevents',$nbEvents,PDO::PARAM_STR);
+        $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
 
         $success = $requete->execute();
         if ($success){
@@ -136,7 +137,7 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':bio',$bio,PDO::PARAM_STR);
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
-        $requete->bindParam(':nbevents',$nbEvents,PDO::PARAM_STR);
+        $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
 
         return $requete->execute();
     }

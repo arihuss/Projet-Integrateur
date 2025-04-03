@@ -2,7 +2,7 @@
 
 class Organisateur implements JsonSerializable
 {
-    private int $id;
+    private ?int $id;
     private ?string $prenom;
     private ?string $nom;
     private string $courriel;
@@ -14,7 +14,7 @@ class Organisateur implements JsonSerializable
     //Constructeur
 
     public function __construct(
-        int $id,
+        ?int $id,
         ?string $prenom,
         ?string $nom,
         string $courriel,
@@ -114,6 +114,11 @@ class Organisateur implements JsonSerializable
      {
          $this->nbEvents = $nbEvents;
      }
+
+     public function __toString(): string {
+        return "Organisateur ID: {$this->id}, Nom: {$this->nom}, Prénom: {$this->prenom}";
+    }
+    
  
      // Implémentation de JsonSerializable
      public function jsonSerialize(): array
