@@ -11,7 +11,31 @@ class ParticipantDAO{
      * @return object|null L'objet trouvé ou null si non-trouvé
      */
     static public function findById(int $id): ?Participant {
-        //a completer
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "SELECT * FROM Inscription WHERE id_inscription = :id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount() === 0) {
+            return null;
+        }
+
+        $enr = $stmt->fetch();
+        $participant = new Participant(
+            $enr['id_inscription'],
+            $enr['id_utilisateur'],
+            $enr['id_evenement'],
+            $enr['role'],
+            $enr['date_inscription'],
+            $enr['date_annulation']
+        );
+
+        $stmt->closeCursor();
+        ConnexionBD::close();
+
+        return $participant;
     }
 
     /**
@@ -20,8 +44,31 @@ class ParticipantDAO{
      * @return array
      */
     static public function findByRole(string $role): array{
-        //a completer
-        return [0];
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "SELECT * FROM Inscription WHERE role = :role";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $participants = [];
+        while ($enr = $stmt->fetch()) {
+            $participants[] = new Participant(
+                $enr['id_inscription'],
+                $enr['id_utilisateur'],
+                $enr['id_evenement'],
+                $enr['role'],
+                $enr['date_inscription'],
+                $enr['date_annulation']
+            );
+        }
+
+        $stmt->closeCursor();
+        ConnexionBD::close();
+
+        return $participants;
+        
+        //return [0]; a voirrrr 
     }
 
     /**
@@ -30,8 +77,15 @@ class ParticipantDAO{
      * @return bool true si successful
      */
     static public function accepterAppliquant(object $object):bool{
-        //a completer
-        return false;
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "UPDATE Inscription SET role = 'benevole' WHERE id_inscription = :id";
+        $stmt = $connexion->prepare($sql);
+        $id = $object->getIdInscription();
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+        //return false;
     }
 
     /**
@@ -40,8 +94,15 @@ class ParticipantDAO{
      * @return bool true si successful
      */
     static public function refuserApplicant(object $object):bool{
-        //a completer
-        return false;
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "DELETE FROM Inscription WHERE id_inscription = :id";
+        $stmt = $connexion->prepare($sql);
+        $id = $object->getIdInscription();
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+        //return false;
     }
 
    
