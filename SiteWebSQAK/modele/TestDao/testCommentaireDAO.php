@@ -45,8 +45,8 @@
     <h1>Tests pour la classe CommentaireDAO</h1>
 
     <?php
-    include_once("../../modele/commentaire.class.php");
-    include_once("../../modele/DAO/CommentaireDAO.class.php");
+   include_once(__DIR__ . '/../commentaire.class.php');
+   include_once(__DIR__ . '/../DAO/CommentaireDAO.class.php');
 
     ?>
 

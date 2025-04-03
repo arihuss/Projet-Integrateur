@@ -75,6 +75,10 @@ class Commentaire implements JsonSerializable
         $this->date_envoi = $date_envoi;
     }
 
+    public function __toString(): string {
+        return "Commentaire: {$this->id_utilisateur}, : {$this->message}";
+    }
+
     // Implémentation de JsonSerializable
     public function jsonSerialize(): array
     {

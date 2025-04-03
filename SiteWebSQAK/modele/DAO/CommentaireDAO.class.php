@@ -1,6 +1,7 @@
 <?php
-include_once(__DIR__ . "../commentaire.class.php");
+include_once(__DIR__ . "/../commentaire.class.php");
 include_once(__DIR__ . "/DAO.interface.php");
+include_once(__DIR__ . '/../DAO/connexionBD.class.php');
 
 class CommentaireDAO{
 
@@ -20,9 +21,10 @@ class CommentaireDAO{
         $requete = $connexion->prepare(
             "SELECT C.*
              FROM Commentaire C
-             JOIN Evenement E ON C.id_evenement = E.id_evenement"
+             JOIN Evenement E ON C.id_evenement = E.id_evenement
+             WHERE C.id_evenement = :id_evenement"
         );
-        $requete->bindParam(':id_evenement', $id_evenement, PDO::PARAM_STR);
+        $requete->bindParam(':id_evenement', $id_evenement, PDO::PARAM_INT);
         $requete->execute();
 
         foreach($requete as $enr){
