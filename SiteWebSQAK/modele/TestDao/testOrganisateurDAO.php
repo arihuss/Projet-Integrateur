@@ -81,25 +81,25 @@
                 echo "<h3>Insertion d'un nouvel organisateur :</h3>";
 
                 // Création d'un nouvel organisateur
-                $nouveauOrganisateur = new Organisateur(0, 'Mario', 'Bros', 'mario.bros@itsame.com', 'Hello, its A ME, MARIO',null,'luigi123',10);
+                $nouveauOrganisateur = new Organisateur(0, 'Mario', 'Bros', 'mario.bros@itsame.com', 'Hello, its A ME, MARIO', null, 'luigi123', 10);
 
-                    try {
-                
-                        // Enregistrement dans la base de données
-                        $testSave = OrganisateurDAO::save($nouveauOrganisateur);
+                try {
 
-                        if ($testSave) {
-                            echo "<ul><li>Insertion réussie. ID généré : " . $nouveauOrganisateur->getId() . "</li></ul>";
+                    // Enregistrement dans la base de données
+                    $testSave = OrganisateurDAO::save($nouveauOrganisateur);
 
-                            // Vérification des données insérées
-                            $organisateurInsere = OrganisateurDAO::findById($nouveauUser->getId());
-                            echo "<ul><li>Organisateur inséré : " . ($organisateurInsere ? $organisateurInsere : "n'existe pas") . "</li></ul>";
-                        } else {
-                            echo "<ul><li>Insertion échouée.</li></ul>";
-                        }
-                    } catch (PDOException $e) {
-                        echo "Erreur inattendue : " . $e->getMessage();
+                    if ($testSave) {
+                        echo "<ul><li>Insertion réussie. ID généré : " . $nouveauOrganisateur->getId() . "</li></ul>";
+
+                        // Vérification des données insérées
+                        $organisateurInsere = OrganisateurDAO::findById($nouveauUser->getId());
+                        echo "<ul><li>Organisateur inséré : " . ($organisateurInsere ? $organisateurInsere : "n'existe pas") . "</li></ul>";
+                    } else {
+                        echo "<ul><li>Insertion échouée.</li></ul>";
                     }
+                } catch (PDOException $e) {
+                    echo "Erreur inattendue : " . $e->getMessage();
+                }
                 ?>
             </td>
         </tr>
@@ -165,12 +165,12 @@
 
                         // Vérification de la suppression
                         $organisateurSupprime = OrganisateurDAO::findById($nouveauOrganisateurAuthentifie->getId());
-                        echo "<ul><li>Utilisateur supprimé : " . ($organisateurSupprime ? $organisateurSupprime : "n'existe plus") . "</li></ul>";
+                        echo "<ul><li>Organisateur supprimé : " . ($organisateurSupprime ? $organisateurSupprime : "n'existe plus") . "</li></ul>";
                     } else {
                         echo "<ul><li>Suppression échouée.</li></ul>";
                     }
                 } else {
-                    echo "<h3>L'utilisateur avec l'id ", $id, " n'existe pas pour une suppression.</h3>";
+                    echo "<h3>L'organisateur avec l'id ", $id, " n'existe pas pour une suppression.</h3>";
                 }
 
                 ?>

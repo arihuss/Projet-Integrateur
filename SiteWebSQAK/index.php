@@ -18,7 +18,7 @@
     </header>
 <!--Steps pour continuer:
     Regarder si on a besoin de js et l'implementer
-    Creer du code pour recuperer controleur dans index
+    Creer du code pour recuperer controleur dans index -- pas sure si c necessaire finalement
     Definir la classe controleur dans le abstract
     Remplacer les href par des actions
     Faire les fonctions DAO et les tester

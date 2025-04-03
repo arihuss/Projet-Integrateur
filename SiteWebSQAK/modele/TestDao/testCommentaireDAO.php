@@ -60,15 +60,15 @@
                 <h2>Methode findByEvenement</h2>
             </td>
             <td>
-            <?php
-                    echo "<h3>Liste de tous les commentaires de l'evenement avec l'id 1:</h3>";
-                    $tabCommentaires = CommentaireDAO::findByEvenement(1);
-                    echo "<ul>";
-                    foreach ($tabCommentaires as $commentaire) {
-                        echo "<li>$commentaire</li>";
-                    }
-                    echo "</ul>";
-                    ?>
+                <?php
+                echo "<h3>Liste de tous les commentaires de l'evenement avec l'id 1:</h3>";
+                $tabCommentaires = CommentaireDAO::findByEvenement(1);
+                echo "<ul>";
+                foreach ($tabCommentaires as $commentaire) {
+                    echo "<li>$commentaire</li>";
+                }
+                echo "</ul>";
+                ?>
             </td>
         </tr>
     </table>
