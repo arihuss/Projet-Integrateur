@@ -23,7 +23,7 @@
 </div>
 
 
-    <a href="evenement.php" class="event">
+    <a href="?action=voirUnEvent" class="event">
         <div class="event-grid">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
@@ -32,35 +32,35 @@
             </div>
     </a>
 
- <a href="evenement.php" class="event">
+ <a href="?action=voirUnEvent" class="event">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
                 <img src=".\img\event-arbre.svg" alt="img-evenement">
                 <div class="event-date">13/12/2025</div>
             </div>
 </a>
-<a href="evenement.php" class="event">
+<a href="?action=voirUnEvent" class="event">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
                 <img src=".\img\event-arbre.svg" alt="img-evenement">
                 <div class="event-date">13/12/2025</div>
             </div>
 </a>
-<a href="evenement.php" class="event">
+<a href="?action=voirUnEvent" class="event">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
                 <img src=".\img\event-arbre.svg" alt="img-evenement">
                 <div class="event-date">13/12/2025</div>
             </div>
 </a>
-<a href="evenement.php" class="event">
+<a href="?action=voirUnEvent" class="event">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
                 <img src=".\img\event-arbre.svg" alt="img-evenement">
                 <div class="event-date">13/12/2025</div>
             </div>
 </a>
-<a href="evenement.php" class="event">
+<a href="?action=voirUnEvent" class="event">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>
                 <img src=".\img\event-arbre.svg" alt="img-evenement">

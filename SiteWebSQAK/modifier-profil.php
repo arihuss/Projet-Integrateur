@@ -57,8 +57,8 @@
             </div>
 
             <div id="btn-container2">
-                <a class="btn-rose" href="profil-organisateur.php">Revenir</a>
-                <a class="btn-jaune" href="profil-organisateur.php">Sauvegarder</a>
+                <a class="btn-rose" href="?action=profilOrganisateur">Revenir</a>
+                <a class="btn-jaune" href="?action=profilOrganisateur">Sauvegarder</a>
             </div>
         </form>
     </div>

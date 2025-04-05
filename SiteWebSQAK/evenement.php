@@ -17,11 +17,11 @@
 
   <div class="container">
       <div id="bouton-section">
-          <a href="voirEvents"><i class="fa-solid fa-circle-left"></i></a>
+          <a href="?action=voirEvents"><i class="fa-solid fa-circle-left"></i></a>
 
           <div id="btn-droite">
-                <a href="modifier-evenement.php" class="btn-jaune">Modifier</a>
-                <a href="page-principale.php" class="btn-rose" onclick="confirmSupprimer(event)">Supprimer</a>
+                <a href="?action=modifierEvent" class="btn-jaune">Modifier</a>
+                <a href="?action=voirEvents" class="btn-rose" onclick="confirmSupprimer(event)">Supprimer</a>
           </div>
       </div>
 
@@ -64,25 +64,25 @@
 <div id="liste">
   <i class="fa-solid fa-circle-xmark"></i>
   <i class="fa-solid fa-circle-check"></i>
-  <a href="profil-participant.php">Liliane Belvier</a>
+  <a href="?action=profilParticipant">Liliane Belvier</a>
   <p>16/12/24</p>
 </div>
 <div id="liste">
   <i class="fa-solid fa-circle-xmark"></i>
   <i class="fa-solid fa-circle-check"></i>
-  <a href="profil-participant.php">Liliane Belvier</a>
+  <a href="?action=profilParticipant">Liliane Belvier</a>
   <p>16/12/24</p>
 </div>
 <div id="liste">
   <i class="fa-solid fa-circle-xmark"></i>
     <i class="fa-solid fa-circle-check"></i>
-<a href="profil-participant.php">Liliane Belvier</a>
+<a href="?action=profilParticipant">Liliane Belvier</a>
   <p>16/12/24</p>
 </div>
 <div id="liste">
   <i class="fa-solid fa-circle-xmark"></i>
   <i class="fa-solid fa-circle-check"></i>
-  <a href="profil-participant.php">Liliane Belvier</a>
+  <a href="?action=profilParticipant">Liliane Belvier</a>
   <p>16/12/24</p>
 </div>
 </div>

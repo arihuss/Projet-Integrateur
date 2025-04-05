@@ -15,7 +15,7 @@
     <div class="container">
         <div id="entete-profil">
             <h1>Mon Profil</h1>
-            <a href="modifier-profil.php" class="btn-rose">Modifier</a>
+            <a href="?action=modifierProfil" class="btn-rose">Modifier</a>
         </div>
         <div id="profil-content">
             <img src="img\HemaQuebecLogo.jpg">

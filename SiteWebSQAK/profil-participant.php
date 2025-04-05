@@ -16,7 +16,7 @@
     <div class="container" id="section-profil">
 
         <div id="profil-appliquant">
-            <a href="evenement.php"><i class="fa-solid fa-circle-left"></i></a>
+            <a href="?action=voirUnEvent"><i class="fa-solid fa-circle-left"></i></a>
 
             <h2>Profil de l'applicant </h2>
             <img src=".\img\profilapplicant.svg" alt="img-profil">

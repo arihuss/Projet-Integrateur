@@ -13,7 +13,7 @@ include_once("controleurs\controleurSeInscrire.class.php");
 include_once("controleurs\controleurSettings.class.php");
 include_once("controleurs\controleurVoirEvents.class.php");
 include_once("controleurs\controleurVoirUnEvent.class.php");
-
+include_once("controleurs\controleurPolitiques.class.php");
 
 class ManufactureControleur{
     public static function creerControleur($action): Controleur{
@@ -43,6 +43,10 @@ class ManufactureControleur{
             $controleur = new VoirEvents();
         }else if ($action == "voirUnEvent"){
             $controleur = new VoirUnEvent();
+        }else if ($action == "politiques"){
+            $controleur = new Politiques();
+        }else if ($action == "profilParticipant"){
+            $controleur = new ProfilParticipant();
         }else {
             $controleur = new Accueil();
         }
