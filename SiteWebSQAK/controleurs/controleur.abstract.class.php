@@ -5,6 +5,9 @@
 
 abstract class Controleur
 {
+    public function __construct()
+	{}
+	
     // Redirige vers une autre page
     protected function redirect(string $url): void {
         header("Location: $url");
@@ -31,4 +34,6 @@ abstract class Controleur
     protected function error(string $message): void {
         echo "<div style='color:red; font-weight:bold;'>Erreur : $message</div>";
     }
+
+    abstract public function executerAction();
 }
