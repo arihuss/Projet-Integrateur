@@ -5,13 +5,11 @@ include_once("modele/DAO/OrganisateurDAO.class.php");
 class SeConnecter extends Controleur{
 
 
-		if (session_status() === PHP_SESSION_NONE) {
-			session_start();
-		}
     
 		public function __construct() {
 			//appel du constructeur parent
 			parent::__construct();
+
 		}
 		
 		// ******************* Méthode exécuter action

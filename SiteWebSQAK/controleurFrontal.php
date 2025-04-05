@@ -10,7 +10,7 @@
 	//Si la requête contenant le paramètre action n'est pas renseigne
 	if(!ISSET($_GET['action'])){
 			// on reste à la page d'accueil
-         $action="index.php";
+         $action="seConnecter";
 
 	}else{
 		// Sinon on recupere l’action indiqué à accomplir

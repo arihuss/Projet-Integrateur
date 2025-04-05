@@ -1,3 +1,8 @@
+<?php
+    // Rediriger tout vers routes.php
+include(__DIR__ ."/api/routes.php"); 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

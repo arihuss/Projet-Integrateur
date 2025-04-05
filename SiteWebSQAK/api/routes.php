@@ -3,7 +3,9 @@
 // routes.php pour SQAK
 // ***************************
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Headers pour les API REST (si besoin futur d'API JSON)
 header("Access-Control-Allow-Origin: *");
@@ -11,33 +13,28 @@ header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Action par défaut
-$action = $_GET['action'] ?? 'accueil';
+$action = $_GET['action'] ?? 'accueil'; // ou "accueil" si tu préfères
 
-// Nettoyage du nom d'action pour éviter les injections
+// Nettoyage du nom d'action
 $action = preg_replace('/[^a-zA-Z0-9_]/', '', $action);
 
-// Construction du nom de la classe contrôleur
-$classeControleur = ucfirst($action);
-$fichierControleur = __DIR__ . "/controleurs/" . $classeControleur . ".class.php";
+// Inclure la manufacture
+include_once("controleurs/controleurManufacture.class.php");
 
-if (file_exists($fichierControleur)) {
-    include_once($fichierControleur);
-    $controleur = new $classeControleur();
-    
-    try {
-        $page = $controleur->executerAction();
+try {
+    // Créer le bon contrôleur via la manufacture
+    $controleur = ManufactureControleur::creerControleur($action);
 
-        
-        if (str_ends_with($page, ".php") && file_exists($page)) {
-            include($page);
-        } else {
-            echo $page;
-        }
+    // Exécuter l’action
+    $vue = $controleur->executerAction();
 
-    } catch (Exception $e) {
-        echo "<h1>Erreur</h1><p>" . $e->getMessage() . "</p>";
+    // Inclure la vue si elle existe
+    if (str_ends_with($vue, ".php") && file_exists($vue)) {
+        include($vue);
+    } else {
+        echo $vue; // Au cas où la vue retourne du texte directement
     }
-} else {
-    // Page 404 personnalisée
-    include_once("erreur404.php");
+
+} catch (Exception $e) {
+    echo "<h1>Erreur</h1><p>" . $e->getMessage() . "</p>";
 }
