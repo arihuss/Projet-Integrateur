@@ -18,30 +18,18 @@ include(__DIR__ ."/api/routes.php");
 <body>
     <header>
         <div class="header">
-            <a href=".\page-principale.php"><img src=".\img\logo.svg" alt=""></a>
+            <a href="?action=voirEvents"><img src=".\img\logo.svg" alt=""></a>
         </div> 
     </header>
-<!--Steps pour continuer:
-    Regarder si on a besoin de js et l'implementer
-    Creer du code pour recuperer controleur dans index -- pas sure si c necessaire finalement
-    Definir la classe controleur dans le abstract
-    Remplacer les href par des actions
-    Faire les fonctions DAO et les tester
-    Figure out comment controler le fait que seul les organisateurs peuvent acceder aux autres pages
-    Enlever le menu dans la page index (elements de la nav)
-    Remplir les fonctions executerAction() dans tous les controleurs
-    Faire des fichiers JSON
-    Mettre la bd sur phpMyAdmin
-    Tester les fonctions sur la platerforme utiliser dans le cours de Program Web
-    -->
+
     <div class="container">
         <div id="accueil-card">
             <img id="logo-accueil" src="img/logo.svg">
             <h1>Bienvenue!</h1>
             <h3>Travaillons ensemble pour l'avenir...</h3>
             <div id="btn-container">
-                <a href="log-in.php" class="btn-jaune">Se connecter</a>
-                <a href="sign-up.php" class="btn-jaune">S'Inscrire</a>
+                <a href="?action=seConnecter" class="btn-jaune">Se connecter</a>
+                <a href="?action=seInscrire" class="btn-jaune">S'Inscrire</a>
             </div>
         </div>
         <h2>Fonctionnalités</h2>

@@ -14,7 +14,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Action par défaut
 $action = $_GET['action'] ?? 'accueil'; // ou "accueil" si tu préfères
-
+echo "debuga";
 // Nettoyage du nom d'action
 $action = preg_replace('/[^a-zA-Z0-9_]/', '', $action);
 
@@ -30,7 +30,7 @@ try {
 
     // Inclure la vue si elle existe
     if (str_ends_with($vue, ".php") && file_exists($vue)) {
-        include($vue);
+        include_once($vue);
     } else {
         echo $vue; // Au cas où la vue retourne du texte directement
     }
