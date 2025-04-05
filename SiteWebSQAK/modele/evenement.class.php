@@ -11,7 +11,7 @@ class Evenement implements JsonSerializable
     private string $dateFin;
     private ?int $nbBenevolesMax;
     private ?int $nbParticipantsMax;
-    private bool $etatBenevole;
+    private ?bool $etatBenevole;
     private ?string $categorie;
     private string $description;
     private string $etat;
@@ -31,7 +31,7 @@ class Evenement implements JsonSerializable
         string $dateFin,
         ?int $nbBenevolesMax,
         ?int $nbParticipantsMax,
-        bool $etatBenevole,
+        ?bool $etatBenevole,
         ?string $categorie,
         string $description,
         string $etat,
