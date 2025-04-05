@@ -17,7 +17,7 @@
 
   <div class="container">
       <div id="bouton-section">
-          <a href="page-principale.php"><i class="fa-solid fa-circle-left"></i></a>
+          <a href="voirEvents"><i class="fa-solid fa-circle-left"></i></a>
 
           <div id="btn-droite">
                 <a href="modifier-evenement.php" class="btn-jaune">Modifier</a>
