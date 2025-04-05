@@ -16,9 +16,10 @@ class Accueil extends Controleur{
 		public function executerAction():string
 		{
 				
-			return "index.php";
+			return "accueil.php";
 		}
 
 }
+
 
 ?>
