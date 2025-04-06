@@ -130,9 +130,15 @@ echo "<div class='content'>
   <footer><?php include("components/footer.php"); ?> </footer>
 
   <script src="js/general.js"></script>
+<script>
+  const donutData = {
+    invites: <?php echo $stats->getNbVisiteurs(); ?>,
+    benevoles: <?php echo $stats->getNbBenevoles(); ?>
+  };
+</script>
 
   <script src="js/evenement.js"></script>
-
+  
 </body>
 
 </html>
