@@ -13,23 +13,28 @@
 </head>
 
 <body>
-  <header><?php include("components/header.php") ?></header>
+  <header>
+    <?php include("components/header.php");
+    include_once('modele/DAO/EvenementDAO.class.php');
+    include_once('modele/DAO/ParticipantDAO.class.php');
+    include_once('modele/DAO/UserDAO.class.php');
+    include_once('modele/DAO/StatistiqueDAO.class.php');
+    include_once('modele/DAO/CommentaireDAO.class.php');
 
-  <div class="container">
-      <div id="bouton-section">
-          <a href="?action=voirEvents"><i class="fa-solid fa-circle-left"></i></a>
+    $event = EvenementDAO::findById($_GET['id']);
+           ?></header>
 
-          <div id="btn-droite">
-                <a href="?action=modifierEvent" class="btn-jaune">Modifier</a>
-                <a href="?action=voirEvents" class="btn-rose" onclick="confirmSupprimer(event)">Supprimer</a>
+ <?php echo "<div class='container'>
+      <div id='bouton-section'>
+          <a href='?action=voirEvents'><i class='fa-solid fa-circle-left'></i></a>
+
+          <div id='btn-droite'>
+                <a href='?action=modifierEvent&id=".$event->getId()."' class='btn-jaune'>Modifier</a>
+                <a href='?action=voirEvents' class='btn-rose' onclick='confirmSupprimer(event)'>Supprimer</a>
           </div>
-      </div>
+      </div>" ?>
 <?php
-include_once('modele/DAO/EvenementDAO.class.php');
-include_once('modele/DAO/ParticipantDAO.class.php');
-include_once('modele/DAO/UserDAO.class.php');
-include_once('modele/DAO/StatistiqueDAO.class.php');
-include_once('modele/DAO/CommentaireDAO.class.php');
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action_decision'], $_POST['id_inscription'])) {
   $id = (int) $_POST['id_inscription'];
@@ -47,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action_decision'], $_
   }
 }
 
-$event = EvenementDAO::findById($_GET['id']);
+
 if ($event){
 
   echo "<h1>".$event->getNom()."</h1>";

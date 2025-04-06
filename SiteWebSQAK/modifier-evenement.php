@@ -13,6 +13,42 @@
 <body>
     <header><?php include("components/header.php")?></header>
 
+    <?php
+include_once('modele/DAO/EvenementDAO.class.php');
+$event = EvenementDAO::findById($_GET['id']); // Ne pas oublier de valider l'entrée
+
+if (!$event) {
+    echo "<h2>Événement non trouvé.</h2>";
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
+
+    // Tu peux ajouter des vérifications ici (ex: champs requis)
+
+    $event->setNom($_POST['titre']);
+    $event->setDescription($_POST['description']);
+    $event->setCategorie($_POST['categorie']);
+    $event->setLieu($_POST['lieu']);
+    $event->setDateDebut($_POST['date-debut']);
+    $event->setDateFin($_POST['date-fin']);
+    $event->setNbBenevolesMax($_POST['benevoles-max']);
+    $event->setNbParticipantsMax($_POST['invites-max']);
+
+   /* // Si une nouvelle photo est téléversée
+    if (!empty($_FILES['photo']['name'])) {
+        $photoPath = "img/uploads/" . basename($_FILES['photo']['name']);
+        move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
+        $event->setPhoto($photoPath);
+    }*/
+
+    EvenementDAO::update($event); // Tu dois avoir cette méthode dans ton DAO
+
+    header("Location: ?action=voirUnEvent&id=" . $event->getId());
+    exit;
+}
+
+?>
     <div class="container">
         <h2>Modifier événement</h2>
 
@@ -26,30 +62,30 @@
             </div>
 
             <label for="titre">Titre de l'événement:</label>
-            <input type="text" id="titre" name="titre" required>
+            <input type="text" id="titre" name="titre" value="<?= htmlspecialchars( $event->getNom()) ?>" required>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea id="description" name="description" required><?= htmlspecialchars($event->getDescription()) ?></textarea>
 
             <div class="row">
                 <div>
                     <label for="categorie">Catégorie:</label>
-                    <input type="text" id="categorie" name="categorie" required>
+                    <input type="text" id="categorie" name="categorie" value="<?= htmlspecialchars($event->getCategorie()) ?>" required>
                 </div>
                 <div>
                     <label for="lieu">Lieu:</label>
-                    <input type="text" id="lieu" name="lieu" required>
+                    <input type="text" id="lieu" name="lieu" value="<?= htmlspecialchars($event->getLieu()) ?>"  required>
                 </div>
             </div>
 
             <div class="row">
                 <div>
                     <label for="date-debut">Date début:</label>
-                    <input type="date" id="date-debut" name="date-debut" required>
+                    <input type="date" id="date-debut" name="date-debut" value="<?= $event->getDateDebut() ?>" required>
                 </div>
                 <div>
                     <label for="date-fin">Date fin:</label>
-                    <input type="date" id="date-fin" name="date-fin" required>
+                    <input type="date" id="date-fin" name="date-fin" required value="<?= htmlspecialchars(string: $event->getDateFin()) ?>">
                 </div>
             </div>
 
@@ -67,17 +103,17 @@
             <div class="row">
                 <div>
                     <label for="benevoles-max">Nombre de bénévoles maximum:</label>
-                    <input type="number" id="benevoles-max" name="benevoles-max">
+                    <input type="number" id="benevoles-max" name="benevoles-max" value="<?= htmlspecialchars(string: $event->getNbBenevolesMax()) ?>">
                 </div>
                 <div>
                     <label for="invites-max">Nombre d'invités maximum:</label>
-                    <input type="number" id="invites-max" name="invites-max">
+                    <input type="number" id="invites-max" name="invites-max" value="<?= htmlspecialchars(string: $event->getNbParticipantsMax()) ?>">
                 </div>
             </div>
 
             <div class="buttons">
-                <button type="submit" class="btn-save">Modifier</button>
-                <button type="button" class="btn-cancel">Revenir</button>
+                <button type="submit" class="btn-save" name="modifier-event">Modifier</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'">Revenir</button>
             </div>
         </form>
     </div>
