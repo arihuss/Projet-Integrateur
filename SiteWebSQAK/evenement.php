@@ -64,16 +64,29 @@ echo "  <img id='image-eve' src='img/event-arbre.svg'>";
   echo "<h1>Evenement non trouvable</h1>";
 }
 
-
-$personnes = ParticipantDAO::findByRoleAndId("benevole", $event->getId());
+$selectedRole = $_POST['role'] ?? 'benevole'; // rôle par défaut
+$personnes = ParticipantDAO::findByRoleAndId($selectedRole, $event->getId());
 
 echo "<div id='btns'>
-  <button class='btn-rose'>Applications</button>
-  <button class='btn-jaune'>Bénévoles</button>
-  <button class='btn-jaune'>Invités</button>
+  <form method='POST' id='role-form'>";
+  echo "<input type='hidden' name='id' value='" . $event->getId() . "'>";
+
+  $roles = [
+    'applicant' => 'Applications',
+    'benevole' => 'Bénévoles',
+    'invite' => 'Invités'
+  ];
+
+  foreach ($roles as $key => $label) {
+    $btnClass = ($selectedRole === $key) ? 'btn-rose' : 'btn-jaune';
+    echo "<button class='$btnClass role-btn' name='role' value='$key'>$label</button>";
+  }
+
+echo "</form>
 </div>";
+
 echo "<div id='section-liste'>";
-foreach ($personnes as $personne){
+foreach ($personnes as $personne) {
   $user = UtilisateurDAO::findById($personne->getIdUtilisateur());
 echo "<div id='liste'>
   <i class='fa-solid fa-circle-xmark'></i>
@@ -130,9 +143,15 @@ echo "<div class='content'>
   <footer><?php include("components/footer.php"); ?> </footer>
 
   <script src="js/general.js"></script>
+<script>
+  const donutData = {
+    invites: <?php echo $stats->getNbVisiteurs(); ?>,
+    benevoles: <?php echo $stats->getNbBenevoles(); ?>
+  };
+</script>
 
   <script src="js/evenement.js"></script>
-
+  
 </body>
 
 </html>
