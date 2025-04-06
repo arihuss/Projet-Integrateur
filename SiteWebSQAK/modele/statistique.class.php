@@ -8,6 +8,8 @@ class Statistique implements JsonSerializable
     private int $nb_likes;
     private int $nb_vues;
     private int $nb_partages;
+    
+    private int $nb_inscriptions;
 
     // Constructeur
     public function __construct(
@@ -30,6 +32,11 @@ class Statistique implements JsonSerializable
     public function getIdStatistique(): int
     {
         return $this->id_statistique;
+    }
+
+    public function getNbInscriptions(): int
+    {
+        return $this->nb_inscriptions;
     }
 
     public function getNbVisiteurs(): int

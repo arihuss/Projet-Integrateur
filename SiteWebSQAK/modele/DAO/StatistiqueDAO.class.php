@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "../statistiques.class.php");
+include_once(__DIR__ . "/../statistique.class.php");
 include_once(__DIR__ . "/DAO.interface.php");
 
 class StatistiqueDAO {

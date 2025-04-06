@@ -23,7 +23,7 @@
 </div>
 
 
-    <a href="?action=voirUnEvent" class="event">
+    <a href="?action=voirUnEvent&id=1" class="event"> <!--J'ai mis ca pr le moment mais il faudra que la personne qui fait cette page complete le lien avec le bon id dynamiquement :)-->
         <div class="event-grid">
             <div class="event-card">
                 <div class="event-title">Entretient d'arbres</div>

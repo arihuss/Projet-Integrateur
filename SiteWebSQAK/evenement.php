@@ -28,6 +28,8 @@
 include_once('modele/DAO/EvenementDAO.class.php');
 include_once('modele/DAO/ParticipantDAO.class.php');
 include_once('modele/DAO/UserDAO.class.php');
+include_once('modele/DAO/StatistiqueDAO.class.php');
+include_once('modele/DAO/CommentaireDAO.class.php');
 $event = EvenementDAO::findById($_GET['id']);
 if ($event){
 
@@ -81,44 +83,49 @@ echo "<div id='liste'>
 </div>";
 }
 echo "</div>";
-?>
 
-<h2>Statistiques</h2>
+$stats = StatistiqueDAO::findById($event->getId());
 
-<div id="graphique-container">
-  <canvas id="donutChart"></canvas>
-  <div class="legende">
-    <div><span class="couleur-invites"></span>Invités</div>
-    <div><span class="couleur-benevoles"></span>Bénévoles</div>
+echo "<h2>Statistiques</h2>
+
+<div id='graphique-container'>
+  <canvas id='donutChart'></canvas>
+  <div class='legende'>
+    <div><span class='couleur-invites'></span>Invités</div>
+    <div><span class='couleur-benevoles'></span>Bénévoles</div>
   </div>
 </div>
 
-<div id="statistiques">
-  <span><h2>125</h2><p>Invités</p></span>
-  <span><h2>55</h2><p>Applications</p></span>
-  <span><h2>15</h2><p>Bénévoles</p></span>
-  <span><h2>652</h2><p>Likes</p></span>
-  <span><h2>58</h2><p>Partages</p></span>
-  <span><h2>1589</h2><p>Visites</p></span>
-</div>
+<div id='statistiques'>
+  <span><h2>".$stats->getNbVisiteurs()."</h2><p>Invités</p></span>
+  <span><h2>47</h2><p>Applications</p></span>
+  <span><h2>".$stats->getNbBenevoles()."</h2><p>Bénévoles</p></span>
+  <span><h2>".$stats->getNbLikes()."</h2><p>Likes</p></span>
+  <span><h2>".$stats->getNbPartages()."</h2><p>Partages</p></span>
+  <span><h2>".$stats->getNbVues()."</h2><p>Visites</p></span>
+</div>";
 
 
-<span id="btn-com"><a class="btn-rose" href="communiquer.php" >Communiquer</a></span>
+echo "<span id='btn-com'><a class='btn-rose' href='communiquer.php' >Communiquer</a></span>
 
 
-<h2>Commentaires</h2>
+<h2>Commentaires</h2>";
 
-<div class="content">
-  <img src=".\img\profilapplicant.svg" alt="">
-  <div id="commentaire-sec">
-    <div id="com-haut"> 
-      <p>Gill Tremblay</p>
-      <p>16/12/2024</p> 
+$commentaires = CommentaireDAO::findByEvenement($event->getId());
+
+foreach ($commentaires as $comment){
+  $user = UtilisateurDAO::findById($comment->getIdUtilisateur());
+echo "<div class='content'>
+  <img src='.\img\profilapplicant.svg' alt=''>
+  <div id='commentaire-sec'>
+    <div id='com-haut'> 
+      <p>".$user->getNom()."</p>
+      <p>".$comment->getDateEnvoi()."</p> 
     </div>
-      <p>Hate de refaire ca ! Je suis fan de l'organisation St-Paul</p>
+      <p>".$comment->getMessage()."</p>
   </div>
-</div>
-
+</div>";}
+?>
 </div>
   <footer><?php include("components/footer.php"); ?> </footer>
 
