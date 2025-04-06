@@ -1,9 +1,3 @@
-<?php if (isset($controleur)) : ?>
-    <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
-        <p class="erreur"><?php echo htmlspecialchars($erreur); ?></p>
-    <?php endforeach; ?>
-<?php endif; ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,6 +22,13 @@
             <input id="mdp-connexion" type="password" minlength="8" name="mot_de_passe" required><br><br>
             <input class="btn-jaune" type="submit" value="Connexion"><br>
             <a href="mdp-oublie"> Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
+
+            <?php if (isset($controleur)) : ?>
+                <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
+                 <p id="erreur"><?php echo htmlspecialchars($erreur); ?></p>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            
         </form>
     </div>
     <footer><?php include("components/footer.php"); ?></footer>

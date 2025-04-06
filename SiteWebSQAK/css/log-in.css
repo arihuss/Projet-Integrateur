@@ -6,6 +6,15 @@
     
 }
 
+#erreur {
+    color: var(--text-sur-bg);
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+}
+
 form{
         background-color: var(--widgets);
         width: 15rem;
@@ -36,9 +45,9 @@ form{
              a:not(.btn-jaune){
                 color: var(--text-sur-bg);
                 text-decoration: none;
-             }
+             }        
 
 }
-   
+
    
     
