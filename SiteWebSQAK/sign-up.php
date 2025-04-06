@@ -10,11 +10,20 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 
+
 <body>
 <header><?php include("components/header.php")?></header>
 
 <div class="container">
+
+
 <form action="index.php?action=seInscrire" method="POST">
+<?php if (isset($controleur)) : ?>
+    <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
+            <p id="erreur-sign"><?php echo htmlspecialchars($erreur); ?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
         <h2> Inscription </h2>
 
 <div id="form-section">

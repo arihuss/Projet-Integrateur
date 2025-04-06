@@ -5,6 +5,15 @@
     align-items: center;
 }
 
+#erreur-sign {
+    color: var(--text-sur-bg);
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
 form {
     padding: 2rem;
     border-radius: 15px;
