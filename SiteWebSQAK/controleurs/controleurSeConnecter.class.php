@@ -5,6 +5,8 @@ include_once("modele/DAO/OrganisateurDAO.class.php");
 class SeConnecter extends Controleur{
 
 
+	private array $messagesErreur = [];
+		
     
 		public function __construct() {
 			//appel du constructeur parent
@@ -42,6 +44,9 @@ class SeConnecter extends Controleur{
 			return "log-in.php";
 		}
 
+		public function getMessagesErreur(): array {
+			return $this->messagesErreur;
+		}
 }
 
 ?>

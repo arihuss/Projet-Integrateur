@@ -1,3 +1,9 @@
+<?php if (isset($controleur)) : ?>
+    <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
+        <p class="erreur"><?php echo htmlspecialchars($erreur); ?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -19,7 +25,7 @@
             <label for="courriel-connexion">Courriel:</label> <br>
             <input id="courriel-connexion" type="email" name="courriel" required><br><br>
             <label for="mdp-connexion">Mot de passe:</label> <br>
-            <input id="mdp-connexion" type="text" minlength="8" name="mot_de_passe" required><br><br>
+            <input id="mdp-connexion" type="password" minlength="8" name="mot_de_passe" required><br><br>
             <input class="btn-jaune" type="submit" value="Connexion"><br>
             <a href="mdp-oublie"> Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
         </form>

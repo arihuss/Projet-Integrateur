@@ -10,6 +10,7 @@ class Organisateur implements JsonSerializable
     private ?string $nomOrganisateur;
     private string $motDePasse;
     private int $nbEvents;
+    private ?string $telephone;
     
     //Constructeur
 
@@ -21,7 +22,8 @@ class Organisateur implements JsonSerializable
         string $biographie,
         ?string $nomOrganisateur,
         string $motDePasse,
-        int $nbEvents
+        int $nbEvents,
+        ?string $telephone
     ){
         $this->id = $id;
         $this->prenom = $prenom;
@@ -31,6 +33,7 @@ class Organisateur implements JsonSerializable
         $this->nomOrganisateur = $nomOrganisateur;
         $this->motDePasse = $motDePasse;
         $this->nbEvents = $nbEvents;
+        $this->telephone=$telephone;
     }
 
      // Getters
@@ -119,6 +122,13 @@ class Organisateur implements JsonSerializable
         return "Organisateur ID: {$this->id}, Nom: {$this->nom}, Prénom: {$this->prenom}";
     }
     
+    public function getTelephone(): ?string {
+        return $this->telephone;
+    }
+    
+    public function setTelephone(?string $telephone): void {
+        $this->telephone = $telephone;
+    }
  
      // Implémentation de JsonSerializable
      public function jsonSerialize(): array
@@ -130,7 +140,8 @@ class Organisateur implements JsonSerializable
              'courriel' => $this->courriel,
              'biographie' => $this->biographie,
              'nomOrganisateur' => $this->nomOrganisateur,
-             'nbEvents' => $this->nbEvents
+             'nbEvents' => $this->nbEvents,
+             'telephone'=> $this->telephone
          ];
      }
 }
