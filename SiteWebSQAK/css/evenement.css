@@ -215,6 +215,7 @@ h2:not(#statistiques span h2){
   
   
   #liste i.fa-circle-xmark {
+    
     color: var(--accent2);
     width: 2rem;
   }
@@ -229,4 +230,10 @@ h2:not(#statistiques span h2){
     flex-direction: row;
     gap: 10px; /* spacing between buttons */
     flex-wrap: wrap; /* optional, for responsiveness */
+  }
+
+  .icone-btn{
+    background-color: var(--secondary);
+    border:none;
+    cursor: pointer;
   }
