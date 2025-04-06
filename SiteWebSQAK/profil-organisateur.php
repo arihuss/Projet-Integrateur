@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,25 +11,36 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 
+<?php
+    $organisateur = isset($controleur) ? $controleur->getOrganisateur() : null;
+?>
+
 <body>
     <header><?php include("components/header.php")?></header>
-    <div class="container">
-        <div id="entete-profil">
-            <h1>Mon Profil</h1>
-            <a href="?action=modifierProfil" class="btn-rose">Modifier</a>
-        </div>
-        <div id="profil-content">
-            <img src="img\HemaQuebecLogo.jpg">
-            <div>
-                <h2>Hema-Quebec</h2>
-                <p class="content">Héma-Québec est un organisme sans but lucratif dont la mission est de répondre avec
-                    efficience aux
-                    besoins de la population québécoise en sang et autres produits biologiques d'origine humaine de
-                    qualité.
-                </p>
-            </div>
+
+    <?php
+    $organisateur = isset($controleur) ? $controleur->getOrganisateur() : null;
+    ?>
+
+<div class="container">
+    <div id="entete-profil">
+        <h1>Mon Profil</h1>
+        <a href="?action=modifierProfil" class="btn-rose">Modifier</a>
+    </div>
+
+    <div id="profil-content">
+        <img src="img/HemaQuebecLogo.jpg" alt="Logo Organisateur">
+        <div>
+            <h2>
+                <?php
+                    echo htmlspecialchars($organisateur?->getNomOrganisateur() ?? 
+                                          trim($organisateur?->getPrenom() . " " . $organisateur?->getNom()));
+                ?>
+            </h2>
+            <p class="content"><?php echo htmlspecialchars($organisateur?->getBiographie()); ?></p>
         </div>
     </div>
+</div>
 
     <footer> <?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
