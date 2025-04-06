@@ -223,3 +223,10 @@ h2:not(#statistiques span h2){
     color: var(--accent1);
     width: 2rem;
   }
+
+  #role-form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; /* spacing between buttons */
+    flex-wrap: wrap; /* optional, for responsiveness */
+  }
