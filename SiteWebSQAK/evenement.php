@@ -30,6 +30,23 @@ include_once('modele/DAO/ParticipantDAO.class.php');
 include_once('modele/DAO/UserDAO.class.php');
 include_once('modele/DAO/StatistiqueDAO.class.php');
 include_once('modele/DAO/CommentaireDAO.class.php');
+
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action_decision'], $_POST['id_inscription'])) {
+  $id = (int) $_POST['id_inscription'];
+  $participant = ParticipantDAO::findById($id);
+
+  if ($participant) {
+      if ($_POST['action_decision'] === 'accepter') {
+          ParticipantDAO::accepterAppliquant($participant);
+      } elseif ($_POST['action_decision'] === 'refuser') {
+          ParticipantDAO::refuserApplicant($participant);
+      }
+      // Rediriger pour éviter double soumission
+      header("Location: " . $_SERVER['REQUEST_URI']);
+      exit();
+  }
+}
+
 $event = EvenementDAO::findById($_GET['id']);
 if ($event){
 
@@ -72,7 +89,7 @@ echo "<div id='btns'>
   echo "<input type='hidden' name='id' value='" . $event->getId() . "'>";
 
   $roles = [
-    'applicant' => 'Applications',
+    'appliquant' => 'Applications',
     'benevole' => 'Bénévoles',
     'invite' => 'Invités'
   ];
@@ -86,16 +103,28 @@ echo "</form>
 </div>";
 
 echo "<div id='section-liste'>";
-foreach ($personnes as $personne) {
+foreach ($personnes as $personne){
   $user = UtilisateurDAO::findById($personne->getIdUtilisateur());
-echo "<div id='liste'>
-  <i class='fa-solid fa-circle-xmark'></i>
-  <i class='fa-solid fa-circle-check'></i>
-  <a href='?action=profilParticipant'>". $user->getNom()."</a>
-  <p>". $personne->getDateInscription()."</p>
-</div>";
+  $idInscription = $personne->getIdInscription();
+
+  echo "<div id='liste'>";
+  if ($selectedRole === 'appliquant') {
+    echo "<form method='POST' style='display: inline-block'>
+      <input type='hidden' name='id_inscription' value='$idInscription'>
+      <button type='submit' name='action_decision' value='accepter' class='icone-btn'>
+        <i class='fa-solid fa-circle-check'></i>
+      </button>
+      <button type='submit' name='action_decision' value='refuser' class='icone-btn'>
+        <i class='fa-solid fa-circle-xmark'></i>
+      </button>
+    </form>";
+  }
+   echo "<a href='?action=profilParticipant&id".$personne->getIdInscription()."'>". $user->getNom()."</a>
+    <p>". $personne->getDateInscription()."</p>
+  </div>";
 }
 echo "</div>";
+
 
 $stats = StatistiqueDAO::findById($event->getId());
 
