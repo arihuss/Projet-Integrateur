@@ -69,7 +69,7 @@ class Evenement implements JsonSerializable
     public function getDateFin(): string { return $this->dateFin; }
     public function getNbBenevolesMax(): ?int { return $this->nbBenevolesMax; }
     public function getNbParticipantsMax(): ?int { return $this->nbParticipantsMax; }
-    public function getEtatBenevole(): bool { return $this->etatBenevole; }
+    public function getEtatBenevole(): ?bool { return $this->etatBenevole; }
     public function getCategorie(): ?string { return $this->categorie; }
     public function getDescription(): string { return $this->description; }
     public function getEtat(): string { return $this->etat; }
