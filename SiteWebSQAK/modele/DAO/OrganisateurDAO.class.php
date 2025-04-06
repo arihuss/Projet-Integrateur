@@ -30,13 +30,14 @@ class OrganisateurDAO implements DAO{
             $enr = $requete->fetch();
             $organisateur = new Organisateur(
                 $enr['id_organisateur'],
-                $enr['prenom'],
-                $enr['nom'],
+                $enr['prenom'] ?? null,
+                $enr['nom'] ?? null,
                 $enr['courriel'],
                 $enr['bio'],
-                $enr['nom_organisateur'],
+                $enr['nom_organisateur'] ?? null,
                 $enr['mot_de_passe'],
                 $enr['nb_events'],
+                $enr['telephone'] ?? null 
             );
         }
         $requete->closeCursor();
@@ -75,12 +76,14 @@ class OrganisateurDAO implements DAO{
         $nomOrganisateur = $organisateur->getNomOrganisateur();
         $mdp = $organisateur->getMotDePasse();
         $nbEvents = $organisateur->getNbEvents();
+        $telephone = $organisateur->getTelephone();
 
         $mdp = password_hash($mdp,PASSWORD_BCRYPT);
 
         $requete = $connexion->prepare(
-            "INSERT INTO Organisateur (prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events)
-            VALUES (:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents)"
+            "INSERT INTO Organisateur (prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events, telephone)
+             VALUES (:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents, :telephone)"
+
         );
 
         //Liaison des parametres
@@ -91,14 +94,21 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
         $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
+        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
 
         $success = $requete->execute();
         if ($success){
             $organisateur->setId((int)$connexion->lastInsertId()); //not sure if this part is needed
         }
         return $success;
-    }
 
+        if (!$success) {
+            print_r($requete->errorInfo());
+            }
+
+        $requete->debugDumpParams(); // Montre tous les paramètres SQL pour le débogage
+
+        }
     /**
      * Modifier organisateur dans la page modifier
      * @param object $object
@@ -120,14 +130,17 @@ class OrganisateurDAO implements DAO{
         $nomOrganisateur = $organisateur->getNomOrganisateur();
         $mdp = $organisateur->getMotDePasse();
         $nbEvents = $organisateur->getNbEvents();
+        $telephone = $organisateur->getTelephone();
 
         $mdp = password_hash($mdp,PASSWORD_BCRYPT);
 
         $requete = $connexion->prepare(
             "UPDATE Organisateur
-             SET prenom = :prenom, nom = :nom, courriel = :courriel, 
-                 bio = :bio, nom_organisateur = :nomOrganisateur, mot_de_passe = :mdp, nb_events = :nbEvents
-             WHERE id_organisateur= :id"
+                SET prenom = :prenom, nom = :nom, courriel = :courriel, 
+                    bio = :bio, nom_organisateur = :nomOrganisateur, 
+                    mot_de_passe = :mdp, nb_events = :nbEvents, telephone = :telephone
+                WHERE id_organisateur = :id"
+
         );
 
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
@@ -138,6 +151,7 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
         $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
+        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
 
         return $requete->execute();
     }
@@ -187,13 +201,14 @@ class OrganisateurDAO implements DAO{
         $enr = $requete->fetch();
         return new Organisateur(
             $enr['id_organisateur'],
-            $enr['prenom'],
-            $enr['nom'],
+            $enr['prenom'] ?? null,
+            $enr['nom'] ?? null,
             $enr['courriel'],
             $enr['bio'],
-            $enr['nom_organisateur'],
+            $enr['nom_organisateur'] ?? null,
             $enr['mot_de_passe'],
-            $enr['nb_events']
+            $enr['nb_events'],
+            $enr['telephone'] ?? null 
         );
 }
 
