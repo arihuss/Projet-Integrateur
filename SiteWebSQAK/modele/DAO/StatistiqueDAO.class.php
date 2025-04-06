@@ -39,7 +39,7 @@ class StatistiqueDAO {
         return $stat;
     }
 //ecq je dois en mettre plus que ce que tu m as mis 
-}
+
 /**
      * Récupère toutes les statistiques
      */
@@ -124,5 +124,5 @@ class StatistiqueDAO {
     }
 
 
-
+}
 ?>

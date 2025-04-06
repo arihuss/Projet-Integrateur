@@ -24,69 +24,64 @@
                 <a href="?action=voirEvents" class="btn-rose" onclick="confirmSupprimer(event)">Supprimer</a>
           </div>
       </div>
+<?php
+include_once('modele/DAO/EvenementDAO.class.php');
+include_once('modele/DAO/ParticipantDAO.class.php');
+include_once('modele/DAO/UserDAO.class.php');
+$event = EvenementDAO::findById($_GET['id']);
+if ($event){
 
-  <h1>Guignolee Noel</h1>
+  echo "<h1>".$event->getNom()."</h1>";
 
-  <p class="content">Description de l’evenement + horaire -
-    Lorem ipsum dolor sit amet,
-    consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut
-    aliquip ex ea commodo consequat. Duis aute irure
-    dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur.</p>
+  echo "<p class='content'>". $event->getDescription()."</p>";
 
-  <div id="info-eve">
-  <div class="content">
-    <p>Mardi 13 décembre 2025
-      16h00 à 20h00</p>
-    <a href="https://calendar.google.com/calendar/r/eventedit?text=Guignolée+Noël&dates=20251213T210000Z/20251214T010000Z&details=Description+de+l’evenement+:+Lorem+ipsum+dolor+sit+amet,+consectetur+adipiscing+elit,+sed+do+eiusmod+tempor+incididunt+ut+labore+et+dolore+magna+aliqua.&location="
-      target="_blank">Rajouter a mon Google calendrier</a>
-  </div>
+  echo "<div id='info-eve'>";
+  echo "<div class='content'>";
+  echo "<p>".$event->getDateDebut(). " au ". $event->getDateFin()."</p>";
+  $nom = urlencode($event->getNom());
+$dateDebut = date("Ymd\THis\Z", strtotime($event->getDateDebut()));
+$dateFin = date("Ymd\THis\Z", strtotime($event->getDateFin()));
+$description = urlencode($event->getDescription());
+$lieu = urlencode($event->getLieu());
 
-  <div class="content">
-    <p>286 Rue Saint-Charles Ouest</p>
-    <a href="https://www.google.com/maps/search/?api=1&query=286+Rue+Saint-Charles+Ouest" target="_blank">Voir sur
-      Google Maps</a>
-  </div>
-</div>
+echo "<a href='https://calendar.google.com/calendar/r/eventedit?text=$nom&dates=$dateDebut/$dateFin&details=$description&location=$lieu'
+  target='_blank'>Rajouter à mon Google calendrier</a>";
+  echo "</div>";
 
-  <img id="image-eve" src="img\event-arbre.svg">
+  echo "<div class='content'>";
+  echo "  <p>".$event->getLieu()."</p>";
+  $adresse = urlencode($event->getLieu());
 
-<div id="btns">
-  <button class="btn-rose">Applications</button>
-  <button class="btn-jaune">Bénévoles</button>
-  <button class="btn-jaune">Invités</button>
-</div>
+echo "<a href='https://www.google.com/maps/search/?api=1&query=$adresse' target='_blank'>Voir sur Google Maps</a>";
 
-<div id="section-liste">
-<div id="liste">
-  <i class="fa-solid fa-circle-xmark"></i>
-  <i class="fa-solid fa-circle-check"></i>
-  <a href="?action=profilParticipant">Liliane Belvier</a>
-  <p>16/12/24</p>
-</div>
-<div id="liste">
-  <i class="fa-solid fa-circle-xmark"></i>
-  <i class="fa-solid fa-circle-check"></i>
-  <a href="?action=profilParticipant">Liliane Belvier</a>
-  <p>16/12/24</p>
-</div>
-<div id="liste">
-  <i class="fa-solid fa-circle-xmark"></i>
-    <i class="fa-solid fa-circle-check"></i>
-<a href="?action=profilParticipant">Liliane Belvier</a>
-  <p>16/12/24</p>
-</div>
-<div id="liste">
-  <i class="fa-solid fa-circle-xmark"></i>
-  <i class="fa-solid fa-circle-check"></i>
-  <a href="?action=profilParticipant">Liliane Belvier</a>
-  <p>16/12/24</p>
-</div>
-</div>
+ echo " </div>";
+echo "</div>";
 
+echo "  <img id='image-eve' src='img/event-arbre.svg'>";
+}else {
+  echo "<h1>Evenement non trouvable</h1>";
+}
+
+
+$personnes = ParticipantDAO::findByRoleAndId("benevole", $event->getId());
+
+echo "<div id='btns'>
+  <button class='btn-rose'>Applications</button>
+  <button class='btn-jaune'>Bénévoles</button>
+  <button class='btn-jaune'>Invités</button>
+</div>";
+echo "<div id='section-liste'>";
+foreach ($personnes as $personne){
+  $user = UtilisateurDAO::findById($personne->getIdUtilisateur());
+echo "<div id='liste'>
+  <i class='fa-solid fa-circle-xmark'></i>
+  <i class='fa-solid fa-circle-check'></i>
+  <a href='?action=profilParticipant'>". $user->getNom()."</a>
+  <p>". $personne->getDateInscription()."</p>
+</div>";
+}
+echo "</div>";
+?>
 
 <h2>Statistiques</h2>
 
@@ -123,7 +118,6 @@
       <p>Hate de refaire ca ! Je suis fan de l'organisation St-Paul</p>
   </div>
 </div>
-
 
 </div>
   <footer><?php include("components/footer.php"); ?> </footer>

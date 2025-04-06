@@ -42,7 +42,7 @@ include_once("../../modele/DAO/ParticipantDAO.php");
 include_once("../../modele/ConnexionBD.php"); // à ajuster selon ton projet
 
 // Test 1 : findByRole("appliquant")
-$appliquants = ParticipantDAO::findByRole("appliquant");
+$appliquants = ParticipantDAO::findByRoleAndId("appliquant",1);
 
 // Test 2 : findById (si des appliquants existent)
 $firstId = count($appliquants) > 0 ? $appliquants[0]->getIdInscription() : 1;

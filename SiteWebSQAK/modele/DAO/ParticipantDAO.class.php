@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "../participant.class.php");
+include_once(__DIR__ . "/../participant.class.php");
 include_once(__DIR__ . "/DAO.interface.php");
 
 class ParticipantDAO{
@@ -39,16 +39,17 @@ class ParticipantDAO{
     }
 
     /**
-     * Summary of findByRole trouver la liste de participant par leur role (benevole, visiteur, appliquants)
+     * Summary of findByRole trouver la liste de participant par leur role et id_evenement (benevole, visiteur, appliquants)
      * @param string $role
      * @return array
      */
-    static public function findByRole(string $role): array{
+    static public function findByRoleAndId(string $role, int $id): array{
         $connexion = ConnexionBD::getInstance();
 
-        $sql = "SELECT * FROM Inscription WHERE role = :role";
+        $sql = "SELECT * FROM Inscription WHERE role = :role AND id_evenement = :id";
         $stmt = $connexion->prepare($sql);
         $stmt->bindParam(':role', $role, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         $participants = [];
