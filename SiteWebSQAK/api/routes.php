@@ -19,7 +19,7 @@ echo "debuga";
 $action = preg_replace('/[^a-zA-Z0-9_]/', '', $action);
 
 // Inclure la manufacture
-include_once("controleurs/controleurManufacture.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurManufacture.class.php");
 
 try {
     // Créer le bon contrôleur via la manufacture

@@ -37,9 +37,9 @@
 <h1>Tests pour la classe StatistiqueDAO</h1>
 
 <?php
-include_once("../../modele/statistiques.class.php");
-include_once("../../modele/DAO/statistiqueDAO.php");
-include_once("../../modele/ConnexionBD.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/statistiques.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/statistiqueDAO.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/ConnexionBD.php");
 
 // Créer une nouvelle statistique fictive
 $nouvelleStat = new Statistique(

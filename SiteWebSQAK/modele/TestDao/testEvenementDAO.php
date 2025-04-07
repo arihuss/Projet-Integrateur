@@ -37,8 +37,8 @@
 <h1>Tests pour la classe EvenementDAO</h1>
 
 <?php
-include_once("../../modele/evenement.class.php");
-include_once("../../modele/DAO/evenementDAO.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/evenement.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/evenementDAO.class.php");
 
 // Créer un nouvel événement fictif pour les tests
 $nouvelEvenement = new Evenement(

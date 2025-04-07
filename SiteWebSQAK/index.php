@@ -4,7 +4,8 @@
     // *****************************************************************************************
 	//Le contrôleur frontal reçoit la requête avec un paramètre lui indiquant l’action à accomplir. 	
 	//Inclusion de la manufacture de controleur (qui importe déjà tous les contrôleur)
-	include_once "controleurs\controleurManufacture.class.php";
+	
+	include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurManufacture.class.php");
 	
 	//Obtenir le bon controleur
 	//Si la requête contenant le paramètre action n'est pas renseigne

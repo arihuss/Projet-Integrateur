@@ -1,6 +1,6 @@
 <?php
-include_once("controleur.abstract.class.php");
-include_once(".\modele\DAO\EvenementDAO.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleur.abstract.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/modele/DAO/EvenementDAO.class.php");
 
 class VoirUnEvent extends Controleur{
 

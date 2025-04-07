@@ -1,19 +1,19 @@
 <?php
 
-include_once("controleurs\controleurAccueil.class.php");
-include_once("controleurs\controleurAjouter.class.php");
-include_once("controleurs\controleurCommuniquer.class.php");
-include_once("controleurs\controleurConfirmation.class.php");
-include_once("controleurs\controleurModifier.class.php");
-include_once("controleurs\controleurModifierProfil.class.php");
-include_once("controleurs\controleurProfilOrganisateur.class.php");
-include_once("controleurs\controleurProfilParticipant.class.php");
-include_once("controleurs\controleurSeConnecter.class.php");
-include_once("controleurs\controleurSeInscrire.class.php");
-include_once("controleurs\controleurSettings.class.php");
-include_once("controleurs\controleurVoirEvents.class.php");
-include_once("controleurs\controleurVoirUnEvent.class.php");
-include_once("controleurs\controleurPolitiques.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurAccueil.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurAjouter.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurCommuniquer.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurConfirmation.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurModifier.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurModifierProfil.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurProfilOrganisateur.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurProfilParticipant.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurSeConnecter.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurSeInscrire.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurSettings.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurVoirEvents.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurVoirUnEvent.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurPolitiques.class.php");
 
 class ManufactureControleur{
     public static function creerControleur($action): Controleur{

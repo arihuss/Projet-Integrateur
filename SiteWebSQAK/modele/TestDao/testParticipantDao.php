@@ -37,9 +37,9 @@
 <h1>Tests pour la classe ParticipantDAO</h1>
 
 <?php
-include_once("../../modele/participant.class.php");
-include_once("../../modele/DAO/ParticipantDAO.php");
-include_once("../../modele/ConnexionBD.php"); // à ajuster selon ton projet
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/participant.class.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/ParticipantDAO.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/ConnexionBD.php"); // à ajuster selon ton projet
 
 // Test 1 : findByRole("appliquant")
 $appliquants = ParticipantDAO::findByRoleAndId("appliquant",1);
