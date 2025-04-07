@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.sarah.applicationsqak.vues.EventFilterView;
@@ -18,6 +19,8 @@ import com.sarah.applicationsqak.vues.EventFilterView;
  * create an instance of this fragment.
  */
 public class EventsFragment extends Fragment {
+    private EventFilterView eventView;
+    private ListView lvEvents;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,13 +74,18 @@ public class EventsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Liaison de la vue personnalisée 'EventFilterView'
-        EventFilterView eventView = view.findViewById(R.id.eventFilterView);
+        eventView = view.findViewById(R.id.eventFilterView);
 
-        // Prendre le spinner de la vue
+        // Prendre les spinners de la vue
         Spinner spLocation = eventView.getSpLocation();
 
         // ArrayAdapter setup
         ArrayAdapter<CharSequence> adapterLocation = ArrayAdapter.createFromResource(requireContext(), R.array.event_locations, R.layout.event_filter_spinner_item);
         spLocation.setAdapter(adapterLocation);
+
+
+        // Pour l'affichage des événements
+        lvEvents = view.findViewById(R.id.lvEventsPrincipale);
+
     }
 }

@@ -40,8 +40,6 @@ public class Principale extends AppCompatActivity {
         });
 
 
-
-
         // Get NavHostFragment and ensure its not null
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fgContainer);
         if(navHostFragment != null) {
