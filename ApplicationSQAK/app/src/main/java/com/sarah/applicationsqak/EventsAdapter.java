@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.vues.Evenement;
 
 import java.util.List;
@@ -80,26 +81,6 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
 
 
 
-
-
-            // Compléter pour changer la couleur du texte & image selon la disponibilité
-            if(pizza.isDisponible() == true) {
-                // Image de pizza
-                imgPizza.setImageResource(R.drawable.icon_pizza);
-
-                // Text en noir
-                txtPizza.setTextColor(Color.BLACK);
-                txtPrix.setTextColor(Color.BLACK);
-            }
-            else {
-                // Image 'sold out'
-                imgPizza.setImageResource(R.drawable.sold_out_sign);
-
-                // Texte en gris
-                txtPizza.setTextColor(Color.GRAY);
-                txtPrix.setTextColor(Color.GRAY);
-            }
-        }
 
         return view;
     }
