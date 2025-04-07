@@ -11,12 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.sarah.applicationsqak.vues.Evenement;
+
 import java.util.List;
 
 public class EventsAdapter {
     private Context contexte;
     private int viewRessourceID;
-    private List<Event> pizzas;
+    private List<Evenement> evenements;
 
     public PizzaAdapter(@NonNull Context context, int resource, @NonNull List<Pizza> objects) {
         super(context, resource, objects);
