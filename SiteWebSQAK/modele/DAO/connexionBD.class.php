@@ -27,15 +27,23 @@ class ConnexionBD
     {
         // Si l’instance de PDO n’existe pas, on la crée 
         if (self::$instance === null) {
-            $configuration = "mysql:host=" . ConfigBD::BD_HOTE . ";dbname=" . ConfigBD::BD_NOM;
-            $utilisateur = ConfigBD::BD_UTILISATEUR;
-            $motPasse = ConfigBD::BD_MOT_PASSE;
             // La classe utile est la classe PDO qui nous donne accès
             // à une connexion vers la base de données. 
-            self::$instance = new PDO($configuration, $utilisateur, $motPasse);
-            // S’assurer que les transactions se font avec les caractères UTF8
-            self::$instance->exec("SET NAMES utf8");
-            self::$instance->exec("SET CHARACTER SET utf8");
+            $host = ConfigBD::BD_HOTE;
+            $db   = ConfigBD::BD_NOM;
+            $user = ConfigBD::BD_UTILISATEUR;
+            $pass = ConfigBD::BD_MOT_PASSE;
+            $port = '3307';
+            $charset = 'utf8';
+
+            $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false, // Set to true if you want to verify server certificate
+            ];
+            self::$instance = new PDO($dsn, $user, $pass, $options);
 
         }
         // Maintenant qu’on est certain qu’elle existe, on la retourne
