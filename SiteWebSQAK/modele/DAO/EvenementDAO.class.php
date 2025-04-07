@@ -12,7 +12,7 @@ class EvenementDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $requete = $connexion->prepare("SELECT * FROM evenement WHERE id_evenement = :id");
+        $requete = $connexion->prepare("SELECT * FROM Evenement WHERE id_evenement = :id");
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         $requete->execute();
 

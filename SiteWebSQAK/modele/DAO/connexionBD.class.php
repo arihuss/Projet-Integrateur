@@ -4,28 +4,28 @@
 
 // ****** INCLUSIONS *******
 
-// Le fichier configDB.interface.php contient le mot de passe, le nom d’utilisateur
+// Le fichier configDB.interface.php contient le mot de passe, le nom d'utilisateur
 // avec les constantes BD_HOTE, BD_NOM, BD_UTILISATEUR et BD_MOT_PASSE
 
 include_once('configBD.interface.php');
 
 // ********* Classe englobante de PDO *************
-// L’implémentation de la classe englobante ConnexionDB se fera donc comme suit :
+// L'implémentation de la classe englobante ConnexionDB se fera donc comme suit :
 class ConnexionBD
 {
     // Attribut représentant la connexion à la BD (de type PDO)
     private static ?PDO $instance = null;
 
-    // Constructeur de ConnexionBD inutilisable de l’extérieur
+    // Constructeur de ConnexionBD inutilisable de l'extérieur
     private function __construct()
     {
     }
 
-    // Fonction statique qui gère la création de l’instance PDO et la retourne.
+    // Fonction statique qui gère la création de l'instance PDO et la retourne.
     // Note : self:: représente le nom de classe courante ConnexionBD  
     public static function getInstance(): PDO
     {
-        // Si l’instance de PDO n’existe pas, on la crée 
+        // Si l'instance de PDO n'existe pas, on la crée 
         if (self::$instance === null) {
             // La classe utile est la classe PDO qui nous donne accès
             // à une connexion vers la base de données. 
@@ -33,20 +33,25 @@ class ConnexionBD
             $db   = ConfigBD::BD_NOM;
             $user = ConfigBD::BD_UTILISATEUR;
             $pass = ConfigBD::BD_MOT_PASSE;
-            $port = '3307';
+            // Removed the port specification since we're using the default port inside Docker
             $charset = 'utf8';
 
-            $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+            $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
             $options = [
                 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES   => false,
-                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false, // Set to true if you want to verify server certificate
             ];
-            self::$instance = new PDO($dsn, $user, $pass, $options);
-
+            
+            try {
+                self::$instance = new PDO($dsn, $user, $pass, $options);
+            } catch (PDOException $e) {
+                // Log the error for debugging
+                error_log("Database connection error: " . $e->getMessage());
+                throw new Exception("Impossible d'obtenir la connexion à la BD");
+            }
         }
-        // Maintenant qu’on est certain qu’elle existe, on la retourne
+        // Maintenant qu'on est certain qu'elle existe, on la retourne
 
         return self::$instance;
     }
