@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtModifPrenom" />
 
     <EditText
-        android:id="@+id/editModifNom"
+        android:id="@+id/edtModifNom"
         android:layout_width="318dp"
         android:layout_height="32dp"
         android:layout_marginStart="1dp"
@@ -130,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editModifNom" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifNom" />
 
     <EditText
         android:id="@+id/edtModifCourriel"

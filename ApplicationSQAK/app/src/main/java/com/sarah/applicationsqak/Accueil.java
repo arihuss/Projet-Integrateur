@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -22,6 +24,10 @@ public class Accueil extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        if (getIntent().getBooleanExtra("Suppression_compte", false)) {
+            Toast.makeText(this, "Compte supprimé avec succès", Toast.LENGTH_SHORT).show();
         }
 
         super.onCreate(savedInstanceState);
