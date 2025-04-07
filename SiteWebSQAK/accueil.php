@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="header">
-            <a href="?action=voirEvents"><img src=".\img\logo.svg" alt=""></a>
+            <img src=".\img\logo.svg" alt="">
         </div> 
     </header>
 
