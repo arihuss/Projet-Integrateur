@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:textAlignment="center"
-    tools:context=".AboutUs">
+    tools:context=".AboutUsActivity">
 
     <ImageView
         android:id="@+id/imgLogoAboutUs"

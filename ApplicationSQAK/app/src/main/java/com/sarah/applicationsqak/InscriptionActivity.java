@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import java.util.Random;
 
-public class Inscription extends AppCompatActivity {
+public class InscriptionActivity extends AppCompatActivity {
 
     //TODO reparer les intents entre confirmation et inscription pour le bouton retour
     //TODO verif si le code a 5 hiffres marche bien
@@ -40,7 +40,7 @@ public class Inscription extends AppCompatActivity {
         btnRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Inscription.this, Accueil.class);
+                Intent intent = new Intent(InscriptionActivity.this, AccueilActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -77,10 +77,10 @@ public class Inscription extends AppCompatActivity {
                 int codeConfirmation = new Random().nextInt(90000) + 10000;
 
                 // TODO: Envoyer code par mail
-                Toast.makeText(Inscription.this, "Code envoyé par mail: " + codeConfirmation, Toast.LENGTH_SHORT).show();
+                Toast.makeText(InscriptionActivity.this, "Code envoyé par mail: " + codeConfirmation, Toast.LENGTH_SHORT).show();
 
                 // Rediriger vers Confirmation
-                Intent intent = new Intent(Inscription.this, Confirmation.class);
+                Intent intent = new Intent(InscriptionActivity.this, ConfirmationActivity.class);
                 intent.putExtra("email", edtCourriel.getText().toString().trim());
                 intent.putExtra("code", codeConfirmation);
                 startActivity(intent);

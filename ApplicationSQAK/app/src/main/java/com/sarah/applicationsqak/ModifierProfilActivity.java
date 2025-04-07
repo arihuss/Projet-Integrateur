@@ -13,7 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ModifierProfil extends AppCompatActivity implements View.OnClickListener{
+public class ModifierProfilActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ImgbtnModifBack;
     Button SaveModif;

@@ -10,20 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Switch;
 
 /**
@@ -159,14 +151,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         if (v == btnModifier) {
 
             Intent intention1;
-            intention1 = new Intent(getActivity(), ModifierProfil.class);
+            intention1 = new Intent(getActivity(), ModifierProfilActivity.class);
             startActivity(intention1);
 
         //Click sur le bouton PLUS sur SQAK qui emmène à la page about us
         } else if (v ==btnPlus){
 
             Intent intention2;
-            intention2 = new Intent(getActivity(), AboutUs.class);
+            intention2 = new Intent(getActivity(), AboutUsActivity.class);
             startActivity(intention2);
 
         //Click sur le bouton SUPPRIMER MON COMPTE qui affiche un pop up certifiant la suppression du compte de l'utilisateur
@@ -180,7 +172,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         if(v == btnSuppPop){
             //compléter le futur afin de pouvoir supprimer le compte
             Intent intention3;
-            intention3 = new Intent(getActivity(), Accueil.class);
+            intention3 = new Intent(getActivity(), AccueilActivity.class);
             intention3.putExtra("Suppression_compte", true);
             startActivity(intention3);
             dialog.dismiss();

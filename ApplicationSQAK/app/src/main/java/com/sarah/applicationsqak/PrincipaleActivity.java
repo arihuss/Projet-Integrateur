@@ -8,16 +8,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Principale extends AppCompatActivity {
+public class PrincipaleActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
     private NavController navController;

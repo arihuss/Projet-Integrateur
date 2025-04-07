@@ -16,30 +16,30 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ModifierProfil"
+            android:name=".ModifierProfilActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutUs"
+            android:name=".AboutUsActivity"
             android:exported="false" />
         <activity
-            android:name=".Evenement"
+            android:name=".EvenementActivity"
             android:exported="false" />
         <activity
-            android:name=".Principale"
+            android:name=".PrincipaleActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".Confirmation"
+            android:name=".ConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".Inscription"
+            android:name=".InscriptionActivity"
             android:launchMode="singleTop" />
 
         <activity
-            android:name=".Connexion"
+            android:name=".ConnexionActivity"
             android:exported="false" />
         <activity
-            android:name=".Accueil"
+            android:name=".AccueilActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

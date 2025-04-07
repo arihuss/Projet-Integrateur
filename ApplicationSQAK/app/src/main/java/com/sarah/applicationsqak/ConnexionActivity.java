@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class Connexion extends AppCompatActivity {
+public class ConnexionActivity extends AppCompatActivity {
 
     private EditText edtCourriel, edtMotDePasse;
     private Button btnSeConnecter;
@@ -36,7 +36,7 @@ public class Connexion extends AppCompatActivity {
         btnRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Connexion.this, Accueil.class);
+                Intent intent = new Intent(ConnexionActivity.this, AccueilActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -50,15 +50,15 @@ public class Connexion extends AppCompatActivity {
                 String password = edtMotDePasse.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(Connexion.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConnexionActivity.this, "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 // TODO: Vérif si info correspondent avec le JSON Server
-                Toast.makeText(Connexion.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
 
                 // Redirection vers principale
-                Intent intent = new Intent(Connexion.this, Principale.class);
+                Intent intent = new Intent(ConnexionActivity.this, PrincipaleActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -68,7 +68,7 @@ public class Connexion extends AppCompatActivity {
         txtMdpOublie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Connexion.this, "Fonctionnalité à implémenter", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ConnexionActivity.this, "Fonctionnalité à implémenter", Toast.LENGTH_SHORT).show();
             }
         });
     }

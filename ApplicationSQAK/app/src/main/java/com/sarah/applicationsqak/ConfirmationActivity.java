@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Confirmation extends AppCompatActivity {
+public class ConfirmationActivity extends AppCompatActivity {
 
     private EditText edtCodeConfirmation;
     private String codeEnvoye; // Le code envoyé de inscription
@@ -36,7 +36,7 @@ public class Confirmation extends AppCompatActivity {
 
         // Bouton retour avec infos
         btnRetour.setOnClickListener(v -> {
-            Intent retourIntent = new Intent(Confirmation.this, Inscription.class);
+            Intent retourIntent = new Intent(ConfirmationActivity.this, InscriptionActivity.class);
             retourIntent.putExtra("PRENOM", prenom);
             retourIntent.putExtra("NOM", nom);
             retourIntent.putExtra("COURRIEL", courriel);
@@ -59,8 +59,8 @@ public class Confirmation extends AppCompatActivity {
                 // TODO: faire le INSERT de lutilisateur
 
                 // toast de Confirmation
-                Toast.makeText(Confirmation.this, "Compte créé avec succès !", Toast.LENGTH_LONG).show();
-                Intent intentConnexion = new Intent(Confirmation.this, Connexion.class);
+                Toast.makeText(ConfirmationActivity.this, "Compte créé avec succès !", Toast.LENGTH_LONG).show();
+                Intent intentConnexion = new Intent(ConfirmationActivity.this, ConnexionActivity.class);
                 startActivity(intentConnexion);
                 finish();
             }

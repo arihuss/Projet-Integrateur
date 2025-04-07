@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-public class Accueil extends AppCompatActivity {
+public class AccueilActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "AppPrefs";
     private static final String DARK_MODE_KEY = "dark_mode";
@@ -40,19 +40,19 @@ public class Accueil extends AppCompatActivity {
 
         // Bouton Se connecter
         btnSeConnecter.setOnClickListener(v -> {
-            Intent intent = new Intent(Accueil.this, Connexion.class);
+            Intent intent = new Intent(AccueilActivity.this, ConnexionActivity.class);
             startActivity(intent);
         });
 
         // Bouton S'inscrire
         btnSinscrire.setOnClickListener(v -> {
-            Intent intent = new Intent(Accueil.this, Inscription.class);
+            Intent intent = new Intent(AccueilActivity.this, InscriptionActivity.class);
             startActivity(intent);
         });
 
         // Bouton En invité
         btnInvite.setOnClickListener(v -> {
-            Intent intent = new Intent(Accueil.this, Principale.class);
+            Intent intent = new Intent(AccueilActivity.this, PrincipaleActivity.class);
             startActivity(intent);
         });
     }
