@@ -64,23 +64,21 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             // Affichage des images selon l'url
             Glide.with(contexte)
                     .load(event.getImageUrl())
-                    .placeholder()
+                    .placeholder(R.drawable.placeholder)
                     .into(imgEvent);
 
+            // TODO: Affichage de l'image de profil de l'organisateur (accès base de données)
 
 
             // TODO: Affichafe de 'COMPLET' si l'événement est complet
-            // exemple de code:
-//            if (event.getEtat().equalsIgnoreCase("disponible")) {
-//                tvEtat.setVisibility(View.GONE);
-//            } else {
-//                tvEtat.setVisibility(View.VISIBLE);
-//                txtEtat.setText("COMPLET");
-//            }
-
-
-
-
+            // gestion de, get le nb d'inscriptions & savoir si c'est complet
+            if (event.getEtat().equalsIgnoreCase("disponible")) {
+                txtEtat.setVisibility(View.GONE);
+            } else {
+                txtEtat.setVisibility(View.VISIBLE);
+                txtEtat.setText("COMPLET");
+            }
+        }
 
         return view;
     }
