@@ -9,20 +9,20 @@
     tools:context=".ModifierProfil">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtChoisirPhoto"
         android:layout_width="233dp"
         android:layout_height="26dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="104dp"
         android:text="Choisir nouvelle photo:"
         android:textColor="@color/textsurbg"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnRetourSettings"
         android:layout_width="45dp"
         android:layout_height="41dp"
         android:layout_marginTop="40dp"
@@ -39,55 +39,56 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnChoisirPhoto"
         android:layout_width="113dp"
         android:layout_height="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="96dp"
         android:backgroundTint="@color/accent2"
         android:text="Choisir"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.832"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtModifPrenom"
         android:layout_width="318dp"
         android:layout_height="27dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="136dp"
         android:paddingStart="5dp"
         android:paddingBottom="10dp"
         android:text="Prénom:"
         android:textColor="@color/textsurbg"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/edtModifPrenom"
         android:layout_width="318dp"
         android:layout_height="32dp"
-        android:layout_marginStart="44dp"
         android:background="@drawable/rounded_button"
         android:ems="30"
         android:inputType="text"
         android:paddingStart="10dp"
-        android:text="Élie"
         android:textColor="@color/textvignette"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:backgroundTint="@color/secondary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifPrenom" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtModifNom"
         android:layout_width="318dp"
         android:layout_height="37dp"
+        android:layout_marginStart="1dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -97,28 +98,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifPrenom" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editModifNom"
         android:layout_width="318dp"
-        android:layout_height="26dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
         android:inputType="text"
         android:paddingStart="10dp"
-        android:text="Yaffa"
         android:textColor="@color/textvignette"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifNom" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtModifCourriel"
         android:layout_width="318dp"
         android:layout_height="38dp"
+        android:layout_marginStart="1dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -128,28 +130,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editModifNom" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/edtModifCourriel"
         android:layout_width="318dp"
-        android:layout_height="26dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
-        android:inputType="text"
+        android:hint="@string/exemple_email"
+        android:inputType="textEmailAddress"
         android:paddingStart="10dp"
-        android:text="elie.yaffa@bakelcity.com"
         android:textColor="@color/textvignette"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifCourriel" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="317dp"
+        android:id="@+id/txtModifNum"
+        android:layout_width="318dp"
         android:layout_height="40dp"
+        android:layout_marginStart="1dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -159,28 +163,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifCourriel" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/edtModifNum"
         android:layout_width="318dp"
-        android:layout_height="26dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
+        android:hint="123 456 7890"
         android:inputType="phone"
         android:paddingStart="10dp"
-        android:text="221"
         android:textColor="@color/textvignette"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifNum" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/txtModifBio"
         android:layout_width="318dp"
         android:layout_height="38dp"
+        android:layout_marginStart="1dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -190,28 +196,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifNum" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/edtModifBio"
         android:layout_width="318dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:layout_marginStart="1dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:paddingStart="10dp"
-        android:text="18 gamos grosse villa 92i sur le corbillard, pour tous mes trafiques bizarres, pour tous mes classiques biaaatch negro on vit large, bakel village, quand tu me regardes tu vois e=le best numéro 7 sur le visage"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:textColor="@color/textvignette"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifBio" />
 
     <TextView
-        android:id="@+id/textView9"
-        android:layout_width="315dp"
+        android:id="@+id/txtModifMdp"
+        android:layout_width="318dp"
         android:layout_height="41dp"
+        android:layout_marginStart="4dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -221,28 +231,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifBio" />
 
     <EditText
-        android:id="@+id/editTextText6"
-        android:layout_width="316dp"
-        android:layout_height="26dp"
+        android:id="@+id/edtModifMdp"
+        android:layout_width="318dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="7dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingStart="10dp"
-        android:text="booba92i"
+        android:hint="@string/mdp_hint"
         android:textColor="@color/textvignette"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifMdp" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="315dp"
+        android:id="@+id/txtModifConfirm"
+        android:layout_width="318dp"
         android:layout_height="39dp"
+        android:layout_marginStart="4dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -252,34 +264,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+        app:layout_constraintTop_toBottomOf="@+id/edtModifMdp" />
 
     <EditText
-        android:id="@+id/editTextText7"
+        android:id="@+id/edtModifConfirm"
         android:layout_width="318dp"
-        android:layout_height="26dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
         android:background="@drawable/edit_text_modifier_profil"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingStart="10dp"
-        android:text="booba92i"
+        android:hint="@string/mdp_hint"
         android:textColor="@color/textvignette"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/txtModifConfirm" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
-        android:layout_width="183dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="40dp"
+    <Button
+        android:id="@+id/btnModifSave"
+        android:layout_width="181dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/sauvegarder"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="Sauvegarder"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="21sp"
         android:textStyle="bold"
+        app:backgroundTint="@color/accent3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

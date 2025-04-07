@@ -96,6 +96,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.pop_up_supprimer);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
 
         btnSuppPop = dialog.findViewById(R.id.btnSupprimerPop);

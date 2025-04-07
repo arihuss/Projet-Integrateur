@@ -8,25 +8,31 @@
     android:orientation="vertical"
     tools:context=".ProfilUserFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgUserProfil"
-        android:layout_width="137dp"
-        android:layout_height="139dp"
-        android:backgroundTint="@color/secondary"
-        android:padding="8dp"
-        android:scaleType="centerCrop"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvProfilUser"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/circle_back"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline10"
-        app:strokeColor="@color/secondary"
-        app:strokeWidth="6dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toStartOf="@+id/txtBioUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgUserProfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/txtNomUser"
         android:layout_width="182dp"
         android:layout_height="38dp"
-        android:layout_marginStart="110dp"
         android:text="John Doe"
         android:textAlignment="textStart"
         android:textColor="@color/textsurbg"
@@ -35,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/txtBioUser"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.984"
-        app:layout_constraintStart_toStartOf="@+id/imgUserProfil"
+        app:layout_constraintStart_toEndOf="@+id/cvProfilUser"
         app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
@@ -51,7 +57,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imgUserProfil"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
