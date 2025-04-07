@@ -10,7 +10,7 @@ public class Evenement implements Serializable {
     private String date;
     private String lieu;
     private String imageUrl;  // permet d'utiliser une image de l'internet
-    private String etat;  // [disponible, complet]
+    private String etat;  // [disponible, termine]
 
 
     // Constructeur
