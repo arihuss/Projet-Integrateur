@@ -6,6 +6,6 @@
 		const BD_HOTE = "localhost";
 		const BD_UTILISATEUR = "root";
 		const BD_MOT_PASSE = "";
-		const BD_NOM = "db_sqak";    
+		const BD_NOM = "db_sqak2";    
 	}
 ?>

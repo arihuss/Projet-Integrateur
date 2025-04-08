@@ -37,7 +37,7 @@ class OrganisateurDAO implements DAO{
                 $enr['nom_organisateur'] ?? null,
                 $enr['mot_de_passe'],
                 $enr['nb_events'],
-                //$enr['telephone'] ?? null 
+                $enr['telephone'] ?? null 
             );
         }
         $requete->closeCursor();
@@ -76,13 +76,13 @@ class OrganisateurDAO implements DAO{
         $nomOrganisateur = $organisateur->getNomOrganisateur();
         $mdp = $organisateur->getMotDePasse();
         $nbEvents = $organisateur->getNbEvents();
-        //$telephone = $organisateur->getTelephone();
+        $telephone = $organisateur->getTelephone();
 
-        $mdp = password_hash($mdp,PASSWORD_BCRYPT);
+  
 
         $requete = $connexion->prepare(
-            "INSERT INTO Organisateur (prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events)
-             VALUES (:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents)"
+            "INSERT INTO Organisateur (prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events,telephone)
+             VALUES (:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents,:telephone)"
 
         );
 
@@ -94,7 +94,7 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
         $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
-       // $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
 
         $success = $requete->execute();
         if ($success){
@@ -130,7 +130,7 @@ class OrganisateurDAO implements DAO{
         $nomOrganisateur = $organisateur->getNomOrganisateur();
         $mdp = $organisateur->getMotDePasse();
         $nbEvents = $organisateur->getNbEvents();
-        //$telephone = $organisateur->getTelephone();
+        $telephone = $organisateur->getTelephone();
 
         $mdp = password_hash($mdp,PASSWORD_BCRYPT);
 
@@ -151,7 +151,7 @@ class OrganisateurDAO implements DAO{
         $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
         $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
-        //$requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
 
         return $requete->execute();
     }
@@ -208,7 +208,7 @@ class OrganisateurDAO implements DAO{
             $enr['nom_organisateur'] ?? null,
             $enr['mot_de_passe'],
             $enr['nb_events'],
-            //$enr['telephone'] ?? null 
+            $enr['telephone'] ?? null 
         );
 }
 

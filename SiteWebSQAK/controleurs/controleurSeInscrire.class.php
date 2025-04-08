@@ -26,17 +26,19 @@ class SeInscrire extends Controleur {
             $mdp = $_POST['mot_de_passe'] ?? "";
             $cmdp = $_POST['confirmation'] ?? "";
             $nbEvents = 0;
-
+           
             // =================== VALIDATIONS ===================
+            if ($mdp !== $cmdp) {
+                $this->messagesErreur[] = "Les mots de passe ne correspondent pas.";
+                return "sign-up.php";
+            }
+            $mdp=password_hash($_POST['mot_de_passe'] ?? "", PASSWORD_BCRYPT);
+
             if (empty($courriel) || empty($mdp) || empty($cmdp)) {
                 $this->messagesErreur[] = "Veuillez remplir tous les champs obligatoires.";
                 return "sign-up.php";
             }
 
-            if ($mdp !== $cmdp) {
-                $this->messagesErreur[] = "Les mots de passe ne correspondent pas.";
-                return "sign-up.php";
-            }
 
             if (empty($prenom) && empty($nomOrganisateur)) {
                 $this->messagesErreur[] = "Veuillez entrer vos nom/prénom OU le nom d'organisation.";
@@ -51,9 +53,9 @@ class SeInscrire extends Controleur {
                 $courriel,
                 $bio,
                 $nomOrganisateur,
-                $mdp, // sera haché dans le DAO
-                $nbEvents
-                // $telephone — si tu veux l'ajouter dans la classe
+                $mdp, 
+                $nbEvents,
+                $telephone 
             );
 
             // =================== SAUVEGARDE ===================

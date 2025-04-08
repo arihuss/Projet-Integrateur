@@ -21,20 +21,22 @@ class SeConnecter extends Controleur{
 		{
 				
 			// Vérifie si l'organisateur est déjà connecté
-			if ($this->isOrganisateurConnecte()) {
-				array_push($this->messagesErreur, "Vous êtes déjà connecté.");
-				return "page-principale.php";
-			}
+			//if ($this->isOrganisateurConnecte()) {
+				//array_push($this->messagesErreur, "Vous êtes déjà connecté.");
+				//return "page-principale.php";
+			//}
 	
 			// Traitement du POST
 			if (isset($_POST['courriel']) && isset($_POST['mot_de_passe'])) {
 				$organisateur = OrganisateurDAO::findByEmail($_POST['courriel']);
 	
+
 				if (!$organisateur || !password_verify($_POST['mot_de_passe'], $organisateur->getMotDePasse())) {
 					array_push($this->messagesErreur, "Courriel ou mot de passe incorrect.");
 					return "log-in.php"; 
 				}
 	
+
 				// Connexion réussie
 				$_SESSION['organisateur'] = $organisateur;
 				$_SESSION['user-id'] = $organisateur->getId();

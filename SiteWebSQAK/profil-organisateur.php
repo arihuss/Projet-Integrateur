@@ -2,11 +2,11 @@
 
 include_once("modele\DAO\OrganisateurDAO.class.php");
 
-if (!isset($_SESSION['user_id'])) {
+//if (!isset($_SESSION['user_id'])) {
     // Rediriger vers la page de login si non connecté
-    header("Location: index.php?action=seConnecter");
-    exit;
-}
+   // header("Location: index.php?action=seConnecter");
+   // exit;
+//}
 
 $organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/1);
 ?>
