@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class ModifierProfilActivity extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ImgbtnModifBack;
-    Button SaveModif;
-    EditText prenom, nom, mail, num, bio, mdp, mdp2;
+    Button SaveModif, btnChoisirPhoto;
+    EditText edtprenom, edtnom, edtmail, edtnum, edtbio, edtmdp, edtmdp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +25,24 @@ public class ModifierProfilActivity extends AppCompatActivity implements View.On
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_modifier_profil);
 
-        prenom = findViewById(R.id.edtModifPrenom);
-        nom = findViewById(R.id.edtModifNom);
-        mail = findViewById(R.id.edtModifCourriel);
-        num = findViewById(R.id.edtModifNum);
-        bio = findViewById(R.id.edtModifBio);
-        mdp = findViewById(R.id.edtModifMdp);
-        mdp2 = findViewById(R.id.edtModifConfirm);
+        edtprenom = findViewById(R.id.edtModifPrenom);
+        edtnom = findViewById(R.id.edtModifNom);
+        edtmail = findViewById(R.id.edtModifCourriel);
+        edtnum = findViewById(R.id.edtModifNum);
+        edtbio = findViewById(R.id.edtModifBio);
+        edtmdp = findViewById(R.id.edtModifMdp);
+        edtmdp2 = findViewById(R.id.edtModifConfirm);
         SaveModif = findViewById(R.id.btnModifSave);
+        btnChoisirPhoto = findViewById(R.id.btnChoisirPhoto);
+
+        Intent intent = getIntent();
+
 
 
 
         ImgbtnModifBack = findViewById(R.id.btnRetourSettings);
         ImgbtnModifBack.setOnClickListener(this);
+        SaveModif.setOnClickListener(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -55,8 +60,14 @@ public class ModifierProfilActivity extends AppCompatActivity implements View.On
 
         if (v == SaveModif){
 
-            Intent intent1;
+            Intent intent1 = new Intent();
             finish();
+
+        }
+
+        if(v == btnChoisirPhoto){
+
+
 
         }
 
