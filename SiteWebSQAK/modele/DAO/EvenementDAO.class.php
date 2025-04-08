@@ -34,9 +34,9 @@ class EvenementDAO implements DAO{
                 $enr['description'],
                 $enr['etat'],
                 $enr['nb_inscriptions'],
-                $enr['nb_benevoles_acceptes'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur']
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
             );
         }
 
@@ -73,9 +73,9 @@ class EvenementDAO implements DAO{
                 $enr['description'],
                 $enr['etat'],
                 $enr['nb_inscriptions'],
-                $enr['nb_benevoles_acceptes'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur']
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
             );
             $tableau[] = $evenement;
         }
@@ -114,9 +114,9 @@ class EvenementDAO implements DAO{
                 $enr['description'],
                 $enr['etat'],
                 $enr['nb_inscriptions'],
-                $enr['nb_benevoles_acceptes'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur']
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
             );
             $tableau[] = $evenement;
         }
@@ -134,9 +134,10 @@ class EvenementDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
+        
         $requete = $connexion->prepare("INSERT INTO evenement 
-        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, nb_benevoles_acceptes, complet_benevole, complet_visiteur) 
-        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :nb_benevoles_acceptes, :complet_benevole, :complet_visiteur)");
+        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, complet_benevole, complet_visiteur,image_evenement)
+        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :complet_benevole, :complet_visiteur,:image_evenement)");
 
         $requete->bindValue(':id_statistique', $object->getIdStats(), PDO::PARAM_INT);
         $requete->bindValue(':id_organisateur', $object->getIdOrganisateur(), PDO::PARAM_INT);
@@ -151,9 +152,9 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':description', $object->getDescription(), PDO::PARAM_STR);
         $requete->bindValue(':etat', $object->getEtat(), PDO::PARAM_STR);
         $requete->bindValue(':nb_inscriptions', $object->getNbInscriptions(), PDO::PARAM_INT);
-        $requete->bindValue(':nb_benevoles_acceptes', $object->getNbBenevolesAcceptes(), PDO::PARAM_INT);
         $requete->bindValue(':complet_benevole', $object->getCompletBenevole(), PDO::PARAM_BOOL);
         $requete->bindValue(':complet_visiteur', $object->getCompletVisiteur(), PDO::PARAM_BOOL);
+        $requete->bindValue(':image_evenement', $object->getImageEvenement(), PDO::PARAM_STR);
 
         $success = $requete->execute();
         if ($success) {
@@ -174,8 +175,8 @@ class EvenementDAO implements DAO{
         id_statistique = :id_statistique, id_organisateur = :id_organisateur, nom_event = :nom_event, lieu = :lieu,
         date_debut = :date_debut, date_fin = :date_fin, nb_benevoles_max = :nb_benevoles_max, nb_participants_max = :nb_participants_max, 
         etat_benevole = :etat_benevole, categorie = :categorie, description = :description, etat = :etat, 
-        nb_inscriptions = :nb_inscriptions, nb_benevoles_acceptes = :nb_benevoles_acceptes, complet_benevole = :complet_benevole, 
-        complet_visiteur = :complet_visiteur WHERE id_evenement = :id");
+        nb_inscriptions = :nb_inscriptions, complet_benevole = :complet_benevole, 
+        complet_visiteur = :complet_visiteur,$image_evenement = :image_evenement WHERE id_evenement = :id");
 
         $requete->bindValue(':id', $object->getId(), PDO::PARAM_INT);
         $requete->bindValue(':id_statistique', $object->getIdStats(), PDO::PARAM_INT);
@@ -191,9 +192,10 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':description', $object->getDescription(), PDO::PARAM_STR);
         $requete->bindValue(':etat', $object->getEtat(), PDO::PARAM_STR);
         $requete->bindValue(':nb_inscriptions', $object->getNbInscriptions(), PDO::PARAM_INT);
-        $requete->bindValue(':nb_benevoles_acceptes', $object->getNbBenevolesAcceptes(), PDO::PARAM_INT);
         $requete->bindValue(':complet_benevole', $object->getCompletBenevole(), PDO::PARAM_BOOL);
         $requete->bindValue(':complet_visiteur', $object->getCompletVisiteur(), PDO::PARAM_BOOL);
+        $requete->bindValue(':image_evenement', $object->getImageEvenement(), PDO::PARAM_STR);
+
 
         return $requete->execute();
     }

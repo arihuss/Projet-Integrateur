@@ -38,19 +38,19 @@ class Ajouter extends Controleur{
 				if (empty($titre) || empty($description) || empty($categorie) || empty($lieu) || 
 					empty($dateDebut) || empty($dateFin) || empty($heureDebut) || empty($heureFin)) {
 					$this->messagesErreur[] = "Veuillez remplir tous les champs obligatoires.";
-					return "ajouter-evenement.ph.php";
+					return "ajouter-evenement.php";
 				}
 				
 				// Vérification de la cohérence des dates
 				if (strtotime($dateDebut) > strtotime($dateFin)) {
 					$this->messagesErreur[] = "La date de début ne peut pas être postérieure à la date de fin.";
-					return "ajouter-evenement.ph.php";
+					return "ajouter-evenement.php";
 				}
 				
 				// Si les dates sont identiques, vérifier la cohérence des heures
 				if ($dateDebut === $dateFin && strtotime($heureDebut) >= strtotime($heureFin)) {
 					$this->messagesErreur[] = "L'heure de début doit être antérieure à l'heure de fin pour un même jour.";
-					return "ajouter-evenement.ph.php";
+					return "ajouter-evenement.php";
 				}
 				
 				// Vérification que les nombres sont positifs
@@ -60,41 +60,28 @@ class Ajouter extends Controleur{
 				}
 				
 				// Traitement de l'image
+
 				$photo = null;
 				if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
 					$allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 					$fileType = $_FILES['photo']['type'];
-					
+				
 					if (!in_array($fileType, $allowedTypes)) {
 						$this->messagesErreur[] = "Le fichier doit être une image (JPG, PNG ou GIF).";
 						return "ajouter-evenement.php";
 					}
-					
-					// Génération d'un nom unique pour l'image
-					$targetDir = "uploads/events/";
-					$fileName = uniqid() . '_' . basename($_FILES['photo']['name']);
-					$targetFile = $targetDir . $fileName;
-					
-					// Création du répertoire si nécessaire
-					if (!file_exists($targetDir)) {
-						mkdir($targetDir, 0777, true);
-					}
-					
-					// Déplacement du fichier
-					if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile)) {
-						$photo = $fileName;
-					} else {
-						$this->messagesErreur[] = "Erreur lors du téléchargement de l'image.";
-						return "ajouter-evenement.php";
-					}
+				
+					// Lire le contenu du fichier
+					$photo = file_get_contents($_FILES['photo']['tmp_name']);
 				} else {
 					$this->messagesErreur[] = "Veuillez sélectionner une image pour l'événement.";
 					return "ajouter-evenement.php";
 				}
-				
-				// Concaténation de la date et de l'heure pour le début et la fin
-				$dateTimeDebut = $dateDebut . ' ' . $heureDebut . ':00';
-				$dateTimeFin = $dateFin . ' ' . $heureFin . ':00';
+
+			
+		
+				$dateTimeDebut = $dateDebut;
+				$dateTimeFin = $dateFin;
 				
 				// Récupération de l'ID de l'organisateur à partir de la session
 				$idOrganisateur = $_SESSION['user-id'] ?? null;
@@ -110,14 +97,20 @@ class Ajouter extends Controleur{
 				$etatBenevole = true; // Activer le recrutement de bénévoles par défaut
 				$etat = 'actif'; // L'événement est actif par défaut
 				$nbInscriptions = 0;
-				$nbBenevolesAcceptes = 0;
 				$completBenevole = false;
 				$completVisiteur = false;
-				
+				$imageEvenement = $photo;
+
+				//Creation stat vide
+				$connexion = ConnexionBD::getInstance();
+				$requete = $connexion->prepare("INSERT INTO Statistique (nb_visiteurs, nb_benevoles, nb_likes, nb_vues, nb_applications, nb_partages) VALUES (0, 0, 0, 0, 0, 0)");
+				$requete->execute();
+				$idStatistique = $connexion->lastInsertId();
+
 				// Création de l'objet Evenement
 				$evenement = new Evenement(
 					9, // ID sera généré par la base de données
-					1,
+					$idStatistique,
 					1,
 					$titre,
 					$lieu,
@@ -130,9 +123,10 @@ class Ajouter extends Controleur{
 					$description,
 					$etat,
 					$nbInscriptions,
-					$nbBenevolesAcceptes,
 					$completBenevole,
-					$completVisiteur
+					$completVisiteur,
+					$imageEvenement
+					
 				);
 				
 				// Enregistrement de l'événement dans la base de données

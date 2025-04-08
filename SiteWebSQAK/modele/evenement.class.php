@@ -16,9 +16,9 @@ class Evenement implements JsonSerializable
     private string $description;
     private string $etat;
     private int $nbInscriptions;
-    private int $nbBenevolesAcceptes;
     private bool $completBenevole;
     private bool $completVisiteur;
+    private string $imageEvenement; 
 
     // Constructeur
     public function __construct(
@@ -36,9 +36,9 @@ class Evenement implements JsonSerializable
         string $description,
         string $etat,
         int $nbInscriptions,
-        int $nbBenevolesAcceptes,
         bool $completBenevole,
-        bool $completVisiteur
+        bool $completVisiteur,
+        string $imageEvenement
     ) {
         $this->id = $id;
         $this->idStats = $idStats;
@@ -54,9 +54,9 @@ class Evenement implements JsonSerializable
         $this->description = $description;
         $this->etat = $etat;
         $this->nbInscriptions = $nbInscriptions;
-        $this->nbBenevolesAcceptes = $nbBenevolesAcceptes;
         $this->completBenevole = $completBenevole;
         $this->completVisiteur = $completVisiteur;
+        $this->imageEvenement= $imageEvenement;
     }
 
     // Getters
@@ -74,10 +74,10 @@ class Evenement implements JsonSerializable
     public function getDescription(): string { return $this->description; }
     public function getEtat(): string { return $this->etat; }
     public function getNbInscriptions(): int { return $this->nbInscriptions; }
-    public function getNbBenevolesAcceptes(): int { return $this->nbBenevolesAcceptes; }
     public function getCompletBenevole(): bool { return $this->completBenevole; }
     public function getCompletVisiteur(): bool { return $this->completVisiteur; }
-
+    public function getImageEvenement(): ?string { return $this->imageEvenement;}
+    
     // Setters
     public function setId(int $id): void { $this->id = $id; }
     public function setIdStats(int $idStats):void{$this->idStats=$idStats;}
@@ -94,9 +94,10 @@ class Evenement implements JsonSerializable
     public function setEtat(string $etat): void { $this->etat = $etat; }
     public function setNbInscriptions(int $nbInscriptions): void { $this->nbInscriptions = $nbInscriptions; }
     public function setNbBenevolesAcceptes(int $nbBenevolesAcceptes): void { $this->nbBenevolesAcceptes = $nbBenevolesAcceptes; }
-    public function setCompletBenevole(bool $completBenevole): void { $this->completBenevole = $completBenevole; }
     public function setCompletVisiteur(bool $completVisiteur): void { $this->completVisiteur = $completVisiteur; }
+    public function setImageEvenement(?string $image): void { $this->imageEvenement = $image;}
 
+    
     // Implémentation de JsonSerializable
     public function jsonSerialize(): array
     {
@@ -115,9 +116,9 @@ class Evenement implements JsonSerializable
             'description' => $this->description,
             'etat' => $this->etat,
             'nbInscriptions' => $this->nbInscriptions,
-            'nbBenevolesAcceptes' => $this->nbBenevolesAcceptes,
             'completBenevole' => $this->completBenevole,
-            'completVisiteur' => $this->completVisiteur
+            'completVisiteur' => $this->completVisiteur,
+            'imageEvenement' => $this->imageEvenement
         ];
     }
 }

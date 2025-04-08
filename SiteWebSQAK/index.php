@@ -33,6 +33,6 @@ $controleur = ManufactureControleur::creerControleur($action);
    $nomVue = $controleur->executerAction();
 	
 	// inclure la bonne vue
-	include_once($nomVue)
+	include_once($nomVue);
 
 ?>
