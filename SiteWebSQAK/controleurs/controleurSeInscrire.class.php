@@ -1,24 +1,17 @@
 <?php
 include_once("controleur.abstract.class.php");
 
-class SeInscrire extends Controleur{
+class SeInscrire extends Controleur {
 
-    
-		public function __construct() {
-			//appel du constructeur parent
-			parent::__construct();
-		}
-		
+    private array $messagesErreur = [];
 
-		// ******************* Méthode exécuter action
-		// implémenter la méthde executerAction
-		// retournez la page d'accueil
-		private array $messagesErreur = [];
+    public function __construct() {
+        parent::__construct();
+    }
 
-   
-    	public function getMessagesErreur(): array {
-       		 return $this->messagesErreur;
-    	}
+    public function getMessagesErreur(): array {
+        return $this->messagesErreur;
+    }
 
     public function executerAction(): string {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,12 +22,12 @@ class SeInscrire extends Controleur{
             $nomOrganisateur = $_POST['organisation'] ?? null;
             $courriel = $_POST['courriel'] ?? null;
             $telephone = $_POST['telephone'] ?? "";
-            $bio = ""; // tu peux personnaliser selon ton projet
+            $bio = ""; // à adapter selon ton besoin
             $mdp = $_POST['mot_de_passe'] ?? "";
             $cmdp = $_POST['confirmation'] ?? "";
             $nbEvents = 0;
 
-            // Validation de base
+            // =================== VALIDATIONS ===================
             if (empty($courriel) || empty($mdp) || empty($cmdp)) {
                 $this->messagesErreur[] = "Veuillez remplir tous les champs obligatoires.";
                 return "sign-up.php";
@@ -45,13 +38,12 @@ class SeInscrire extends Controleur{
                 return "sign-up.php";
             }
 
-            // Vérifie qu'au moins prénom/nom OU organisation est fourni
             if (empty($prenom) && empty($nomOrganisateur)) {
                 $this->messagesErreur[] = "Veuillez entrer vos nom/prénom OU le nom d'organisation.";
                 return "sign-up.php";
             }
 
-            // Création de l'objet organisateur
+            // =================== CRÉATION ORGANISATEUR ===================
             $organisateur = new Organisateur(
                 null,
                 $prenom,
@@ -59,30 +51,25 @@ class SeInscrire extends Controleur{
                 $courriel,
                 $bio,
                 $nomOrganisateur,
-                $mdp, // il sera haché dans le DAO
-                $nbEvents,
-				//$telephone
+                $mdp, // sera haché dans le DAO
+                $nbEvents
+                // $telephone — si tu veux l'ajouter dans la classe
             );
 
-		
-            // Sauvegarde
+            // =================== SAUVEGARDE ===================
             $success = OrganisateurDAO::save($organisateur);
-			
+
             if ($success) {
                 header("Location: index.php?action=seConnecter&message=Compte créé avec succès !");
                 exit;
             } else {
                 $this->messagesErreur[] = "Erreur lors de la création du compte.";
+                return "sign-up.php";
             }
-			if ($success) {
-				echo "Insertion réussie !";
-				exit;
-			}
         }
 
+        // Si GET ou première fois
         return "sign-up.php";
     }
-
 }
-
 ?>

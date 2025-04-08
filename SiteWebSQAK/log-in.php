@@ -17,20 +17,22 @@
         <h1>Connexion</h1>
         <form action="index.php?action=seConnecter" method="POST">
             <label for="courriel-connexion">Courriel:</label> <br>
-            <input id="courriel-connexion" type="email" name="courriel" required><br><br>
+            <input id="courriel-connexion" type="email" name="courriel" value="<?= htmlspecialchars($_POST['courriel'] ?? '') ?>" required><br><br>
+
             <label for="mdp-connexion">Mot de passe:</label> <br>
             <input id="mdp-connexion" type="password" minlength="8" name="mot_de_passe" required><br><br>
+
             <input class="btn-jaune" type="submit" value="Connexion"><br>
-            <a href="mdp-oublie"> Mot de passe oublié ?</a> <!-- mot de passe oublie a changer-->
+            <a href="mdp-oublie">Mot de passe oublié ?</a>
 
             <?php if (isset($controleur)) : ?>
                 <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
-                 <p id="erreur"><?php echo htmlspecialchars($erreur); ?></p>
+                    <p id="erreur"><?php echo htmlspecialchars($erreur); ?></p>
                 <?php endforeach; ?>
             <?php endif; ?>
-            
         </form>
     </div>
+
     <footer><?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
 </body>
