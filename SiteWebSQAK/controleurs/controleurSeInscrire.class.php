@@ -61,7 +61,7 @@ class SeInscrire extends Controleur{
                 $nomOrganisateur,
                 $mdp, // il sera haché dans le DAO
                 $nbEvents,
-				$telephone
+				//$telephone
             );
 
 		

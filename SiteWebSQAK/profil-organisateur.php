@@ -1,4 +1,15 @@
+<?php
 
+include_once("modele\DAO\OrganisateurDAO.class.php");
+
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger vers la page de login si non connecté
+    header("Location: index.php?action=seConnecter");
+    exit;
+}
+
+$organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/1);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,16 +22,10 @@
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 
-<?php
-    $organisateur = isset($controleur) ? $controleur->getOrganisateur() : null;
-?>
+
 
 <body>
     <header><?php include("components/header.php")?></header>
-
-    <?php
-    $organisateur = isset($controleur) ? $controleur->getOrganisateur() : null;
-    ?>
 
 <div class="container">
     <div id="entete-profil">

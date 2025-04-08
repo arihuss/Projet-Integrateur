@@ -11,49 +11,59 @@
 </head>
 
 <body>
-    <header><?php include("components/header.php")?></header>
+    <header><?php include("components/header.php");
+    include_once('modele/DAO/EvenementDAO.class.php');
+    include_once('modele/DAO/ParticipantDAO.class.php');
+    include_once('modele/DAO/UserDAO.class.php');
+
+    $participant = ParticipantDAO::findById($_GET['id']);
+    $event = EvenementDAO::findById($participant->getIdEvenement());
+    $user = UtilisateurDAO::findById($participant->getIdUtilisateur());
+    ?></header>
 
     <div class="container" id="section-profil">
-
-        <div id="profil-appliquant">
-            <a href="?action=voirUnEvent"><i class="fa-solid fa-circle-left"></i></a>
-
+        <?php
+        echo "
+        <div id='profil-appliquant'>
+            <a href='?action=voirUnEvent&id=" . $event->getId() . "'><i class='fa-solid fa-circle-left'></i></a>
             <h2>Profil de l'applicant </h2>
-            <img src=".\img\profilapplicant.svg" alt="img-profil">
-            <h3 id="nom-applicant">Liliane Belvier</h3>
-
-            <p class="content">Courriel:<br>
-                Liliane.belvier@hotmail.com<br><br>
-
+            <img src='.\img\profilapplicant.svg' alt='img-profil'>
+            <h3 id='nom-applicant'>" . $user->getPrenom() . " " . $user->getNom() . "</h3>
+            <p class='content'>Courriel:<br>
+                " . $user->getCourriel() . "<br><br>
                 Numéro de téléphone:<br>
-                514-678-0955
-                <a class="btn-jaune" href="contacter"> Contacter </a>
+                " . $user->getNumTel() . "
+                <a class='btn-jaune' href='contacter'> Contacter </a>
             </p>
+        </div>";
 
-        </div>
+        echo "<div id='experience-appliquant'>
+            <h2>Expériences de bénévolat</h2>";
 
-
-
-        <div id="experience-appliquant">
-            <h2>Expériences de bénévolat</h2>
-
-            <div id="experience">
-                <div id="date">
-                    <h3>27 <br> janvier <br> 2025</h3>
+        $inscriptions = ParticipantDAO::getInscriptionByUserId($user->getIdUtilisateur());
+        foreach ($inscriptions as $inscription) {
+            $evenement = EvenementDAO::findById($inscription->getIdEvenement());
+            $org = OrganisateurDAO::findById($evenement->getIdOrganisateur());
+            echo "<div id='experience'>
+                <div id='date'>
+                    <h3>" . $evenement->getDateDebut() . "<br><br></h3> 
                 </div>
-                <div id="info">
-                    <img src=".\img\event-arbre.svg" alt="img-evenement">
-                    <p class="content">
-                        Ramassage déchets <br>
-                        Lieu: plage Oka <br>
-                        Organisation: Terre-Sauve
+                <div id='info'>
+                    <img src='./img/event-arbre.svg' alt='img-evenement'>
+                    <p class='content'>
+                        " . $evenement->getNom() . " <br>
+                        Lieu: " . $evenement->getLieu() . " <br>
+                        Organisation: " . $org->getNom() . "
                     </p>
+                   
                 </div>
-            </div>
+            </div>";
+        }
 
+        echo "</div>";
+        ?>
+    </div> <!-- fermeture correcte de container -->
 
-        </div>
-    </div>
     <footer><?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
 

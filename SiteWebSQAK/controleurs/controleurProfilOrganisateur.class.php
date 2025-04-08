@@ -29,14 +29,11 @@ class ProfilOrganisateur extends Controleur{
 				if ($unOrganisateur != null){
 					array_push($this->tabOrganisateurs,$unOrganisateur);
 				}
-			}	
+			}	//refaire ca quand seConnecter marche
 
 			return "profil-organisateur.php";
 		}
-	
-		public function getOrganisateur(): ?Organisateur {
-			return $this->organisateur;
-		}
+		
 		
 }
 

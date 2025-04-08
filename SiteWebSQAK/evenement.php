@@ -124,7 +124,7 @@ foreach ($personnes as $personne){
       </button>
     </form>";
   }
-   echo "<a href='?action=profilParticipant&id".$personne->getIdInscription()."'>". $user->getNom()."</a>
+   echo "<a href='?action=profilParticipant&id=".$personne->getIdInscription()."'>". $user->getNom()."</a>
     <p>". $personne->getDateInscription()."</p>
   </div>";
 }

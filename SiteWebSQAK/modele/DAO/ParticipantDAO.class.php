@@ -105,6 +105,36 @@ class ParticipantDAO{
         return $stmt->execute();
         //return false;
     }
+    /**
+     * Retourne les inscriptions de quelqun par leur id utilisateur
+     * @param int $id
+     * @return void
+     */
+    static public function getInscriptionByUserId(int $id):array{
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "SELECT * FROM Inscription WHERE id_utilisateur = :id";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $participants = [];
+        while ($enr = $stmt->fetch()) {
+            $participants[] = new Participant(
+                $enr['id_inscription'],
+                $enr['id_utilisateur'],
+                $enr['id_evenement'],
+                $enr['role'],
+                $enr['date_inscription'],
+                $enr['date_annulation']
+            );
+        }
+
+        $stmt->closeCursor();
+        ConnexionBD::close();
+
+        return $participants;
+    }
 
    
 }

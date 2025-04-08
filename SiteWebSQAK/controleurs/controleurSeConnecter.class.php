@@ -37,6 +37,7 @@ class SeConnecter extends Controleur{
 	
 				// Connexion réussie
 				$_SESSION['organisateur'] = $organisateur;
+				$_SESSION['user-id'] = $organisateur->getId();
 				return "page-principale.php";
 			}
 	

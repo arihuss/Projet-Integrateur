@@ -30,6 +30,10 @@ abstract class Controleur
         return $_SESSION['organisateur'] ?? null;
     }
 
+    protected function setOrganisateur($organisateur){
+        $_SESSION['organisateur'] = $organisateur;
+    }
+
     // Affiche un message d'erreur générique voir si veux le faire
     protected function error(string $message): void {
         echo "<div style='color:red; font-weight:bold;'>Erreur : $message</div>";
