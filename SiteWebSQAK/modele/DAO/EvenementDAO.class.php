@@ -46,7 +46,7 @@ class EvenementDAO implements DAO{
         return $evenement;
     }
 
-    static public function findAll(): array {
+    static public function findAll():array{
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -55,6 +55,47 @@ class EvenementDAO implements DAO{
 
         $tableau = [];
         $requete = $connexion->prepare("SELECT * FROM evenement");
+        $requete->execute();
+
+        foreach ($requete as $enr) {
+            $evenement = new Evenement(
+                $enr['id_evenement'],
+                $enr['id_statistique'],
+                $enr['id_organisateur'],
+                $enr['nom_event'],
+                $enr['lieu'],
+                $enr['date_debut'],
+                $enr['date_fin'],
+                $enr['nb_benevoles_max'],
+                $enr['nb_participants_max'],
+                $enr['etat_benevole'],
+                $enr['categorie'],
+                $enr['description'],
+                $enr['etat'],
+                $enr['nb_inscriptions'],
+                $enr['nb_benevoles_acceptes'],
+                $enr['complet_benevole'],
+                $enr['complet_visiteur']
+            );
+            $tableau[] = $evenement;
+        }
+
+        $requete->closeCursor();
+        ConnexionBD::close();
+
+        return $tableau;
+    }
+
+    static public function findAllFromId(int $id): array {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d'obtenir la connexion à la BD");
+        }
+
+        $tableau = [];
+        $requete = $connexion->prepare("SELECT * FROM evenement WHERE id_organisateur = :id");
+        $requete->bindParam(':id',$id,PDO::PARAM_INT);
         $requete->execute();
 
         foreach ($requete as $enr) {

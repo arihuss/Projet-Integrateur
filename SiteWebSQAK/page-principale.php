@@ -1,3 +1,17 @@
+<?php
+
+include_once("modele\DAO\EvenementDAO.class.php");
+
+/*
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger vers la page de login si non connecté
+    header("Location: index.php?action=seConnecter");
+    exit;
+}*/
+
+$events = EvenementDAO::findAllFromId(1);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,68 +26,35 @@
 
 <body>
 
-<header><?php include("components/header.php");?></header>
+    <header><?php include("components/header.php"); ?></header>
 
-<div class="container">
-    <div>
-        
-    <div class="header-row">
-    <h2>Mes événements</h2>
-    <button class="add-button" onclick="window.location.href='ajouter-evenement.php'">Ajouter</button>
-</div>
+    <div class="container">
+        <div>
 
+            <div class="header-row">
+                <h2>Mes événements</h2>
+                <button class="add-button" onclick="window.location.href='?action=ajouterProduit'">Ajouter</button>
+            </div>
 
-    <a href="?action=voirUnEvent&id=1" class="event"> <!--J'ai mis ca pr le moment mais il faudra que la personne qui fait cette page complete le lien avec le bon id dynamiquement :)-->
-        <div class="event-grid">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
-            </div>
-    </a>
+            <?php
 
- <a href="?action=voirUnEvent" class="event">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
+            echo " <div class='event-grid'>";
+            foreach ($events as $event) {
+                echo "<a href='?action=voirUnEvent&id=" . $event->getId() . "' class='event'><div class='event-card'>
+                <div class='event-title'>" . $event->getNom() . "</div>
+                <img src='./img/event-arbre.svg' alt='img-evenement'>
+                <div class='event-date'>" . $event->getDateDebut() . "</div>
             </div>
-</a>
-<a href="?action=voirUnEvent" class="event">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
-            </div>
-</a>
-<a href="?action=voirUnEvent" class="event">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
-            </div>
-</a>
-<a href="?action=voirUnEvent" class="event">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
-            </div>
-</a>
-<a href="?action=voirUnEvent" class="event">
-            <div class="event-card">
-                <div class="event-title">Entretient d'arbres</div>
-                <img src=".\img\event-arbre.svg" alt="img-evenement">
-                <div class="event-date">13/12/2025</div>
+    </a>";
+            }
+            echo "</div>";
 
-            </div>
-            </a>
-        </div>
+            ?>
     </div>
-</div>
+    </div>
 
-<footer><?php include("components/footer.php");?></footer>
-<script src="js/general.js"></script>
+    <footer><?php include("components/footer.php"); ?></footer>
+    <script src="js/general.js"></script>
 
 </body>
 
