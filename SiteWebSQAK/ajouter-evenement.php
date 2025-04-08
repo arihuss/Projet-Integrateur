@@ -16,7 +16,7 @@
     <div class="container">
         <h2>Ajouter un événement</h2>
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="?action=ajouterProduit" method="POST" enctype="multipart/form-data">
 
             
             <label>Choisir nouvelle photo: *</label>
@@ -78,7 +78,7 @@
 
             <div class="buttons">
                 <button type="submit" class="btn-save">Sauvegarder</button>
-                <button type="button" class="btn-cancel">Revenir</button>
+                <button type="button" class="btn-cancel" onclick="window.location.href='?action=voirEvents'">Revenir</button>
             </div>
         </form>
     </div>

@@ -22,8 +22,8 @@ class Evenement implements JsonSerializable
 
     // Constructeur
     public function __construct(
-        int $id,
-        int $idStats,
+        ?int $id,
+        ?int $idStats,
         int $idOrganisateur,
         string $nom,
         string $lieu,
