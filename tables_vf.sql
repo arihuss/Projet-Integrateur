@@ -98,6 +98,31 @@ CREATE TABLE Commentaire (
     CONSTRAINT FK_commentaire_evenement FOREIGN KEY (id_evenement) REFERENCES Evenement(id_evenement) ON DELETE CASCADE
 );
 
+
+DELIMITER //
+CREATE TRIGGER TRG_Statistiques
+AFTER INSERT ON Evenement
+FOR EACH ROW
+BEGIN
+    DECLARE new_id_stat INT;
+
+    -- Insère la statistique et récupère son ID
+    INSERT INTO Statistique (nb_visiteurs, nb_benevoles, nb_likes, nb_vues, nb_applications, nb_partages)
+    VALUES (0, 0, 0, 0, 0, 0);
+
+    SET new_id_stat = LAST_INSERT_ID();
+
+    -- Met à jour l'événement avec l'ID statistique
+    UPDATE Evenement
+    SET id_statistique = new_id_stat
+    WHERE id_evenement = NEW.id_evenement;
+END;
+//
+
+DELIMITER ;
+
+
+
 -- Table Message
 --CREATE TABLE Message (
    -- id_message INT(10) AUTO_INCREMENT PRIMARY KEY,
