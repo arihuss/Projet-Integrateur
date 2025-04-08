@@ -64,8 +64,9 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             // Affichage des images selon l'url
             Glide.with(contexte)
                     .load(event.getImageUrl())
-                    .placeholder()
+                    //.placeholder()
                     .into(imgEvent);
+        }
 
 
 

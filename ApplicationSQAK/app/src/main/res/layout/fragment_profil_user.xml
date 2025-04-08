@@ -30,17 +30,19 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txtNomUser"
-        android:layout_width="182dp"
-        android:layout_height="38dp"
-        android:text="John Doe"
-        android:textAlignment="textStart"
+        android:id="@+id/txtPrenomUser"
+        android:layout_width="82dp"
+        android:layout_height="45dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:text="John"
+        android:textAlignment="textEnd"
         android:textColor="@color/textsurbg"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtBioUser"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toEndOf="@+id/cvProfilUser"
         app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:layout_constraintVertical_bias="1.0"
@@ -140,5 +142,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="629dp" />
+
+    <TextView
+        android:id="@+id/txtNomUser"
+        android:layout_width="95dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/inter_bold"
+        android:paddingTop="5dp"
+        android:text="Doe"
+        android:textAlignment="textStart"
+        android:textColor="@color/textsurbg"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtBioUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtPrenomUser"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.93" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
