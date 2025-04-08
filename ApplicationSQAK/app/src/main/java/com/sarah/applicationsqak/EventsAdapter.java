@@ -62,11 +62,11 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             txtDate.setText(event.getDate());
 
             // Affichage des images selon l'url
-            Glide.with(contexte)
-                    .load(event.getImageUrl())
-                    .placeholder()
-                    .into(imgEvent);
-
+            //Glide.with(contexte)
+                    //.load(event.getImageUrl())
+                    //.placeholder()
+                    //.into(imgEvent);
+        }
 
 
             // TODO: Affichafe de 'COMPLET' si l'événement est complet
@@ -84,4 +84,5 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
 
         return view;
     }
+
 }
