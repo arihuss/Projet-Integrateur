@@ -34,9 +34,9 @@ class EvenementDAO implements DAO{
                 $enr['description'],
                 $enr['etat'],
                 $enr['nb_inscriptions'],
-                $enr['nb_benevoles_acceptes'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur']
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
             );
         }
 
@@ -46,7 +46,7 @@ class EvenementDAO implements DAO{
         return $evenement;
     }
 
-    static public function findAll(): array {
+    static public function findAll():array{
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -54,7 +54,7 @@ class EvenementDAO implements DAO{
         }
 
         $tableau = [];
-        $requete = $connexion->prepare("SELECT * FROM evenement");
+        $requete = $connexion->prepare("SELECT * FROM Evenement");
         $requete->execute();
 
         foreach ($requete as $enr) {
@@ -73,9 +73,50 @@ class EvenementDAO implements DAO{
                 $enr['description'],
                 $enr['etat'],
                 $enr['nb_inscriptions'],
-                $enr['nb_benevoles_acceptes'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur']
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
+            );
+            $tableau[] = $evenement;
+        }
+
+        $requete->closeCursor();
+        ConnexionBD::close();
+
+        return $tableau;
+    }
+
+    static public function findAllFromId(int $id): array {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d'obtenir la connexion à la BD");
+        }
+
+        $tableau = [];
+        $requete = $connexion->prepare("SELECT * FROM Evenement WHERE id_organisateur = :id");
+        $requete->bindParam(':id',$id,PDO::PARAM_INT);
+        $requete->execute();
+
+        foreach ($requete as $enr) {
+            $evenement = new Evenement(
+                $enr['id_evenement'],
+                $enr['id_statistique'],
+                $enr['id_organisateur'],
+                $enr['nom_event'],
+                $enr['lieu'],
+                $enr['date_debut'],
+                $enr['date_fin'],
+                $enr['nb_benevoles_max'],
+                $enr['nb_participants_max'],
+                $enr['etat_benevole'],
+                $enr['categorie'],
+                $enr['description'],
+                $enr['etat'],
+                $enr['nb_inscriptions'],
+                $enr['complet_benevole'],
+                $enr['complet_visiteur'],
+                $enr['image_evenement']
             );
             $tableau[] = $evenement;
         }
@@ -93,9 +134,10 @@ class EvenementDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $requete = $connexion->prepare("INSERT INTO evenement 
-        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, nb_benevoles_acceptes, complet_benevole, complet_visiteur) 
-        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :nb_benevoles_acceptes, :complet_benevole, :complet_visiteur)");
+        
+        $requete = $connexion->prepare("INSERT INTO Evenement 
+        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, complet_benevole, complet_visiteur,image_evenement)
+        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :complet_benevole, :complet_visiteur,:image_evenement)");
 
         $requete->bindValue(':id_statistique', $object->getIdStats(), PDO::PARAM_INT);
         $requete->bindValue(':id_organisateur', $object->getIdOrganisateur(), PDO::PARAM_INT);
@@ -110,9 +152,9 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':description', $object->getDescription(), PDO::PARAM_STR);
         $requete->bindValue(':etat', $object->getEtat(), PDO::PARAM_STR);
         $requete->bindValue(':nb_inscriptions', $object->getNbInscriptions(), PDO::PARAM_INT);
-        $requete->bindValue(':nb_benevoles_acceptes', $object->getNbBenevolesAcceptes(), PDO::PARAM_INT);
         $requete->bindValue(':complet_benevole', $object->getCompletBenevole(), PDO::PARAM_BOOL);
         $requete->bindValue(':complet_visiteur', $object->getCompletVisiteur(), PDO::PARAM_BOOL);
+        $requete->bindValue(':image_evenement', $object->getImageEvenement(), PDO::PARAM_STR);
 
         $success = $requete->execute();
         if ($success) {
@@ -129,12 +171,12 @@ class EvenementDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $requete = $connexion->prepare("UPDATE evenement SET 
+        $requete = $connexion->prepare("UPDATE Evenement SET 
         id_statistique = :id_statistique, id_organisateur = :id_organisateur, nom_event = :nom_event, lieu = :lieu,
         date_debut = :date_debut, date_fin = :date_fin, nb_benevoles_max = :nb_benevoles_max, nb_participants_max = :nb_participants_max, 
         etat_benevole = :etat_benevole, categorie = :categorie, description = :description, etat = :etat, 
-        nb_inscriptions = :nb_inscriptions, nb_benevoles_acceptes = :nb_benevoles_acceptes, complet_benevole = :complet_benevole, 
-        complet_visiteur = :complet_visiteur WHERE id_evenement = :id");
+        nb_inscriptions = :nb_inscriptions, complet_benevole = :complet_benevole, 
+        complet_visiteur = :complet_visiteur,image_evenement = :image_evenement WHERE id_evenement = :id");
 
         $requete->bindValue(':id', $object->getId(), PDO::PARAM_INT);
         $requete->bindValue(':id_statistique', $object->getIdStats(), PDO::PARAM_INT);
@@ -150,9 +192,10 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':description', $object->getDescription(), PDO::PARAM_STR);
         $requete->bindValue(':etat', $object->getEtat(), PDO::PARAM_STR);
         $requete->bindValue(':nb_inscriptions', $object->getNbInscriptions(), PDO::PARAM_INT);
-        $requete->bindValue(':nb_benevoles_acceptes', $object->getNbBenevolesAcceptes(), PDO::PARAM_INT);
         $requete->bindValue(':complet_benevole', $object->getCompletBenevole(), PDO::PARAM_BOOL);
         $requete->bindValue(':complet_visiteur', $object->getCompletVisiteur(), PDO::PARAM_BOOL);
+        $requete->bindValue(':image_evenement', $object->getImageEvenement(), PDO::PARAM_STR);
+
 
         return $requete->execute();
     }
@@ -164,7 +207,7 @@ class EvenementDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $requete = $connexion->prepare("DELETE FROM evenement WHERE id_evenement = :id");
+        $requete = $connexion->prepare("DELETE FROM Evenement WHERE id_evenement = :id");
         $id = $object->getId();
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
         return $requete->execute();

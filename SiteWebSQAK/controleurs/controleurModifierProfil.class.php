@@ -15,6 +15,7 @@ class ModifierProfil extends Controleur{
 		// retournez la page d'accueil
 		public function executerAction():string
 		{
+			
 			return "modifier-profil.php";
 		}
 

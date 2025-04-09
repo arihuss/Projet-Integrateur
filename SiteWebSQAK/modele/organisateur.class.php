@@ -11,6 +11,7 @@ class Organisateur implements JsonSerializable
     private string $motDePasse;
     private int $nbEvents;
     private ?string $telephone;
+
     
     //Constructeur
 
@@ -23,7 +24,7 @@ class Organisateur implements JsonSerializable
         ?string $nomOrganisateur,
         string $motDePasse,
         int $nbEvents,
-        //?string $telephone
+        ?string $telephone
     ){
         $this->id = $id;
         $this->prenom = $prenom;
@@ -33,7 +34,7 @@ class Organisateur implements JsonSerializable
         $this->nomOrganisateur = $nomOrganisateur;
         $this->motDePasse = $motDePasse;
         $this->nbEvents = $nbEvents;
-        //$this->telephone=$telephone;
+        $this->telephone=$telephone;
     }
 
      // Getters

@@ -22,6 +22,7 @@
     include_once('modele/DAO/CommentaireDAO.class.php');
 
     $event = EvenementDAO::findById($_GET['id']);
+
            ?></header>
 
  <?php echo "<div class='container'>

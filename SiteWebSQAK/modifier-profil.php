@@ -1,11 +1,17 @@
 <?php
-session_start();
-include_once($_SERVER['DOCUMENT_ROOT'] . "/modele\DAO\OrganisateurDAO.class.php");
+include_once("modele/DAO/OrganisateurDAO.class.php");
 
 $message = '';
 $typeMessage = '';
+/*
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger vers la page de login si non connecté
+    header("Location: index.php?action=accueil");
+    exit;
+}*/
 
-$organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/ 1);
+$organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/5);
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $prenom = $_POST['prenom'] ?? null;

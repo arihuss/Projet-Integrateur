@@ -15,7 +15,8 @@ class VoirEvents extends Controleur{
 		// retournez la page d'accueil
 		public function executerAction():string
 		{
-				
+
+			
 
 			return "page-principale.php";
 		}

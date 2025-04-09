@@ -4,7 +4,9 @@
     // *****************************************************************************************
 	//Le contrôleur frontal reçoit la requête avec un paramètre lui indiquant l’action à accomplir. 	
 	//Inclusion de la manufacture de controleur (qui importe déjà tous les contrôleur)
-	
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();
+	}
 	include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurManufacture.class.php");
 	
 	//Obtenir le bon controleur
@@ -30,6 +32,6 @@ $controleur = ManufactureControleur::creerControleur($action);
    $nomVue = $controleur->executerAction();
 	
 	// inclure la bonne vue
-	include_once($nomVue)
+	include_once($nomVue);
 
 ?>

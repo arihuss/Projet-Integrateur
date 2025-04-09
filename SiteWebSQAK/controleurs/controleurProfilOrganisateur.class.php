@@ -23,24 +23,22 @@ class ProfilOrganisateur extends Controleur{
 		// retournez la page d'accueil
 		public function executerAction():string
 		{
-			if (isset($_GET['id'])){
-				$id = $_GET['id'];
-				$unOrganisateur = OrganisateurDAO::findById($id);
-				if ($unOrganisateur != null){
-					array_push($this->tabOrganisateurs,$unOrganisateur);
-				}
-			}	
+			if (!isset($_SESSION['user_id'])) {
+				// Rediriger vers la page de login si non connecté
+				header("Location: index.php?action=seConnecter");
+				exit;
+			}
 
 			return "profil-organisateur.php";
 		}
 	
 		public function getOrganisateur(): ?Organisateur {
-			return $this->organisateur;
+			return $this->organisateur ?? null;
 		}
 		
 }
 
-?>
+
 
 
 
