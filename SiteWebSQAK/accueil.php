@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <header>
+<header>
         <div class="header">
-            <img src=".\img\logo.svg" alt="">
+            <a href="?action=accueil"><img src=".\img\logo.svg" alt=""></a>
         </div> 
     </header>
 

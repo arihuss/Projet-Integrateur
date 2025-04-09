@@ -11,7 +11,12 @@
 </head>
 
 <body>
-<header><?php include("components/header.php")?></header>
+<header>
+<header>
+        <div class="header">
+            <a href="?action=accueil"><img src=".\img\logo.svg" alt=""></a>
+        </div> 
+    </header>
 
 <div class="container">
 
