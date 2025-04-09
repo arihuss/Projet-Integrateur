@@ -3,14 +3,9 @@ include_once("modele/DAO/OrganisateurDAO.class.php");
 
 $message = '';
 $typeMessage = '';
-/*
-if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de login si non connecté
-    header("Location: index.php?action=accueil");
-    exit;
-}*/
 
-$organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/5);
+
+$organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -18,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nom = $_POST['nom'] ?? null;
     $organisation = $_POST['organisation'] ?? null;
     $courriel = $_POST['courriel'];
+    $bio = $_POST['bio'];
     $tel = $_POST['tel'];
     $mdp = $_POST['mdp'];
     $cmdp = $_POST['Cmdp'];
@@ -32,26 +28,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $organisateur->setNom($nom);
         $organisateur->setNomOrganisateur($organisation);
         $organisateur->setCourriel($courriel);
-        //$organisateur->setTelephone($tel);
+        $organisateur->setBiographie($bio);
+        $organisateur->setTelephone($tel);
 
         if (!empty($mdp)) {
-            $utilisateur->setMotDePasse(password_hash($mdp, PASSWORD_DEFAULT));
+            $organisateur->setMotDePasse(password_hash($mdp, PASSWORD_DEFAULT));
         }
 
+        
         // Gérer la photo quand c corriger
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-            $targetDir = "uploads/";
-            $fileName = basename($_FILES["photo"]["name"]);
-            $targetFilePath = $targetDir . time() . "_" . $fileName;
-
-            if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath)) {
-                $utilisateur->setPhoto($targetFilePath);
-            }
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $fileType = $_FILES['photo']['type'];
+        
+            // Lire le contenu du fichier
+            $photo = file_get_contents($_FILES['photo']['tmp_name']);
+            $organisateur->setImgOrganisateur($photo); 
         }
+
+        
 
         OrganisateurDAO::update($organisateur);
         $message = "Profil mis à jour avec succès.";
         $typeMessage = "confirmation";
+        header("Location: index.php?action=profilOrganisateur");
+			   exit;
     }
 }
 ?>
@@ -105,9 +106,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <label for="courriel">Courriel:</label>
                 <input id="courriel" name="courriel" type="email" value="<?= $organisateur->getCourriel() ?>">
                 <br>
+                <label for="bio">Biographie: </label>
+                <input id="bio" name="bio" type="text" value="<?= $organisateur->getBiographie()?>">
+                <br>
                 <label for="tel">Numéro de téléphone:</label>
                 <input id="tel" name="tel" type="tel" 
-                    pattern="^\d{3}-\d{3}-\d{4}$">
+                    pattern="^\d{3}-\d{3}-\d{4}$" value="<?= $organisateur->getTelephone() ?>">
                 <br>
                 <label for="mdp">Mot de passe:</label>
                 <input id="mdp" name="mdp" type="password" minlength="8">
@@ -116,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input id="Cmdp" name="Cmdp" type="password">
                 <br>
                 <label for="file-photo">Choisir nouvelle photo:</label>
-                <input id="file-photo" type="file" accept="image/png, image/jpeg" name="Choisir">
+                <input id="file-photo" type="file" accept="image/png, image/jpeg" name="photo">
             </div>
 
             <div id="btn-container2">

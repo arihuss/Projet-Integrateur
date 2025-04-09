@@ -28,12 +28,22 @@ $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
     </div>
 
     <div id="profil-content">
-        <img src="img/HemaQuebecLogo.jpg" alt="Logo Organisateur">
+      <?php 
+      if ($organisateur->getImgOrganisateur()){
+        echo"<img src='data:image/jpeg;base64," . base64_encode($organisateur->getImgOrganisateur()) . "' alt='Logo Organisateur'>"; 
+      }else{
+        echo"<img src='\img\default_profil.jpg' alt='Logo Organisateur'>"; 
+      }
+        ?>
+
         <div>
             <h2>
                 <?php
-                    echo htmlspecialchars($organisateur?->getNomOrganisateur() ?? 
-                                          trim($organisateur?->getPrenom() . " " . $organisateur?->getNom()));
+                    if ($organisateur->getNomOrganisateur()){
+                        echo $organisateur->getNomOrganisateur();
+                    }else{
+                        echo $organisateur->getPrenom()." ".$organisateur->getNom();
+                    }
                 ?>
             </h2>
             <p class="content"><?php echo htmlspecialchars($organisateur->getBiographie()); ?></p>

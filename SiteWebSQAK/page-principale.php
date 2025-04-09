@@ -2,12 +2,6 @@
 
 include_once('modele/DAO/EvenementDAO.class.php');
 
-if (!isset($_SESSION['user_id'])) {
-    //Rediriger vers la page d'accueil si non connecté
-   header("Location: index.php?action=accueil");
-   exit;
-}
-
 $events = EvenementDAO::findAllFromId($_SESSION['user_id']);
 ?>
 

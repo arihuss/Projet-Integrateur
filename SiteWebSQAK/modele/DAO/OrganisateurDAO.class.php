@@ -30,6 +30,7 @@ class OrganisateurDAO implements DAO{
             $enr = $requete->fetch();
             $organisateur = new Organisateur(
                 $enr['id_organisateur'],
+                $enr['img_organisateur']??null,
                 $enr['prenom'] ?? null,
                 $enr['nom'] ?? null,
                 $enr['courriel'],
@@ -69,6 +70,7 @@ class OrganisateurDAO implements DAO{
         }
         
         //Stockage de variables intermediaires
+        $imgOrganisateur = $organisateur->getImgOrganisateur();
         $prenom = $organisateur->getPrenom();
         $nom = $organisateur->getNom();
         $courriel = $organisateur->getCourriel();
@@ -81,12 +83,13 @@ class OrganisateurDAO implements DAO{
   
 
         $requete = $connexion->prepare(
-            "INSERT INTO Organisateur (prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events,telephone)
-             VALUES (:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents,:telephone)"
+            "INSERT INTO Organisateur (img_organisateur, prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events,telephone)
+             VALUES (:img_organisateur,:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents,:telephone)"
 
         );
 
         //Liaison des parametres
+        $requete->bindParam(':img_organisateur',$imgOrganisateur,PDO::PARAM_STR);
         $requete->bindParam(':prenom',$prenom,PDO::PARAM_STR);
         $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
         $requete->bindParam(':courriel',$courriel,PDO::PARAM_STR);
@@ -123,6 +126,7 @@ class OrganisateurDAO implements DAO{
 
         //Stockage de variables intermediaires
         $id = $organisateur->getId();
+        $imgOrganisateur = $organisateur->getImgOrganisateur();
         $prenom = $organisateur->getPrenom();
         $nom = $organisateur->getNom();
         $courriel = $organisateur->getCourriel();
@@ -136,14 +140,15 @@ class OrganisateurDAO implements DAO{
 
         $requete = $connexion->prepare(
             "UPDATE Organisateur
-                SET prenom = :prenom, nom = :nom, courriel = :courriel, 
+                SET img_organisateur =:img_organisateur, prenom = :prenom, nom = :nom, courriel = :courriel, 
                     bio = :bio, nom_organisateur = :nomOrganisateur, 
-                    mot_de_passe = :mdp, nb_events = :nbEvents
+                    mot_de_passe = :mdp, nb_events = :nbEvents, telephone=:telephone
                 WHERE id_organisateur = :id"
 
         );
 
         $requete->bindParam(':id', $id, PDO::PARAM_INT);
+        $requete->bindParam(':img_organisateur', $imgOrganisateur, PDO::PARAM_STR);
         $requete->bindParam(':prenom',$prenom,PDO::PARAM_STR);
         $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
         $requete->bindParam(':courriel',$courriel,PDO::PARAM_STR);
@@ -201,6 +206,7 @@ class OrganisateurDAO implements DAO{
         $enr = $requete->fetch();
         return new Organisateur(
             $enr['id_organisateur'],
+            $enr['img_organisateur']??null,
             $enr['prenom'] ?? null,
             $enr['nom'] ?? null,
             $enr['courriel'],

@@ -3,6 +3,7 @@
 class Organisateur implements JsonSerializable
 {
     private ?int $id;
+    private ?string $imgOrganisateur;
     private ?string $prenom;
     private ?string $nom;
     private string $courriel;
@@ -17,6 +18,7 @@ class Organisateur implements JsonSerializable
 
     public function __construct(
         ?int $id,
+        ?string $imgOrganisateur,
         ?string $prenom,
         ?string $nom,
         string $courriel,
@@ -27,6 +29,7 @@ class Organisateur implements JsonSerializable
         ?string $telephone
     ){
         $this->id = $id;
+        $this->imgOrganisateur=$imgOrganisateur;
         $this->prenom = $prenom;
         $this->nom = $nom;
         $this->courriel = $courriel;
@@ -41,6 +44,10 @@ class Organisateur implements JsonSerializable
      public function getId(): int
      {
          return $this->id;
+     }
+
+     public function getImgOrganisateur():?string{
+        return $this->imgOrganisateur;
      }
  
      public function getPrenom(): ?string
@@ -82,6 +89,10 @@ class Organisateur implements JsonSerializable
      public function setId(int $id): void
      {
          $this->id = $id;
+     }
+
+     public function setImgOrganisateur(string $imgOrganisateur):void{
+        $this->imgOrganisateur=$imgOrganisateur;
      }
  
      public function setPrenom(?string $prenom): void

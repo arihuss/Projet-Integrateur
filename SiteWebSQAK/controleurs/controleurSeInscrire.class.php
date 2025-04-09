@@ -49,6 +49,7 @@ class SeInscrire extends Controleur {
             // =================== CRÉATION ORGANISATEUR ===================
             $organisateur = new Organisateur(
                 null,
+                null,
                 $prenom,
                 $nom,
                 $courriel,
