@@ -7,6 +7,7 @@ class Statistique implements JsonSerializable
     private int $nb_benevoles;
     private int $nb_likes;
     private int $nb_vues;
+    private int $nb_applications;
     private int $nb_partages;
     
     private int $nb_inscriptions;
@@ -18,6 +19,7 @@ class Statistique implements JsonSerializable
         int $nb_benevoles,
         int $nb_likes,
         int $nb_vues,
+        int $nb_applications,
         int $nb_partages
     ) {
         $this->id_statistique = $id_statistique;
@@ -25,6 +27,7 @@ class Statistique implements JsonSerializable
         $this->nb_benevoles = $nb_benevoles;
         $this->nb_likes = $nb_likes;
         $this->nb_vues = $nb_vues;
+        $this->nb_applications = $nb_applications;
         $this->nb_partages = $nb_partages;
     }
 
@@ -59,6 +62,10 @@ class Statistique implements JsonSerializable
         return $this->nb_vues;
     }
 
+    public function getNbApplication():int{
+        return $this->nb_applications;
+    }
+
     public function getNbPartages(): int
     {
         return $this->nb_partages;
@@ -88,6 +95,10 @@ class Statistique implements JsonSerializable
     public function setNbVues(int $nb_vues): void
     {
         $this->nb_vues = $nb_vues;
+    }
+
+    public function setNbApplications(int $nb_applications):void{
+        $this->nb_applications = $nb_applications;
     }
 
     public function setNbPartages(int $nb_partages): void

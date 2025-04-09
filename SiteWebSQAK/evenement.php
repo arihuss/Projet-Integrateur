@@ -62,7 +62,7 @@ if ($event){
 
   echo "<div id='info-eve'>";
   echo "<div class='content'>";
-  echo "<p>".$event->getDateDebut(). " au ". $event->getDateFin()."</p>";
+  echo "<p> Date de début: ".$event->getDateDebut(). "<br> Date de fin: ". $event->getDateFin()."<br>Heure de debut: ".$event->getHeureDebut()."<br>Heure de fin: ".$event->getHeureFin()."</p>";
   $nom = urlencode($event->getNom());
 $dateDebut = date("Ymd\THis\Z", strtotime($event->getDateDebut()));
 $dateFin = date("Ymd\THis\Z", strtotime($event->getDateFin()));
@@ -81,11 +81,12 @@ echo "<a href='https://www.google.com/maps/search/?api=1&query=$adresse' target=
 
  echo " </div>";
 echo "</div>";
-
-echo "  <img id='image-eve' src='img/event-arbre.svg'>";
+echo "<div id='img-container'>";
+echo "<img id='image-eve' src='data:image/jpeg;base64," . base64_encode($event->getImageEvenement()) . "' alt='img-evenement'>";
 }else {
   echo "<h1>Evenement non trouvable</h1>";
 }
+echo "</div>";
 
 $selectedRole = $_POST['role'] ?? 'benevole'; // rôle par défaut
 $personnes = ParticipantDAO::findByRoleAndId($selectedRole, $event->getId());
@@ -132,7 +133,7 @@ foreach ($personnes as $personne){
 echo "</div>";
 
 
-$stats = StatistiqueDAO::findById($event->getId());
+$stats = StatistiqueDAO::findById($event->getIdStats());
 
 echo "<h2>Statistiques</h2>
 
@@ -146,7 +147,7 @@ echo "<h2>Statistiques</h2>
 
 <div id='statistiques'>
   <span><h2>".$stats->getNbVisiteurs()."</h2><p>Invités</p></span>
-  <span><h2>47</h2><p>Applications</p></span>
+  <span><h2>".$stats->getNbApplication()."</h2><p>Applications</p></span>
   <span><h2>".$stats->getNbBenevoles()."</h2><p>Bénévoles</p></span>
   <span><h2>".$stats->getNbLikes()."</h2><p>Likes</p></span>
   <span><h2>".$stats->getNbPartages()."</h2><p>Partages</p></span>

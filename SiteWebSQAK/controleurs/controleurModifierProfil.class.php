@@ -21,4 +21,3 @@ class ModifierProfil extends Controleur{
 
 }
 
-?>

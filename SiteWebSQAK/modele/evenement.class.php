@@ -2,33 +2,18 @@
 
 class Evenement implements JsonSerializable
 {
-    private int $id;
-    private int $idStats;
-    private int $idOrganisateur;
-    private string $nom;
-    private string $lieu;
-    private string $dateDebut;
-    private string $dateFin;
-    private ?int $nbBenevolesMax;
-    private ?int $nbParticipantsMax;
-    private ?bool $etatBenevole;
-    private ?string $categorie;
-    private string $description;
-    private string $etat;
-    private int $nbInscriptions;
-    private bool $completBenevole;
-    private bool $completVisiteur;
-    private string $imageEvenement; 
-
-    // Constructeur
+   
     public function __construct(
         ?int $id,
         int $idStats,
         int $idOrganisateur,
+        string $imageEvenement,
         string $nom,
         string $lieu,
         string $dateDebut,
         string $dateFin,
+        string $heureDebut,
+        string $heureFin,
         ?int $nbBenevolesMax,
         ?int $nbParticipantsMax,
         ?bool $etatBenevole,
@@ -37,8 +22,8 @@ class Evenement implements JsonSerializable
         string $etat,
         int $nbInscriptions,
         bool $completBenevole,
-        bool $completVisiteur,
-        ?string $imageEvenement
+        bool $completVisiteur
+        
     ) {
         $this->id = $id;
         $this->idStats = $idStats;
@@ -47,6 +32,8 @@ class Evenement implements JsonSerializable
         $this->lieu = $lieu;
         $this->dateDebut = $dateDebut;
         $this->dateFin = $dateFin;
+        $this->heureDebut= $heureDebut;
+        $this->heureFin=$heureFin;
         $this->nbBenevolesMax = $nbBenevolesMax;
         $this->nbParticipantsMax = $nbParticipantsMax;
         $this->etatBenevole = $etatBenevole;
@@ -60,13 +47,15 @@ class Evenement implements JsonSerializable
     }
 
     // Getters
-    public function getId(): int { return $this->id; }
+    public function getId(): ?int { return $this->id; }
     public function getIdStats():int{return $this->idStats;}
     public function getIdOrganisateur():int{return $this->idOrganisateur;}
     public function getNom(): string { return $this->nom; }
     public function getLieu(): string { return $this->lieu; }
     public function getDateDebut(): string { return $this->dateDebut; }
     public function getDateFin(): string { return $this->dateFin; }
+    public function getHeureDebut():string{return $this->heureDebut;}
+    public function getHeureFin():string{return $this->heureFin;}
     public function getNbBenevolesMax(): ?int { return $this->nbBenevolesMax; }
     public function getNbParticipantsMax(): ?int { return $this->nbParticipantsMax; }
     public function getEtatBenevole(): ?bool { return $this->etatBenevole; }
@@ -86,6 +75,8 @@ class Evenement implements JsonSerializable
     public function setLieu(string $lieu): void { $this->lieu = $lieu; }
     public function setDateDebut(string $dateDebut): void { $this->dateDebut = $dateDebut; }
     public function setDateFin(string $dateFin): void { $this->dateFin = $dateFin; }
+    public function setHeureDebut(string $heureDebut):void{$this->heureDebut = $heureDebut;}
+    public function setHeureFin(string $heureFin):void{$this->heureFin = $heureFin;}
     public function setNbBenevolesMax(?int $nbBenevolesMax): void { $this->nbBenevolesMax = $nbBenevolesMax; }
     public function setNbParticipantsMax(?int $nbParticipantsMax): void { $this->nbParticipantsMax = $nbParticipantsMax; }
     public function setEtatBenevole(bool $etatBenevole): void { $this->etatBenevole = $etatBenevole; }

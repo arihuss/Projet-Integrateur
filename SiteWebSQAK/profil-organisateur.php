@@ -2,13 +2,13 @@
 
 include_once("modele/DAO/OrganisateurDAO.class.php");
 
-//if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de login si non connecté
-   // header("Location: index.php?action=seConnecter");
-   // exit;
-//}
+if (!isset($_SESSION['user_id'])) {
+    //Rediriger vers la page de login si non connecté
+   header("Location: index.php?action=seConnecter");
+   exit;
+}
 
-$organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/1);
+$organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,7 +42,7 @@ $organisateur = OrganisateurDAO::findById(/*$_SESSION['user_id']*/1);
                                           trim($organisateur?->getPrenom() . " " . $organisateur?->getNom()));
                 ?>
             </h2>
-            <p class="content"><?php echo htmlspecialchars($organisateur?->getBiographie()); ?></p>
+            <p class="content"><?php echo htmlspecialchars($organisateur->getBiographie()); ?></p>
         </div>
     </div>
 </div>

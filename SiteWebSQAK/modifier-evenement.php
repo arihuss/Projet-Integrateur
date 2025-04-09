@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <title>SQAK - Modifier événement</title>
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
-    <link rel="stylesheet" type="text/css" href="./css/mod-even.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-</head>
-
-<body>
-    <header><?php include("components/header.php")?></header>
-
-    <?php
+<?php
 include_once('modele/DAO/EvenementDAO.class.php');
 $event = EvenementDAO::findById($_GET['id']); // Ne pas oublier de valider l'entrée
 
@@ -32,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
     $event->setLieu($_POST['lieu']);
     $event->setDateDebut($_POST['date-debut']);
     $event->setDateFin($_POST['date-fin']);
+    $event->setHeureDebut($_POST['heure-debut']);
+    $event->setHeureFin($_POST['heure-fin']);
     $event->setNbBenevolesMax($_POST['benevoles-max']);
     $event->setNbParticipantsMax($_POST['invites-max']);
 
@@ -47,8 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
     header("Location: ?action=voirUnEvent&id=" . $event->getId());
     exit;
 }
-
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SQAK - Modifier événement</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/mod-even.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+
+<body>
+    <header><?php include("components/header.php")?></header>
+
+
     <div class="container">
         <h2>Modifier événement</h2>
 
@@ -92,11 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
             <div class="row">
                 <div>
                     <label for="heure-debut">Heure début:</label>
-                    <input type="time" id="heure-debut" name="heure-debut" required>
+                    <input type="text" id="heure-debut" value="<?= $event->getHeureDebut()?>" name="heure-debut" required>
                 </div>
                 <div>
                     <label for="heure-fin">Heure fin:</label>
-                    <input type="time" id="heure-fin" name="heure-fin" required>
+                    <input type="text" id="heure-fin" value="<?= $event->getHeureFin()?>" name="heure-fin" required>
                 </div>
             </div>
 

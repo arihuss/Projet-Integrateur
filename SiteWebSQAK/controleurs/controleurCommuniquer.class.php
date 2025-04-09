@@ -22,4 +22,3 @@ class Communiquer extends Controleur{
 
 }
 
-?>

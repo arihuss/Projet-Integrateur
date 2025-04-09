@@ -93,9 +93,8 @@ class Ajouter extends Controleur{
 				}
 				
 				// Paramètres par défaut pour un nouvel événement
-				$idStats = null; // Sera généré par la base de données ou initialisé plus tard
 				$etatBenevole = true; // Activer le recrutement de bénévoles par défaut
-				$etat = 'actif'; // L'événement est actif par défaut
+				$etat = 'disponible'; // L'événement est actif par défaut
 				$nbInscriptions = 0;
 				$completBenevole = false;
 				$completVisiteur = false;
@@ -109,13 +108,16 @@ class Ajouter extends Controleur{
 
 				// Création de l'objet Evenement
 				$evenement = new Evenement(
-					9, // ID sera généré par la base de données
+					null, // ID sera généré par la base de données
 					$idStatistique,
-					1,
+					$_SESSION['user_id'],
+					$imageEvenement,
 					$titre,
 					$lieu,
 					$dateTimeDebut,
 					$dateTimeFin,
+					$heureDebut,
+					$heureFin,
 					$nbBenevolesMax,
 					$nbInvitesMax,
 					$etatBenevole,
@@ -124,8 +126,7 @@ class Ajouter extends Controleur{
 					$etat,
 					$nbInscriptions,
 					$completBenevole,
-					$completVisiteur,
-					$imageEvenement
+					$completVisiteur
 					
 				);
 				
@@ -149,4 +150,3 @@ class Ajouter extends Controleur{
 
 }
 
-?>

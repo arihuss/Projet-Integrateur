@@ -75,4 +75,4 @@ class SeInscrire extends Controleur {
         return "sign-up.php";
     }
 }
-?>
+

@@ -41,7 +41,7 @@ $events = EvenementDAO::findAllFromId($_SESSION['user_id']);
             foreach ($events as $event) {
                 echo "<a href='?action=voirUnEvent&id=" . $event->getId() . "' class='event'><div class='event-card'>
                 <div class='event-title'>" . $event->getNom() . "</div>
-                <img src='./img/event-arbre.svg' alt='img-evenement'>
+                <img src='data:image/jpeg;base64," . base64_encode($event->getImageEvenement()) . "' alt='img-evenement'>
                 <div class='event-date'>" . $event->getDateDebut() . "</div>
             </div>
     </a>";

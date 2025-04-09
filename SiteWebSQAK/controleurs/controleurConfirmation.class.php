@@ -22,4 +22,3 @@ class  Confirmation extends Controleur{
 
 }
 
-?>

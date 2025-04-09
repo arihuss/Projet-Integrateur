@@ -22,4 +22,3 @@ class ProfilParticipant extends Controleur{
 
 }
 
-?>

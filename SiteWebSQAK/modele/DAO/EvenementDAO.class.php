@@ -23,10 +23,13 @@ class EvenementDAO implements DAO{
                 $enr['id_evenement'],
                 $enr['id_statistique'],
                 $enr['id_organisateur'],
+                $enr['image_evenement'],
                 $enr['nom_event'],
                 $enr['lieu'],
                 $enr['date_debut'],
                 $enr['date_fin'],
+                $enr['heure_debut'],
+                $enr['heure_fin'],
                 $enr['nb_benevoles_max'],
                 $enr['nb_participants_max'],
                 $enr['etat_benevole'],
@@ -35,8 +38,8 @@ class EvenementDAO implements DAO{
                 $enr['etat'],
                 $enr['nb_inscriptions'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur'],
-                $enr['image_evenement']
+                $enr['complet_visiteur']
+                
             );
         }
 
@@ -62,10 +65,13 @@ class EvenementDAO implements DAO{
                 $enr['id_evenement'],
                 $enr['id_statistique'],
                 $enr['id_organisateur'],
+                $enr['image_evenement'],
                 $enr['nom_event'],
                 $enr['lieu'],
                 $enr['date_debut'],
                 $enr['date_fin'],
+                $enr['heure_debut'],
+                $enr['heure_fin'],
                 $enr['nb_benevoles_max'],
                 $enr['nb_participants_max'],
                 $enr['etat_benevole'],
@@ -74,8 +80,8 @@ class EvenementDAO implements DAO{
                 $enr['etat'],
                 $enr['nb_inscriptions'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur'],
-                $enr['image_evenement']
+                $enr['complet_visiteur']
+                
             );
             $tableau[] = $evenement;
         }
@@ -103,10 +109,13 @@ class EvenementDAO implements DAO{
                 $enr['id_evenement'],
                 $enr['id_statistique'],
                 $enr['id_organisateur'],
+                $enr['image_evenement'],
                 $enr['nom_event'],
                 $enr['lieu'],
                 $enr['date_debut'],
                 $enr['date_fin'],
+                $enr['heure_debut'],
+                $enr['heure_fin'],
                 $enr['nb_benevoles_max'],
                 $enr['nb_participants_max'],
                 $enr['etat_benevole'],
@@ -115,8 +124,8 @@ class EvenementDAO implements DAO{
                 $enr['etat'],
                 $enr['nb_inscriptions'],
                 $enr['complet_benevole'],
-                $enr['complet_visiteur'],
-                $enr['image_evenement']
+                $enr['complet_visiteur']
+                
             );
             $tableau[] = $evenement;
         }
@@ -136,8 +145,8 @@ class EvenementDAO implements DAO{
 
         
         $requete = $connexion->prepare("INSERT INTO Evenement 
-        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, complet_benevole, complet_visiteur,image_evenement)
-        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :complet_benevole, :complet_visiteur,:image_evenement)");
+        (id_statistique, id_organisateur, nom_event, lieu, date_debut, date_fin, heure_debut, heure_fin, nb_benevoles_max, nb_participants_max, etat_benevole, categorie, description, etat, nb_inscriptions, complet_benevole, complet_visiteur,image_evenement)
+        VALUES (:id_statistique, :id_organisateur, :nom_event, :lieu, :date_debut, :date_fin, :heure_debut, :heure_fin, :nb_benevoles_max, :nb_participants_max, :etat_benevole, :categorie, :description, :etat, :nb_inscriptions, :complet_benevole, :complet_visiteur,:image_evenement)");
 
         $requete->bindValue(':id_statistique', $object->getIdStats(), PDO::PARAM_INT);
         $requete->bindValue(':id_organisateur', $object->getIdOrganisateur(), PDO::PARAM_INT);
@@ -145,6 +154,8 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':lieu', $object->getLieu(), PDO::PARAM_STR);
         $requete->bindValue(':date_debut', $object->getDateDebut(), PDO::PARAM_STR);
         $requete->bindValue(':date_fin', $object->getDateFin(), PDO::PARAM_STR);
+        $requete->bindValue(':heure_debut',$object->getHeureDebut(),PDO::PARAM_STR);
+        $requete->bindValue(':heure_fin',$object->getHeureFin(),PDO::PARAM_STR);
         $requete->bindValue(':nb_benevoles_max', $object->getNbBenevolesMax(), PDO::PARAM_INT);
         $requete->bindValue(':nb_participants_max', $object->getNbParticipantsMax(), PDO::PARAM_INT);
         $requete->bindValue(':etat_benevole', $object->getEtatBenevole(), PDO::PARAM_BOOL);
@@ -173,7 +184,7 @@ class EvenementDAO implements DAO{
 
         $requete = $connexion->prepare("UPDATE Evenement SET 
         id_statistique = :id_statistique, id_organisateur = :id_organisateur, nom_event = :nom_event, lieu = :lieu,
-        date_debut = :date_debut, date_fin = :date_fin, nb_benevoles_max = :nb_benevoles_max, nb_participants_max = :nb_participants_max, 
+        date_debut = :date_debut, date_fin = :date_fin, heure_debut = :heure_debut, heure_fin = :heure_fin, nb_benevoles_max = :nb_benevoles_max, nb_participants_max = :nb_participants_max, 
         etat_benevole = :etat_benevole, categorie = :categorie, description = :description, etat = :etat, 
         nb_inscriptions = :nb_inscriptions, complet_benevole = :complet_benevole, 
         complet_visiteur = :complet_visiteur,image_evenement = :image_evenement WHERE id_evenement = :id");
@@ -185,6 +196,8 @@ class EvenementDAO implements DAO{
         $requete->bindValue(':lieu', $object->getLieu(), PDO::PARAM_STR);
         $requete->bindValue(':date_debut', $object->getDateDebut(), PDO::PARAM_STR);
         $requete->bindValue(':date_fin', $object->getDateFin(), PDO::PARAM_STR);
+        $requete->bindValue(':heure_debut',$object->getHeureDebut(),PDO::PARAM_STR);
+        $requete->bindValue(':heure_fin',$object->getHeureFin(),PDO::PARAM_STR);
         $requete->bindValue(':nb_benevoles_max', $object->getNbBenevolesMax(), PDO::PARAM_INT);
         $requete->bindValue(':nb_participants_max', $object->getNbParticipantsMax(), PDO::PARAM_INT);
         $requete->bindValue(':etat_benevole', $object->getEtatBenevole(), PDO::PARAM_BOOL);

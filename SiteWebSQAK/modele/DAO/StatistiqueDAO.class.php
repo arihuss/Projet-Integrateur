@@ -29,6 +29,7 @@ class StatistiqueDAO {
                 $enr['nb_benevoles'],
                 $enr['nb_likes'],
                 $enr['nb_vues'],
+                $enr['nb_applications'],
                 $enr['nb_partages']
             );
         }
@@ -57,6 +58,7 @@ class StatistiqueDAO {
                 $enr['nb_benevoles'],
                 $enr['nb_likes'],
                 $enr['nb_vues'],
+                $enr['nb_applications'],
                 $enr['nb_partages']
             );
         }
@@ -75,14 +77,15 @@ class StatistiqueDAO {
 
         $stmt = $connexion->prepare("
             INSERT INTO Statistique 
-            (nb_visiteurs, nb_benevoles, nb_likes, nb_vues, nb_partages)
-            VALUES (:v, :b, :l, :vu, :p)
+            (nb_visiteurs, nb_benevoles, nb_likes, nb_vues, nb_applications, nb_partages)
+            VALUES (:v, :b, :l, :vu, :ap, :p)
         ");
 
         $stmt->bindValue(':v', $object->getNbVisiteurs(), PDO::PARAM_INT);
         $stmt->bindValue(':b', $object->getNbBenevoles(), PDO::PARAM_INT);
         $stmt->bindValue(':l', $object->getNbLikes(), PDO::PARAM_INT);
         $stmt->bindValue(':vu', $object->getNbVues(), PDO::PARAM_INT);
+        $stmt->bindValue(':ap', $object->getNbApplication(),PDO::PARAM_INT);
         $stmt->bindValue(':p', $object->getNbPartages(), PDO::PARAM_INT);
 
         $success = $stmt->execute();
@@ -107,6 +110,7 @@ class StatistiqueDAO {
                 nb_benevoles = :b,
                 nb_likes = :l,
                 nb_vues = :vu,
+                nb_applications = :ap,
                 nb_partages = :p
             WHERE id_statistique = :id
         ");
@@ -116,6 +120,7 @@ class StatistiqueDAO {
         $stmt->bindValue(':b', $object->getNbBenevoles(), PDO::PARAM_INT);
         $stmt->bindValue(':l', $object->getNbLikes(), PDO::PARAM_INT);
         $stmt->bindValue(':vu', $object->getNbVues(), PDO::PARAM_INT);
+        $stmt->bindValue(':ap', $object->getNbApplication(),PDO::PARAM_INT);
         $stmt->bindValue(':p', $object->getNbPartages(), PDO::PARAM_INT);
 
         $success = $stmt->execute();

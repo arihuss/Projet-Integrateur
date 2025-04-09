@@ -37,4 +37,3 @@ class Modifier extends Controleur{
 
 }
 
-?>

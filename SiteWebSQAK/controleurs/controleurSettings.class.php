@@ -26,4 +26,3 @@ class Settings extends Controleur{
 
 }
 
-?>
