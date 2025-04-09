@@ -84,7 +84,7 @@ class Ajouter extends Controleur{
 				$dateTimeFin = $dateFin;
 				
 				// Récupération de l'ID de l'organisateur à partir de la session
-				$idOrganisateur = $_SESSION['user-id'] ?? null;
+				$idOrganisateur = $_SESSION['user_id'] ?? null;
 				
 				
 				if (!$idOrganisateur) {
