@@ -24,6 +24,12 @@ class Modifier extends Controleur{
 		// retournez la page d'accueil
 		public function executerAction():string
 		{
+			if (!isset($_SESSION['user_id'])) {
+				//Rediriger vers la page d'accueil si non connecté
+			   header("Location: index.php?action=accueil");
+			   exit;
+			}
+			
 			if (isset($_GET['id'])){
 				$id = $_GET['id'];
 				$unEvent = EvenementDAO::findById($id);

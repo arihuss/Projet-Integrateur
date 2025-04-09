@@ -21,6 +21,12 @@ class Ajouter extends Controleur{
 		// retournez la page d'accueil
 		public function executerAction():string
 		{
+			if (!isset($_SESSION['user_id'])) {
+				//Rediriger vers la page d'accueil si non connecté
+			   header("Location: index.php?action=accueil");
+			   exit;
+			}
+			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				// Récupération des données du formulaire
 				$titre = $_POST['titre'] ?? null;
@@ -135,6 +141,8 @@ class Ajouter extends Controleur{
 				
 				if ($success) {
 					// Redirection vers la page des événements avec un message de succès
+				$organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
+				$organisateur->setNbEvents($organisateur->getNbEvents()+1);
 					header("Location: index.php?action=voirEvents&message=Événement créé avec succès !");
 					exit;
 				} else {

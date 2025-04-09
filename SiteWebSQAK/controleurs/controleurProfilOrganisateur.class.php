@@ -25,7 +25,7 @@ class ProfilOrganisateur extends Controleur{
 		{
 			if (!isset($_SESSION['user_id'])) {
 				// Rediriger vers la page de login si non connecté
-				header("Location: index.php?action=seConnecter");
+				header("Location: index.php?action=accueil");
 				exit;
 			}
 
