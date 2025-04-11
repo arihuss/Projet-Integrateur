@@ -50,6 +50,8 @@ class ManufactureControleur{
             $controleur = new ProfilParticipant();
         }else if ($action == "seDeconnecter"){
             $controleur = new SeDeconnecter();
+        }else if ($action =="supprimerCompte") {
+            $controleur = new SupprimerCompte();
         }else {
             $controleur = new Accueil();
         }
