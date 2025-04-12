@@ -33,7 +33,7 @@
                 " . $user->getCourriel() . "<br><br>
                 Numéro de téléphone:<br>
                 " . $user->getNumTel() . "
-                <a class='btn-jaune' href='contacter'> Contacter </a>
+                <a class='btn-jaune' href='mailto:" . $user->getCourriel() . "'> Contacter </a>
             </p>
         </div>";
 
