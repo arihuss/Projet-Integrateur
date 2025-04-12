@@ -26,9 +26,15 @@
         echo "
         <div id='profil-appliquant'>
             <a href='?action=voirUnEvent&id=" . $event->getId() . "'><i class='fa-solid fa-circle-left'></i></a>
-            <h2>Profil de l'applicant </h2>
-            <img src='.\img\profilapplicant.svg' alt='img-profil'>
-            <h3 id='nom-applicant'>" . $user->getPrenom() . " " . $user->getNom() . "</h3>
+            <h2>Profil de l'applicant </h2>";
+    
+        if ($user->getImgUtilisateur()){
+            echo"<img src='data:image/jpeg;base64," . base64_encode($user->getImgUtilisateur()) . "' alt='Logo Utulisateur'>"; 
+        }else{
+             echo"<img src='\img\default_profil.jpg' alt='Logo Utilisateur'>"; 
+        }
+        
+           echo" <h3 id='nom-applicant'>" . $user->getPrenom() . " " . $user->getNom() . "</h3>
             <p class='content'>Courriel:<br>
                 " . $user->getCourriel() . "<br><br>
                 Numéro de téléphone:<br>
