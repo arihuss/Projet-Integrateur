@@ -28,8 +28,7 @@ class ParticipantDAO{
             $enr['id_utilisateur'],
             $enr['id_evenement'],
             $enr['role'],
-            $enr['date_inscription'],
-            $enr['date_annulation']
+            $enr['date_inscription']
         );
 
         $stmt->closeCursor();
@@ -59,8 +58,7 @@ class ParticipantDAO{
                 $enr['id_utilisateur'],
                 $enr['id_evenement'],
                 $enr['role'],
-                $enr['date_inscription'],
-                $enr['date_annulation']
+                $enr['date_inscription']
             );
         }
 
