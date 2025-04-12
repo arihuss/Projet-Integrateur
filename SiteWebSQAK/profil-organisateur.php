@@ -19,38 +19,40 @@ $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
 
 
 <body>
-    <header><?php include("components/header.php")?></header>
+    <header><?php include("components/header.php") ?></header>
 
-<div class="container">
-    <div id="entete-profil">
-        <h1>Mon Profil</h1>
-        <a href="?action=modifierProfil" class="btn-rose">Modifier</a>
-    </div>
+    <div class="container">
+        <div id="entete-profil">
+            <h1>Mon Profil</h1>
+            <a href="?action=modifierProfil" class="btn-rose">Modifier</a>
+        </div>
 
-    <div id="profil-content">
-      <?php 
-      if ($organisateur->getImgOrganisateur()){
-        echo"<img src='data:image/jpeg;base64," . base64_encode($organisateur->getImgOrganisateur()) . "' alt='Logo Organisateur'>"; 
-      }else{
-        echo"<img src='\img\default_profil.jpg' alt='Logo Organisateur'>"; 
-      }
-        ?>
-
-        <div>
-            <h2>
+        <div id="profil-content">
+            <div id="image-profil">
                 <?php
-                    if ($organisateur->getNomOrganisateur()){
-                        echo $organisateur->getNomOrganisateur();
-                       
-                    }else{
-                        echo $organisateur->getPrenom()." ".$organisateur->getNom();
-                    }
+                if ($organisateur->getImgOrganisateur()) {
+                    echo "<img src='data:image/jpeg;base64," . base64_encode($organisateur->getImgOrganisateur()) . "' alt='Logo Organisateur'>";
+                } else {
+                    echo "<img src='\img\default_profil.jpg' alt='Logo Organisateur'>";
+                }
                 ?>
-            </h2>
-            <p class="content"><?php echo htmlspecialchars($organisateur->getBiographie()); ?></p>
+            </div>
+
+            <div>
+                <h2>
+                    <?php
+                    if ($organisateur->getNomOrganisateur()) {
+                        echo $organisateur->getNomOrganisateur();
+
+                    } else {
+                        echo $organisateur->getPrenom() . " " . $organisateur->getNom();
+                    }
+                    ?>
+                </h2>
+                <p class="content"><?php echo htmlspecialchars($organisateur->getBiographie()); ?></p>
+            </div>
         </div>
     </div>
-</div>
 
     <footer> <?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>
