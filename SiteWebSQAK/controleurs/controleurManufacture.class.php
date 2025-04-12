@@ -15,7 +15,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurVoirEvents.clas
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurVoirUnEvent.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurPolitiques.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurSeDeconnecter.class.php");
-
+include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurSupprimerEvent.class.php");
 class ManufactureControleur{
     public static function creerControleur($action): Controleur{
         $controleur = null;
@@ -52,6 +52,8 @@ class ManufactureControleur{
             $controleur = new SeDeconnecter();
         }else if ($action =="supprimerCompte") {
             $controleur = new SupprimerCompte();
+        }else if ($action =="supprimerEvent") {
+            $controleur = new SupprimerEvent();
         }else {
             $controleur = new Accueil();
         }
