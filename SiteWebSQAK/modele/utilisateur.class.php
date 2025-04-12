@@ -116,7 +116,6 @@ class Utilisateur implements JsonSerializable {
     {
         return [
             'id_utilisateur' => $this->id_utilisateur,
-            'img_utilisateur' => $this->imgUtilisateur,
             'prenom' => $this->prenom,
             'nom' => $this->nom,
             'courriel' => $this->courriel,
