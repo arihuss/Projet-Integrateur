@@ -41,6 +41,7 @@ $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
                 <?php
                     if ($organisateur->getNomOrganisateur()){
                         echo $organisateur->getNomOrganisateur();
+                       
                     }else{
                         echo $organisateur->getPrenom()." ".$organisateur->getNom();
                     }

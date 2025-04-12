@@ -3,6 +3,7 @@ include_once("modele/DAO/OrganisateurDAO.class.php");
 
 $message = '';
 $typeMessage = '';
+$maxPhotoSize = 2 * 1024 * 1024; // 2 MiB
 
 
 $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
@@ -35,24 +36,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $organisateur->setMotDePasse(password_hash($mdp, PASSWORD_DEFAULT));
         }
 
-        
-        // Gérer la photo quand c corriger
+
+        $photoValide = true;
+
         if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
             $fileType = $_FILES['photo']['type'];
-        
-            // Lire le contenu du fichier
-            $photo = file_get_contents($_FILES['photo']['tmp_name']);
-            $organisateur->setImgOrganisateur($photo); 
+            $fileSize = $_FILES['photo']['size'];
+
+            if (!in_array($fileType, $allowedTypes)) {
+                $message = "Type de fichier non supporté. Veuillez utiliser une image JPEG, PNG ou GIF.";
+                $typeMessage = "erreur";
+                $photoValide = false;
+            } elseif ($fileSize > $maxPhotoSize) {
+                $message = "La photo dépasse la taille maximale autorisée de 2 Mo.";
+                $typeMessage = "erreur";
+                $photoValide = false;
+            } else {
+                // Lire le contenu du fichier
+                $photo = file_get_contents($_FILES['photo']['tmp_name']);
+                $organisateur->setImgOrganisateur($photo);
+            }
         }
 
-        
+        if ($photoValide) {
+            OrganisateurDAO::update($organisateur);
+            $message = "Profil mis à jour avec succès.";
+            $typeMessage = "confirmation";
+            header("Location: index.php?action=profilOrganisateur");
+            exit;
+        }
 
-        OrganisateurDAO::update($organisateur);
-        $message = "Profil mis à jour avec succès.";
-        $typeMessage = "confirmation";
-        header("Location: index.php?action=profilOrganisateur");
-			   exit;
     }
 }
 ?>
@@ -107,11 +121,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input id="courriel" name="courriel" type="email" value="<?= $organisateur->getCourriel() ?>">
                 <br>
                 <label for="bio">Biographie: </label>
-                <input id="bio" name="bio" type="text" value="<?= $organisateur->getBiographie()?>">
+                <input id="bio" name="bio" type="text" value="<?= $organisateur->getBiographie() ?>">
                 <br>
                 <label for="tel">Numéro de téléphone:</label>
-                <input id="tel" name="tel" type="tel" 
-                    pattern="^\d{3}-\d{3}-\d{4}$" value="<?= $organisateur->getTelephone() ?>">
+                <input id="tel" name="tel" type="tel" pattern="^\d{3}-\d{3}-\d{4}$"
+                    value="<?= $organisateur->getTelephone() ?>">
                 <br>
                 <label for="mdp">Mot de passe:</label>
                 <input id="mdp" name="mdp" type="password" minlength="8">
@@ -124,7 +138,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
             <div id="btn-container2">
-                <button type="button" class="btn-rose" onclick="window.location.href='?action=profilOrganisateur'">Revenir</button>
+                <button type="button" class="btn-rose"
+                    onclick="window.location.href='?action=profilOrganisateur'">Revenir</button>
                 <button class="btn-jaune" type="submit">Sauvegarder</button>
             </div>
         </form>
@@ -132,6 +147,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <footer><?php include("components/footer.php") ?></footer>
     <script src="js/general.js"></script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const fileInput = document.getElementById('file-photo');
+            const maxSize = 2 * 1024 * 1024; // 2 Mo
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > maxSize) {
+                    e.preventDefault();
+                    alert('La photo dépasse la taille maximale autorisée de 2 Mo.');
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>
