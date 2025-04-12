@@ -1,4 +1,6 @@
+
 <?php
+
 include_once(__DIR__ . "/../participant.class.php");
 include_once(__DIR__ . "/DAO.interface.php");
 
@@ -104,6 +106,35 @@ class ParticipantDAO{
         //return false;
     }
 
-   
+        /**
+     * Summary of getInscriptionByUserId (retourne toutes les inscriptions d'un utilisateur)
+     * @param int $idUtilisateur
+     * @return array 
+     */
+    static public function getInscriptionByUserId(int $idUtilisateur): array {
+        $connexion = ConnexionBD::getInstance();
+
+        $sql = "SELECT * FROM Inscription WHERE id_utilisateur = :idUtilisateur";
+        $stmt = $connexion->prepare($sql);
+        $stmt->bindParam(':idUtilisateur', $idUtilisateur, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $inscriptions = [];
+        while ($enr = $stmt->fetch()) {
+            $inscriptions[] = new Participant(
+                $enr['id_inscription'],
+                $enr['id_utilisateur'],
+                $enr['id_evenement'],
+                $enr['role'],
+                $enr['date_inscription']
+            );
+        }
+
+        $stmt->closeCursor();
+        ConnexionBD::close();
+
+        return $inscriptions;
+    }
+    
 }
 ?>

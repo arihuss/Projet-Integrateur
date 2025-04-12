@@ -15,7 +15,7 @@ class Participant implements JsonSerializable
         int $id_utilisateur,
         int $id_evenement,
         string $role,
-        string $date_inscription,
+        string $date_inscription
         
     ) {
         $this->id_inscription = $id_inscription;
