@@ -2,6 +2,7 @@
 
 class Utilisateur implements JsonSerializable {
     private int $id_utilisateur;
+    private ?string $imgUtilisateur;
     private string $prenom;
     private string $nom;
     private string $courriel;
@@ -12,6 +13,7 @@ class Utilisateur implements JsonSerializable {
     // Constructeur
     public function __construct(
         int $id_utilisateur,
+        ?string $imgUtilisateur,
         string $prenom,
         string $nom,
         string $courriel,
@@ -20,6 +22,7 @@ class Utilisateur implements JsonSerializable {
         string $mot_de_passe
     ) {
         $this->id_utilisateur = $id_utilisateur;
+        $this->imgUtilisateur= $imgUtilisateur;
         $this->prenom = $prenom;
         $this->nom = $nom;
         $this->courriel = $courriel;
@@ -33,6 +36,10 @@ class Utilisateur implements JsonSerializable {
     {
         return $this->id_utilisateur;
     }
+
+    public function getImgUtilisateur(): ?string{
+        return $this->imgUtilisateur;
+     }
     
     public function getPrenom(): string
     {
@@ -69,6 +76,10 @@ class Utilisateur implements JsonSerializable {
     {
         $this->id_utilisateur = $id_utilisateur;
     }
+
+    public function setImgUtilisateur(string $imgUtilisateur):void{
+        $this->imgUtilisateur=$imgUtilisateur;
+     }
     
     public function setPrenom(string $prenom): void
     {
@@ -105,6 +116,7 @@ class Utilisateur implements JsonSerializable {
     {
         return [
             'id_utilisateur' => $this->id_utilisateur,
+            'img_utilisateur' => $this->imgUtilisateur,
             'prenom' => $this->prenom,
             'nom' => $this->nom,
             'courriel' => $this->courriel,

@@ -29,6 +29,7 @@ class UtilisateurDAO{
             $enr = $requete->fetch();
             $utilisateur = new Utilisateur(
                 $enr['id_utilisateur'],
+                $enr['img_utilisateur']??null,
                 $enr['prenom'],
                 $enr['nom'],
                 $enr['courriel'],
