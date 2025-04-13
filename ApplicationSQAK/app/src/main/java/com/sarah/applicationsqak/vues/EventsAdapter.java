@@ -55,12 +55,12 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             ImageView imgEvent = view.findViewById(R.id.imgAffEvents);
             TextView txtDate = view.findViewById(R.id.tvDateEvents);
             TextView txtEtat = view.findViewById(R.id.tvEtatEvents);
-
+/*
             // Compléter l'affichage de la pizza
             txtOrganisateur.setText(event.getOrganisateur());
             txtNom.setText(event.getNom());
             txtDate.setText(event.getDate());
-
+*/
             // Affichage des images selon l'url
             Glide.with(contexte)
                     .load(event.getImageUrl())

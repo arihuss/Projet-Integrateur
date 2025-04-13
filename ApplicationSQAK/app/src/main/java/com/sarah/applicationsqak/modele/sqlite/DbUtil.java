@@ -49,8 +49,8 @@ public class DbUtil extends SQLiteOpenHelper {
                         "%s TEXT UNIQUE, " +
                         "%s TEXT, " +
                         "%s TEXT, " +
-                        "%s TEXT, " +
-                        "%s INTEGER DEFAULT 0 CHECK (length(%s) >= 8), " +
+                        "%s TEXT CHECK (length(%s) >= 8), " +
+                        "%s INTEGER DEFAULT 0, " +
                         "%s TEXT)",
                 BaseContrat.OrganisateurTable.TABLE_NAME,
                 BaseContrat.OrganisateurTable.ID_ORGANISATEUR,
@@ -59,8 +59,7 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.OrganisateurTable.COURRIEL,
                 BaseContrat.OrganisateurTable.BIO,
                 BaseContrat.OrganisateurTable.NOM_ORGANISATEUR,
-                BaseContrat.OrganisateurTable.MOT_DE_PASSE,
-                BaseContrat.OrganisateurTable.MOT_DE_PASSE,
+                BaseContrat.OrganisateurTable.MOT_DE_PASSE, BaseContrat.OrganisateurTable.MOT_DE_PASSE,
                 BaseContrat.OrganisateurTable.NB_EVENTS,
                 BaseContrat.OrganisateurTable.IMAGE_URL
         );
