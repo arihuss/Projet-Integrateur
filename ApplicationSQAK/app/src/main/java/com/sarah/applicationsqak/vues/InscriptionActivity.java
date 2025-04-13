@@ -1,24 +1,19 @@
 package com.sarah.applicationsqak.vues;
 
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.view.View;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sarah.applicationsqak.R;
 
 import java.util.Random;
 
 public class InscriptionActivity extends AppCompatActivity {
-
-    //TODO reparer les intents entre confirmation et inscription pour le bouton retour
-    //TODO verif si le code a 5 hiffres marche bien
 
     private EditText edtPrenom, edtNom, edtCourriel, edtTel, edtMotDePasse, edtConfMDP;
     private Button btnSignUp;
@@ -29,7 +24,7 @@ public class InscriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
 
-        // Elements du layout
+        // Liens avec le layout
         edtPrenom = findViewById(R.id.edtPrenom);
         edtNom = findViewById(R.id.edtNom);
         edtCourriel = findViewById(R.id.edtCourriel);
@@ -39,61 +34,50 @@ public class InscriptionActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.btnSignUp);
         btnRetour = findViewById(R.id.imageView4);
 
-        // Bouton retour
-        btnRetour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(InscriptionActivity.this, AccueilActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // recup des donnees de la page de confirmation si btn retour
+        // Reprise des données si retour depuis ConfirmationActivity
         Intent intent = getIntent();
         if (intent != null) {
-            if (intent.hasExtra("PRENOM")) {
-                edtPrenom.setText(intent.getStringExtra("PRENOM"));
-            }
-            if (intent.hasExtra("NOM")) {
-                edtNom.setText(intent.getStringExtra("NOM"));
-            }
-            if (intent.hasExtra("COURRIEL")) {
-                edtCourriel.setText(intent.getStringExtra("COURRIEL"));
-            }
-            if (intent.hasExtra("TEL")) {
-                edtTel.setText(intent.getStringExtra("TEL"));
-            }
+            if (intent.hasExtra("PRENOM")) edtPrenom.setText(intent.getStringExtra("PRENOM"));
+            if (intent.hasExtra("NOM")) edtNom.setText(intent.getStringExtra("NOM"));
+            if (intent.hasExtra("COURRIEL")) edtCourriel.setText(intent.getStringExtra("COURRIEL"));
+            if (intent.hasExtra("TEL")) edtTel.setText(intent.getStringExtra("TEL"));
             if (intent.hasExtra("MOT_DE_PASSE")) {
-                edtMotDePasse.setText(intent.getStringExtra("MOT_DE_PASSE"));
-                edtConfMDP.setText(intent.getStringExtra("MOT_DE_PASSE"));
+                String mdp = intent.getStringExtra("MOT_DE_PASSE");
+                edtMotDePasse.setText(mdp);
+                edtConfMDP.setText(mdp);
             }
         }
 
-        // Bouton SignUp
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!validateFields()) return;
+        // Retour à l'accueil
+        btnRetour.setOnClickListener(v -> {
+            startActivity(new Intent(this, AccueilActivity.class));
+            finish();
+        });
 
-                // Générer un code de confirmation à 5 chiffres
-                int codeConfirmation = new Random().nextInt(90000) + 10000;
+        // Inscription - aller à ConfirmationActivity
+        btnSignUp.setOnClickListener(v -> {
+            if (!validateFields()) return;
 
-                // TODO: Envoyer code par mail
-                Toast.makeText(InscriptionActivity.this, "Code envoyé par mail: " + codeConfirmation, Toast.LENGTH_SHORT).show();
+            // Générer un code à 5 chiffres
+            int codeConfirmation = new Random().nextInt(90000) + 10000;
 
-                // Rediriger vers Confirmation
-                Intent intent = new Intent(InscriptionActivity.this, ConfirmationActivity.class);
-                intent.putExtra("email", edtCourriel.getText().toString().trim());
-                intent.putExtra("code", codeConfirmation);
-                startActivity(intent);
-                finish();
-            }
+            // Toast temporaire (à remplacer par envoi mail)
+            Toast.makeText(this, "Code envoyé par mail : " + codeConfirmation, Toast.LENGTH_SHORT).show();
+
+            // Intent vers confirmation avec toutes les infos
+            Intent intentConf = new Intent(this, ConfirmationActivity.class);
+            intentConf.putExtra("PRENOM", edtPrenom.getText().toString().trim());
+            intentConf.putExtra("NOM", edtNom.getText().toString().trim());
+            intentConf.putExtra("COURRIEL", edtCourriel.getText().toString().trim());
+            intentConf.putExtra("TEL", edtTel.getText().toString().trim());
+            intentConf.putExtra("MOT_DE_PASSE", edtMotDePasse.getText().toString().trim());
+            intentConf.putExtra("CODE_CONFIRMATION", String.valueOf(codeConfirmation));
+
+            startActivity(intentConf); // pas de finish() pour permettre le retour
         });
     }
 
-
-    // Vérification des champs
+    // Validation des champs
     private boolean validateFields() {
         boolean valid = true;
 
