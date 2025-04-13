@@ -31,8 +31,6 @@ public class BaseContrat {
         public static final String MOT_DE_PASSE = "MOT_DE_PASSE";
         public static final String NB_EVENTS = "NB_EVENTS";
         public static final String IMAGE_URL = "IMAGE_URL";
-        public static final String TELEPHONE = "TELEPHONE"; // AJOUT
-
     }
 
 
@@ -43,7 +41,6 @@ public class BaseContrat {
         public static final String NB_BENEVOLES = "NB_BENEVOLES";
         public static final String NB_LIKES = "NB_LIKES";
         public static final String NB_VUES = "NB_VUES";
-        public static final String NB_APPLICATIONS = "NB_APPLICATIONS"; // AJOUT
         public static final String NB_PARTAGES = "NB_PARTAGES";
 
     }
@@ -57,8 +54,6 @@ public class BaseContrat {
         public static final String LIEU = "LIEU";
         public static final String DATE_DEBUT = "DATE_DEBUT";
         public static final String DATE_FIN = "DATE_FIN";
-        public static final String HEURE_DEBUT = "HEURE_DEBUT"; // AJOUT
-        public static final String HEURE_FIN = "HEURE_FIN";     // AJOUT
         public static final String NB_BENEVOLES_MAX = "NB_BENEVOLES_MAX";
         public static final String NB_PARTICIPANTS_MAX = "NB_PARTICIPANTS_MAX";
         public static final String ETAT_BENEVOLE = "ETAT_BENEVOLE";
@@ -79,7 +74,7 @@ public class BaseContrat {
         public static final String ID_INSCRIPTION = BaseColumns._ID;
         public static final String ID_UTILISATEUR = "ID_UTILISATEUR";
         public static final String ID_EVENEMENT = "ID_EVENEMENT";
-        public static final String ROLE = "ROLE"; // ENUM('benevole', 'visiteur', 'appliquant')
+        public static final String ROLE = "ROLE";
         public static final String DATE_INSCRIPTION = "DATE_INSCRIPTION";
         public static final String DATE_ANNULATION = "DATE_ANNULATION";
 
