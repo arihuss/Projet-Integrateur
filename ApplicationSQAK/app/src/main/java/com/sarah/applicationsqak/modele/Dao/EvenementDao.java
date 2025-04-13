@@ -1,9 +1,12 @@
 package com.sarah.applicationsqak.modele.Dao;
 
+import static java.security.AccessController.getContext;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.sarah.applicationsqak.modele.Categorie;
 import com.sarah.applicationsqak.modele.Evenement;
@@ -69,6 +72,27 @@ public class EvenementDao {
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put()
+        values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, event.getId_organisateur());
+
+        values.put(BaseContrat.EvenementTable.ID_STATISTIQUE, event.getId_statistique());
+        values.put(BaseContrat.EvenementTable.NOM_EVENT, event.getNomEvent());
+        values.put(BaseContrat.EvenementTable.LIEU, event.getLieu());
+        values.put(BaseContrat.EvenementTable.DATE_DEBUT, event.getDateDebut());
+        values.put(BaseContrat.EvenementTable.DATE_FIN, event.getDateFin());
+        values.put(BaseContrat.EvenementTable.NB_BENEVOLES_MAX, event.getNbBenevolesMax());
+        values.put(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX, event.getNbParticipantsMax());
+        values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, event.getEtatBenevole());
+        values.put(BaseContrat.EvenementTable.CATEGORIE, event.getCategorie().name());
+        values.put(BaseContrat.EvenementTable.DESCRIPTION, event.getDescription());
+        values.put(BaseContrat.EvenementTable.ETAT, event.getEtat());
+        values.put(BaseContrat.EvenementTable.NB_INSCRIPTIONS, event.getNbInscriptions());
+        values.put(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES, event.getNbBenevolesAcceptes());
+        values.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, event.getCompletBenevole());
+        values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, event.getCompletVisiteur());
+        values.put(BaseContrat.EvenementTable.IMAGE_URL, event.getImageUrl());
+
+        long newRowId = db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
+
+        return newRowId;
     }
 }

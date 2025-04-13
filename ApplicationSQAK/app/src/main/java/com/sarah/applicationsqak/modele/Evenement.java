@@ -117,7 +117,7 @@ public class Evenement implements Serializable {
         this.nbParticipantsMax = nbParticipantsMax;
     }
 
-    public int isEtatBenevole() {
+    public int getEtatBenevole() {
         return etatBenevole;
     }
 
