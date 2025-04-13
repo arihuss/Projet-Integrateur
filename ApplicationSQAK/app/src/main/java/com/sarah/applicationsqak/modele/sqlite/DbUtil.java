@@ -21,7 +21,7 @@ public class DbUtil extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Création des tables
-        String requeteCreationUtilisateur = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text unique, %s text unique, %s text, %s text CHECK (length (%s)>= 8))",
+        String requeteCreationUtilisateur = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text unique, %s text unique, %s text, %s text CHECK (length (%s)>= 8), %s text)",
             BaseContrat.UtilisateurTable.TABLE_NAME,
             BaseContrat.UtilisateurTable.ID_UTILISATEUR,
             BaseContrat.UtilisateurTable.PRENOM,
@@ -30,10 +30,11 @@ public class DbUtil extends SQLiteOpenHelper {
             BaseContrat.UtilisateurTable.NUM_TEL,
             BaseContrat.UtilisateurTable.BIO,
             BaseContrat.UtilisateurTable.MOT_DE_PASSE,
-            BaseContrat.UtilisateurTable.MOT_DE_PASSE);
+            BaseContrat.UtilisateurTable.MOT_DE_PASSE,
+            BaseContrat.UtilisateurTable.IMAGE_URL);
         db.execSQL(requeteCreationUtilisateur);
 
-        String requeteCreationOrganisateur = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text unique, %s text, %s text, %s text, %s integer default 0 CHECK (length (%s)>= 8))",
+        String requeteCreationOrganisateur = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s text unique, %s text, %s text, %s text, %s integer default 0 CHECK (length (%s)>= 8), %s text)",
                 BaseContrat.OrganisateurTable.TABLE_NAME,
                 BaseContrat.OrganisateurTable.ID_ORGANISATEUR,
                 BaseContrat.OrganisateurTable.PRENOM,
@@ -43,7 +44,8 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.OrganisateurTable.NOM_ORGANISATEUR,
                 BaseContrat.OrganisateurTable.MOT_DE_PASSE,
                 BaseContrat.OrganisateurTable.NB_EVENTS,
-                BaseContrat.OrganisateurTable.MOT_DE_PASSE);
+                BaseContrat.OrganisateurTable.MOT_DE_PASSE,
+                BaseContrat.OrganisateurTable.IMAGE_URL);
         db.execSQL(requeteCreationOrganisateur);
 
         String requeteCreationStatistique = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer default 0, %s integer default 0, %s integer default 0, %s integer default 0, %s integer default 0)",
@@ -58,7 +60,7 @@ public class DbUtil extends SQLiteOpenHelper {
 
         String requeteCreationEvenement = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer , %s integer , %s text, %s text, %s text, %s text, %s integer default 0, " +
                         "%s integer default 0, %s integer check (%s IN (0,1)), %s text, %s text, %s text CHECK (%s IN ('disponible', 'termine')), %s integer default 0, %s integer default 0, %s integer check (%s IN (0,1)), " +
-                        "%s integer check (%s IN (0,1)), FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
+                        "%s integer check (%s IN (0,1)), %s text, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
                 BaseContrat.EvenementTable.TABLE_NAME,
                 BaseContrat.EvenementTable.ID_EVENEMENT,
                 BaseContrat.EvenementTable.ID_STATISTIQUE,
@@ -77,6 +79,7 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES,
                 BaseContrat.EvenementTable.COMPLET_BENEVOLE, BaseContrat.EvenementTable.COMPLET_BENEVOLE,
                 BaseContrat.EvenementTable.COMPLET_VISITEUR, BaseContrat.EvenementTable.COMPLET_VISITEUR,
+                BaseContrat.EvenementTable.IMAGE_URL,
                 BaseContrat.EvenementTable.ID_ORGANISATEUR, BaseContrat.OrganisateurTable.TABLE_NAME, BaseContrat.OrganisateurTable.ID_ORGANISATEUR,
                 BaseContrat.EvenementTable.ID_STATISTIQUE, BaseContrat.StatistiqueTable.TABLE_NAME, BaseContrat.StatistiqueTable.ID_STATISTIQUE);
         db.execSQL(requeteCreationEvenement);

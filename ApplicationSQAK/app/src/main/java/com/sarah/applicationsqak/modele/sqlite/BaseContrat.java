@@ -17,6 +17,7 @@ public class BaseContrat {
         public static final String NUM_TEL = "NUM_TEL";
         public static final String BIO = "BIO";
         public static final String MOT_DE_PASSE = "MOT_DE_PASSE";
+        public static final String IMAGE_URL = "IMAGE_URL";
     }
 
     public static final class OrganisateurTable {
@@ -29,6 +30,7 @@ public class BaseContrat {
         public static final String BIO = "BIO";
         public static final String MOT_DE_PASSE = "MOT_DE_PASSE";
         public static final String NB_EVENTS = "NB_EVENTS";
+        public static final String IMAGE_URL = "IMAGE_URL";
     }
 
 
@@ -62,7 +64,7 @@ public class BaseContrat {
         public static final String NB_BENEVOLES_ACCEPTES = "NB_BENEVOLES_ACCEPTES";
         public static final String COMPLET_BENEVOLE = "COMPLET_BENEVOLE";
         public static final String COMPLET_VISITEUR = "COMPLET_VISITEUR";
-
+        public static final String IMAGE_URL = "IMAGE_URL";
 
     }
 
@@ -99,7 +101,4 @@ public class BaseContrat {
 
 
     }
-
-
-}
 }

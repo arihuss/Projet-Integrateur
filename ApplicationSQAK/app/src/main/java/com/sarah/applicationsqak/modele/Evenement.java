@@ -21,7 +21,7 @@ public class Evenement implements Serializable {
     private int completBenevole;
     private int completVisiteur;
     private String imageUrl;  // permet d'utiliser une image de l'internet
-   
+
 
 
     // Constructeur
