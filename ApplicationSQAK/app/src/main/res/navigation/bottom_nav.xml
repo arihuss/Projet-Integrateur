@@ -6,22 +6,22 @@
     app:startDestination="@id/eventsFragment">
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.sarah.applicationsqak.EventsFragment"
+        android:name="com.sarah.applicationsqak.vues.EventsFragment"
         android:label="fragment_events"
         tools:layout="@layout/fragment_events" />
     <fragment
         android:id="@+id/inscriptionsFragment"
-        android:name="com.sarah.applicationsqak.InscriptionsFragment"
+        android:name="com.sarah.applicationsqak.vues.InscriptionsFragment"
         android:label="fragment_inscriptions"
         tools:layout="@layout/fragment_inscriptions" />
     <fragment
         android:id="@+id/profilUserFragment"
-        android:name="com.sarah.applicationsqak.ProfilUserFragment"
+        android:name="com.sarah.applicationsqak.vues.ProfilUserFragment"
         android:label="fragment_profil_user"
         tools:layout="@layout/fragment_profil_user" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.sarah.applicationsqak.SettingsFragment"
+        android:name="com.sarah.applicationsqak.vues.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

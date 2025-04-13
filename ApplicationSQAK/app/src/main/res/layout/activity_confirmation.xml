@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
     android:background="@color/primary"
-    tools:context=".ConfirmationActivity">
+    tools:context=".vues.ConfirmationActivity">
 
     <ImageView
         android:id="@+id/imageLogo"

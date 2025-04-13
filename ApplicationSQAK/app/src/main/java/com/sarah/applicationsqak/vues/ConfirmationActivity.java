@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.sarah.applicationsqak.R;
 
 public class ConfirmationActivity extends AppCompatActivity {
 

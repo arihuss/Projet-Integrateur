@@ -9,7 +9,7 @@
     android:paddingLeft="40dp"
     android:paddingTop="70dp"
     android:paddingRight="40dp"
-    tools:context=".SettingsFragment">
+    tools:context=".vues.SettingsFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnModifProfil"

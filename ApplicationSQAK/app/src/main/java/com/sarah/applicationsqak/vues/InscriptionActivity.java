@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.os.Bundle;
 
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.sarah.applicationsqak.R;
+
 import java.util.Random;
 
 public class InscriptionActivity extends AppCompatActivity {

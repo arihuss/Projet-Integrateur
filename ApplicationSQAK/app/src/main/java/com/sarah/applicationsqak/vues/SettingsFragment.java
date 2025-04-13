@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.widget.Switch;
+
+import com.sarah.applicationsqak.R;
 
 /**
  * A simple {@link Fragment} subclass.

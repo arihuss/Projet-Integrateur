@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.sarah.applicationsqak.R;
 
 public class ModifierProfilActivity extends AppCompatActivity implements View.OnClickListener{
 
