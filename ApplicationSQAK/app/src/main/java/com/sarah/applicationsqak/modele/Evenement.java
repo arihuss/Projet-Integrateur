@@ -12,7 +12,7 @@ public class Evenement implements Serializable {
     private String dateFin;
     private int nbBenevolesMax;
     private int nbParticipantsMax;
-    private boolean etatBenevole;
+    private int etatBenevole;
     private Categorie categorie;
     private String description;
     private String etat;
@@ -25,7 +25,7 @@ public class Evenement implements Serializable {
 
     // Constructeur vide
     public Evenement() {
-        
+
     }
     // Constructeur par parametres
     public Evenement(int id_organisateur, String nomEvent, String imageUrl, String lieu, Categorie categorie) {
@@ -117,11 +117,11 @@ public class Evenement implements Serializable {
         this.nbParticipantsMax = nbParticipantsMax;
     }
 
-    public boolean isEtatBenevole() {
+    public int isEtatBenevole() {
         return etatBenevole;
     }
 
-    public void setEtatBenevole(boolean etatBenevole) {
+    public void setEtatBenevole(int etatBenevole) {
         this.etatBenevole = etatBenevole;
     }
 
