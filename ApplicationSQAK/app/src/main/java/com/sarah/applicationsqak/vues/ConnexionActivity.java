@@ -28,6 +28,17 @@ public class ConnexionActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "AppPrefs";
     private static final String PREF_USER_ID = "utilisateur_id";
 
+    private String genererMotDePasseAleatoire() {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder mdp = new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            int index = (int) (Math.random() * alphabet.length());
+            mdp.append(alphabet.charAt(index));
+        }
+        return mdp.toString();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +51,8 @@ public class ConnexionActivity extends AppCompatActivity {
         btnSeConnecter = findViewById(R.id.btnSeConnecter);
         btnRetour = findViewById(R.id.imageView4);
         txtMdpOublie = findViewById(R.id.txtMdpOublie);
+
+
 
         // Bouton retour accueil
         btnRetour.setOnClickListener(v -> {
@@ -73,7 +86,26 @@ public class ConnexionActivity extends AppCompatActivity {
         });
 
         txtMdpOublie.setOnClickListener(v -> {
-            Toast.makeText(this, "Fonctionnalité à implémenter", Toast.LENGTH_SHORT).show();
+            String courriel = edtCourriel.getText().toString().trim();
+
+            if (courriel.isEmpty()) {
+                edtCourriel.setError("Veuillez entrer votre courriel");
+                return;
+            }
+
+            Utilisateur utilisateur = utilisateurViewModel.getUtilisateurParCourriel(courriel);
+
+            if (utilisateur != null) {
+                String nouveauMdp = genererMotDePasseAleatoire();
+                utilisateur.setMotDePasse(nouveauMdp);
+                utilisateurViewModel.mettreAJourUtilisateur(utilisateur);
+
+                // À remplacer par un envoi de courriel réel si nécessaire
+                Toast.makeText(this, "Nouveau mot de passe : " + nouveauMdp, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Aucun compte avec ce courriel", Toast.LENGTH_SHORT).show();
+            }
         });
+
     }
 }

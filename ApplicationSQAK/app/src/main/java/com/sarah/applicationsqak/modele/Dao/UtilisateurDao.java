@@ -31,7 +31,7 @@ public class UtilisateurDao {
         return db.insert(BaseContrat.UtilisateurTable.TABLE_NAME, null, values);
     }
 
-    // Authentifier un utilisateur par courriel + mdp
+    // Authentifier un utilisateur par courriel + mot de passe
     public Utilisateur getUtilisateurParIdentifiants(String courriel, String motDePasse) {
         String[] colonnes = {
                 BaseContrat.UtilisateurTable.ID_UTILISATEUR,
@@ -74,5 +74,58 @@ public class UtilisateurDao {
         cursor.close();
         return utilisateur;
     }
-}
 
+    // Obtenir un utilisateur uniquement par courriel
+    public Utilisateur getUtilisateurParCourriel(String courriel) {
+        String[] colonnes = {
+                BaseContrat.UtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.UtilisateurTable.PRENOM,
+                BaseContrat.UtilisateurTable.NOM,
+                BaseContrat.UtilisateurTable.COURRIEL,
+                BaseContrat.UtilisateurTable.NUM_TEL,
+                BaseContrat.UtilisateurTable.BIO,
+                BaseContrat.UtilisateurTable.MOT_DE_PASSE,
+                BaseContrat.UtilisateurTable.IMAGE_URL
+        };
+
+        String selection = BaseContrat.UtilisateurTable.COURRIEL + " = ?";
+        String[] selectionArgs = { courriel };
+
+        Cursor cursor = db.query(
+                BaseContrat.UtilisateurTable.TABLE_NAME,
+                colonnes,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        Utilisateur utilisateur = null;
+        if (cursor.moveToFirst()) {
+            utilisateur = new Utilisateur(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7)
+            );
+        }
+        cursor.close();
+        return utilisateur;
+    }
+
+    // Mettre à jour un utilisateur (utilisé pour changer le mot de passe par exemple)
+    public void mettreAJourUtilisateur(Utilisateur utilisateur) {
+        ContentValues values = new ContentValues();
+        values.put(BaseContrat.UtilisateurTable.MOT_DE_PASSE, utilisateur.getMotDePasse());
+
+        String selection = BaseContrat.UtilisateurTable.ID_UTILISATEUR + " = ?";
+        String[] selectionArgs = { String.valueOf(utilisateur.getId()) };
+
+        db.update(BaseContrat.UtilisateurTable.TABLE_NAME, values, selection, selectionArgs);
+    }
+}

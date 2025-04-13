@@ -26,4 +26,14 @@ public class UtilisateurViewModel extends AndroidViewModel {
     public Utilisateur authentifier(String courriel, String motDePasse) {
         return utilisateurDao.getUtilisateurParIdentifiants(courriel, motDePasse);
     }
+
+    // Récupérer un utilisateur uniquement par courriel (ex: mot de passe oublié)
+    public Utilisateur getUtilisateurParCourriel(String courriel) {
+        return utilisateurDao.getUtilisateurParCourriel(courriel);
+    }
+
+    // Mettre à jour un utilisateur (ex: mot de passe)
+    public void mettreAJourUtilisateur(Utilisateur utilisateur) {
+        utilisateurDao.mettreAJourUtilisateur(utilisateur);
+    }
 }
