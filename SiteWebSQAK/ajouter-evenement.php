@@ -27,19 +27,19 @@
             </div>
 
             <label for="titre">Titre de l'événement: *</label>
-            <input type="text" id="titre" name="titre" required>
+            <input type="text" id="titre" name="titre" maxlength="30" required>
 
             <label for="description">Description: *</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea id="description" name="description" maxlength="450" required></textarea>
 
             <div class="row">
                 <div>
                     <label for="categorie">Catégorie: *</label>
-                    <input type="text" id="categorie" name="categorie" required>
+                    <input type="text" id="categorie" name="categorie" maxlength="75" required>
                 </div>
                 <div>
                     <label for="lieu">Lieu: *</label>
-                    <input type="text" id="lieu" name="lieu" required>
+                    <input type="text" id="lieu" name="lieu" maxlength="95" required>
                 </div>
             </div>
 
@@ -91,6 +91,21 @@
 
         fileInput.addEventListener('change', function () {
             fileNameDisplay.textContent = this.files[0] ? this.files[0].name : "Aucun fichier choisi";
+        });
+    </script>
+
+<script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const fileInput = document.getElementById('photo');
+            const maxSize = 2 * 1024 * 1024; // 2 Mo
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > maxSize) {
+                    e.preventDefault();
+                    alert('La photo dépasse la taille maximale autorisée de 2 Mo.');
+                }
+            }
         });
     </script>
 

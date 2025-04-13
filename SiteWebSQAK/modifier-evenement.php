@@ -22,15 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
     $event->setNbBenevolesMax($_POST['benevoles-max']);
     $event->setNbParticipantsMax($_POST['invites-max']);
 
-   /* // Si une nouvelle photo est téléversée
-    if (!empty($_FILES['photo']['name'])) {
-        $photoPath = "img/uploads/" . basename($_FILES['photo']['name']);
-        move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath);
-        $event->setPhoto($photoPath);
-    }*/
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $fileType = $_FILES['photo']['type'];
+        $fileSize = $_FILES['photo']['size'];
+            // Lire le contenu du fichier
+            $photo = file_get_contents($_FILES['photo']['tmp_name']);
+            $event->setImageEvenement($photo);
+        
+    }
+
 
     EvenementDAO::update($event); // Tu dois avoir cette méthode dans ton DAO
-
+    
     header("Location: ?action=voirUnEvent&id=" . $event->getId());
     exit;
 }
@@ -48,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
 </head>
 
 <body>
-    <header><?php include("components/header.php")?></header>
+    <header><?php include("components/header.php") ?></header>
 
 
     <div class="container">
@@ -64,19 +68,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
             </div>
 
             <label for="titre">Titre de l'événement:</label>
-            <input type="text" id="titre" name="titre" value="<?= htmlspecialchars( $event->getNom()) ?>" required>
+            <input type="text" id="titre" name="titre" maxlength="30" value="<?= htmlspecialchars($event->getNom()) ?>"
+                required>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" required><?= htmlspecialchars($event->getDescription()) ?></textarea>
+            <textarea id="description" name="description" maxlength="450"
+                required><?= htmlspecialchars($event->getDescription()) ?></textarea>
 
             <div class="row">
                 <div>
                     <label for="categorie">Catégorie:</label>
-                    <input type="text" id="categorie" name="categorie" value="<?= htmlspecialchars($event->getCategorie()) ?>" required>
+                    <input type="text" id="categorie" name="categorie" maxlength="75"
+                        value="<?= htmlspecialchars($event->getCategorie()) ?>" required>
                 </div>
                 <div>
                     <label for="lieu">Lieu:</label>
-                    <input type="text" id="lieu" name="lieu" value="<?= htmlspecialchars($event->getLieu()) ?>"  required>
+                    <input type="text" id="lieu" name="lieu" maxlength="95"
+                        value="<?= htmlspecialchars($event->getLieu()) ?>" required>
                 </div>
             </div>
 
@@ -87,40 +95,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
                 </div>
                 <div>
                     <label for="date-fin">Date fin:</label>
-                    <input type="date" id="date-fin" name="date-fin" required value="<?= htmlspecialchars(string: $event->getDateFin()) ?>">
+                    <input type="date" id="date-fin" name="date-fin" required
+                        value="<?= htmlspecialchars(string: $event->getDateFin()) ?>">
                 </div>
             </div>
 
             <div class="row">
                 <div>
                     <label for="heure-debut">Heure début:</label>
-                    <input type="text" id="heure-debut" value="<?= $event->getHeureDebut()?>" name="heure-debut" required>
+                    <input type="text" id="heure-debut" value="<?= $event->getHeureDebut() ?>" name="heure-debut"
+                        required>
                 </div>
                 <div>
                     <label for="heure-fin">Heure fin:</label>
-                    <input type="text" id="heure-fin" value="<?= $event->getHeureFin()?>" name="heure-fin" required>
+                    <input type="text" id="heure-fin" value="<?= $event->getHeureFin() ?>" name="heure-fin" required>
                 </div>
             </div>
 
             <div class="row">
                 <div>
                     <label for="benevoles-max">Nombre de bénévoles maximum:</label>
-                    <input type="number" id="benevoles-max" name="benevoles-max" value="<?= htmlspecialchars(string: $event->getNbBenevolesMax()) ?>">
+                    <input type="number" id="benevoles-max" name="benevoles-max"
+                        value="<?= htmlspecialchars(string: $event->getNbBenevolesMax()) ?>">
                 </div>
                 <div>
                     <label for="invites-max">Nombre d'invités maximum:</label>
-                    <input type="number" id="invites-max" name="invites-max" value="<?= htmlspecialchars(string: $event->getNbParticipantsMax()) ?>">
+                    <input type="number" id="invites-max" name="invites-max"
+                        value="<?= htmlspecialchars(string: $event->getNbParticipantsMax()) ?>">
                 </div>
             </div>
 
             <div class="buttons">
                 <button type="submit" class="btn-save" name="modifier-event">Modifier</button>
-                <button type="button" class="btn-cancel" onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'">Revenir</button>
+                <button type="button" class="btn-cancel"
+                    onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'">Revenir</button>
             </div>
         </form>
     </div>
 
-    <footer><?php include("components/footer.php");?></footer>
+    <footer><?php include("components/footer.php"); ?></footer>
 
     <script>
         const fileInput = document.getElementById('photo');
@@ -128,6 +141,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
 
         fileInput.addEventListener('change', function () {
             fileNameDisplay.textContent = this.files[0] ? this.files[0].name : "Aucun fichier choisi";
+        });
+    </script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const fileInput = document.getElementById('photo');
+            const maxSize = 2 * 1024 * 1024; // 2 Mo
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > maxSize) {
+                    e.preventDefault();
+                    alert('La photo dépasse la taille maximale autorisée de 2 Mo.');
+                }
+            }
         });
     </script>
 
