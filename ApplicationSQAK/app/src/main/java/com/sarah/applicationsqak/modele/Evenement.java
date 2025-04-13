@@ -13,7 +13,7 @@ public class Evenement implements Serializable {
     private int nbBenevolesMax;
     private int nbParticipantsMax;
     private boolean etatBenevole;
-    private String categorie;
+    private Categorie categorie;
     private String description;
     private String etat;
     private int nbInscriptions;
@@ -25,43 +25,22 @@ public class Evenement implements Serializable {
 
 
     // Constructeur
-    public Evenement(String nom, String organisateur, String imageUrl) {
-        this.nom = nom;
-        this.organisateur = organisateur;
+    public Evenement(int id_organisateur, String nomEvent, String imageUrl, String lieu, Categorie categorie) {
+        // Valeurs fournies
+        this.id_organisateur = id_organisateur;
+        this.nomEvent = nomEvent;
         this.imageUrl = imageUrl;
+        this.categorie = categorie;
+
+        // Valeurs par défaut
+        this.description = "Voici la description";
+        this.dateDebut = "Date début";
+        this.dateFin = "Date fin";
+        this.lieu = "289 Rue Saint-Charles Ouest";
+        this.etat = "disponible";
     }
 
     // Accesseurs et mutateurs
 
-    public String getNom() {
-        return nom;
-    }
 
-    public String getOrganisateur() {
-        return organisateur;
-    }
-
-    public int getNbLikes() {
-        return nbLikes;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getLieu() {
-        return lieu;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getEtat() {
-        return etat;
-    }
 }
