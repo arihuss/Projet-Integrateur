@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DbUtil extends SQLiteOpenHelper {
+public class DBUtil extends SQLiteOpenHelper {
 
-    public DbUtil(Context context) {
+    public DBUtil(Context context) {
         super(context, Event.DB_NAME, null, Event.DB_VERSION);
     }
 
