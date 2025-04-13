@@ -54,7 +54,7 @@ public class ConnexionActivity extends AppCompatActivity {
                     return;
                 }
 
-                // TODO: Vérif si info correspondent avec le JSON Server
+                // TODO: Vérif si info correspondent avec la base de donnée
                 Toast.makeText(ConnexionActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
 
                 // Redirection vers principale
