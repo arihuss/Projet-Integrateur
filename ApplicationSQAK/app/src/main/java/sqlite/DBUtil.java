@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBUtil extends SQLiteOpenHelper {
+public class DbUtil extends SQLiteOpenHelper {
 
-    public DBUtil(Context context) {
+    public DbUtil(Context context) {
         super(context, BaseContrat.DB_NAME, null, BaseContrat.DB_VERSION);
     }
 
@@ -119,6 +119,6 @@ public class DBUtil extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        
+
     }
 }
