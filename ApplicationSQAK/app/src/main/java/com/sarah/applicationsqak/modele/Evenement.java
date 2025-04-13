@@ -18,14 +18,10 @@ public class Evenement implements Serializable {
     private String etat;
     private int nbInscriptions;
     private int nbBenevolesAcceptes;
-    private
-
-    private String organisateur;
-    private int nbLikes;
-    private String description;
-
+    private int completBenevole;
+    private int completVisiteur;
     private String imageUrl;  // permet d'utiliser une image de l'internet
-    private String etat;  // [disponible, termine]
+   
 
 
     // Constructeur
