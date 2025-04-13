@@ -6,22 +6,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Utilisateur;
+import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
     private EditText edtCodeConfirmation;
-    private String codeEnvoye; // Le code envoyé de inscription
+    private String codeEnvoye;
     private String prenom, nom, courriel, tel, motDePasse;
+
+    private UtilisateurViewModel utilisateurViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
 
-        // Récupération des données depuis l'inscription
+        utilisateurViewModel = new ViewModelProvider(this).get(UtilisateurViewModel.class);
+
+        // Récupération des données
         Intent intent = getIntent();
         if (intent != null) {
             codeEnvoye = intent.getStringExtra("CODE_CONFIRMATION");
@@ -36,7 +44,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         Button btnConfirmer = findViewById(R.id.btnConfirmer);
         ImageView btnRetour = findViewById(R.id.btnRetour);
 
-        // Bouton retour avec infos
+        // Retour vers inscription
         btnRetour.setOnClickListener(v -> {
             Intent retourIntent = new Intent(ConfirmationActivity.this, InscriptionActivity.class);
             retourIntent.putExtra("PRENOM", prenom);
@@ -48,7 +56,7 @@ public class ConfirmationActivity extends AppCompatActivity {
             finish();
         });
 
-        // Vérif code de confirmation
+        // Confirmation
         btnConfirmer.setOnClickListener(v -> {
             String codeEntre = edtCodeConfirmation.getText().toString().trim();
 
@@ -57,14 +65,21 @@ public class ConfirmationActivity extends AppCompatActivity {
             } else if (!codeEntre.equals(codeEnvoye)) {
                 edtCodeConfirmation.setError("Code incorrect !");
             } else {
+                // Création du nouvel utilisateur
+                Utilisateur nouvelUtilisateur = new Utilisateur(
+                        prenom, nom, courriel, tel, motDePasse
+                );
 
-                // TODO: faire le INSERT de lutilisateur
+                long id = utilisateurViewModel.insererUtilisateur(nouvelUtilisateur);
 
-                // toast de Confirmation
-                Toast.makeText(ConfirmationActivity.this, "Compte créé avec succès !", Toast.LENGTH_LONG).show();
-                Intent intentConnexion = new Intent(ConfirmationActivity.this, ConnexionActivity.class);
-                startActivity(intentConnexion);
-                finish();
+                if (id != -1) {
+                    Toast.makeText(this, "Compte créé avec succès !", Toast.LENGTH_LONG).show();
+                    Intent intentConnexion = new Intent(ConfirmationActivity.this, ConnexionActivity.class);
+                    startActivity(intentConnexion);
+                    finish();
+                } else {
+                    Toast.makeText(this, "Erreur lors de la création du compte", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
