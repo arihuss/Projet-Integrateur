@@ -1,16 +1,27 @@
-package com.sarah.applicationsqak.vues;
+package com.sarah.applicationsqak.modele;
 
 import java.io.Serializable;
 
 public class Evenement implements Serializable {
-    private String nom;
-    private String organisateur;
-    private int nbLikes;
-    private String description;
-    private String date;
+    private int id;
+    private int id_organisateur;
+    private int id_statistique;
+    private String nomEvent;
     private String lieu;
+    private String dateDebut;
+    private String dateFin;
+    private int nbBenevolesMax;
+    private int nbParticipantsMax;
+    private boolean etatBenevole;
+    private String categorie;
+    private String description;
+    private String etat;
+    private int nbInscriptions;
+    private int nbBenevolesAcceptes;
+    private int completBenevole;
+    private int completVisiteur;
     private String imageUrl;  // permet d'utiliser une image de l'internet
-    private String etat;  // [disponible, termine]
+   
 
 
     // Constructeur

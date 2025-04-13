@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.os.Bundle;
 
@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sarah.applicationsqak.R;
 
 public class PrincipaleActivity extends AppCompatActivity {
 

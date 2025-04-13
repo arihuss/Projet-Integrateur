@@ -1,7 +1,6 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.sarah.applicationsqak.vues.Evenement;
+import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Evenement;
 
 import java.util.List;
 

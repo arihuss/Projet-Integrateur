@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:textAlignment="center"
-    tools:context=".AboutUsActivity">
+    tools:context=".vues.AboutUsActivity">
 
     <ImageView
         android:id="@+id/imgLogoAboutUs"

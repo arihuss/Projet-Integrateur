@@ -1,4 +1,4 @@
-package sqlite;
+package com.sarah.applicationsqak.modele.sqlite;
 
 import android.provider.BaseColumns;
 

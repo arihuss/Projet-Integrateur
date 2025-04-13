@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak;
+package com.sarah.applicationsqak.vues;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.sarah.applicationsqak.R;
 
 public class AccueilActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EventsFragment">
+    tools:context=".vues.EventsFragment">
 
 
     <com.sarah.applicationsqak.vues.EventFilterView
