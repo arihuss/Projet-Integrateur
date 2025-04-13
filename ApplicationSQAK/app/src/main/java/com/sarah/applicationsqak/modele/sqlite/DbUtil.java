@@ -48,19 +48,49 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.OrganisateurTable.IMAGE_URL);
         db.execSQL(requeteCreationOrganisateur);
 
-        String requeteCreationStatistique = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer default 0, %s integer default 0, %s integer default 0, %s integer default 0, %s integer default 0)",
+        // STATISTIQUE
+        String requeteCreationStatistique = String.format("CREATE TABLE %s (" +
+                        "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " + // AJOUT
+                        "%s INTEGER DEFAULT 0)",
                 BaseContrat.StatistiqueTable.TABLE_NAME,
                 BaseContrat.StatistiqueTable.ID_STATISTIQUE,
                 BaseContrat.StatistiqueTable.NB_VISITEURS,
                 BaseContrat.StatistiqueTable.NB_BENEVOLES,
                 BaseContrat.StatistiqueTable.NB_LIKES,
                 BaseContrat.StatistiqueTable.NB_VUES,
-                BaseContrat.StatistiqueTable.NB_PARTAGES);
+                BaseContrat.StatistiqueTable.NB_APPLICATIONS, // AJOUT
+                BaseContrat.StatistiqueTable.NB_PARTAGES
+        );
         db.execSQL(requeteCreationStatistique);
 
-        String requeteCreationEvenement = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer , %s integer , %s text, %s text, %s text, %s text, %s integer default 0, " +
-                        "%s integer default 0, %s integer check (%s IN (0,1)), %s text, %s text, %s text CHECK (%s IN ('disponible', 'termine')), %s integer default 0, %s integer default 0, %s integer check (%s IN (0,1)), " +
-                        "%s integer check (%s IN (0,1)), %s text, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
+// EVENEMENT → ajout heure_debut et heure_fin
+        String requeteCreationEvenement = String.format("CREATE TABLE %s (" +
+                        "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s INTEGER, " +
+                        "%s INTEGER, " +
+                        "%s TEXT, " +
+                        "%s TEXT, " +
+                        "%s TEXT, " +
+                        "%s TEXT, " +
+                        "HEURE_DEBUT TEXT, " + // AJOUT
+                        "HEURE_FIN TEXT, " +   // AJOUT
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER CHECK (%s IN (0,1)), " +
+                        "%s TEXT, " +
+                        "%s TEXT CHECK (%s IN ('disponible', 'termine')), " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER DEFAULT 0, " +
+                        "%s INTEGER CHECK (%s IN (0,1)), " +
+                        "%s INTEGER CHECK (%s IN (0,1)), " +
+                        "%s TEXT, " +
+                        "FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, " +
+                        "FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
                 BaseContrat.EvenementTable.TABLE_NAME,
                 BaseContrat.EvenementTable.ID_EVENEMENT,
                 BaseContrat.EvenementTable.ID_STATISTIQUE,
@@ -81,41 +111,52 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.EvenementTable.COMPLET_VISITEUR, BaseContrat.EvenementTable.COMPLET_VISITEUR,
                 BaseContrat.EvenementTable.IMAGE_URL,
                 BaseContrat.EvenementTable.ID_ORGANISATEUR, BaseContrat.OrganisateurTable.TABLE_NAME, BaseContrat.OrganisateurTable.ID_ORGANISATEUR,
-                BaseContrat.EvenementTable.ID_STATISTIQUE, BaseContrat.StatistiqueTable.TABLE_NAME, BaseContrat.StatistiqueTable.ID_STATISTIQUE);
+                BaseContrat.EvenementTable.ID_STATISTIQUE, BaseContrat.StatistiqueTable.TABLE_NAME, BaseContrat.StatistiqueTable.ID_STATISTIQUE
+        );
         db.execSQL(requeteCreationEvenement);
 
-        String requeteCreationInscription = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer, %s integer, %s text CHECK(%s IN('benevole', 'visiteur', 'appliquant')), " +
-                        "%s text, %s text, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
+        // INSCRIPTION
+        String requeteCreationInscription = String.format("CREATE TABLE %s (" +
+                        "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s INTEGER, " +
+                        "%s INTEGER, " +
+                        "%s TEXT CHECK(%s IN ('benevole', 'visiteur', 'appliquant')), " +
+                        "%s TEXT, " +
+                        "%s TEXT, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE)",
                 BaseContrat.InscriptionTable.TABLE_NAME,
                 BaseContrat.InscriptionTable.ID_INSCRIPTION,
                 BaseContrat.InscriptionTable.ID_UTILISATEUR,
+                BaseContrat.InscriptionTable.ID_EVENEMENT,
                 BaseContrat.InscriptionTable.ROLE, BaseContrat.InscriptionTable.ROLE,
                 BaseContrat.InscriptionTable.DATE_INSCRIPTION,
                 BaseContrat.InscriptionTable.DATE_ANNULATION,
-                BaseContrat.InscriptionTable.ID_INSCRIPTION, BaseContrat.UtilisateurTable.TABLE_NAME, BaseContrat.UtilisateurTable.ID_UTILISATEUR,
-                BaseContrat.InscriptionTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT);
+                BaseContrat.InscriptionTable.ID_UTILISATEUR, BaseContrat.UtilisateurTable.TABLE_NAME, BaseContrat.UtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.InscriptionTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT
+        );
         db.execSQL(requeteCreationInscription);
 
-        String requeteCreationCommentaire = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer, %s integer, %s text, %s text," +
-                        "FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
+        // COMMENTAIRE
+        String requeteCreationCommentaire = String.format("CREATE TABLE %s (" +
+                        "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "%s INTEGER, " +
+                        "%s INTEGER, " +
+                        "%s TEXT, " +
+                        "%s TEXT, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE)",
                 BaseContrat.CommentaireTable.TABLE_NAME,
                 BaseContrat.CommentaireTable.ID_COMMENTAIRE,
+                BaseContrat.CommentaireTable.ID_UTILISATEUR,
                 BaseContrat.CommentaireTable.ID_EVENEMENT,
                 BaseContrat.CommentaireTable.MESSAGE,
                 BaseContrat.CommentaireTable.DATE_ENVOI,
                 BaseContrat.CommentaireTable.ID_UTILISATEUR, BaseContrat.UtilisateurTable.TABLE_NAME, BaseContrat.UtilisateurTable.ID_UTILISATEUR,
-                BaseContrat.CommentaireTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT);
+                BaseContrat.CommentaireTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT
+        );
         db.execSQL(requeteCreationCommentaire);
 
-        String requeteCreationMessage = String.format("Create table %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s integer, %s text, %s text, %s text, %s text, FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE CASCADE)",
-                BaseContrat.MessageTable.TABLE_NAME,
-                BaseContrat.MessageTable.ID_MESSAGE,
-                BaseContrat.MessageTable.MOYEN_COMMUNICATION,
-                BaseContrat.MessageTable.TYPE_DESTINATAIRE,
-                BaseContrat.MessageTable.MESSAGE,
-                BaseContrat.MessageTable.DATE_ENVOI,
-                BaseContrat.CommentaireTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT);
-        db.execSQL(requeteCreationMessage);
 
 
     }
