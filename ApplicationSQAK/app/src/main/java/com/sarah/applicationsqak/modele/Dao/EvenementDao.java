@@ -34,12 +34,9 @@ public class EvenementDao {
 
         // SELECT * FROM Evenement
         Cursor cursor = db.query(BaseContrat.EvenementTable.TABLE_NAME, null, null, null, null, null, null);
-<<<<<<< HEAD
+
         if(cursor != null && cursor.moveToFirst()) {
-=======
-        if(cursor != null) {
-            cursor.moveToFirst();
->>>>>>> parent of a49a42f (Update EvenementDao.java)
+
 
             // Remplir la liste
             do {
@@ -131,11 +128,8 @@ public class EvenementDao {
         }
 
 
-<<<<<<< HEAD
+
         if(!date.isEmpty()) {
-=======
-        if(!date.equalsIgnoreCase("Date") || !date.isEmpty()) {
->>>>>>> parent of a49a42f (Update EvenementDao.java)
             String dateFormatee = convertirFormatDate(date);
             if(dateFormatee != null) {
                 conditions.add("DATE_DEBUT LIKE ?");
