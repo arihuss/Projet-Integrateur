@@ -36,6 +36,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
     Button btnModifier, btnPlus, btnSupp, btnSuppPop, btnRePop;
+    Button btnDeconnecter;
     Dialog dialog;
 
 
@@ -85,6 +86,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btnModifier = view.findViewById(R.id.btnModifProfil);
         btnPlus = view.findViewById(R.id.btnPlus);
         btnSupp = view.findViewById(R.id.btnSupprimerCompte);
+
+        // btn de deconnexion
+        btnDeconnecter = view.findViewById(R.id.btnDeconnecter);
+        btnDeconnecter.setOnClickListener(this);
+
 
         //Pop Up Supprimer Compte
         dialog = new Dialog(getActivity());
@@ -165,7 +171,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         //Click sur le bouton SUPPRIMER MON COMPTE qui affiche un pop up certifiant la suppression du compte de l'utilisateur
         } else if (v == btnSupp){
             dialog.show();
+        } else if (v == btnDeconnecter) {
+        SharedPreferences prefs = requireActivity().getSharedPreferences("AppPrefs", getContext().MODE_PRIVATE);
+        prefs.edit().remove("utilisateur_id").apply();
+
+        Intent intent = new Intent(getActivity(), ConnexionActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Efface l'historique d'activité
+        startActivity(intent);
         }
+
 
 
         // Les boutons Supprimer et Retour du pop up
