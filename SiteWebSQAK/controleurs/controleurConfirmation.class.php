@@ -15,7 +15,6 @@ class Confirmation extends Controleur {
 
 	
     public function executerAction(): string {
-        session_start();
 
         $courriel = $_SESSION['courriel_a_confirmer'] ?? null;
 

@@ -9,12 +9,12 @@ class SupprimerCompte extends Controleur {
     }
 
     public function executerAction(): string {
-        session_start();
 
-        if (isset($_SESSION['user-id'])) {
-            $organisateur = OrganisateurDAO::findById($_SESSION['user-id']);
-
+        if (isset($_SESSION['user_id'])) {
+            $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
+           
             if ($organisateur !== null) {
+                
                 $success = OrganisateurDAO::delete($organisateur);
 
                 if ($success) {
@@ -27,6 +27,6 @@ class SupprimerCompte extends Controleur {
             }
         }
 
-        return "seConnecter.php";
+        return "settings.php";
     }
 }

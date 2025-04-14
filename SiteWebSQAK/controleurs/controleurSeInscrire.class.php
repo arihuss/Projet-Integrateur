@@ -15,8 +15,7 @@ class SeInscrire extends Controleur {
     }
 
     public function executerAction(): string {
-        session_start();
-
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupération des champs
             $prenom = $_POST['prenom'] ?? null;
