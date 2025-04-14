@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak.viewmodel;
+package com.sarah.applicationsqak.vues;
 
 import android.app.Application;
 

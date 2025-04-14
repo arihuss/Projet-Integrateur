@@ -17,11 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
 
-import com.sarah.applicationsqak.vues.ExperienceAdapter;
 import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.Utilisateur;
-import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
-import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 import java.util.List;
 

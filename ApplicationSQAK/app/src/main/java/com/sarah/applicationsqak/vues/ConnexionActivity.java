@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.modele.Utilisateur;
-import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 public class ConnexionActivity extends AppCompatActivity {
 
