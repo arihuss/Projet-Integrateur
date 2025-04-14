@@ -151,10 +151,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         //Click sur le bouton MODIFIER PROFIL qui redirige vers modifier profil
         if (v == btnModifier) {
+            Intent intent = new Intent(getActivity(), ModifierProfilActivity.class);
+            startActivity(intent);
 
-            Intent intention1;
-            intention1 = new Intent(getActivity(), ModifierProfilActivity.class);
-            startActivity(intention1);
 
         //Click sur le bouton PLUS sur SQAK qui emmène à la page about us
         } else if (v ==btnPlus){

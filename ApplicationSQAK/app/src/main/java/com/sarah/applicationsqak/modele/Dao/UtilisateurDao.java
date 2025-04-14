@@ -121,13 +121,20 @@ public class UtilisateurDao {
     // Mettre à jour un utilisateur (utilisé pour changer le mot de passe par exemple)
     public void mettreAJourUtilisateur(Utilisateur utilisateur) {
         ContentValues values = new ContentValues();
+        values.put(BaseContrat.UtilisateurTable.PRENOM, utilisateur.getPrenom());
+        values.put(BaseContrat.UtilisateurTable.NOM, utilisateur.getNom());
+        values.put(BaseContrat.UtilisateurTable.COURRIEL, utilisateur.getCourriel());
+        values.put(BaseContrat.UtilisateurTable.NUM_TEL, utilisateur.getNumTel());
+        values.put(BaseContrat.UtilisateurTable.BIO, utilisateur.getBio());
         values.put(BaseContrat.UtilisateurTable.MOT_DE_PASSE, utilisateur.getMotDePasse());
+        values.put(BaseContrat.UtilisateurTable.IMAGE_URL, utilisateur.getImageUrl());
 
         String selection = BaseContrat.UtilisateurTable.ID_UTILISATEUR + " = ?";
         String[] selectionArgs = { String.valueOf(utilisateur.getId()) };
 
         db.update(BaseContrat.UtilisateurTable.TABLE_NAME, values, selection, selectionArgs);
     }
+
 
     public Utilisateur getUtilisateurParId(long id) {
         String[] colonnes = {
