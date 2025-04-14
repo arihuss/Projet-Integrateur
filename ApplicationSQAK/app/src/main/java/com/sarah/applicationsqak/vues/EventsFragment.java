@@ -1,5 +1,6 @@
 package com.sarah.applicationsqak.vues;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.viewModel.EvenementViewModel;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,22 +86,34 @@ public class EventsFragment extends Fragment {
 
         // Pour l'affichage des événements
         lvEvents = view.findViewById(R.id.lvEventsPrincipale);
-        eventAdapter = new EventsAdapter();
+        eventAdapter = new EventsAdapter(requireContext(), R.layout.principale_events_list_item, new ArrayList<>());
         lvEvents.setAdapter(eventAdapter);
 
         viewModel = new ViewModelProvider(this).get(EvenementViewModel.class);
+
         // Obersve les messages d'erreur
         viewModel.getMessage().observe(getViewLifecycleOwner(), message -> {
             if(message != null && !message.isEmpty()) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
-        // Observe les changements de LiveData et appel fonction pour que l'adaptateur affiche les nouveaux événements filtrés
-        viewModel.getEvenements().observe(getViewLifecycleOwner(), evenements -> eventAdapter.submitList(evenements));
 
+        // Observe les changements de LiveData et appel fonction pour que l'adaptateur affiche les nouveaux événements filtrés
+        viewModel.getEvenements().observe(getViewLifecycleOwner(), evenements -> {
+                    eventAdapter.clear();
+                    eventAdapter.addAll(evenements);
+                    eventAdapter.notifyDataSetChanged();
+        });
+
+        // Quand on filtre change, on appelle le viewModel
         eventView.setOnFilterChangeListener((lieu, etat, role, date, recherche) -> {
             viewModel.filtrerEvenements(lieu, etat, role, date, recherche);
         });
 
+
+
+
     }
+
+
 }

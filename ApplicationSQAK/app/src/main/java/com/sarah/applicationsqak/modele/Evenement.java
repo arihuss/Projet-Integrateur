@@ -8,7 +8,7 @@ public class Evenement implements Serializable {
     private int id_statistique;
     private String nomEvent;
     private String lieu;
-    private String dateDebut;
+    private String dateDebut;  // format: 13 avril 2025 5 PM
     private String dateFin;
     private int nbBenevolesMax;
     private int nbParticipantsMax;

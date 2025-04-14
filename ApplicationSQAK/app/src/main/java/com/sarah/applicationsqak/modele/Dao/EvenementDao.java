@@ -14,6 +14,7 @@ import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.sqlite.BaseContrat;
 import com.sarah.applicationsqak.modele.sqlite.DbUtil;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -125,10 +126,14 @@ public class EvenementDao {
             conditions.add("NB_PARTICIPANTS_MAX > 0");
         }
 
-        // pas bon?
+
         if(!date.equalsIgnoreCase("Date") || !date.isEmpty()) {
-            conditions.add("DATE_DEBUT LIKE ?");
-            valeurs.add("%" + date + "%");
+            String dateFormatee = convertirFormatDate(date);
+            if(dateFormatee != null) {
+                conditions.add("DATE_DEBUT LIKE ?");
+                valeurs.add("%" + dateFormatee + "%");
+            }
+
         }
 
         if(!recherche.isEmpty()) {
@@ -191,7 +196,61 @@ public class EvenementDao {
             Date parsedDate = formatEntree.parse(date);
 
             // Format qu'on veut pour la recherche dans la base de données
-            SimpleDateFormat formatBD = new SimpleDateFormat()
+            SimpleDateFormat formatBD = new SimpleDateFormat("d MMM yyyy", Locale.CANADA);
+            return formatBD.format(parsedDate);
         }
+        catch(ParseException e){
+            return null;
+        }
+    }
+
+    public String getNomOrganisateurParId(int id) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        Cursor cursor = db.query(BaseContrat.OrganisateurTable.TABLE_NAME,
+                new String[]{BaseContrat.OrganisateurTable.NOM_ORGANISATEUR},
+                 BaseContrat.OrganisateurTable.ID_ORGANISATEUR + "= ?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
+
+        String nom = "";
+        if(cursor != null) {
+            cursor.moveToFirst();
+            nom = cursor.getString(0);
+        }
+
+        cursor.close();
+        return nom;
+    }
+
+    // À appeler après chaque nouvelle inscription
+    private void verifierComplet(int idEvenement) {
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        // Obtenir nb_inscriptions et nb_participants_max
+        String query = "SELECT NB_INSCRIPTIONS, NB_PARTICIPANTS_MAX, NB_BENEVOLES_ACCEPTES, NB_BENEVOLES_MAX FROM " + BaseContrat.EvenementTable.TABLE_NAME
+                + " WHERE ID_EVENEMENT = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(idEvenement)});
+
+        if(cursor.moveToFirst()) {
+            int nbInscriptions = cursor.getInt(0);
+            int nbMaxVisiteurs = cursor.getInt(1);
+            int nbBenevoles = cursor.getInt(2);
+            int nbMaxBenevoles = cursor.getInt(3);
+
+            ContentValues values = new ContentValues();
+
+            if(nbInscriptions >= nbMaxVisiteurs) {
+                values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, 1);
+            }
+
+            if(nbBenevoles >= nbMaxBenevoles) {
+                values.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, 1);
+            }
+
+            if(values.size() > 0) {
+                db.update(BaseContrat.EvenementTable.TABLE_NAME, values, "ID_EVENEMENT = ?", new String[]{String.valueOf(idEvenement)});
+            }
+        }
+        cursor.close();
     }
 }

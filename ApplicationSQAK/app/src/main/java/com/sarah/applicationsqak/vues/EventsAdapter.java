@@ -13,20 +13,27 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Evenement;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EventsAdapter extends ArrayAdapter<Evenement> {
     private Context contexte;
     private int viewRessourceID;
     private List<Evenement> evenements;
+    private final EvenementDao dao;
 
     public EventsAdapter(@NonNull Context context, int resource, @NonNull List<Evenement> objects) {
         super(context, resource, objects);
         contexte = context;
         viewRessourceID = resource;
         evenements = objects;
+        this.dao = new EvenementDao(context);
     }
 
     @Override
@@ -44,7 +51,7 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             view = layoutInflater.inflate(viewRessourceID, parent, false);
         }
 
-        // Récupère la pizza actuelle
+        // Récupère l'événement actuel
         Evenement event = evenements.get(position);
 
         if(event != null) {
@@ -55,34 +62,46 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             ImageView imgEvent = view.findViewById(R.id.imgAffEvents);
             TextView txtDate = view.findViewById(R.id.tvDateEvents);
             TextView txtEtat = view.findViewById(R.id.tvEtatEvents);
-/*
-            // Compléter l'affichage de la pizza
-            txtOrganisateur.setText(event.getOrganisateur());
-            txtNom.setText(event.getNom());
-            txtDate.setText(event.getDate());
-*/
+
+            // Affichage du nom de l'event
+            txtNom.setText(event.getNomEvent());
+
+            // Affichage de la date, changer le format
+            txtDate.setText(convertirDatePourAffichage(event.getDateDebut()));
+
+            // Affichage du nom de l'organisateur
+            String nomOrganisateur = dao.getNomOrganisateurParId(event.getId_organisateur());
+            txtOrganisateur.setText(nomOrganisateur);
+
             // Affichage des images selon l'url
             Glide.with(contexte)
                     .load(event.getImageUrl())
-                    //.placeholder()
+                    .placeholder(R.drawable.placeholder)
                     .into(imgEvent);
+
+            // Affichage de 'COMPLET' s'il n'y a plus de place
+            if (event.getCompletBenevole() == 1 && event.getCompletVisiteur() == 1) {
+                txtEtat.setVisibility(View.VISIBLE);
+                txtEtat.setText("COMPLET");
+            } else {
+                txtEtat.setVisibility(View.GONE);
+            }
         }
 
 
-
-            // TODO: Affichafe de 'COMPLET' si l'événement est complet
-            // exemple de code:
-//            if (event.getEtat().equalsIgnoreCase("disponible")) {
-//                tvEtat.setVisibility(View.GONE);
-//            } else {
-//                tvEtat.setVisibility(View.VISIBLE);
-//                txtEtat.setText("COMPLET");
-//            }
-
-
-
-
-
         return view;
+    }
+
+    // Pour convertir la date
+    private String convertirDatePourAffichage(String dateBrute) {
+        try {
+            SimpleDateFormat formatBD = new SimpleDateFormat("d MMM yyyy hha", Locale.CANADA);
+            Date date = formatBD.parse(dateBrute);
+
+            SimpleDateFormat formatFinal = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+            return formatFinal.format(date);
+        } catch(ParseException e) {
+            return dateBrute;  // si ça plante, ca sera la date brute
+        }
     }
 }
