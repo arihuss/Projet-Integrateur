@@ -137,7 +137,7 @@ public class EvenementDao {
 
         }
 
-        if(!recherche.isEmpty()) {
+        if(!recherche.trim().isEmpty()) {
             try {
                 Categorie categorie = Categorie.fromLabel(recherche);
                 conditions.add("CATEGORIE = ?");
@@ -180,6 +180,8 @@ public class EvenementDao {
                 e.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_BENEVOLE)));
                 e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
                 e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
+
+                eventsfiltres.add(e);
 
             } while(cursor.moveToNext());
         }

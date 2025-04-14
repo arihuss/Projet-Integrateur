@@ -98,16 +98,20 @@
         <AutoCompleteTextView
             android:id="@+id/searchBar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="6dp"
             android:layout_weight="1"
             android:background="@color/barrerecherche"
             android:hint="Rechercher..."
-            android:minWidth="100dp" />
+            android:minWidth="100dp"
+            android:paddingLeft="6dp" />
 
         <Button
             android:id="@+id/btnRecherche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginRight="6dp"
             android:backgroundTint="@color/accent2"
             android:maxWidth="50dp"
             android:minWidth="140dp"

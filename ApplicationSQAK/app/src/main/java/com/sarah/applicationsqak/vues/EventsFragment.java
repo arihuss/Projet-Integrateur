@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 
 import java.util.ArrayList;
@@ -86,23 +88,31 @@ public class EventsFragment extends Fragment {
 
         // Pour l'affichage des événements
         lvEvents = view.findViewById(R.id.lvEventsPrincipale);
-        eventAdapter = new EventsAdapter(requireContext(), R.layout.principale_events_list_item, new ArrayList<>());
+        eventAdapter = new EventsAdapter(requireContext(), R.layout.principale_events_list_item);
         lvEvents.setAdapter(eventAdapter);
+        Log.d("DEBUG", "Adapter assigné à la ListView");
 
         viewModel = new ViewModelProvider(this).get(EvenementViewModel.class);
 
         // Obersve les messages d'erreur
         viewModel.getMessage().observe(getViewLifecycleOwner(), message -> {
             if(message != null && !message.isEmpty()) {
-                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
             }
         });
 
         // Observe les changements de LiveData et appel fonction pour que l'adaptateur affiche les nouveaux événements filtrés
         viewModel.getEvenements().observe(getViewLifecycleOwner(), evenements -> {
-                    eventAdapter.clear();
-                    eventAdapter.addAll(evenements);
-                    eventAdapter.notifyDataSetChanged();
+            Log.d("DEBUG", "Evenements observés: " + evenements.size());  // debug
+            eventAdapter.clear();
+            eventAdapter.addAll(evenements);
+            Toast.makeText(getContext(), "Événements chargés: " + evenements.size(), Toast.LENGTH_LONG).show();
+            eventAdapter.notifyDataSetChanged();
+
+            // Debug
+            for(Evenement e: evenements) {
+                Log.d("DEBUG", "Event reçu: " + e.getNomEvent());
+            }
         });
 
         // Quand on filtre change, on appelle le viewModel

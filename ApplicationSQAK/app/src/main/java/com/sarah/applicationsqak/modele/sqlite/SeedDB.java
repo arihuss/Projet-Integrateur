@@ -2,20 +2,53 @@ package com.sarah.applicationsqak.modele.sqlite;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class SeedDB {
 
     public static void insererDonneesInitiales(SQLiteDatabase db) {
+        Log.d("SEED", "Insertion des données initiales....");
         insererUtilisateurs(db);
         insererOrganisateurs(db);
+        insererStatistiques(db);
         insererEvenements(db);
+        insererInscriptions(db);
     }
 
     private static void insererUtilisateurs(SQLiteDatabase db) {
+        for (int i = 1; i <= 20; i++) {
+            ContentValues user = new ContentValues();
+            user.put(BaseContrat.UtilisateurTable.PRENOM, "UtilisateurPrenom" + i);
+            user.put(BaseContrat.UtilisateurTable.NOM, "Nom" + i);
+            user.put(BaseContrat.UtilisateurTable.COURRIEL, "user" + i + "@email.com");
+            user.put(BaseContrat.UtilisateurTable.NUM_TEL, "51400000" + String.format("%02d", i));  // Ex: 5140000001
+            user.put(BaseContrat.UtilisateurTable.BIO, "Bio de l'utilisateur " + i);
+            user.put(BaseContrat.UtilisateurTable.MOT_DE_PASSE, "password" + i);  // Assure-toi que ça respecte la règle des 8 caractères
+            user.put(BaseContrat.UtilisateurTable.IMAGE_URL, "https://exemple.com/user" + i + ".jpg");
 
+            db.insert(BaseContrat.UtilisateurTable.TABLE_NAME, null, user);
+
+
+        }
+
+        // Compte Roma
+        ContentValues userRoma = new ContentValues();
+        userRoma.put(BaseContrat.UtilisateurTable.PRENOM, "Roma");
+        userRoma.put(BaseContrat.UtilisateurTable.NOM, "Des Ruisseaux");
+        userRoma.put(BaseContrat.UtilisateurTable.COURRIEL, "roma@example.com");
+        userRoma.put(BaseContrat.UtilisateurTable.NUM_TEL, "450-888-1912");
+        userRoma.put(BaseContrat.UtilisateurTable.BIO, "Directrice de Camp de Jour Camp Académie Laval Souvenir");
+        userRoma.put(BaseContrat.UtilisateurTable.MOT_DE_PASSE, "roma1234");
+        userRoma.put(BaseContrat.UtilisateurTable.IMAGE_URL, "https://exemple.com/images/sophie.jpg");
+
+        db.insert(BaseContrat.UtilisateurTable.TABLE_NAME, null, userRoma);
     }
 
+
     private static void insererOrganisateurs(SQLiteDatabase db) {
+        Log.d("SEED", "Insertion de 3 organisateurs...");
+
+        // Organisateur 1
         ContentValues org1 = new ContentValues();
         org1.put(BaseContrat.OrganisateurTable.PRENOM, "Sophie");
         org1.put(BaseContrat.OrganisateurTable.NOM, "Lemieux");
@@ -26,7 +59,10 @@ public class SeedDB {
         org1.put(BaseContrat.OrganisateurTable.NB_EVENTS, 2);
         org1.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://exemple.com/images/sophie.jpg");
 
-        db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org1);
+        long id = db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org1);
+        if(id == -1) {
+            Log.d("SEED", "Échec d'insertion de l'organisateur #1");
+        }
 
         // Organisateur 2
         ContentValues org2 = new ContentValues();
@@ -55,7 +91,21 @@ public class SeedDB {
         db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org3);
     }
 
+    private static void insererStatistiques(SQLiteDatabase db) {
+        for (int i = 1; i <= 20; i++) {
+            ContentValues values = new ContentValues();
+            values.put(BaseContrat.StatistiqueTable.NB_VISITEURS, 0);
+            values.put(BaseContrat.StatistiqueTable.NB_BENEVOLES, 0);
+            values.put(BaseContrat.StatistiqueTable.NB_LIKES, 0);
+            values.put(BaseContrat.StatistiqueTable.NB_VUES, 0);
+            values.put(BaseContrat.StatistiqueTable.NB_PARTAGES, 0);
+
+            db.insert(BaseContrat.StatistiqueTable.TABLE_NAME, null, values);
+        }
+    }
+
     private static void insererEvenements(SQLiteDatabase db) {
+        Log.d("SEED", "Insertion de 20 événements...");
         for (int i = 1; i <= 20; i++) {
             ContentValues values = new ContentValues();
             values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, (i % 3) + 1); // Alternance entre 3 organisateurs
@@ -72,8 +122,8 @@ public class SeedDB {
 
             // Catégorie parmi ton enum
             String[] categories = {
-                    "Environnement", "Aide alimentaire", "Événement sportif", "Collecte de fonds",
-                    "Culture et arts", "Soutien communautaire", "Santé"
+                    "ENVIRONNEMENT", "COMMUNAUTAIRE", "CULTUREL", "SANTE",
+                    "EDUCATION", "SPORTS"
             };
             values.put(BaseContrat.EvenementTable.CATEGORIE, categories[i % categories.length]);
 
@@ -88,7 +138,15 @@ public class SeedDB {
 
             values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://exemple.com/image" + i + ".jpg");
 
-            db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
+            long id = db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
+
+            if(id == -1) {
+                Log.d("SEED", "Échec d'insertion des événements");
+            }
         }
+    }
+
+    private static void insererInscriptions(SQLiteDatabase db) {
+
     }
 }

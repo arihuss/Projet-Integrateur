@@ -3,6 +3,7 @@ package com.sarah.applicationsqak.vues;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -122,6 +123,10 @@ public class EventFilterView extends LinearLayout {
     }
 
     private void notifyFilterChanged() {
+        Log.d("FILTER", "Lieu=" + getSelectedLocation() + ", Etat=" + getSelectedEtat()
+                + ", Role=" + getSelectedRole() + ", Date=" + getSelectedDate()
+                + ", Recherche=" + getSearchText());
+
         if(listener != null) {
             listener.onFilterChanged(getSelectedLocation(), getSelectedEtat(), getSelectedRole(), getSelectedDate(), getSearchText());
         }

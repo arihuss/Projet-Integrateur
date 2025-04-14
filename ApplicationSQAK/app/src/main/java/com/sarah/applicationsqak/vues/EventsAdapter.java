@@ -1,6 +1,7 @@
 package com.sarah.applicationsqak.vues;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.sarah.applicationsqak.modele.Evenement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -25,26 +27,26 @@ import java.util.Locale;
 public class EventsAdapter extends ArrayAdapter<Evenement> {
     private Context contexte;
     private int viewRessourceID;
-    private List<Evenement> evenements;
     private final EvenementDao dao;
 
-    public EventsAdapter(@NonNull Context context, int resource, @NonNull List<Evenement> objects) {
-        super(context, resource, objects);
+    public EventsAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
         contexte = context;
         viewRessourceID = resource;
-        evenements = objects;
         this.dao = new EvenementDao(context);
     }
 
     @Override
     public int getCount() {
-        return evenements.size();
+        return super.getCount();
     }
 
     // Méthode pour afficher les items de la ListView
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        Log.d("ADAPTER", "getView() de EventsAdapter appelé pour position: " + position);
+
         View view = convertView;
         if(view == null) {      // Si la vue n'existe pas, on doit la créer
             LayoutInflater layoutInflater = (LayoutInflater) contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,7 +54,7 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
         }
 
         // Récupère l'événement actuel
-        Evenement event = evenements.get(position);
+        Evenement event = getItem(position);
 
         if(event != null) {
             // Liaison avec la vue d'un item (principale_events_list_item)
@@ -62,6 +64,8 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             ImageView imgEvent = view.findViewById(R.id.imgAffEvents);
             TextView txtDate = view.findViewById(R.id.tvDateEvents);
             TextView txtEtat = view.findViewById(R.id.tvEtatEvents);
+
+            Log.d("DEBUG", "Valeur lisible - Nom: "+ event.getNomEvent());
 
             // Affichage du nom de l'event
             txtNom.setText(event.getNomEvent());
@@ -74,10 +78,15 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             txtOrganisateur.setText(nomOrganisateur);
 
             // Affichage des images selon l'url
-            Glide.with(contexte)
-                    .load(event.getImageUrl())
-                    .placeholder(R.drawable.placeholder)
-                    .into(imgEvent);
+//            Glide.with(contexte)
+//                    .load(event.getImageUrl())
+//                    .placeholder(R.drawable.placeholder)
+//                    .error(R.drawable.placeholder)
+//                    .into(imgEvent);
+
+            // Affichage de l'image du profil organisateur -- TEMPORAIRE
+            imgProfileOrg.setImageResource(R.drawable.placeholder);
+            imgEvent.setImageResource(R.drawable.placeholder);
 
             // Affichage de 'COMPLET' s'il n'y a plus de place
             if (event.getCompletBenevole() == 1 && event.getCompletVisiteur() == 1) {

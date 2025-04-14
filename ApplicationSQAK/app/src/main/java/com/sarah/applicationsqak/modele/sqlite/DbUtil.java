@@ -3,6 +3,7 @@ package com.sarah.applicationsqak.modele.sqlite;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DbUtil extends SQLiteOpenHelper {
 
@@ -18,6 +19,9 @@ public class DbUtil extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // test
+        Log.d("DBUtil", "onCreate() a été appelé");
+
         String requeteCreationUtilisateur = String.format(
                 "CREATE TABLE %s (" +
                         "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -97,7 +101,7 @@ public class DbUtil extends SQLiteOpenHelper {
                         "%s INTEGER CHECK (%s IN (0,1)), " +
                         "%s TEXT, " +
                         "%s TEXT, " +
-                        "%s TEXT CHECK (%s IN ('disponible', 'termine')), " +
+                        "%s TEXT CHECK (%s IN ('Disponible', 'Complet')), " +
                         "%s INTEGER DEFAULT 0, " +
                         "%s INTEGER DEFAULT 0, " +
                         "%s INTEGER CHECK (%s IN (0,1)), " +

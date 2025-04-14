@@ -4,6 +4,7 @@ import static androidx.core.content.ContentProviderCompat.requireContext;
 import static java.security.AccessController.getContext;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Evenement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EvenementViewModel extends AndroidViewModel {
@@ -24,6 +26,8 @@ public class EvenementViewModel extends AndroidViewModel {
     public EvenementViewModel(@NonNull Application application) {
         super(application);
         dao = new EvenementDao(application.getApplicationContext());
+
+        // Charger les événements automatiquement au run
         chargerEvenements();
     }
 
@@ -37,28 +41,61 @@ public class EvenementViewModel extends AndroidViewModel {
 
 
     public void chargerEvenements() {
-        evenements.setValue(dao.getEvenements());
+        new Thread(() -> {
+            try {
+                List<Evenement> liste = dao.getEvenements();
+                Log.d("DEBUG", "Nombre d'evenements recuperes: " + liste.size());  // debug
+                evenements.postValue(liste);
+                message.postValue("Evenements chargés avec succès");
+            }
+            catch(Exception e) {
+                message.postValue("Erreur de chargement des événements: " + e.getMessage());
+            }
+        }).start();
+
     }
 
-    public void ajouterEvenement(Evenement e) {
-        dao.ajouterEvenement(e);
-        chargerEvenements();
+    public void ajouterEvenement(Evenement event) {
+        new Thread(() -> {
+            try {
+                dao.ajouterEvenement(event);
+                chargerEvenements();
+                message.postValue("Événement ajouté avec succès");
+            }
+            catch(Exception e) {
+                message.postValue("Erreur lors de l'ajout de l'événemement: " + e.getMessage());
+            }
+        }).start();
+
     }
 
     public void filtrerEvenements(String lieu, String etat, String role, String date, String recherche) {
         new Thread(() -> {
-            List<Evenement> resultats = dao.getEvenementsFiltres(lieu, etat, role, date, recherche);
-            if(resultats == null) {
-                message.postValue("Catégorie invalide");
+            try {
+                List<Evenement> resultats = dao.getEvenementsFiltres(lieu, etat, role, date, recherche);
+                if(resultats == null) {
+                    message.postValue("Catégorie invalide");
+                }
+                else {
+                    evenements.postValue(resultats);
+                }
             }
-            else {
-                evenements.postValue(resultats);
+            catch(Exception e) {
+                message.postValue("Erreur lors du filtrage: " + e.getMessage());
             }
+
         }).start();
     }
 
     public List<Evenement> getEvenementsParUtilisateur(long userId) {
-        return dao.getEvenementsParUtilisateur(userId);
+        try {
+            return dao.getEvenementsParUtilisateur(userId);
+        }
+        catch(Exception e) {
+            message.postValue("Erreur lors du chargement des événements de l'utilisateur");
+            return new ArrayList<>();  // retourne une liste vide
+        }
+
     }
 
 
