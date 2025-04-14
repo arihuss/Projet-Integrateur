@@ -76,15 +76,8 @@ class SeInscrire extends Controleur {
             $success = OrganisateurDAO::save($organisateur);
 
             if ($success) {
+                $_SESSION['user_id'] = $organisateur->getId();
                 // Envoi du code de confirmation par courriel
-                mail(
-                    $courriel,
-                    "Confirmation de votre compte",
-                    "Bonjour,\n\nVoici votre code de confirmation : $codeConfirmation\n\nL’équipe SQAK"
-                );
-
-                // Stocker le courriel en session pour la validation
-                $_SESSION['courriel_a_confirmer'] = $courriel;
 
                 // Rediriger vers la page de confirmation
                 header("Location: index.php?action=confirmation");

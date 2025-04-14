@@ -1,33 +1,49 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleur.abstract.class.php");
-
-class Confirmation extends Controleur {
+include_once("modele/DAO/OrganisateurDAO.class.php");
+class Confirmation extends Controleur
+{
 
     private array $messagesErreur = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function getMessagesErreur(): array {
+    public function getMessagesErreur(): array
+    {
         return $this->messagesErreur;
     }
 
-	
-    public function executerAction(): string {
 
-        $courriel = $_SESSION['courriel_a_confirmer'] ?? null;
+    public function executerAction(): string
+    {
 
-        if (!$courriel) {
+        if (!isset($_SESSION['user_id'])) {
+            //Rediriger vers la page d'accueil si non connecté
             header("Location: index.php?action=accueil");
             exit;
         }
 
+        $id = $_SESSION['user_id'];
+        $organisateur = OrganisateurDAO::findById($id);
+
+        $mailEnvoye = mail(
+            $organisateur->getCourriel(),
+            "Confirmation de votre compte",
+            "Bonjour,\n\nVoici votre code de confirmation : ".$organisateur->getCodeConfirmation()."\n\nL’équipe SQAK"
+        );
+        
+        if (!$mailEnvoye) {
+            echo "Échec de l'envoi de courriel à ".$organisateur->getCourriel();
+        } else {
+            echo "Courriel envoyé à".$organisateur->getCourriel();
+        }
+        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $codeEntre = $_POST['code'] ?? '';
-
-            // Récupérer l'organisateur avec le courriel
-            $organisateur = OrganisateurDAO::findByEmail($courriel);
 
             if ($organisateur && $organisateur->getCodeConfirmation() === $codeEntre) {
                 // Mettre à jour dans la BD : est_confirme = 1, code_confirmation = NULL
@@ -35,13 +51,10 @@ class Confirmation extends Controleur {
                 $requete = $connexion->prepare("
                     UPDATE Organisateur 
                     SET est_confirme = 1, code_confirmation = NULL 
-                    WHERE courriel = :courriel
+                    WHERE id_organisateur = :id
                 ");
-                $requete->bindValue(':courriel', $courriel);
+                $requete->bindValue(':id', $id);
                 $requete->execute();
-
-                // Nettoyer la session
-                unset($_SESSION['courriel_a_confirmer']);
 
                 // Redirection vers la connexion avec message
                 header("Location: index.php?action=seConnecter&message=Compte confirmé avec succès !");
