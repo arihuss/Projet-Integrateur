@@ -3,13 +3,8 @@ include_once(__DIR__ . '/../organisateur.class.php');
 include_once(__DIR__ . "/DAO.interface.php");
 include_once(__DIR__ . '/../DAO/connexionBD.class.php');
 
-class OrganisateurDAO implements DAO{
+class OrganisateurDAO implements DAO {
 
-    /**
-     * Cette méthode retourne l'organisateur dont la clé primaire a été reçue en paramètre
-     * @param int $id La clé primaire de l'objet à chercher
-     * @return object|null L'objet trouvé ou null si non-trouvé
-     */
     static public function findById(int $id): ?Organisateur {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -17,20 +12,16 @@ class OrganisateurDAO implements DAO{
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $organisateur = null;
-        $requete = $connexion->prepare(
-            "SELECT * 
-             FROM Organisateur 
-             WHERE id_organisateur = :id"
-        );
-        $requete->bindParam(':id',$id,PDO::PARAM_INT);
+        $requete = $connexion->prepare("SELECT * FROM Organisateur WHERE id_organisateur = :id");
+        $requete->bindParam(':id', $id, PDO::PARAM_INT);
         $requete->execute();
 
-        if ($requete->rowCount()!=0){
+        $organisateur = null;
+        if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
             $organisateur = new Organisateur(
                 $enr['id_organisateur'],
-                $enr['img_organisateur']??null,
+                $enr['img_organisateur'] ?? null,
                 $enr['prenom'] ?? null,
                 $enr['nom'] ?? null,
                 $enr['courriel'],
@@ -38,175 +29,132 @@ class OrganisateurDAO implements DAO{
                 $enr['nom_organisateur'] ?? null,
                 $enr['mot_de_passe'],
                 $enr['nb_events'],
-                $enr['telephone'] ?? null 
+                $enr['telephone'] ?? null,
+                $enr['est_confirme'] ?? false,
+                $enr['code_confirmation'] ?? null
             );
         }
+
         $requete->closeCursor();
         ConnexionBD::close();
         return $organisateur;
-
     }
 
-    /**
-     * Retourne une liste de tous les objets de la table
-     * PAS SUPPOSE MARCHER POUR ORGANISATEUR
-     * @return array
-     */
-    static public function findAll():array{
-        //a completer
-        return [0];
+    static public function findAll(): array {
+        return [0]; // Non utilisé
     }
 
-    /**
-     * Creer un nouvel organisateur au sign-up
-     * @param object $organisateur
-     * @return bool true si successful
-     */
-    static public function save(object $organisateur):bool{
+    static public function save(object $organisateur): bool {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
-        
-        //Stockage de variables intermediaires
-        $imgOrganisateur = $organisateur->getImgOrganisateur();
-        $prenom = $organisateur->getPrenom();
-        $nom = $organisateur->getNom();
-        $courriel = $organisateur->getCourriel();
-        $bio = $organisateur->getBiographie();
-        $nomOrganisateur = $organisateur->getNomOrganisateur();
-        $mdp = $organisateur->getMotDePasse();
-        $nbEvents = $organisateur->getNbEvents();
-        $telephone = $organisateur->getTelephone();
-
-  
 
         $requete = $connexion->prepare(
-            "INSERT INTO Organisateur (img_organisateur, prenom, nom, courriel, bio, nom_organisateur, mot_de_passe, nb_events,telephone)
-             VALUES (:img_organisateur,:prenom, :nom, :courriel, :bio, :nomOrganisateur, :mdp, :nbEvents,:telephone)"
-
+            "INSERT INTO Organisateur (
+                img_organisateur, prenom, nom, courriel, bio, nom_organisateur, 
+                mot_de_passe, nb_events, telephone, est_confirme, code_confirmation
+            ) VALUES (
+                :img_organisateur, :prenom, :nom, :courriel, :bio, :nomOrganisateur,
+                :mdp, :nbEvents, :telephone, :est_confirme, :code_confirmation
+            )"
         );
 
-        //Liaison des parametres
-        $requete->bindParam(':img_organisateur',$imgOrganisateur,PDO::PARAM_STR);
-        $requete->bindParam(':prenom',$prenom,PDO::PARAM_STR);
-        $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
-        $requete->bindParam(':courriel',$courriel,PDO::PARAM_STR);
-        $requete->bindParam(':bio',$bio,PDO::PARAM_STR);
-        $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
-        $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
-        $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
-        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+        $requete->bindValue(':img_organisateur', $organisateur->getImgOrganisateur(), PDO::PARAM_STR);
+        $requete->bindValue(':prenom', $organisateur->getPrenom(), PDO::PARAM_STR);
+        $requete->bindValue(':nom', $organisateur->getNom(), PDO::PARAM_STR);
+        $requete->bindValue(':courriel', $organisateur->getCourriel(), PDO::PARAM_STR);
+        $requete->bindValue(':bio', $organisateur->getBiographie(), PDO::PARAM_STR);
+        $requete->bindValue(':nomOrganisateur', $organisateur->getNomOrganisateur(), PDO::PARAM_STR);
+        $requete->bindValue(':mdp', $organisateur->getMotDePasse(), PDO::PARAM_STR);
+        $requete->bindValue(':nbEvents', $organisateur->getNbEvents(), PDO::PARAM_INT);
+        $requete->bindValue(':telephone', $organisateur->getTelephone(), PDO::PARAM_STR);
+        $requete->bindValue(':est_confirme', $organisateur->getEstConfirme(), PDO::PARAM_BOOL);
+        $requete->bindValue(':code_confirmation', $organisateur->getCodeConfirmation(), PDO::PARAM_STR);
 
         $success = $requete->execute();
-        if ($success){
-            $organisateur->setId((int)$connexion->lastInsertId()); //not sure if this part is needed
-        }
-        return $success;
 
-        if (!$success) {
+        if ($success) {
+            $organisateur->setId((int) $connexion->lastInsertId());
+        } else {
+            echo "<pre>Erreur SQL : ";
             print_r($requete->errorInfo());
-            }
-
-        $requete->debugDumpParams(); // Montre tous les paramètres SQL pour le débogage
-
+            echo "</pre>";
         }
-    /**
-     * Modifier organisateur dans la page modifier
-     * @param object $object
-     * @return bool true si successful
-     */
-    static public function update(object $organisateur):bool{
+
+        return $success;
+    }
+
+    static public function update(object $organisateur): bool {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
-
-        //Stockage de variables intermediaires
-        $id = $organisateur->getId();
-        $imgOrganisateur = $organisateur->getImgOrganisateur();
-        $prenom = $organisateur->getPrenom();
-        $nom = $organisateur->getNom();
-        $courriel = $organisateur->getCourriel();
-        $bio = $organisateur->getBiographie();
-        $nomOrganisateur = $organisateur->getNomOrganisateur();
-        $mdp = $organisateur->getMotDePasse();
-        $nbEvents = $organisateur->getNbEvents();
-        $telephone = $organisateur->getTelephone();
-
-        $mdp = password_hash($mdp,PASSWORD_BCRYPT);
 
         $requete = $connexion->prepare(
-            "UPDATE Organisateur
-                SET img_organisateur =:img_organisateur, prenom = :prenom, nom = :nom, courriel = :courriel, 
-                    bio = :bio, nom_organisateur = :nomOrganisateur, 
-                    mot_de_passe = :mdp, nb_events = :nbEvents, telephone=:telephone
-                WHERE id_organisateur = :id"
-
+            "UPDATE Organisateur SET 
+                img_organisateur = :img_organisateur,
+                prenom = :prenom,
+                nom = :nom,
+                courriel = :courriel,
+                bio = :bio,
+                nom_organisateur = :nomOrganisateur,
+                mot_de_passe = :mdp,
+                nb_events = :nbEvents,
+                telephone = :telephone,
+                est_confirme = :est_confirme,
+                code_confirmation = :code_confirmation
+            WHERE id_organisateur = :id"
         );
 
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
-        $requete->bindParam(':img_organisateur', $imgOrganisateur, PDO::PARAM_STR);
-        $requete->bindParam(':prenom',$prenom,PDO::PARAM_STR);
-        $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
-        $requete->bindParam(':courriel',$courriel,PDO::PARAM_STR);
-        $requete->bindParam(':bio',$bio,PDO::PARAM_STR);
-        $requete->bindParam(':nomOrganisateur',$nomOrganisateur,PDO::PARAM_STR);
-        $requete->bindParam(':mdp',$mdp,PDO::PARAM_STR);
-        $requete->bindParam(':nbEvents',$nbEvents,PDO::PARAM_STR);
-        $requete->bindParam(':telephone', $telephone, PDO::PARAM_STR);
+        $requete->bindValue(':id', $organisateur->getId(), PDO::PARAM_INT);
+        $requete->bindValue(':img_organisateur', $organisateur->getImgOrganisateur(), PDO::PARAM_STR);
+        $requete->bindValue(':prenom', $organisateur->getPrenom(), PDO::PARAM_STR);
+        $requete->bindValue(':nom', $organisateur->getNom(), PDO::PARAM_STR);
+        $requete->bindValue(':courriel', $organisateur->getCourriel(), PDO::PARAM_STR);
+        $requete->bindValue(':bio', $organisateur->getBiographie(), PDO::PARAM_STR);
+        $requete->bindValue(':nomOrganisateur', $organisateur->getNomOrganisateur(), PDO::PARAM_STR);
+        $requete->bindValue(':mdp', $organisateur->getMotDePasse(), PDO::PARAM_STR);
+        $requete->bindValue(':nbEvents', $organisateur->getNbEvents(), PDO::PARAM_INT);
+        $requete->bindValue(':telephone', $organisateur->getTelephone(), PDO::PARAM_STR);
+        $requete->bindValue(':est_confirme', $organisateur->getEstConfirme(), PDO::PARAM_BOOL);
+        $requete->bindValue(':code_confirmation', $organisateur->getCodeConfirmation(), PDO::PARAM_STR);
 
         return $requete->execute();
     }
 
-    /**
-     * Supprimer le compte de l'organisateur 
-     * @param object $object
-     * @return bool true si successful
-     */
-    static public function delete(object $organisateur):bool{
+    static public function delete(object $organisateur): bool {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d'obtenir la connexion à la BD");
         }
 
-        $id = $organisateur->getId();
-
         $requete = $connexion->prepare("DELETE FROM Organisateur WHERE id_organisateur = :id");
-
-        // Liaison du paramètre
-        $requete->bindParam(':id', $id, PDO::PARAM_INT);
-
+        $requete->bindValue(':id', $organisateur->getId(), PDO::PARAM_INT);
         return $requete->execute();
     }
 
-    
-    /**
-     * Cette méthode retourne l'organisateur dont le email a été reçue en paramètre
-     * @param int $courriel La courriel de l'objet à chercher
-     * @return object|null L'objet trouvé ou null si non-trouvé
-     */
-
-     static public function findByEmail(string $courriel): ?Organisateur {
+    static public function findByEmail(string $courriel): ?Organisateur {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Connexion BD échouée");
         }
-    
+
         $requete = $connexion->prepare("SELECT * FROM Organisateur WHERE courriel = :courriel");
-        $requete->bindParam(':courriel', $courriel, PDO::PARAM_STR);
+        $requete->bindValue(':courriel', $courriel, PDO::PARAM_STR);
         $requete->execute();
-    
+
         if ($requete->rowCount() === 0) return null;
-    
+
         $enr = $requete->fetch();
+
         return new Organisateur(
             $enr['id_organisateur'],
-            $enr['img_organisateur']??null,
+            $enr['img_organisateur'] ?? null,
             $enr['prenom'] ?? null,
             $enr['nom'] ?? null,
             $enr['courriel'],
@@ -214,10 +162,9 @@ class OrganisateurDAO implements DAO{
             $enr['nom_organisateur'] ?? null,
             $enr['mot_de_passe'],
             $enr['nb_events'],
-            $enr['telephone'] ?? null 
+            $enr['telephone'] ?? null,
+            $enr['est_confirme'] ?? false,
+            $enr['code_confirmation'] ?? null
         );
+    }
 }
-
-}
-
-?>

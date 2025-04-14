@@ -12,6 +12,9 @@ class Organisateur implements JsonSerializable
     private string $motDePasse;
     private int $nbEvents;
     private ?string $telephone;
+    private bool $estConfirme;
+    private ?string $codeConfirmation;
+
 
     
     //Constructeur
@@ -26,7 +29,9 @@ class Organisateur implements JsonSerializable
         ?string $nomOrganisateur,
         string $motDePasse,
         int $nbEvents,
-        ?string $telephone
+        ?string $telephone,
+        bool $estConfirme,
+        ?string $codeConfirmation
     ){
         $this->id = $id;
         $this->imgOrganisateur=$imgOrganisateur;
@@ -38,6 +43,8 @@ class Organisateur implements JsonSerializable
         $this->motDePasse = $motDePasse;
         $this->nbEvents = $nbEvents;
         $this->telephone=$telephone;
+        $this->estConfirme = $estConfirme;
+        $this->codeConfirmation = $codeConfirmation;
     }
 
      // Getters
@@ -141,6 +148,22 @@ class Organisateur implements JsonSerializable
     public function setTelephone(?string $telephone): void {
         $this->telephone = $telephone;
     }
+    public function getEstConfirme(): bool {
+        return $this->estConfirme;
+    }
+    
+    public function setEstConfirme(bool $val): void {
+        $this->estConfirme = $val;
+    }
+    
+    public function getCodeConfirmation(): ?string {
+        return $this->codeConfirmation;
+    }
+    
+    public function setCodeConfirmation(?string $code): void {
+        $this->codeConfirmation = $code;
+    }
+    
  
      // Implémentation de JsonSerializable
      public function jsonSerialize(): array

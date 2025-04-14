@@ -14,14 +14,26 @@
     <header><?php include("components/header.php") ?></header>
 
     <div class="container">
+
+        <?php if (isset($messagesErreur) && !empty($messagesErreur)): ?>
+            <div class="erreurs">
+                <?php foreach ($messagesErreur as $msg): ?>
+                    <p style="color: red;"><?= htmlspecialchars($msg) ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
         <form action="" method="POST">
             <h2>Entrez le code de confirmation</h2>
-            <input id="code-confirmation" type="text" required>
+            <input id="code-confirmation" name="code" type="text" required>
+
+            <br><br>
+            <button type="submit" class="btn-jaune">Confirmer</button>
         </form>
+
         <br>
         <div>
-            <a class="btn-jaune" href="seConnecter">Confirmer</a><br>
-            <a href="code-renvoye"> Renvoyez le code</a> <!-- code a renvoyer a changer-->
+            <a href="?action=renvoyerCode">Renvoyer le code</a> <!-- Pour plus tard -->
         </div>
     </div>
 
