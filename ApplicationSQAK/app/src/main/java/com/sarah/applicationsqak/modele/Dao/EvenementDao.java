@@ -34,8 +34,7 @@ public class EvenementDao {
 
         // SELECT * FROM Evenement
         Cursor cursor = db.query(BaseContrat.EvenementTable.TABLE_NAME, null, null, null, null, null, null);
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
 
             // Remplir la liste
             do {
@@ -109,25 +108,25 @@ public class EvenementDao {
         List<String> valeurs = new ArrayList<>();
 
         // Si dans la Spinner des lieux, on a PAS coché 'Lieux' (tous les lieux), filtrer selon le lieu choisi
-        if(!lieu.equalsIgnoreCase("Lieux")) {
+        if (lieu != null && !lieu.equalsIgnoreCase("Lieux")) {
             conditions.add("LIEU = ?");
             valeurs.add(lieu);
         }
 
-        if(!etat.equalsIgnoreCase("Etats")) {
+        if (etat != null && !etat.equalsIgnoreCase("Etats")) {
             conditions.add("ETAT = ?");
             valeurs.add(etat);
         }
 
-        if(role.equalsIgnoreCase("benevole")) {
+        if (role != null && role.equalsIgnoreCase("benevole")) {
             conditions.add("NB_BENEVOLES_MAX > 0");
         }
-        else if(role.equalsIgnoreCase("visiteur")) {
+        else if (role != null && role.equalsIgnoreCase("visiteur")) {
             conditions.add("NB_PARTICIPANTS_MAX > 0");
         }
 
 
-        if(!date.equalsIgnoreCase("Date") || !date.isEmpty()) {
+        if (date != null && (!date.equalsIgnoreCase("Date") || !date.isEmpty())) {
             String dateFormatee = convertirFormatDate(date);
             if(dateFormatee != null) {
                 conditions.add("DATE_DEBUT LIKE ?");
@@ -136,18 +135,19 @@ public class EvenementDao {
 
         }
 
-        if(!recherche.isEmpty()) {
+        if (recherche != null && !recherche.isEmpty()) {
             try {
                 Categorie categorie = Categorie.fromLabel(recherche);
-                conditions.add("CATEGORIE = ?");
-                valeurs.add(categorie.getLabel());
+                if (categorie != null) {
+                    conditions.add("CATEGORIE = ?");
+                    valeurs.add(categorie.getLabel());
+                }
             }
-            catch(IllegalArgumentException e) {
-                // La catégorie n'existe pas, on ajoute aucun filtre
-                return null;
+            catch(Exception e) {
+                return new ArrayList<>();
             }
-
         }
+
 
         String whereClause = conditions.isEmpty() ? null : TextUtils.join(" AND ", conditions);
         String[] whereArgs = valeurs.toArray(new String[0]);
@@ -156,8 +156,7 @@ public class EvenementDao {
 
         List<Evenement> eventsfiltres = new ArrayList<>();
 
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if(cursor != null && cursor.moveToFirst()) {
 
             do {
                 Evenement e = new Evenement();
