@@ -253,4 +253,53 @@ public class EvenementDao {
         }
         cursor.close();
     }
+
+    public List<Evenement> getEvenementsParUtilisateur(long userId) {
+        List<Evenement> evenements = new ArrayList<>();
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+
+        String requete = "SELECT * FROM Evenement e " +
+                "JOIN Inscription i ON e._id = i.ID_EVENEMENT " +
+                "WHERE i.ID_UTILISATEUR = ? " +
+                "ORDER BY e.DATE_DEBUT DESC";
+
+        Cursor cursor = db.rawQuery(requete, new String[]{String.valueOf(userId)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                Evenement evenement = new Evenement();
+
+                evenement.setId(cursor.getInt(cursor.getColumnIndexOrThrow("ID_EVENEMENT")));
+                evenement.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow("ID_STATISTIQUE")));
+                evenement.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow("ID_ORGANISATEUR")));
+                evenement.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow("NOM_EVENT")));
+                evenement.setLieu(cursor.getString(cursor.getColumnIndexOrThrow("LIEU")));
+                evenement.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow("DATE_DEBUT")));
+                evenement.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow("DATE_FIN")));
+                evenement.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_MAX")));
+                evenement.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_PARTICIPANTS_MAX")));
+                evenement.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("ETAT_BENEVOLE")));
+                evenement.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("DESCRIPTION")));
+                evenement.setEtat(cursor.getString(cursor.getColumnIndexOrThrow("ETAT")));
+                evenement.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow("NB_INSCRIPTIONS")));
+                evenement.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_ACCEPTES")));
+                evenement.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_BENEVOLE")));
+                evenement.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_VISITEUR")));
+                evenement.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URL")));
+
+                String catStr = cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIE"));
+                if (catStr != null) {
+                    evenement.setCategorie(Categorie.valueOf(catStr));
+                }
+
+                evenements.add(evenement);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return evenements;
+    }
+
+
+
 }

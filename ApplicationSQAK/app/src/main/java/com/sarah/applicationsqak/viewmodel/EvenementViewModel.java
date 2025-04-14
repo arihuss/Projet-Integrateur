@@ -1,4 +1,4 @@
-package com.sarah.applicationsqak.viewModel;
+package com.sarah.applicationsqak.viewmodel;
 
 import static androidx.core.content.ContentProviderCompat.requireContext;
 import static java.security.AccessController.getContext;
@@ -56,6 +56,11 @@ public class EvenementViewModel extends AndroidViewModel {
             }
         }).start();
     }
+
+    public List<Evenement> getEvenementsParUtilisateur(long userId) {
+        return dao.getEvenementsParUtilisateur(userId);
+    }
+
 
 
 

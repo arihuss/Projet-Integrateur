@@ -128,4 +128,47 @@ public class UtilisateurDao {
 
         db.update(BaseContrat.UtilisateurTable.TABLE_NAME, values, selection, selectionArgs);
     }
+
+    public Utilisateur getUtilisateurParId(long id) {
+        String[] colonnes = {
+                BaseContrat.UtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.UtilisateurTable.PRENOM,
+                BaseContrat.UtilisateurTable.NOM,
+                BaseContrat.UtilisateurTable.COURRIEL,
+                BaseContrat.UtilisateurTable.NUM_TEL,
+                BaseContrat.UtilisateurTable.BIO,
+                BaseContrat.UtilisateurTable.MOT_DE_PASSE,
+                BaseContrat.UtilisateurTable.IMAGE_URL
+        };
+
+        String selection = BaseContrat.UtilisateurTable.ID_UTILISATEUR + " = ?";
+        String[] selectionArgs = { String.valueOf(id) };
+
+        Cursor cursor = db.query(
+                BaseContrat.UtilisateurTable.TABLE_NAME,
+                colonnes,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        Utilisateur utilisateur = null;
+        if (cursor.moveToFirst()) {
+            utilisateur = new Utilisateur(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7)
+            );
+        }
+        cursor.close();
+        return utilisateur;
+    }
+
 }

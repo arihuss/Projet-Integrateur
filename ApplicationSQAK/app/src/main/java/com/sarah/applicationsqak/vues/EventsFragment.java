@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sarah.applicationsqak.R;
-import com.sarah.applicationsqak.viewModel.EvenementViewModel;
+import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 
 import java.util.ArrayList;
 

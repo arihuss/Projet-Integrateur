@@ -36,4 +36,8 @@ public class UtilisateurViewModel extends AndroidViewModel {
     public void mettreAJourUtilisateur(Utilisateur utilisateur) {
         utilisateurDao.mettreAJourUtilisateur(utilisateur);
     }
+    public Utilisateur getUtilisateurParId(long id) {
+        return utilisateurDao.getUtilisateurParId(id);
+    }
+
 }

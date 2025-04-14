@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:layout_marginBottom="10dp">
+
+    <!-- Badge de date -->
+    <TextView
+        android:id="@+id/txtDateExperience"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="27\nJanv"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/secondary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Texte descriptif -->
+    <LinearLayout
+        android:id="@+id/contenuExperience"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/txtDateExperience"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/txtTitreExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ramassage déchets"
+            android:textColor="@color/textsurbg"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtLieuExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lieu : parc Oka"
+            android:textColor="@color/textsurbg"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtOrganisationExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Organisation : Terre-Sauve"
+            android:textColor="@color/textsurbg"
+            android:textSize="14sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
