@@ -190,6 +190,9 @@ public class DbUtil extends SQLiteOpenHelper {
                 BaseContrat.MessageTable.ID_EVENEMENT, BaseContrat.EvenementTable.TABLE_NAME, BaseContrat.EvenementTable.ID_EVENEMENT
         );
         db.execSQL(requeteCreationMessage);
+
+        // Insertion des données initiales
+        SeedDB.insererDonneesInitiales(db);
     }
 
     @Override

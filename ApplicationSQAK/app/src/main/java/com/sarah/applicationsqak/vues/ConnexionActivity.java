@@ -79,7 +79,7 @@ public class ConnexionActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Connexion réussie !", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, PrincipaleActivity.class));
-                finish();
+
             } else {
                 Toast.makeText(this, "Identifiants invalides", Toast.LENGTH_SHORT).show();
             }
