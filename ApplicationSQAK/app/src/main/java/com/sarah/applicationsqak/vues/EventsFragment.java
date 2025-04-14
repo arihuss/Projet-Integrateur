@@ -3,6 +3,7 @@ package com.sarah.applicationsqak.vues;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.viewModel.EvenementViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +22,8 @@ import com.sarah.applicationsqak.R;
  */
 public class EventsFragment extends Fragment {
     private EventFilterView eventView;
+    private EvenementViewModel viewModel;
+    private EventsAdapter eventAdapter;
     private ListView lvEvents;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,16 +80,18 @@ public class EventsFragment extends Fragment {
         // Liaison de la vue personnalisée 'EventFilterView'
         eventView = view.findViewById(R.id.eventFilterView);
 
-        // Prendre les spinners de la vue
-        Spinner spLocation = eventView.getSpLocation();
-
-        // ArrayAdapter setup
-        ArrayAdapter<CharSequence> adapterLocation = ArrayAdapter.createFromResource(requireContext(), R.array.event_locations, R.layout.event_filter_spinner_item);
-        spLocation.setAdapter(adapterLocation);
-
-
         // Pour l'affichage des événements
         lvEvents = view.findViewById(R.id.lvEventsPrincipale);
+        eventAdapter = new EventsAdapter();
+        lvEvents.setAdapter(eventAdapter);
+
+        viewModel = new ViewModelProvider(this).get(EvenementViewModel.class);
+        // Observe les changements de LiveData et appel fonction pour que l'adaptateur affiche les nouveaux événements filtrés
+        viewModel.getEvenements().observe(getViewLifecycleOwner(), evenements -> eventAdapter.submitList(evenements));
+
+        eventView.setOnFilterChangeListener((lieu, etat, role, date, recherche) -> {
+            viewModel.filtrerEvenements(lieu, etat, role, date, recherche);
+        });
 
     }
 }

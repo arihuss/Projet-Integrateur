@@ -29,6 +29,11 @@
     <string name="publier">Publier</string>
     <string name="v_nements">Événements</string>
     <string name="mes_inscriptions">Mes Inscriptions</string>
+    <string name="date">Date</string>
+    <string name="benevole">Benevole</string>
+    <string name="tout">Tout</string>
+    <string name="visiteur">Visiteur</string>
+    <string name="recherche">Recherche</string>
 
     <string-array name="event_dates">
             <item>Date</item>
@@ -39,7 +44,7 @@
         </string-array>
 
     <string-array name="event_locations">
-        <item>Lieu</item>
+        <item>Lieux</item>
         <item>Montreal</item>
         <item>Laval</item>
         <item>Quebec</item>
@@ -51,5 +56,7 @@
         <item>Complet</item>
         <item>Disponible</item>
     </string-array>
+
+
 
 </resources>

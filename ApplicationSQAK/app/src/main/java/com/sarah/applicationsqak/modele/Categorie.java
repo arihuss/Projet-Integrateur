@@ -23,5 +23,15 @@ public enum Categorie {
         return label;
     }
 
+    public static String[] getAllLabels() {
+        Categorie[] values = Categorie.values();
+        String[] labels = new String[values.length];
+        for(int i=0; i<values.length; i++) {
+            labels[i] = values[i].getLabel();
+        }
+
+        return labels;
+    }
+
 }
 

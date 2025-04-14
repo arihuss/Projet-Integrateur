@@ -23,7 +23,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:backgroundTint="@color/accent3"
-                android:text="Tout"
+                android:text="@string/tout"
                 android:textSize="16sp"
                 app:cornerRadius="15dp" />
 
@@ -41,6 +41,18 @@
                 android:textAlignment="center" />
 
             <Button
+                android:id="@+id/btnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/btnfiltre"
+                android:text="@string/date"
+                android:textSize="16sp"
+                app:cornerRadius="15dp" />
+
+            <Button
                 android:id="@+id/btnFiltreVisiteur"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
@@ -48,7 +60,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/btnfiltre"
-                android:text="Visiteur"
+                android:text="@string/visiteur"
                 android:textSize="16sp"
                 app:cornerRadius="15dp" />
 
@@ -60,7 +72,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/btnfiltre"
-                android:text="Benevole"
+                android:text="@string/benevole"
                 app:cornerRadius="15dp" />
 
             <Spinner
@@ -83,13 +95,14 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <SearchView
+        <AutoCompleteTextView
+            android:id="@+id/searchBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/barrerecherche"
-            android:minWidth="100dp"
-            android:queryHint="Rechercher..." />
+            android:hint="Rechercher..."
+            android:minWidth="100dp" />
 
         <Button
             android:id="@+id/btnRecherche"
@@ -98,7 +111,7 @@
             android:backgroundTint="@color/accent2"
             android:maxWidth="50dp"
             android:minWidth="140dp"
-            android:text="Recherche" />
+            android:text="@string/recherche" />
 
     </LinearLayout>
 

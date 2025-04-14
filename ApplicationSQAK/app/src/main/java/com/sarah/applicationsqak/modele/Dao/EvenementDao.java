@@ -68,6 +68,7 @@ public class EvenementDao {
         return evenements;
     }
 
+
     public long ajouterEvenement(Evenement event) {
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
@@ -94,5 +95,17 @@ public class EvenementDao {
         long newRowId = db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
 
         return newRowId;
+    }
+
+    public List<Evenement> getEvenementsFiltres(String lieu, String etat, String role, String date, String categorie) {
+        SQLiteDatabase db= dbUtil.getReadableDatabase();
+
+        List<String> conditions = new ArrayList<>();  // contient tous les filtres sélectionnés
+        List<String> valeurs = new ArrayList<>();
+
+        // Si dans la Spinner des lieux, on a PAS coché 'Lieux' (tous les lieux), filtrer selon le lieu choisi
+        if(!lieu.equalsIgnoreCase("Lieux")) {
+
+        }
     }
 }

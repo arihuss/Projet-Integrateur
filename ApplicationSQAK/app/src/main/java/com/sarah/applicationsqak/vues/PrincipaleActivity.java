@@ -51,12 +51,5 @@ public class PrincipaleActivity extends AppCompatActivity {
             Log.e("Principale", "NavHostFragment is null! Check activity_principale.xml");
         }
 
-
-
-
-
-
-
-
     }
 }
