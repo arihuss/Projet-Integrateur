@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.viewModel.EvenementViewModel;
@@ -86,6 +87,12 @@ public class EventsFragment extends Fragment {
         lvEvents.setAdapter(eventAdapter);
 
         viewModel = new ViewModelProvider(this).get(EvenementViewModel.class);
+        // Obersve les messages d'erreur
+        viewModel.getMessage().observe(getViewLifecycleOwner(), message -> {
+            if(message != null && !message.isEmpty()) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+            }
+        });
         // Observe les changements de LiveData et appel fonction pour que l'adaptateur affiche les nouveaux événements filtrés
         viewModel.getEvenements().observe(getViewLifecycleOwner(), evenements -> eventAdapter.submitList(evenements));
 

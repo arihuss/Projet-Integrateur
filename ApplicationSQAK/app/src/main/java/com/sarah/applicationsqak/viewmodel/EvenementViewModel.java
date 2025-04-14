@@ -1,6 +1,10 @@
 package com.sarah.applicationsqak.viewModel;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+import static java.security.AccessController.getContext;
+
 import android.app.Application;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,6 +18,7 @@ import java.util.List;
 
 public class EvenementViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Evenement>> evenements = new MutableLiveData<>();
+    private final MutableLiveData<String> message = new MutableLiveData<>();
     private EvenementDao dao;
 
     public EvenementViewModel(@NonNull Application application) {
@@ -26,6 +31,10 @@ public class EvenementViewModel extends AndroidViewModel {
         return evenements;
     }
 
+    public LiveData<String> getMessage() {
+        return message;
+    }
+
 
     public void chargerEvenements() {
         evenements.setValue(dao.getEvenements());
@@ -36,10 +45,15 @@ public class EvenementViewModel extends AndroidViewModel {
         chargerEvenements();
     }
 
-    public void filtrerEvenements(String lieu, String etat, String date, String role) {
+    public void filtrerEvenements(String lieu, String etat, String role, String date, String recherche) {
         new Thread(() -> {
-            List<Evenement> resultats = dao.getEvenementsFiltres(lieu, etat. role, date, recherche);
-            evenements.postValue(resultats);
+            List<Evenement> resultats = dao.getEvenementsFiltres(lieu, etat, role, date, recherche);
+            if(resultats == null) {
+                message.postValue("Catégorie invalide");
+            }
+            else {
+                evenements.postValue(resultats);
+            }
         }).start();
     }
 

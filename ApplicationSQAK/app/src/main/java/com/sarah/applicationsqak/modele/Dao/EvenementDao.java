@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.sarah.applicationsqak.modele.Categorie;
@@ -13,8 +14,11 @@ import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.sqlite.BaseContrat;
 import com.sarah.applicationsqak.modele.sqlite.DbUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EvenementDao {
     private DbUtil dbUtil;
@@ -97,7 +101,7 @@ public class EvenementDao {
         return newRowId;
     }
 
-    public List<Evenement> getEvenementsFiltres(String lieu, String etat, String role, String date, String categorie) {
+    public List<Evenement> getEvenementsFiltres(String lieu, String etat, String role, String date, String recherche) {
         SQLiteDatabase db= dbUtil.getReadableDatabase();
 
         List<String> conditions = new ArrayList<>();  // contient tous les filtres sélectionnés
@@ -105,7 +109,89 @@ public class EvenementDao {
 
         // Si dans la Spinner des lieux, on a PAS coché 'Lieux' (tous les lieux), filtrer selon le lieu choisi
         if(!lieu.equalsIgnoreCase("Lieux")) {
+            conditions.add("LIEU = ?");
+            valeurs.add(lieu);
+        }
 
+        if(!etat.equalsIgnoreCase("Etats")) {
+            conditions.add("ETAT = ?");
+            valeurs.add(etat);
+        }
+
+        if(role.equalsIgnoreCase("benevole")) {
+            conditions.add("NB_BENEVOLES_MAX > 0");
+        }
+        else if(role.equalsIgnoreCase("visiteur")) {
+            conditions.add("NB_PARTICIPANTS_MAX > 0");
+        }
+
+        // pas bon?
+        if(!date.equalsIgnoreCase("Date") || !date.isEmpty()) {
+            conditions.add("DATE_DEBUT LIKE ?");
+            valeurs.add("%" + date + "%");
+        }
+
+        if(!recherche.isEmpty()) {
+            try {
+                Categorie categorie = Categorie.fromLabel(recherche);
+                conditions.add("CATEGORIE = ?");
+                valeurs.add(categorie.getLabel());
+            }
+            catch(IllegalArgumentException e) {
+                // La catégorie n'existe pas, on ajoute aucun filtre
+                return null;
+            }
+
+        }
+
+        String whereClause = conditions.isEmpty() ? null : TextUtils.join(" AND ", conditions);
+        String[] whereArgs = valeurs.toArray(new String[0]);
+
+        Cursor cursor = db.query(BaseContrat.EvenementTable.TABLE_NAME, null, whereClause, whereArgs, null, null, null);
+
+        List<Evenement> eventsfiltres = new ArrayList<>();
+
+        if(cursor != null) {
+            cursor.moveToFirst();
+
+            do {
+                Evenement e = new Evenement();
+
+                e.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_EVENEMENT)));
+                e.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_ORGANISATEUR)));
+                e.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_STATISTIQUE)));
+                e.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NOM_EVENT)));
+                e.setLieu(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.LIEU)));
+                e.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_DEBUT)));
+                e.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_FIN)));
+                e.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_MAX)));
+                e.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX)));
+                e.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT_BENEVOLE)));
+                e.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DESCRIPTION)));
+                e.setEtat(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT)));
+                e.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_INSCRIPTIONS)));
+                e.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES)));
+                e.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_BENEVOLE)));
+                e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
+                e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
+
+            } while(cursor.moveToNext());
+        }
+
+        cursor.close();
+        return eventsfiltres;
+    }
+
+    private String convertirFormatDate(String date) {
+        try {
+            // Format reçu du DatePickerDialog
+            SimpleDateFormat formatEntree = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+
+            // Convertir le String date choisie en objet Date
+            Date parsedDate = formatEntree.parse(date);
+
+            // Format qu'on veut pour la recherche dans la base de données
+            SimpleDateFormat formatBD = new SimpleDateFormat()
         }
     }
 }

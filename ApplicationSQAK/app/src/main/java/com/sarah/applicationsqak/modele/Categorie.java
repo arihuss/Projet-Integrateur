@@ -33,5 +33,14 @@ public enum Categorie {
         return labels;
     }
 
+    public static Categorie fromLabel(String label) {
+        for(Categorie c : values()) {
+            if(c.label.equalsIgnoreCase(label)) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException("Catégorie inconnue: " + label);
+    }
+
 }
 

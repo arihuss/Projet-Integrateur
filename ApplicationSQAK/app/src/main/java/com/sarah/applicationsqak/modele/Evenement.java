@@ -15,7 +15,7 @@ public class Evenement implements Serializable {
     private int etatBenevole;
     private Categorie categorie;
     private String description;
-    private String etat;
+    private String etat;  // "Complet" ou "Disponible"
     private int nbInscriptions;
     private int nbBenevolesAcceptes;
     private int completBenevole;

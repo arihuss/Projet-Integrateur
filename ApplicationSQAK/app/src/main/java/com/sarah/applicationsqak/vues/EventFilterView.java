@@ -78,8 +78,7 @@ public class EventFilterView extends LinearLayout {
         });
 
         btnTout.setOnClickListener(v -> {
-            roleSelectionne = "tout";
-            notifyFilterChanged();
+            resetFilters();
         });
 
         btnDate.setOnClickListener(v -> {
@@ -111,11 +110,6 @@ public class EventFilterView extends LinearLayout {
         spEtat.setOnItemSelectedListener(onAnyChangeListener);
 
 
-
-
-
-
-
     }
 
     // Interface de communication
@@ -141,6 +135,15 @@ public class EventFilterView extends LinearLayout {
 
         }
     };
+
+    public void resetFilters() {
+        spLocation.setSelection(0);
+        spEtat.setSelection(0);
+        searchBar.setText("");
+        dateChoisie = "";
+        btnDate.setText("Date");
+        notifyFilterChanged();
+    }
 
 
     // Accès aux filtres sélectionnés

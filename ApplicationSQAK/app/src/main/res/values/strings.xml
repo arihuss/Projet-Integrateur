@@ -35,13 +35,6 @@
     <string name="visiteur">Visiteur</string>
     <string name="recherche">Recherche</string>
 
-    <string-array name="event_dates">
-            <item>Date</item>
-            <item>Today</item>
-            <item>Tomorrow</item>
-            <item>This Week</item>
-            <item>This Month</item>
-        </string-array>
 
     <string-array name="event_locations">
         <item>Lieux</item>
@@ -52,7 +45,7 @@
     </string-array>
 
     <string-array name="event_etat">
-        <item>Etat</item>
+        <item>Etats</item>
         <item>Complet</item>
         <item>Disponible</item>
     </string-array>
