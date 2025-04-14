@@ -26,7 +26,7 @@ public class EventFilterView extends LinearLayout {
     private AutoCompleteTextView searchBar;
 
     private String roleSelectionne = "tout";  // benevole, visiteur, tout
-    private String dateChoisie;  // format "dd/mm/yyyy
+    private String dateChoisie = "";  // format "dd/mm/yyyy
     private OnFilterChangeListener listener;
 
 

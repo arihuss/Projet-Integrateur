@@ -34,8 +34,7 @@ public class EvenementDao {
 
         // SELECT * FROM Evenement
         Cursor cursor = db.query(BaseContrat.EvenementTable.TABLE_NAME, null, null, null, null, null, null);
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if(cursor != null && cursor.moveToFirst()) {
 
             // Remplir la liste
             do {
@@ -127,7 +126,7 @@ public class EvenementDao {
         }
 
 
-        if(!date.equalsIgnoreCase("Date") || !date.isEmpty()) {
+        if(!date.isEmpty()) {
             String dateFormatee = convertirFormatDate(date);
             if(dateFormatee != null) {
                 conditions.add("DATE_DEBUT LIKE ?");
@@ -156,8 +155,7 @@ public class EvenementDao {
 
         List<Evenement> eventsfiltres = new ArrayList<>();
 
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if(cursor != null && cursor.moveToFirst()) {
 
             do {
                 Evenement e = new Evenement();
@@ -213,8 +211,7 @@ public class EvenementDao {
                 null, null, null);
 
         String nom = "";
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if(cursor != null && cursor.moveToFirst()) {
             nom = cursor.getString(0);
         }
 
