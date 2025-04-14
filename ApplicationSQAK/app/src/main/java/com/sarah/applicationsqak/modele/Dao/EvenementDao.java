@@ -37,7 +37,6 @@ public class EvenementDao {
 
         if(cursor != null && cursor.moveToFirst()) {
 
-
             // Remplir la liste
             do {
                 Evenement e = new Evenement();
@@ -158,8 +157,8 @@ public class EvenementDao {
 
         List<Evenement> eventsfiltres = new ArrayList<>();
 
-        if(cursor != null) {
-            cursor.moveToFirst();
+        if(cursor != null && cursor.moveToFirst()) {
+
 
             do {
                 Evenement e = new Evenement();
