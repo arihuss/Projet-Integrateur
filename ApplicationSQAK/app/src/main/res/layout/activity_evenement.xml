@@ -204,8 +204,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="@+id/guideline16" />
 
     <TextView
         android:id="@+id/tvNomOrganisateur"
@@ -230,7 +229,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgRetour"
         android:layout_width="48dp"
         android:layout_height="81dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -256,8 +255,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvProfilOrg"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="91dp"
+        android:layout_height="91dp"
         android:layout_marginStart="16dp"
         app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -296,6 +295,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="207dp" />
+        app:layout_constraintGuide_begin="200dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="139dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

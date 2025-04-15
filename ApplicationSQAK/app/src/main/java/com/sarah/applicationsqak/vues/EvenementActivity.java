@@ -20,7 +20,7 @@ import com.sarah.applicationsqak.modele.Evenement;
 public class EvenementActivity extends AppCompatActivity {
 
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
-    private ImageView imgProfileOrg, imgEvent;
+    private ImageView imgProfileOrg, imgEvent, imgRetour;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
 
 
@@ -49,6 +49,7 @@ public class EvenementActivity extends AppCompatActivity {
         tvNbLikes = findViewById(R.id.tvNbLikes);
         tvComment = findViewById(R.id.tvNouvComment);
         imgEvent = findViewById(R.id.imgAfficheEvent);
+        imgRetour = findViewById(R.id.imgRetour);
 
         // Récupérer l'id de l'événement passer en intent
         int idEvent = getIntent().getIntExtra("ID_EVENEMENT", -1);
@@ -69,11 +70,11 @@ public class EvenementActivity extends AppCompatActivity {
 
             // Affichage
             tvDescEvent.setText(evenement.getDescription());
-            tvDateEvent.setText(evenement.getDateDebut() + " " + evenement.getDateFin());
+            tvDateEvent.setText(evenement.getDateDebut() + "->" + evenement.getDateFin());
             tvLieuEvent.setText(evenement.getLieu());
             tvNomEvent.setText(evenement.getNomEvent());
             tvNomOrganisateur.setText(dao.getNomOrganisateurParId(evenement.getId_organisateur()));
-            tvNbLikes.setText(dao.getNbLikesParIdStatistique(evenement.getId_statistique()));
+            tvNbLikes.setText(String.valueOf(dao.getNbLikesParIdStatistique(evenement.getId_statistique())));
 
             // Images -- à changer
             imgProfileOrg.setImageResource(R.drawable.placeholder);
@@ -98,6 +99,10 @@ public class EvenementActivity extends AppCompatActivity {
             else {
                 Toast.makeText(this, "Commentaire invalide", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        imgRetour.setOnClickListener(v -> {
+            finish();
         });
 
 
