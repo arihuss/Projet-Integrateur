@@ -21,7 +21,7 @@ public class EvenementActivity extends AppCompatActivity {
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
     private ImageView imgProfileOrg, imgEvent;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
-    private
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

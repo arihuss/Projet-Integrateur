@@ -23,7 +23,7 @@ public class InscriptionViewModel extends AndroidViewModel {
         return message;
     }
 
-    public void inscrireUtilisateur(long idUtilisateur, long idEvenement, String role) {
+    public void inscrireUtilisateur(int idUtilisateur, int idEvenement, String role) {
         new Thread(() -> {
             if(!dao.estInscrit(idUtilisateur, idEvenement)) {
                 dao.inscrireUtilisateur(idUtilisateur, idEvenement, role);
@@ -32,7 +32,7 @@ public class InscriptionViewModel extends AndroidViewModel {
             else {
                 message.postValue("Déjà inscrit à cet événement");
             }
-        }).start():
+        }).start();
     }
 
 

@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.sarah.applicationsqak.modele.sqlite.BaseContrat;
 import com.sarah.applicationsqak.modele.sqlite.DbUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class InscriptionDao {
     private DbUtil dbUtil;
@@ -24,7 +26,11 @@ public class InscriptionDao {
         values.put(BaseContrat.InscriptionTable.ID_UTILISATEUR, idUser);
         values.put(BaseContrat.InscriptionTable.ID_EVENEMENT, idEvent);
         values.put(BaseContrat.InscriptionTable.ROLE, role);
-        values.put(BaseContrat.InscriptionTable.DATE_INSCRIPTION, new Date().toString());
+
+        // Pour la date
+        SimpleDateFormat formatDate = new SimpleDateFormat("d MMM yyyy hha", Locale.CANADA);
+        String dateCourrante = formatDate.format(new Date());
+        values.put(BaseContrat.InscriptionTable.DATE_INSCRIPTION, dateCourrante);
 
         return db.insert(BaseContrat.InscriptionTable.TABLE_NAME, null, values);
     }
@@ -53,7 +59,10 @@ public class InscriptionDao {
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(BaseContrat.InscriptionTable.DATE_ANNULATION, new Date().toString());
+
+        SimpleDateFormat formatDate = new SimpleDateFormat("d MMM yyyy hha", Locale.CANADA);
+        String dateCourrante = formatDate.format(new Date());
+        values.put(BaseContrat.InscriptionTable.DATE_ANNULATION, dateCourrante);
 
         int requete = db.update(BaseContrat.InscriptionTable.TABLE_NAME,
                 values,
@@ -64,26 +73,26 @@ public class InscriptionDao {
         return requete;
     }
 
-    public List<Inscription> getInscriptionsParUtilisateur(long idUtilisateur) {
-        List<Inscription> inscriptions = new ArrayList<>();
-        SQLiteDatabase db = dbUtil.getReadableDatabase();
-
-        Cursor cursor = db.query(BaseContrat.InscriptionTable.TABLE_NAME,
-                null,
-                BaseContrat.InscriptionTable.ID_UTILISATEUR + "=?",
-                new String[]{String.valueOf(idUtilisateur)},
-                null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                // Créer un objet Inscription et le remplir
-                // (à condition que tu aies une classe Inscription)
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        return inscriptions;
-    }
+//    public List<Inscription> getInscriptionsParUtilisateur(long idUtilisateur) {
+//        List<Inscription> inscriptions = new ArrayList<>();
+//        SQLiteDatabase db = dbUtil.getReadableDatabase();
+//
+//        Cursor cursor = db.query(BaseContrat.InscriptionTable.TABLE_NAME,
+//                null,
+//                BaseContrat.InscriptionTable.ID_UTILISATEUR + "=?",
+//                new String[]{String.valueOf(idUtilisateur)},
+//                null, null, null);
+//
+//        if (cursor.moveToFirst()) {
+//            do {
+//                // Créer un objet Inscription et le remplir
+//                // (à condition que tu aies une classe Inscription)
+//            } while (cursor.moveToNext());
+//        }
+//
+//        cursor.close();
+//        return inscriptions;
+//    }
 
 
 
