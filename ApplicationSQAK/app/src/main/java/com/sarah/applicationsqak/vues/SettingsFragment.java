@@ -190,8 +190,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         //Supprime le compte + reviens à la page d'accueil
         if(v == btnSuppPop){
 
-            SharedPreferences prefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
-            long id = prefs.getLong("id", -1);
+            SharedPreferences prefs = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
+            long id = prefs.getLong("PREF_USER_ID", -1);
 
             UtilisateurViewModel utilisateurViewModel = new ViewModelProvider(requireActivity()).get(UtilisateurViewModel.class);
             utilisateurViewModel.supprimerUtilisateur((id));
