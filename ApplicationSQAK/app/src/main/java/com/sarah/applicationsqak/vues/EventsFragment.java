@@ -107,7 +107,7 @@ public class EventsFragment extends Fragment {
             Log.d("DEBUG", "Evenements observés: " + evenements.size());  // debug
             eventAdapter.clear();
             eventAdapter.addAll(evenements);
-            // Toast.makeText(getContext(), "Événements chargés: " + evenements.size(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Événements chargés: " + evenements.size(), Toast.LENGTH_LONG).show();
             eventAdapter.notifyDataSetChanged();
 
             // Debug

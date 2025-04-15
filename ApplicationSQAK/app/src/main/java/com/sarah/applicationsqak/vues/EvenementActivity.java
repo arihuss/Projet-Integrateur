@@ -70,7 +70,7 @@ public class EvenementActivity extends AppCompatActivity {
 
             // Affichage
             tvDescEvent.setText(evenement.getDescription());
-            tvDateEvent.setText(evenement.getDateDebut() + "->" + evenement.getDateFin());
+            tvDateEvent.setText(evenement.getDateDebut() + "  AU  " + evenement.getDateFin());
             tvLieuEvent.setText(evenement.getLieu());
             tvNomEvent.setText(evenement.getNomEvent());
             tvNomOrganisateur.setText(dao.getNomOrganisateurParId(evenement.getId_organisateur()));

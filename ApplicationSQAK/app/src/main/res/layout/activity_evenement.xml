@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".vues.EvenementActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -124,31 +125,31 @@
 
                 <Button
                     android:id="@+id/btnInscInvite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
-                    android:backgroundTint="@color/accent3"
                     android:fontFamily="@font/inter_bold"
                     android:text="@string/invit"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/accent3" />
 
                 <Button
                     android:id="@+id/btnInscBenevole"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
-                    android:backgroundTint="@color/accent2"
                     android:fontFamily="@font/inter_bold"
                     android:text="@string/b_n_vole"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/accent2" />
 
             </LinearLayout>
 
@@ -214,8 +215,7 @@
         android:textColor="@color/textsurbg"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/cvProfilOrg" />
+        app:layout_constraintStart_toStartOf="@+id/guideline16" />
 
     <TextView
         android:id="@+id/tvNbLikes"
