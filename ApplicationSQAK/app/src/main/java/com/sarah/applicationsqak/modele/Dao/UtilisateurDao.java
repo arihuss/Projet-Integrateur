@@ -178,4 +178,17 @@ public class UtilisateurDao {
         return utilisateur;
     }
 
+    //Supprimer utilisateur
+    public void supprimerUtilisateur(long userId){
+
+        db = this.db;
+
+        String selection = BaseContrat.UtilisateurTable.ID_UTILISATEUR + " = ?";
+        String[] selectionArgs = {
+                String.valueOf(userId)};
+        db.delete(BaseContrat.UtilisateurTable.TABLE_NAME, selection, selectionArgs);
+
+    }
+
+
 }

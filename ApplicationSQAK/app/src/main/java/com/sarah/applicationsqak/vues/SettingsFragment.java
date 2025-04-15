@@ -1,6 +1,7 @@
 package com.sarah.applicationsqak.vues;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,10 +16,13 @@ import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -185,11 +189,21 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         // Les boutons Supprimer et Retour du pop up
         //Supprime le compte + reviens à la page d'accueil
         if(v == btnSuppPop){
-            //compléter le futur afin de pouvoir supprimer le compte
+
+            SharedPreferences prefs = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            long id = prefs.getLong("id", -1);
+
+            UtilisateurViewModel utilisateurViewModel = new ViewModelProvider(requireActivity()).get(UtilisateurViewModel.class);
+            utilisateurViewModel.supprimerUtilisateur((id));
+
+            Toast.makeText(getActivity(), "Compte supprimé avec succès.", Toast.LENGTH_LONG).show();
+
             Intent intention3;
             intention3 = new Intent(getActivity(), AccueilActivity.class);
             intention3.putExtra("Suppression_compte", true);
             startActivity(intention3);
+            requireActivity().finish();
+
             dialog.dismiss();
 
         //retour à la page des paramètres
