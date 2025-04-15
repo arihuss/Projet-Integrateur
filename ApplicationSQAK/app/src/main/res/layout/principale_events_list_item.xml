@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/inter_bold"
             android:text="Organisation Coeur St-Paul"
             android:textColor="@color/textbtn"
             android:textSize="16sp"

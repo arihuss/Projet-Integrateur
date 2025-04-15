@@ -1,5 +1,6 @@
 package com.sarah.applicationsqak.vues;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -120,6 +121,14 @@ public class EventsFragment extends Fragment {
             viewModel.filtrerEvenements(lieu, etat, role, date, recherche);
         });
 
+
+        // Quand on cliques sur un event, mener à sa page
+        lvEvents.setOnItemClickListener((parent, view1, position, id) -> {
+            Evenement evenementClique = (Evenement) parent.getItemAtPosition(position);
+            Intent intent = new Intent(requireContext(), EvenementActivity.class);
+            intent.putExtra("ID_EVENEMENT", evenementClique.getId());
+            startActivity(intent);
+        });
 
 
 

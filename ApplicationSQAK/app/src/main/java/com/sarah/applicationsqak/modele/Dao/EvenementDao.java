@@ -302,6 +302,62 @@ public class EvenementDao {
         return evenements;
     }
 
+    public Evenement getEvenementParId(int id) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        Cursor cursor = db.query(
+                BaseContrat.EvenementTable.TABLE_NAME,
+                null,
+                BaseContrat.EvenementTable.ID_EVENEMENT + " ?",
+                new String[]{String.valueOf(id)},
+                null, null, null
+        );
+
+        Evenement evenement = null;
+        if(cursor.moveToFirst()) {
+            evenement = new Evenement();
+
+            evenement.setId(cursor.getInt(cursor.getColumnIndexOrThrow("ID_EVENEMENT")));
+            evenement.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow("ID_STATISTIQUE")));
+            evenement.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow("ID_ORGANISATEUR")));
+            evenement.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow("NOM_EVENT")));
+            evenement.setLieu(cursor.getString(cursor.getColumnIndexOrThrow("LIEU")));
+            evenement.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow("DATE_DEBUT")));
+            evenement.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow("DATE_FIN")));
+            evenement.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_MAX")));
+            evenement.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_PARTICIPANTS_MAX")));
+            evenement.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("ETAT_BENEVOLE")));
+            evenement.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("DESCRIPTION")));
+            evenement.setEtat(cursor.getString(cursor.getColumnIndexOrThrow("ETAT")));
+            evenement.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow("NB_INSCRIPTIONS")));
+            evenement.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_ACCEPTES")));
+            evenement.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_BENEVOLE")));
+            evenement.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_VISITEUR")));
+            evenement.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URL")));
+
+        }
+
+        cursor.close();
+        return evenement;
+    }
+
+    public int getNbLikesParIdStatistique(int idStat) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        int likes = 0;
+
+        Cursor cursor = db.query(BaseContrat.StatistiqueTable.TABLE_NAME,
+                new String[]{BaseContrat.StatistiqueTable.NB_LIKES},
+                BaseContrat.StatistiqueTable.ID_STATISTIQUE + " = ?",
+                new String[]{String.valueOf(idStat)},
+                null, null, null);
+
+        if(cursor != null && cursor.moveToFirst()) {
+            likes = cursor.getInt(0);
+            cursor.close();
+        }
+
+        return likes;
+    }
+
 
 
 }
