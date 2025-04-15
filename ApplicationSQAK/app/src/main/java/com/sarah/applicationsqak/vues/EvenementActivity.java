@@ -21,6 +21,7 @@ public class EvenementActivity extends AppCompatActivity {
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
     private ImageView imgProfileOrg, imgEvent;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
+    private
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class EvenementActivity extends AppCompatActivity {
 
         btnInscInvite.setOnClickListener(v -> {
             Toast.makeText(this, "Inscription envoyée!", Toast.LENGTH_SHORT).show();
+
         });
 
         btnInscBenevole.setOnClickListener(v -> {
