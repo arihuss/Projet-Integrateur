@@ -40,4 +40,9 @@ public class UtilisateurViewModel extends AndroidViewModel {
         return utilisateurDao.getUtilisateurParId(id);
     }
 
+    //Supprimer utilisateur par ID
+    public void supprimerUtilisateur(long id) {
+        utilisateurDao.supprimerUtilisateur(id);
+    }
+
 }
