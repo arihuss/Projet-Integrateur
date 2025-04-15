@@ -1,6 +1,7 @@
 package com.sarah.applicationsqak.vues;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public class EvenementActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("DEBUG", "EvenementActivity onCreate() appelé");
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_evenement);
@@ -50,6 +52,15 @@ public class EvenementActivity extends AppCompatActivity {
 
         // Récupérer l'id de l'événement passer en intent
         int idEvent = getIntent().getIntExtra("ID_EVENEMENT", -1);
+
+        Log.d("DEBUG", "ID de l'événement recu: "+ idEvent);
+        if (idEvent == -1) {
+            Log.e("DEBUG", "ID invalide, retour à l'accueil ou connexion.");
+            Toast.makeText(this, "Erreur : aucun événement sélectionné", Toast.LENGTH_SHORT).show();
+            finish(); // ou redirige vers une autre activité si tu veux
+            return;
+        }
+
 
         if(idEvent != -1) {
             // Chercher l'événement via le Dao

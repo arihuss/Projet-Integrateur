@@ -181,6 +181,10 @@ public class EvenementDao {
                 e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
                 e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
 
+                String nomCategorie = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.CATEGORIE));
+                Categorie categorie = Categorie.valueOf(nomCategorie);
+                e.setCategorie(categorie);
+
                 eventsfiltres.add(e);
 
             } while(cursor.moveToNext());
@@ -269,32 +273,32 @@ public class EvenementDao {
 
         if (cursor.moveToFirst()) {
             do {
-                Evenement evenement = new Evenement();
+                Evenement e = new Evenement();
 
-                evenement.setId(cursor.getInt(cursor.getColumnIndexOrThrow("ID_EVENEMENT")));
-                evenement.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow("ID_STATISTIQUE")));
-                evenement.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow("ID_ORGANISATEUR")));
-                evenement.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow("NOM_EVENT")));
-                evenement.setLieu(cursor.getString(cursor.getColumnIndexOrThrow("LIEU")));
-                evenement.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow("DATE_DEBUT")));
-                evenement.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow("DATE_FIN")));
-                evenement.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_MAX")));
-                evenement.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_PARTICIPANTS_MAX")));
-                evenement.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("ETAT_BENEVOLE")));
-                evenement.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("DESCRIPTION")));
-                evenement.setEtat(cursor.getString(cursor.getColumnIndexOrThrow("ETAT")));
-                evenement.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow("NB_INSCRIPTIONS")));
-                evenement.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_ACCEPTES")));
-                evenement.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_BENEVOLE")));
-                evenement.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_VISITEUR")));
-                evenement.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URL")));
+                e.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_EVENEMENT)));
+                e.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_ORGANISATEUR)));
+                e.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_STATISTIQUE)));
+                e.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NOM_EVENT)));
+                e.setLieu(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.LIEU)));
+                e.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_DEBUT)));
+                e.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_FIN)));
+                e.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_MAX)));
+                e.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX)));
+                e.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT_BENEVOLE)));
+                e.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DESCRIPTION)));
+                e.setEtat(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT)));
+                e.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_INSCRIPTIONS)));
+                e.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES)));
+                e.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_BENEVOLE)));
+                e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
+                e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
 
-                String catStr = cursor.getString(cursor.getColumnIndexOrThrow("CATEGORIE"));
-                if (catStr != null) {
-                    evenement.setCategorie(Categorie.valueOf(catStr));
-                }
+                String nomCategorie = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.CATEGORIE));
+                Categorie categorie = Categorie.valueOf(nomCategorie);
+                e.setCategorie(categorie);
 
-                evenements.add(evenement);
+
+                evenements.add(e);
             } while (cursor.moveToNext());
         }
 
@@ -307,37 +311,42 @@ public class EvenementDao {
         Cursor cursor = db.query(
                 BaseContrat.EvenementTable.TABLE_NAME,
                 null,
-                BaseContrat.EvenementTable.ID_EVENEMENT + " ?",
+                BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
                 new String[]{String.valueOf(id)},
                 null, null, null
         );
 
-        Evenement evenement = null;
-        if(cursor.moveToFirst()) {
-            evenement = new Evenement();
+        Evenement e = null;
+        if(cursor != null && cursor.moveToFirst()) {
+            e = new Evenement();
 
-            evenement.setId(cursor.getInt(cursor.getColumnIndexOrThrow("ID_EVENEMENT")));
-            evenement.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow("ID_STATISTIQUE")));
-            evenement.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow("ID_ORGANISATEUR")));
-            evenement.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow("NOM_EVENT")));
-            evenement.setLieu(cursor.getString(cursor.getColumnIndexOrThrow("LIEU")));
-            evenement.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow("DATE_DEBUT")));
-            evenement.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow("DATE_FIN")));
-            evenement.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_MAX")));
-            evenement.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow("NB_PARTICIPANTS_MAX")));
-            evenement.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("ETAT_BENEVOLE")));
-            evenement.setDescription(cursor.getString(cursor.getColumnIndexOrThrow("DESCRIPTION")));
-            evenement.setEtat(cursor.getString(cursor.getColumnIndexOrThrow("ETAT")));
-            evenement.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow("NB_INSCRIPTIONS")));
-            evenement.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow("NB_BENEVOLES_ACCEPTES")));
-            evenement.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_BENEVOLE")));
-            evenement.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow("COMPLET_VISITEUR")));
-            evenement.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow("IMAGE_URL")));
+            e.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_EVENEMENT)));
+            e.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_ORGANISATEUR)));
+            e.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_STATISTIQUE)));
+            e.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NOM_EVENT)));
+            e.setLieu(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.LIEU)));
+            e.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_DEBUT)));
+            e.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_FIN)));
+            e.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_MAX)));
+            e.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX)));
+            e.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT_BENEVOLE)));
+            e.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DESCRIPTION)));
+            e.setEtat(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT)));
+            e.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_INSCRIPTIONS)));
+            e.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES)));
+            e.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_BENEVOLE)));
+            e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
+            e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
+
+            String nomCategorie = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.CATEGORIE));
+            Categorie categorie = Categorie.valueOf(nomCategorie);
+            e.setCategorie(categorie);
+
 
         }
 
         cursor.close();
-        return evenement;
+        return e;
     }
 
     public int getNbLikesParIdStatistique(int idStat) {

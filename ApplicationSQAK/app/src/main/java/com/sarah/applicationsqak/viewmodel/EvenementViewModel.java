@@ -44,7 +44,6 @@ public class EvenementViewModel extends AndroidViewModel {
         new Thread(() -> {
             try {
                 List<Evenement> liste = dao.getEvenements();
-                Log.d("DEBUG", "Nombre d'evenements recuperes: " + liste.size());  // debug
                 evenements.postValue(liste);
                 message.postValue("Evenements chargés avec succès");
             }

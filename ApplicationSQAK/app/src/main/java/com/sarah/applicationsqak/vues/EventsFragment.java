@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -91,7 +92,6 @@ public class EventsFragment extends Fragment {
         lvEvents = view.findViewById(R.id.lvEventsPrincipale);
         eventAdapter = new EventsAdapter(requireContext(), R.layout.principale_events_list_item);
         lvEvents.setAdapter(eventAdapter);
-        Log.d("DEBUG", "Adapter assigné à la ListView");
 
         viewModel = new ViewModelProvider(this).get(EvenementViewModel.class);
 
@@ -107,7 +107,7 @@ public class EventsFragment extends Fragment {
             Log.d("DEBUG", "Evenements observés: " + evenements.size());  // debug
             eventAdapter.clear();
             eventAdapter.addAll(evenements);
-            Toast.makeText(getContext(), "Événements chargés: " + evenements.size(), Toast.LENGTH_LONG).show();
+            // Toast.makeText(getContext(), "Événements chargés: " + evenements.size(), Toast.LENGTH_LONG).show();
             eventAdapter.notifyDataSetChanged();
 
             // Debug
@@ -123,11 +123,17 @@ public class EventsFragment extends Fragment {
 
 
         // Quand on cliques sur un event, mener à sa page
-        lvEvents.setOnItemClickListener((parent, view1, position, id) -> {
-            Evenement evenementClique = (Evenement) parent.getItemAtPosition(position);
-            Intent intent = new Intent(requireContext(), EvenementActivity.class);
-            intent.putExtra("ID_EVENEMENT", evenementClique.getId());
-            startActivity(intent);
+        lvEvents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Evenement evenementClique = eventAdapter.getItem(position);
+
+                if(evenementClique != null) {
+                    Intent intent = new Intent(getActivity(), EvenementActivity.class);
+                    intent.putExtra("ID_EVENEMENT", evenementClique.getId());
+                    startActivity(intent);
+                }
+            }
         });
 
 

@@ -65,7 +65,6 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             TextView txtDate = view.findViewById(R.id.tvDateEvents);
             TextView txtEtat = view.findViewById(R.id.tvEtatEvents);
 
-            Log.d("DEBUG", "Valeur lisible - Nom: "+ event.getNomEvent());
 
             // Affichage du nom de l'event
             txtNom.setText(event.getNomEvent());
