@@ -28,11 +28,13 @@
             <a href='?action=voirUnEvent&id=" . $event->getId() . "'><i class='fa-solid fa-circle-left'></i></a>
             <h2>Profil de l'applicant </h2>";
     
+        echo"<div id='image-profil'>";
         if ($user->getImgUtilisateur()){
-            echo"<img src='data:image/jpeg;base64," . base64_encode($user->getImgUtilisateur()) . "' alt='Logo Utulisateur'>"; 
+            echo"<img src='data:image/jpeg;base64," . base64_encode($user->getImgUtilisateur()) . "' alt='Logo Utilisateur'>"; 
         }else{
              echo"<img src='\img\default_profil.jpg' alt='Logo Utilisateur'>"; 
         }
+        echo "</div>";
         
            echo" <h3 id='nom-applicant'>" . $user->getPrenom() . " " . $user->getNom() . "</h3>
             <p class='content'>Courriel:<br>
@@ -55,7 +57,9 @@
                     <h3>" . $evenement->getDateDebut() . "<br><br></h3> 
                 </div>
                 <div id='info'>
-                    <img src='./img/event-arbre.svg' alt='img-evenement'>
+                    <div class='img-event-size'>
+                    <img src='data:image/jpeg;base64," . base64_encode($evenement->getImageEvenement()) . "' alt='Img Event'>
+                    </div>
                     <p class='content'>
                         " . $evenement->getNom() . " <br>
                         Lieu: " . $evenement->getLieu() . " <br>

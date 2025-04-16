@@ -10,12 +10,6 @@
     align-items: center;
     padding-right: 5rem;
 
-    img {
-        width: 10rem;
-        border-radius: 100%;
-        border: 4px solid var(--secondary);
-    }
-
     .btn-jaune {
         margin-top: 1rem;
         width: 90%;
@@ -36,12 +30,12 @@
  
 }
 
-
 #experience-appliquant {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 1.5rem; /* Ajoute un espace vertical entre chaque expérience */
 
     img {
         width: 10rem;
@@ -62,7 +56,8 @@
     background-color: var(--text-sur-bg);
     border-top-left-radius:15px;
     border-bottom-left-radius: 15px;
-    padding: 1rem;
+    padding: 2rem 1rem 0rem 1rem;
+    height:6.5rem;
 
     h3 {
         color: var(--text-btn);
@@ -78,3 +73,29 @@
     border-bottom-right-radius: 15px;
     max-height: 8.5rem;
 }
+
+#image-profil {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid var(--secondary);
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+.img-event-size{
+    width: auto;
+    height: 115px;
+    overflow: hidden;
+    margin-left: 10px;
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    } 
+}
+
