@@ -1,5 +1,7 @@
 package com.sarah.applicationsqak.vues;
 
+import static java.security.AccessController.getContext;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +37,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String PREF_USER_ID = "utilisateur_id";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -81,6 +84,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private long getUserId() {
+        SharedPreferences prefs = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getLong(PREF_USER_ID, -1);
+    }
+
+    private boolean isUserLoggedIn() {
+        return getUserId() != -1;
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,8 +124,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         btnSupp.setOnClickListener(this);
         btnSuppPop.setOnClickListener(this);
         btnRePop.setOnClickListener(this);
-
-
 
 
         // section DarkMode
@@ -161,8 +172,17 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         //Click sur le bouton MODIFIER PROFIL qui redirige vers modifier profil
         if (v == btnModifier) {
-            Intent intent = new Intent(getActivity(), ModifierProfilActivity.class);
-            startActivity(intent);
+
+            // Vérifier l'identité de l'utilisateur afin d'accéder à modifier profil
+            if (!isUserLoggedIn()) {
+                startActivity(new Intent(getContext(), ConnexionActivity.class));
+                requireActivity().finish();
+                return ;
+            } else {
+                Intent intent = new Intent(getActivity(), ModifierProfilActivity.class);
+                startActivity(intent);
+            }
+
 
 
         //Click sur le bouton PLUS sur SQAK qui emmène à la page about us
@@ -174,7 +194,20 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         //Click sur le bouton SUPPRIMER MON COMPTE qui affiche un pop up certifiant la suppression du compte de l'utilisateur
         } else if (v == btnSupp){
-            dialog.show();
+
+            // Vérifier l'identité de l'utilisateur afin d'accéder
+            SharedPreferences prefs = requireActivity().getSharedPreferences(PREFS_NAME, getContext().MODE_PRIVATE);
+            long userId = prefs.getLong(PREF_USER_ID, -1);
+
+            if (userId == -1) {
+
+                startActivity(new Intent(getContext(), ConnexionActivity.class));
+                requireActivity().finish();
+
+            } else {
+                dialog.show();
+            }
+
         } else if (v == btnDeconnecter) {
         SharedPreferences prefs = requireActivity().getSharedPreferences("AppPrefs", getContext().MODE_PRIVATE);
         prefs.edit().remove("utilisateur_id").apply();
@@ -190,11 +223,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         //Supprime le compte + reviens à la page d'accueil
         if(v == btnSuppPop){
 
-            SharedPreferences prefs = requireActivity().getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
-            long id = prefs.getLong("PREF_USER_ID", -1);
+            long id = getUserId();
 
             UtilisateurViewModel utilisateurViewModel = new ViewModelProvider(requireActivity()).get(UtilisateurViewModel.class);
             utilisateurViewModel.supprimerUtilisateur((id));
+
+            SharedPreferences prefs = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            prefs.edit().remove(PREF_USER_ID).apply();
 
             Toast.makeText(getActivity(), "Compte supprimé avec succès.", Toast.LENGTH_LONG).show();
 
