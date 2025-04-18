@@ -1,5 +1,6 @@
 package com.sarah.applicationsqak.vues;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class EvenementActivity extends AppCompatActivity {
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
     private ImageView imgProfileOrg, imgEvent, imgRetour;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
+    private Evenement evenement;
 
 
     @Override
@@ -66,7 +68,7 @@ public class EvenementActivity extends AppCompatActivity {
         if(idEvent != -1) {
             // Chercher l'événement via le Dao
             EvenementDao dao = new EvenementDao(this);
-            Evenement evenement = dao.getEvenementParId(idEvent);
+            evenement = dao.getEvenementParId(idEvent);
 
             // Affichage
             tvDescEvent.setText(evenement.getDescription());
@@ -100,6 +102,16 @@ public class EvenementActivity extends AppCompatActivity {
                 Toast.makeText(this, "Commentaire invalide", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        //Quand on clique le nom de l'organisateur (ou l'image de l'organisateur), ça nous redirige vers la page de l'organisateur
+        tvNomOrganisateur.setOnClickListener(v -> {
+            Intent intentOrg = new Intent(EvenementActivity.this, ProfilOrganisateurActivity.class);
+            intentOrg.putExtra("ID_ORGANISATEUR", evenement.getId_organisateur());
+            startActivity(intentOrg);
+        });
+        
 
         imgRetour.setOnClickListener(v -> {
             finish();
