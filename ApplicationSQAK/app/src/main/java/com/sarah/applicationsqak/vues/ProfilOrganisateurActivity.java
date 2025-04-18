@@ -15,14 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
-import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 public class ProfilOrganisateurActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView nomOrg,  bioOrg;
-    private ImageView photoOrg;
+    private ImageView imgOrg;
     private ListView listEvent;
-    private ImageButton btnBack;
+    private ImageView btnBack;
     private EvenementViewModel EvenementViewModel;
 
 
@@ -36,8 +35,17 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
 
         nomOrg = findViewById(R.id.tvNomOrgProfile);
         bioOrg = findViewById(R.id.tvDescOrg);
-        photoOrg = findViewById(R.id.imgOrgProfile);
+        imgOrg = findViewById(R.id.imgOrgProfile);
         btnBack = findViewById(R.id.imageView6);
+
+        long idOrganisateur = getIntent().getLongExtra("ID_ORGANISATEUR", -1);
+
+        if(idOrganisateur == -1) {
+            finish();
+            return;
+        }
+
+
 
 
 
@@ -55,9 +63,7 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
     public void onClick(View v) {
 
         if (v == btnBack) {
-
             finish();
-
         }
 
 

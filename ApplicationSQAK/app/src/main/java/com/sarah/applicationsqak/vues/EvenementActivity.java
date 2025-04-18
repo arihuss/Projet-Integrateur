@@ -111,7 +111,7 @@ public class EvenementActivity extends AppCompatActivity {
             intentOrg.putExtra("ID_ORGANISATEUR", evenement.getId_organisateur());
             startActivity(intentOrg);
         });
-        
+
 
         imgRetour.setOnClickListener(v -> {
             finish();
