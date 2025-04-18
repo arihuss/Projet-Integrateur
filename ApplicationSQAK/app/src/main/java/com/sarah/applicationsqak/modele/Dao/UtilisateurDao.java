@@ -186,7 +186,9 @@ public class UtilisateurDao {
         String selection = BaseContrat.UtilisateurTable.ID_UTILISATEUR + " = ?";
         String[] selectionArgs = {
                 String.valueOf(userId)};
+
         db.delete(BaseContrat.UtilisateurTable.TABLE_NAME, selection, selectionArgs);
+
 
     }
 

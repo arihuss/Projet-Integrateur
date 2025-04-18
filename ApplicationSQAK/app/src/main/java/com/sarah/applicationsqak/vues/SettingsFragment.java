@@ -233,8 +233,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
             Toast.makeText(getActivity(), "Compte supprimé avec succès.", Toast.LENGTH_LONG).show();
 
-            Intent intention3;
-            intention3 = new Intent(getActivity(), AccueilActivity.class);
+            Intent intention3 = new Intent(getActivity(), AccueilActivity.class);
+            intention3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intention3.putExtra("Suppression_compte", true);
             startActivity(intention3);
             requireActivity().finish();
