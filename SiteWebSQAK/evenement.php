@@ -159,24 +159,32 @@
   echo "<span id='btn-com'><a class='btn-rose' href='communiquer.php' >Communiquer</a></span>
 
 
-<h2>Commentaires</h2>";
+<h2>Commentaires</h2>
 
-  $commentaires = CommentaireDAO::findByEvenement($event->getId());
+<h2>Commentaires</h2>
 
-  foreach ($commentaires as $comment) {
+<?php
+$commentaires = CommentaireDAO::findByEvenement($event->getId());
+
+foreach ($commentaires as $comment) {
     $user = UtilisateurDAO::findById($comment->getIdUtilisateur());
+    $image = $user->getImgUtilisateur();
+    $src = $image ? "data:image/jpeg;base64," . base64_encode($image) : "./img/profilapplicant.svg";
+
     echo "<div class='content'>
-  <img src='.\img\profilapplicant.svg' alt=''>
-  <div id='commentaire-sec'>
-    <div id='com-haut'> 
-      <p>" . $user->getNom() . "</p>
-      <p>" . $comment->getDateEnvoi() . "</p> 
-    </div>
-      <p>" . $comment->getMessage() . "</p>
-  </div>
-</div>";
-  }
-  ?>
+        <img src='$src' alt='Photo de profil' style='width: 70px; height: 70px; object-fit: cover; border-radius: 50%; margin-right: 15px;'>
+        <div id='commentaire-sec'>
+            <div id='com-haut'> 
+                <p>" . htmlspecialchars($user->getNom()) . "</p>
+                <p>" . htmlspecialchars($comment->getDateEnvoi()) . "</p> 
+            </div>
+            <p>" . htmlspecialchars($comment->getMessage()) . "</p>
+        </div>
+    </div>";
+}
+?>
+
+
   </div>
   <footer><?php include("components/footer.php"); ?> </footer>
 
