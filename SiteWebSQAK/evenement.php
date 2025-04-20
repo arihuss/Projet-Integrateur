@@ -158,11 +158,8 @@
 
   echo "<span id='btn-com'><a class='btn-rose' href='communiquer.php' >Communiquer</a></span>
 
-
-<h2>Commentaires</h2>
-
-<h2>Commentaires</h2>
-
+<h2>Commentaires</h2>";
+?>
 <?php
 $commentaires = CommentaireDAO::findByEvenement($event->getId());
 
