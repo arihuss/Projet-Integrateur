@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class SeedDB {
 
     public static void insererDonneesInitiales(SQLiteDatabase db) {
@@ -106,15 +110,18 @@ public class SeedDB {
 
     private static void insererEvenements(SQLiteDatabase db) {
         Log.d("SEED", "Insertion de 20 événements...");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
         for (int i = 1; i <= 20; i++) {
             ContentValues values = new ContentValues();
             values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, (i % 3) + 1); // Alternance entre 3 organisateurs
             values.put(BaseContrat.EvenementTable.ID_STATISTIQUE, i); // ou une valeur fixe si tu as une stat
 
             values.put(BaseContrat.EvenementTable.NOM_EVENT, "Événement #" + i);
-            values.put(BaseContrat.EvenementTable.LIEU, i + " rue Principale, Laval");
-            values.put(BaseContrat.EvenementTable.DATE_DEBUT, i + " avril 2025 5 PM");
-            values.put(BaseContrat.EvenementTable.DATE_FIN, i + " avril 2025 8 PM");
+
+            // Lieux
+            String[] lieux = {"Laval", "Montreal", "Brossard", "Quebec"};
+            values.put(BaseContrat.EvenementTable.LIEU, i + " rue Principale, " + lieux[i % lieux.length]);
+
 
             values.put(BaseContrat.EvenementTable.NB_BENEVOLES_MAX, 5 + (i % 6));  // entre 5 et 10
             values.put(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX, 10 + (i % 11)); // entre 10 et 20
@@ -127,6 +134,7 @@ public class SeedDB {
             };
             values.put(BaseContrat.EvenementTable.CATEGORIE, categories[i % categories.length]);
 
+
             values.put(BaseContrat.EvenementTable.DESCRIPTION, "Description de l'événement #" + i);
             values.put(BaseContrat.EvenementTable.ETAT, (i % 5 == 0) ? "Complet" : "Disponible"); // 1 sur 5 complet
 
@@ -137,6 +145,17 @@ public class SeedDB {
             values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, (i % 6 == 0) ? 1 : 0);
 
             values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://exemple.com/image" + i + ".jpg");
+
+            // Pour les dates au format dd/MM/yyyy
+            Calendar cal = Calendar.getInstance();
+            cal.set(2025, Calendar.APRIL, i);
+            String dateDebut = format.format(cal.getTime());
+
+            cal.set(Calendar.HOUR_OF_DAY, 20); // facultatif ici
+            String dateFin = format.format(cal.getTime());
+
+            values.put(BaseContrat.EvenementTable.DATE_DEBUT, dateDebut);
+            values.put(BaseContrat.EvenementTable.DATE_FIN, dateFin);
 
             long id = db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
 

@@ -110,8 +110,8 @@ public class EvenementDao {
 
         // Si dans la Spinner des lieux, on a PAS coché 'Lieux' (tous les lieux), filtrer selon le lieu choisi
         if(!lieu.equalsIgnoreCase("Lieux")) {
-            conditions.add("LIEU = ?");
-            valeurs.add(lieu);
+            conditions.add("LIEU LIKE ?");
+            valeurs.add("%" + lieu + "%");
         }
 
         if(!etat.equalsIgnoreCase("Etats")) {
@@ -128,14 +128,11 @@ public class EvenementDao {
 
 
 
-        if(!date.isEmpty()) {
-            String dateFormatee = convertirFormatDate(date);
-            if(dateFormatee != null) {
-                conditions.add("DATE_DEBUT LIKE ?");
-                valeurs.add("%" + dateFormatee + "%");
-            }
-
+        if (!date.isEmpty()) {
+            conditions.add("DATE_DEBUT = ?");
+            valeurs.add(date);
         }
+
 
         if(!recherche.trim().isEmpty()) {
             try {
@@ -197,13 +194,13 @@ public class EvenementDao {
     private String convertirFormatDate(String date) {
         try {
             // Format reçu du DatePickerDialog
-            SimpleDateFormat formatEntree = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+            SimpleDateFormat formatEntree = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
 
             // Convertir le String date choisie en objet Date
             Date parsedDate = formatEntree.parse(date);
 
             // Format qu'on veut pour la recherche dans la base de données
-            SimpleDateFormat formatBD = new SimpleDateFormat("d MMM yyyy", Locale.CANADA);
+            SimpleDateFormat formatBD = new SimpleDateFormat("d MMM yyyy hha", Locale.FRENCH);
             return formatBD.format(parsedDate);
         }
         catch(ParseException e){

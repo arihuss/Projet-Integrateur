@@ -18,6 +18,11 @@ import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Evenement;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class EvenementActivity extends AppCompatActivity {
 
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
@@ -72,7 +77,7 @@ public class EvenementActivity extends AppCompatActivity {
 
             // Affichage
             tvDescEvent.setText(evenement.getDescription());
-            tvDateEvent.setText(evenement.getDateDebut() + "  AU  " + evenement.getDateFin());
+            tvDateEvent.setText(convertirDatePourAffichage(evenement.getDateDebut()) + "  AU  " + convertirDatePourAffichage(evenement.getDateFin()));
             tvLieuEvent.setText(evenement.getLieu());
             tvNomEvent.setText(evenement.getNomEvent());
             tvNomOrganisateur.setText(dao.getNomOrganisateurParId(evenement.getId_organisateur()));
@@ -118,8 +123,19 @@ public class EvenementActivity extends AppCompatActivity {
         });
 
 
+    }
 
+    private String convertirDatePourAffichage(String dateBrute) {
+        try {
+            // Format actuel : "dd/MM/yyyy"
+            SimpleDateFormat formatEntree = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
+            Date date = formatEntree.parse(dateBrute);
 
-
+            // Format final souhaité : "d MMM yyyy hha"
+            SimpleDateFormat formatFinal = new SimpleDateFormat("d MMM yyyy hha", Locale.FRENCH);
+            return formatFinal.format(date);
+        } catch (ParseException e) {
+            return dateBrute;  // Retourne la date originale si échec
+        }
     }
 }

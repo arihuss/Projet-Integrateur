@@ -70,7 +70,7 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             txtNom.setText(event.getNomEvent());
 
             // Affichage de la date, changer le format
-            txtDate.setText(convertirDatePourAffichage(event.getDateDebut()));
+            txtDate.setText(event.getDateDebut());
 
             // Affichage du nom de l'organisateur
             String nomOrganisateur = dao.getNomOrganisateurParId(event.getId_organisateur());
@@ -100,16 +100,7 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
         return view;
     }
 
-    // Pour convertir la date
-    private String convertirDatePourAffichage(String dateBrute) {
-        try {
-            SimpleDateFormat formatBD = new SimpleDateFormat("d MMM yyyy hha", Locale.CANADA);
-            Date date = formatBD.parse(dateBrute);
 
-            SimpleDateFormat formatFinal = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
-            return formatFinal.format(date);
-        } catch(ParseException e) {
-            return dateBrute;  // si ça plante, ca sera la date brute
-        }
-    }
+
+
 }
