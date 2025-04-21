@@ -44,8 +44,7 @@
         } elseif ($_POST['action_decision'] === 'refuser') {
           ParticipantDAO::refuserApplicant($participant);
         }
-        header("Location: " . $_SERVER['REQUEST_URI']);
-        exit();
+        
       }
     }
 
@@ -110,27 +109,33 @@
     </div>
 
     <div id='section-liste'>
+  <div class='participants-container'>
+    <?php if (empty($personnes)): ?>
+      <p class='no-participants'>Il n'y a pas d'inscriptions dans cette section.</p>
+    <?php else: ?>
       <?php foreach ($personnes as $personne):
         $user = UtilisateurDAO::findById($personne->getIdUtilisateur());
         $idInscription = $personne->getIdInscription();
       ?>
-        <div id='liste'>
+        <div class='participant-item'>
           <?php if ($selectedRole === 'appliquant'): ?>
-            <form method='POST' style='display: inline-block'>
+            <form method='POST' class='decision-form'>
               <input type='hidden' name='id_inscription' value='<?php echo $idInscription; ?>'>
               <button type='submit' name='action_decision' value='accepter' class='icone-btn'>
-                <i class='fa-solid fa-circle-check'></i>
+                <i class='fa-solid fa-circle-check accepter'></i>
               </button>
               <button type='submit' name='action_decision' value='refuser' class='icone-btn'>
-                <i class='fa-solid fa-circle-xmark'></i>
+                <i class='fa-solid fa-circle-xmark refuser'></i>
               </button>
             </form>
           <?php endif; ?>
-          <a href='?action=profilParticipant&id=<?php echo $personne->getIdInscription(); ?>'><?php echo $user->getNom(); ?></a>
-          <p><?php echo $personne->getDateInscription(); ?></p>
+          <a href='?action=profilParticipant&id=<?php echo $personne->getIdInscription(); ?>'><?php echo $user->getPrenom().' '.$user->getNom(); ?></a>
+          <p class='inscription-date'><?php echo $personne->getDateInscription(); ?></p>
         </div>
       <?php endforeach; ?>
-    </div>
+    <?php endif; ?>
+  </div>
+</div>
 
     <?php $stats = StatistiqueDAO::findById($event->getIdStats()); ?>
     <h2>Statistiques</h2>

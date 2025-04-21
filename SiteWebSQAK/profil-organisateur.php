@@ -49,7 +49,13 @@ $organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
                     }
                     ?>
                 </h2>
-                <p class="content"><?php echo htmlspecialchars($organisateur->getBiographie()); ?></p>
+                <?php
+                if ($organisateur->getBiographie() == null){
+                    echo "<p class='content'>Aucune Biographie</p>";
+                }
+                else{
+                echo "<p class='content'>".$organisateur->getBiographie()."</p>";}?>
+            
             </div>
         </div>
     </div>
