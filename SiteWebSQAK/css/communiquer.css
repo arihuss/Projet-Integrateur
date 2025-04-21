@@ -1,124 +1,75 @@
-
-.content {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    padding-bottom: 0;
+    padding-left: 70px;
     background-color: var(--secondary);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.section-flex {
-    display: flex;
-    justify-content: center; 
-    gap: 40px;                 
-    flex-wrap: wrap;
-}
-
-
-.section-block {
-    flex: 0 0 45%; 
-    min-width: 300px;
-}
-
-
-.section-title {
-    font-weight: bold;
-    font-size: 18px;
-    color: var(--text-sur-bg);
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-
-.checkbox-group input[type="checkbox"] {
-    margin-right: 6px;
-}
-
-.checkbox-group label {
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    color: var(--text-sur-bg);
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.message-box {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    padding: 20px;
-    background-color: var(--primary); 
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-
-.section-title.message-label {
-    margin-top: 0;
-    margin-bottom: 20px; 
-    font-weight: bold;
-    font-size: 18px;
+  }
+  
+  .titre-destinataires {
+    font-size: 36px;
     color: var(--text-sur-bg);
-    text-align: left;
-}
-
-
-textarea {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    display: block;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background-color: var(--secondary);
-    resize: none;
-    height: 250px; /* ⬅️ Augmente cette valeur (ex : 200px) */
-    font-size: 16px;
-    color: var(--txt-couleur-fonce);
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.04);
-}
-
-
-.buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
     font-weight: bold;
-    border: none;
+    margin-bottom: 60px;
+    margin-top: 60px;
+  }
+ 
+  .sous-titre {
+    font-size: 20px;
+    color: var(--text-sur-bg);
+    margin-bottom: 30px;
+  }
+  
+ 
+  .checkbox-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .checkbox-vertical label {
+    font-size: 20px;
+    color: var(--text-vignette);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     cursor: pointer;
-}
+  }
+  
+  .checkbox-vertical input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent1); 
+  }
+  
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 80px;
 
-.btn-send {
-    background-color: var(--accent3); 
-    color: var(--text-btn);
-}
+  }
 
-.btn-send:hover {
-    background-color: var(--accent3-active);
-}
+  .btn-jaune, .btn-rose{
+    min-width: 200px !important;
+    font-size: large!important;
+  }
+  
 
-.btn-back {
-    background-color: var(--accent2);
-    color: var(--text-btn);
-}
-
-.btn-back:hover {
-    background-color: var(--accent2-active);
-}
+  @media (max-width: 600px) {
+    .btn-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .btn-jaune,
+    .btn-rose {
+      width: 100%;
+    }
+  }

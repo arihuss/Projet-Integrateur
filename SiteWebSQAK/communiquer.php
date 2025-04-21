@@ -2,15 +2,11 @@
 <html lang="fr">
 
 <?php
-
 include_once('modele/DAO/EvenementDAO.class.php');
 include_once('modele/DAO/ParticipantDAO.class.php');
 include_once('modele/DAO/UserDAO.class.php');
 
 $event = EvenementDAO::findById($_GET['id']);
-
-include_once('modele/DAO/ParticipantDAO.class.php');
-include_once('modele/DAO/UserDAO.class.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
   $eventId = $_GET['id'];
@@ -27,9 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
       }
     }
 
-    // Remove duplicate emails
     $tabCourriels = array_unique($tabCourriels);
-  
 
     if (!empty($tabCourriels)) {
       $mailtoLink = 'mailto:' . implode(',', $tabCourriels);
@@ -37,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
           window.location.href = "' . $mailtoLink . '";
           setTimeout(function() {
             window.history.back();
-          }, 1000); // wait 1 second before going back
+          }, 1000);
         </script>';
     } else {
       echo '<script>alert("Aucun email trouvé pour les rôles sélectionnés.");</script>';
@@ -58,32 +52,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
 </head>
 
 <body>
-  <header> <?php include("components/header.php") ?> </header>
+  <header> <?php include("components/header.php"); ?> </header>
 
   <div class="container">
+    <h1 class="titre-destinataires">Destinataires</h1>
+    <p class="sous-titre">Choisissez les groupes à contacter : </p>
+
     <form id="communicationForm" method="POST" action="">
       <input type="hidden" name="eventId" value="<?php echo $_GET['id']; ?>">
-      <div class="section-flex">
-        <!-- Right Column -->
-        <div class="right-column section-block">
-          <h2 class="section-title">Destinataires</h2>
-          <div class="checkbox-group">
-            <input type="checkbox" id="appliquants" name="roles[]" value="appliquant" <?php echo (isset($_POST['roles']) && in_array('appliquant', $_POST['roles'])) ? 'checked' : ''; ?>>
-            <label for="appliquants">Appliquants</label>
 
-            <input type="checkbox" id="benevoles" name="roles[]" value="benevole" <?php echo (isset($_POST['roles']) && in_array('benevole', $_POST['roles'])) ? 'checked' : ''; ?>>
-            <label for="benevoles">Bénévoles</label>
-
-            <input type="checkbox" id="invites" name="roles[]" value="invite" <?php echo (isset($_POST['roles']) && in_array('invite', $_POST['roles'])) ? 'checked' : ''; ?>>
-            <label for="invites">Invités</label>
-          </div>
-        </div>
+      <div class="checkbox-vertical">
+        <label>
+          <input type="checkbox" name="roles[]" value="appliquant"
+            <?php echo (isset($_POST['roles']) && in_array('appliquant', $_POST['roles'])) ? 'checked' : ''; ?>>
+          Appliquants
+        </label>
+        <label>
+          <input type="checkbox" name="roles[]" value="benevole"
+            <?php echo (isset($_POST['roles']) && in_array('benevole', $_POST['roles'])) ? 'checked' : ''; ?>>
+          Bénévoles
+        </label>
+        <label>
+          <input type="checkbox" name="roles[]" value="invite"
+            <?php echo (isset($_POST['roles']) && in_array('invite', $_POST['roles'])) ? 'checked' : ''; ?>>
+          Invités
+        </label>
       </div>
 
-      <div class="buttons">
-        <button type="submit" name="sendEmail" onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'" class="btn-jaune">Écrire Courriel</button>
-        <button type="button" class="btn-rose"
-                    onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'">Revenir</button>
+      <div class="btn-container">
+        <button type="submit" name="sendEmail" class="btn-jaune">Envoyer Courriel</button>
+        <button type="button" class="btn-rose" onclick="window.location.href='?action=voirUnEvent&id=<?= $event->getId() ?>'">Revenir</button>
       </div>
     </form>
   </div>
@@ -91,6 +89,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
   <footer> <?php include("components/footer.php"); ?> </footer>
   <script src="js/general.js"></script>
 </body>
-
 
 </html>
