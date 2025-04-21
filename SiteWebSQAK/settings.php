@@ -24,8 +24,8 @@
             ainsi leur visibilité et leur impact communautaire.</p>
         <h2>Paramètres</h2>
         <div id="parametres">
-            <button class="btn-param" onclick="toggleDarkMode()"><p>Changer le theme</p><p id="mode">Light Mode</p></button>
-            <a href="?action=seDeconnecter" class="btn-param">Se deconnecter</a>
+            <button class="btn-param" onclick="toggleDarkMode()"><p>Changer le thème</p><p id="mode">Light Mode</p></button>
+            <a href="?action=seDeconnecter" class="btn-param">Se déconnecter</a>
             <a href="?action=supprimerCompte" class="btn-param" onclick="confirmSupprimer(event)">Supprimer mon compte</a>
         </div>
     </div>
