@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
   <header> <?php include("components/header.php"); ?> </header>
 
   <div class="container">
-    <h1 class="titre-destinataires">Destinataires</h1>
+    <h1 class="titre-destinataires">Communiquer</h1>
     <p class="sous-titre">Choisissez les groupes à contacter : </p>
 
     <form id="communicationForm" method="POST" action="">
