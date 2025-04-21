@@ -156,7 +156,7 @@
       <span><h2><?php echo $stats->getNbVues(); ?></h2><p>Visites</p></span>
     </div>
 
-    <span id='btn-com'><a class='btn-rose' href='communiquer.php'>Communiquer</a></span>
+    <?php echo "<span id='btn-com'><a class='btn-rose' href='?action=communiquer&id=".$event->getId()."'>Communiquer</a></span>";?>
     <h2>Commentaires</h2>
 
     <?php

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+<?php
+
+include_once('modele/DAO/EvenementDAO.class.php');
+include_once('modele/DAO/ParticipantDAO.class.php');
+include_once('modele/DAO/UserDAO.class.php');
+
+$event = EvenementDAO::findById($_GET['id']);
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <title>SQAK - Communiquer</title>
@@ -16,23 +26,7 @@
     <div class="container">
   <form id="communicationForm">
     <div class="section-flex">
-      
-      <!-- COLONNE GAUCHE -->
-      <div class="left-column">
-        <div class="section-block">
-          <h2 class="section-title">Moyen de communication</h2>
-          <div class="checkbox-group">
-            <input type="checkbox" id="sms"> <label for="sms">SMS</label>
-            <input type="checkbox" id="email"> <label for="email">Courriel</label>
-            <input type="checkbox" id="notification"> <label for="notification">Notification</label>
-          </div>
-        </div>
-
-        <div class="message-block">
-          <label for="message" class="section-title">Message *</label>
-          <textarea id="message" name="message" placeholder="Votre message" required></textarea>
-        </div>
-      </div>
+    
 
       <!-- COLONNE DROITE -->
       <div class="right-column section-block">
@@ -46,7 +40,7 @@
     </div>
 
     <div class="buttons">
-      <button type="submit" class="btn-jaune">Envoyer</button>
+      <button type="submit" class="btn-jaune">Écrire Courriel</button>
       <button type="button" class="btn-rose" onclick="history.back()">Revenir</button>
     </div>
   </form>
