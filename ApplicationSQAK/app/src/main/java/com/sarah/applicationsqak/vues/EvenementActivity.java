@@ -108,7 +108,7 @@ public class EvenementActivity extends AppCompatActivity {
         //Quand on clique le nom de l'organisateur (ou l'image de l'organisateur), ça nous redirige vers la page de l'organisateur
         tvNomOrganisateur.setOnClickListener(v -> {
             Intent intentOrg = new Intent(EvenementActivity.this, ProfilOrganisateurActivity.class);
-            intentOrg.putExtra("ID_ORGANISATEUR", evenement.getId_organisateur());
+            intentOrg.putExtra("ID_ORGANISATEUR",(long) evenement.getId_organisateur());
             startActivity(intentOrg);
         });
 

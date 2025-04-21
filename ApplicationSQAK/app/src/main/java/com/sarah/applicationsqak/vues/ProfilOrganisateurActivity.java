@@ -1,5 +1,7 @@
 package com.sarah.applicationsqak.vues;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,19 +15,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.Organisateur;
 import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 import com.sarah.applicationsqak.viewmodel.OrganisateurViewModel;
 import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
+import java.util.List;
+
 public class ProfilOrganisateurActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView nomOrg,  bioOrg;
     private ImageView imgOrg;
-    private ListView listEvent;
+    private RecyclerView rvEventsOrg;
     private ImageView btnBack;
     private OrganisateurViewModel organisateurViewModel;
     private EvenementViewModel evenementViewModel;
@@ -35,11 +42,13 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_profil_organisateur);
 
         nomOrg = findViewById(R.id.tvNomOrgProfile);
         bioOrg = findViewById(R.id.tvDescOrg);
         imgOrg = findViewById(R.id.imgOrgProfile);
         btnBack = findViewById(R.id.imageView6);
+        rvEventsOrg = findViewById(R.id.rvMesEventsOrg);
 
         long idOrg = getIntent().getLongExtra("ID_ORGANISATEUR", -1);
 
@@ -53,6 +62,9 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
 
         Organisateur organisateur = organisateurViewModel.getOrganisateurParId(idOrg);
 
+        btnBack.setOnClickListener(this);
+
+
         if (organisateur != null) {
             String nomAffiche;
 
@@ -62,6 +74,7 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
                 nomAffiche = organisateur.getPrenomPOrg() + " " + organisateur.getNomPOrg();
             }
 
+            nomOrg.setText(nomAffiche);
             bioOrg.setText(organisateur.getBioOrg());
 
             if (organisateur.getImageUrlOrg() != null && !organisateur.getImageUrlOrg().isEmpty()) {
@@ -73,17 +86,12 @@ public class ProfilOrganisateurActivity extends AppCompatActivity implements Vie
 
             //Charger les évènements de l'organisateur
 
+            List<Evenement> evenements = evenementViewModel.getEvenementsParOrganisateur(idOrg);
+            rvEventsOrg.setLayoutManager(new LinearLayoutManager(this));
+            rvEventsOrg.setAdapter(new ExperienceAdapter(evenements));
+
         }
 
-
-
-
-
-
-
-
-
-        setContentView(R.layout.activity_profil_organisateur);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

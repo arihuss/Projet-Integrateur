@@ -97,6 +97,15 @@ public class EvenementViewModel extends AndroidViewModel {
 
     }
 
+    public List<Evenement> getEvenementsParOrganisateur(long idOrg) {
+        try {
+            return dao.getEvenementsParOrganisateur(idOrg);
+        } catch(Exception e) {
+            message.postValue("Erreur lors du chargement des événements de l'organisateur");
+            return new ArrayList<>();
+        }
+    }
+
 
 
 
