@@ -35,9 +35,7 @@ class SeConnecter extends Controleur{
 				
 				$_SESSION ['user_id'] = $organisateur->getId();
 				$_SESSION['organisateur'] = $organisateur;
-				if (!$organisateur->getEstConfirme()){
-					header(header("Location: index.php?action=confirmation"));
-				}
+	
 				return "page-principale.php";
 			}
 	

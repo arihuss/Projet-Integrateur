@@ -78,7 +78,7 @@ class SeInscrire extends Controleur {
                 
 
             
-                header("Location: index.php?action=confirmation");
+                header("Location: index.php?action=seConnecter");
                 exit;
             } else {
                 $this->messagesErreur[] = "Erreur lors de la création du compte.";

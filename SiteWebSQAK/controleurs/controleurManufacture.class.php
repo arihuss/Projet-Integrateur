@@ -3,7 +3,6 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurAccueil.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurAjouter.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurCommuniquer.class.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurConfirmation.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurModifier.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurModifierProfil.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/controleurs/controleurProfilOrganisateur.class.php");
@@ -28,8 +27,6 @@ class ManufactureControleur{
             $controleur = new Ajouter();
         }else if($action == "communiquer"){
             $controleur = new Communiquer();
-        }else if($action == "confirmation"){
-            $controleur = new Confirmation();
         }else if($action == "modifierEvent"){
             $controleur = new Modifier();
         }else if($action == "modifierProfil"){
