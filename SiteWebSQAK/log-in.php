@@ -27,7 +27,7 @@
             <input id="mdp-connexion" type="password" minlength="8" name="mot_de_passe" required><br><br>
 
             <input class="btn-jaune" type="submit" value="Connexion"><br>
-            <a href="mdp-oublie">Mot de passe oublié ?</a>
+            
 
             <?php if (isset($controleur)) : ?>
                 <?php foreach ($controleur->getMessagesErreur() as $erreur) : ?>
