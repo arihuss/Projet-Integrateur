@@ -33,8 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendEmail'])) {
 
     if (!empty($tabCourriels)) {
       $mailtoLink = 'mailto:' . implode(',', $tabCourriels);
-      echo '<script>window.location.href = "' . $mailtoLink . '";</script>';
-      exit();
+      echo '<script>
+          window.location.href = "' . $mailtoLink . '";
+          setTimeout(function() {
+            window.history.back();
+          }, 1000); // wait 1 second before going back
+        </script>';
     } else {
       echo '<script>alert("Aucun email trouvé pour les rôles sélectionnés.");</script>';
     }
