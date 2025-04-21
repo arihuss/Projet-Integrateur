@@ -72,7 +72,7 @@
 
         echo "</div>";
         ?>
-    </div> <!-- fermeture correcte de container -->
+    </div> 
 
     <footer><?php include("components/footer.php"); ?></footer>
     <script src="js/general.js"></script>

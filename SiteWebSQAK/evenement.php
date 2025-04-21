@@ -78,7 +78,7 @@
       echo "<a class='btn-rose' href='https://www.google.com/maps/search/?api=1&query=$adresse' target='_blank'>Voir sur Google Maps</a>";
       echo "</div></div>";
 
-      echo "</div>"; // info-eve
+      echo "</div>"; 
 
       echo "<div id='img-container'>";
       echo "<img id='image-eve' src='data:image/jpeg;base64," . base64_encode($event->getImageEvenement()) . "' alt='img-evenement'>";
@@ -180,7 +180,7 @@
       </div>
     <?php endforeach; ?>
 
-  </div> <!-- FIN DU CONTAINER -->
+  </div> 
 
   <footer><?php include("components/footer.php"); ?> </footer>
 

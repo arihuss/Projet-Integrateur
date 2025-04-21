@@ -9,24 +9,21 @@ class SeConnecter extends Controleur{
 		
     
 		public function __construct() {
-			//appel du constructeur parent
 			parent::__construct();
 
 		}
 		
-		// ******************* Méthode exécuter action
-		// implémenter la méthde executerAction
-		// retournez la page d'accueil
+		
 		public function executerAction():string
 		{
 				
-			// Vérifie si l'organisateur est déjà connecté
+			
 			if ($this->isOrganisateurConnecte()) {
 				array_push($this->messagesErreur, "Vous êtes déjà connecté.");
 				return "page-principale.php";
 			}
 	
-			// Traitement du POST
+			
 			if (isset($_POST['courriel']) && isset($_POST['mot_de_passe'])) {
 				$organisateur = OrganisateurDAO::findByEmail($_POST['courriel']);
 	
@@ -35,7 +32,7 @@ class SeConnecter extends Controleur{
 					return "log-in.php"; 
 				}
 	
-				// Connexion réussie
+				
 				$_SESSION ['user_id'] = $organisateur->getId();
 				$_SESSION['organisateur'] = $organisateur;
 				if (!$organisateur->getEstConfirme()){

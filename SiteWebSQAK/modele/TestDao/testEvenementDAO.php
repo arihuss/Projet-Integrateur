@@ -40,25 +40,24 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/evenement.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/evenementDAO.class.php");
 
-// Créer un nouvel événement fictif pour les tests
 $nouvelEvenement = new Evenement(
-    0,  // id (sera généré)
-    11,  // idStats
-    21,  // idOrganisateur
-    "Test DAO", // nom
-    "Montréal", // lieu
-    "2025-04-01", // dateDebut
-    "2025-04-02", // dateFin
-    50, // nbBenevolesMax
-    300, // nbParticipantsMax
-    true, // etatBenevole
-    "Culture", // categorie
-    "Test d'insertion DAO", // description
-    "Ouvert", // etat
-    0, // nbInscriptions
-    0, // nbBenevolesAcceptes
-    false, // completBenevole
-    false // completVisiteur
+    0,  
+    11, 
+    21, 
+    "Test DAO",
+    "Montréal", 
+    "2025-04-01", 
+    "2025-04-02", 
+    50, 
+    300, 
+    true, 
+    "Culture", 
+    "Test d'insertion DAO", 
+    "Ouvert", 
+    0, 
+    0, 
+    false, 
+    false 
 );
 ?>
 
@@ -68,7 +67,6 @@ $nouvelEvenement = new Evenement(
         <th>Résultat</th>
     </tr>
 
-    <!-- Test SAVE -->
     <tr>
         <td>save()</td>
         <td>
@@ -83,7 +81,7 @@ $nouvelEvenement = new Evenement(
         </td>
     </tr>
 
-    <!-- Test FIND BY ID -->
+    
     <tr>
         <td>findById()</td>
         <td>
@@ -98,7 +96,7 @@ $nouvelEvenement = new Evenement(
         </td>
     </tr>
 
-    <!-- Test FIND ALL -->
+  
     <tr>
         <td>findAll()</td>
         <td>
@@ -114,7 +112,7 @@ $nouvelEvenement = new Evenement(
         </td>
     </tr>
 
-    <!-- Test UPDATE -->
+
     <tr>
         <td>update()</td>
         <td>
@@ -127,7 +125,7 @@ $nouvelEvenement = new Evenement(
         </td>
     </tr>
 
-    <!-- Test DELETE -->
+    
     <tr>
         <td>delete()</td>
         <td>
@@ -135,7 +133,6 @@ $nouvelEvenement = new Evenement(
             $deleteSuccess = EvenementDAO::delete($nouvelEvenement);
             echo $deleteSuccess ? "Suppression réussie." : "Échec de la suppression.";
 
-            // Vérification que l'événement n'existe plus
             $event = EvenementDAO::findById($nouvelEvenement->getId());
             echo $event ? "<br> L'événement existe encore !" : "<br> L'événement a bien été supprimé.";
             ?>

@@ -33,7 +33,7 @@
 
         <br>
         <div>
-            <a href="?action=confirmation">Renvoyer le code</a> <!-- J'ai changer ca comme ca tu reviens juste a la meme page et ca renvoie le code -->
+            <a href="?action=confirmation">Renvoyer le code</a> 
         </div>
     </div>
 

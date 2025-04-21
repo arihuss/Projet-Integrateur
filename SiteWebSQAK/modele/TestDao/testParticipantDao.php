@@ -39,12 +39,12 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/participant.class.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/ParticipantDAO.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/ConnexionBD.php"); // à ajuster selon ton projet
+include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/ConnexionBD.php"); 
 
-// Test 1 : findByRole("appliquant")
+
 $appliquants = ParticipantDAO::findByRoleAndId("appliquant",1);
 
-// Test 2 : findById (si des appliquants existent)
+
 $firstId = count($appliquants) > 0 ? $appliquants[0]->getIdInscription() : 1;
 $participant = ParticipantDAO::findById($firstId);
 ?>
@@ -107,7 +107,7 @@ $participant = ParticipantDAO::findById($firstId);
                 $success = ParticipantDAO::refuserApplicant($participant);
                 echo $success ? "Participant supprimé." : "Échec de la suppression.";
 
-                // Vérification
+        
                 $verif = ParticipantDAO::findById($firstId);
                 echo $verif ? "<br> Le participant existe encore." : "<br> Le participant a bien été supprimé.";
             } else {

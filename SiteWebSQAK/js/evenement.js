@@ -6,12 +6,11 @@ const benevoles = donutData.benevoles;
 let data, backgroundColor, labels;
 
 if (invites === 0 && benevoles === 0) {
-  // Placeholder donut plein gris
-  data = [1];  // un seul segment
-  backgroundColor = ['#CCCCCC'];  // gris
+  
+  data = [1];  
+  backgroundColor = ['#CCCCCC']; 
   labels = ['Aucune donnée'];
 } else {
-  // Données réelles
   data = [invites, benevoles];
   backgroundColor = ['#FFD86C', '#FF99CC'];
   labels = ['Invités', 'Bénévoles'];

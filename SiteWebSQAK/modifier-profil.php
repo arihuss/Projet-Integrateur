@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "Les mots de passe ne correspondent pas.";
         $typeMessage = "erreur";
     } else {
-        // Mise à jour des infos
+      
         $organisateur->setPrenom($prenom);
         $organisateur->setNom($nom);
         $organisateur->setNomOrganisateur($organisation);
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $typeMessage = "erreur";
                 $photoValide = false;
             } else {
-                // Lire le contenu du fichier
+              
                 $photo = file_get_contents($_FILES['photo']['tmp_name']);
                 $organisateur->setImgOrganisateur($photo);
             }

@@ -21,7 +21,6 @@ class Confirmation extends Controleur
     {
 
         if (!isset($_SESSION['user_id'])) {
-            //Rediriger vers la page d'accueil si non connecté
             header("Location: index.php?action=accueil");
             exit;
         }
@@ -46,7 +45,6 @@ class Confirmation extends Controleur
             $codeEntre = $_POST['code'] ?? '';
 
             if ($organisateur && $organisateur->getCodeConfirmation() === $codeEntre) {
-                // Mettre à jour dans la BD : est_confirme = 1, code_confirmation = NULL
                 $connexion = ConnexionBD::getInstance();
                 $requete = $connexion->prepare("
                     UPDATE Organisateur 
@@ -56,7 +54,7 @@ class Confirmation extends Controleur
                 $requete->bindValue(':id', $id);
                 $requete->execute();
 
-                // Redirection vers la connexion avec message
+                
                 header("Location: index.php?action=seConnecter&message=Compte confirmé avec succès !");
                 exit;
             } else {

@@ -40,7 +40,7 @@ class ParticipantDAO{
     }
 
     /**
-     * Summary of findByRole trouver la liste de participant par leur role et id_evenement (benevole, visiteur, appliquants)
+     *findByRole trouver la liste de participant par leur role et id_evenement (benevole, visiteur, appliquants)
      * @param string $role
      * @return array
      */
@@ -73,9 +73,9 @@ class ParticipantDAO{
     }
 
     /**
-     * Summary of accepterAppliquant change le role du partipant a benevole
+     * accepterAppliquant change le role du partipant a benevole
      * @param object $object
-     * @return bool true si successful
+     * @return bool true si vrai 
      */
     static public function accepterAppliquant(object $object):bool{
         $connexion = ConnexionBD::getInstance();
@@ -90,7 +90,7 @@ class ParticipantDAO{
     }
 
     /**
-     * Summary of refuserApplicant enlever le participant de la liste des appliquants (je crois en supprimant son inscription)
+     *  refuserApplicant enlever le participant de la liste des appliquants (je crois en supprimant son inscription)
      * @param object $object
      * @return bool true si successful
      */
@@ -107,7 +107,7 @@ class ParticipantDAO{
     }
 
         /**
-     * Summary of getInscriptionByUserId (retourne toutes les inscriptions d'un utilisateur)
+     * getInscriptionByUserId (retourne toutes les inscriptions d'un utilisateur)
      * @param int $idUtilisateur
      * @return array 
      */

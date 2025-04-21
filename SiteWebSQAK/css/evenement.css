@@ -79,7 +79,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Optional, centers vertically if needed */
   width: 100%;
   margin-top: 2rem;
 }
@@ -88,11 +87,9 @@
   max-width: 50rem;
   width: 100%;
   height: auto;
-  /* Maintains aspect ratio */
   border-radius: 15px;
   border: 10px solid var(--secondary);
   object-fit: contain;
-  /* Optional, adds protection */
 }
 
 
@@ -282,9 +279,7 @@ h2:not(#statistiques span h2) {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  /* spacing between buttons */
   flex-wrap: wrap;
-  /* optional, for responsiveness */
 }
 
 .icone-btn {
@@ -380,7 +375,7 @@ h2:not(#statistiques span h2) {
   gap: 10px;
 }
 
-/* Style pour la barre de défilement */
+
 .participants-container::-webkit-scrollbar {
   width: 8px;
 }

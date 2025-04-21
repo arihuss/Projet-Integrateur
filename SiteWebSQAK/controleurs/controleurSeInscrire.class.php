@@ -17,7 +17,7 @@ class SeInscrire extends Controleur {
     public function executerAction(): string {
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupération des champs
+           
             $prenom = $_POST['prenom'] ?? null;
             $nom = $_POST['nom'] ?? null;
             $nomOrganisateur = $_POST['organisation'] ?? null;
@@ -28,7 +28,6 @@ class SeInscrire extends Controleur {
             $cmdp = $_POST['confirmation'] ?? "";
             $nbEvents = 0;
 
-            // =================== VALIDATIONS ===================
             if ($mdp !== $cmdp) {
                 $this->messagesErreur[] = "Les mots de passe ne correspondent pas.";
                 return "sign-up.php";
@@ -44,20 +43,19 @@ class SeInscrire extends Controleur {
                 return "sign-up.php";
             }
 
-            // ✅ Vérifier si le courriel existe déjà
+           
             $existant = OrganisateurDAO::findByEmail($courriel);
             if ($existant !== null) {
                 $this->messagesErreur[] = "Un compte avec ce courriel existe déjà.";
                 return "sign-up.php";
             }
 
-            // Hash du mot de passe
+    
             $mdpHash = password_hash($mdp, PASSWORD_BCRYPT);
 
-            // Génération du code de confirmation
             $codeConfirmation = strval(rand(100000, 999999));
 
-            // =================== CRÉATION ORGANISATEUR ===================
+           
             $organisateur = new Organisateur(
                 null,
                 null,
@@ -69,17 +67,17 @@ class SeInscrire extends Controleur {
                 $mdpHash,
                 $nbEvents,
                 $telephone,
-                false,             // est_confirme
-                $codeConfirmation  // code_confirmation
+                false,            
+                $codeConfirmation  
             );
 
             $success = OrganisateurDAO::save($organisateur);
 
             if ($success) {
                 $_SESSION['user_id'] = $organisateur->getId();
-                // Envoi du code de confirmation par courriel
+                
 
-                // Rediriger vers la page de confirmation
+            
                 header("Location: index.php?action=confirmation");
                 exit;
             } else {

@@ -39,11 +39,7 @@ class StatistiqueDAO {
     
         return $stat;
     }
-//ecq je dois en mettre plus que ce que tu m as mis 
 
-/**
-     * Récupère toutes les statistiques
-     */
     static public function findAll(): array {
         $connexion = ConnexionBD::getInstance();
 
@@ -69,9 +65,6 @@ class StatistiqueDAO {
         return $resultats;
     }
 
-    /**
-     * Ajoute une nouvelle statistique dans la base
-     */
     static public function save(object $object): bool {
         $connexion = ConnexionBD::getInstance();
 
@@ -97,10 +90,6 @@ class StatistiqueDAO {
         ConnexionBD::close();
         return $success;
     }
-
-    /**
-     * Met à jour une statistique existante
-     */
     static public function update(object $object): bool {
         $connexion = ConnexionBD::getInstance();
 

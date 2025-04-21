@@ -6,7 +6,7 @@ class Ajouter extends Controleur{
 	private array $messagesErreur = [];
     
 		public function __construct() {
-			//appel du constructeur parent
+		
 			parent::__construct();
 		}
 
@@ -16,19 +16,14 @@ class Ajouter extends Controleur{
 		
 		
 
-		// ******************* Méthode exécuter action
-		// implémenter la méthde executerAction
-		// retournez la page d'accueil
 		public function executerAction():string
 		{
 			if (!isset($_SESSION['user_id'])) {
-				//Rediriger vers la page d'accueil si non connecté
 			   header("Location: index.php?action=accueil");
 			   exit;
 			}
 			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-				// Récupération des données du formulaire
 				$titre = $_POST['titre'] ?? null;
 				$description = $_POST['description'] ?? null;
 				$categorie = $_POST['categorie'] ?? null;
@@ -40,32 +35,32 @@ class Ajouter extends Controleur{
 				$nbBenevolesMax = $_POST['benevoles-max'] ?? 0;
 				$nbInvitesMax = $_POST['invites-max'] ?? 0;
 				
-				// Validation des champs obligatoires
+				
 				if (empty($titre) || empty($description) || empty($categorie) || empty($lieu) || 
 					empty($dateDebut) || empty($dateFin) || empty($heureDebut) || empty($heureFin)) {
 					$this->messagesErreur[] = "Veuillez remplir tous les champs obligatoires.";
 					return "ajouter-evenement.php";
 				}
 				
-				// Vérification de la cohérence des dates
+				
 				if (strtotime($dateDebut) > strtotime($dateFin)) {
 					$this->messagesErreur[] = "La date de début ne peut pas être postérieure à la date de fin.";
 					return "ajouter-evenement.php";
 				}
 				
-				// Si les dates sont identiques, vérifier la cohérence des heures
+				
 				if ($dateDebut === $dateFin && strtotime($heureDebut) >= strtotime($heureFin)) {
 					$this->messagesErreur[] = "L'heure de début doit être antérieure à l'heure de fin pour un même jour.";
 					return "ajouter-evenement.php";
 				}
 				
-				// Vérification que les nombres sont positifs
+				
 				if ($nbBenevolesMax < 0 || $nbInvitesMax < 0) {
 					$this->messagesErreur[] = "Le nombre de bénévoles et d'invités doit être positif.";
 					return "ajouter-evenement.php";
 				}
 				
-				// Traitement de l'image
+				
 
 				$photo = null;
 				if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
@@ -77,7 +72,7 @@ class Ajouter extends Controleur{
 						return "ajouter-evenement.php";
 					}
 				
-					// Lire le contenu du fichier
+					
 					$photo = file_get_contents($_FILES['photo']['tmp_name']);
 				} else {
 					$this->messagesErreur[] = "Veuillez sélectionner une image pour l'événement.";
@@ -89,7 +84,7 @@ class Ajouter extends Controleur{
 				$dateTimeDebut = $dateDebut;
 				$dateTimeFin = $dateFin;
 				
-				// Récupération de l'ID de l'organisateur à partir de la session
+				
 				$idOrganisateur = $_SESSION['user_id'] ?? null;
 				
 				
@@ -98,23 +93,23 @@ class Ajouter extends Controleur{
 					return "log-in.php";
 				}
 				
-				// Paramètres par défaut pour un nouvel événement
-				$etatBenevole = true; // Activer le recrutement de bénévoles par défaut
-				$etat = 'disponible'; // L'événement est actif par défaut
+				
+				$etatBenevole = true; 
+				$etat = 'disponible'; 
 				$nbInscriptions = 0;
 				$completBenevole = false;
 				$completVisiteur = false;
 				$imageEvenement = $photo;
 
-				//Creation stat vide
+				
 				$connexion = ConnexionBD::getInstance();
 				$requete = $connexion->prepare("INSERT INTO Statistique (nb_visiteurs, nb_benevoles, nb_likes, nb_vues, nb_applications, nb_partages) VALUES (0, 0, 0, 0, 0, 0)");
 				$requete->execute();
 				$idStatistique = $connexion->lastInsertId();
 
-				// Création de l'objet Evenement
+				
 				$evenement = new Evenement(
-					null, // ID sera généré par la base de données
+					null, 
 					$idStatistique,
 					$_SESSION['user_id'],
 					$imageEvenement,
@@ -136,11 +131,11 @@ class Ajouter extends Controleur{
 					
 				);
 				
-				// Enregistrement de l'événement dans la base de données
+				
 				$success = EvenementDAO::save($evenement);
 				
 				if ($success) {
-					// Redirection vers la page des événements avec un message de succès
+					
 				$organisateur = OrganisateurDAO::findById($_SESSION['user_id']);
 				$organisateur->setNbEvents($organisateur->getNbEvents()+1);
 					header("Location: index.php?action=voirEvents&message=Événement créé avec succès !");

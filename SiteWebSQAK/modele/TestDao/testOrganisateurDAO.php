@@ -94,18 +94,17 @@
                 <?php
                 echo "<h3>Insertion d'un nouvel organisateur :</h3>";
 
-                // Création d'un nouvel organisateur
+            
                 $nouveauOrganisateur = new Organisateur(null,'Mario', 'Bros', 'mroi.bros@itsame.com', 'Hello, its A ME, MARIO', null, 'luigi123', 10);
 
                 try {
 
-                    // Enregistrement dans la base de données
+        
                     $testSave = OrganisateurDAO::save($nouveauOrganisateur);
 
                     if ($testSave) {
                         echo "<ul><li>Insertion réussie. ID généré : " . $nouveauOrganisateur->getId() . "</li></ul>";
 
-                        // Vérification des données insérées
                         $organisateurInsere = OrganisateurDAO::findById($nouveauOrganisateur->getId());
                         echo "<ul><li>Organisateur inséré : " . ($organisateurInsere ? $organisateurInsere : "n'existe pas") . "</li></ul>";
                     } else {
@@ -125,25 +124,23 @@
             <td>
                 <?php
 
-                // Utiliser l'id de l'utilisateur nouvellement créé pour la mise à jour
-                $id = $nouveauOrganisateur->getId(); // id de l'utilisateur nouvellement inséré
-                $nouveauOrganisateurAuthentifie = OrganisateurDAO::findById($id); // Recherche de l'utilisateur par id
+            
+                $id = $nouveauOrganisateur->getId(); 
+                $nouveauOrganisateurAuthentifie = OrganisateurDAO::findById($id); 
                 
                 if ($nouveauOrganisateurAuthentifie !== null) {
                     echo "<h3>Modification de l'organisateur authentifié :</h3>";
 
-                    // Charger l'utilisateur authentifié dans $nouveauOrganisateur
+                
                     $nouveauOrganisateurAuthentifie->setPrenom('Updated');
                     $nouveauOrganisateurAuthentifie->setNom('User Updated');
                     $nouveauOrganisateurAuthentifie->setCourriel('test@yahoo.com');
 
-                    // Appeler la méthode update
                     $testUpdate = OrganisateurDAO::update($nouveauOrganisateurAuthentifie);
 
                     if ($testUpdate) {
                         echo "<ul><li>Modification réussie pour l'utilisateur avec ID : " . $nouveauOrganisateurAuthentifie->getId() . "</li></ul>";
 
-                        // Vérification des modifications
                         $organisateurModifie = OrganisateurDAO::findById($nouveauOrganisateurAuthentifie->getId());
                         echo "<ul><li>Utilisateur modifié : " . ($organisateurModifie ? $organisateurModifie : "n'existe pas") . "</li></ul>";
                     } else {
@@ -164,20 +161,18 @@
             <td>
                 <?php
 
-                // Utiliser l'id de l'utilisateur nouvellement créé pour la mise à jour
-                $id = $nouveauOrganisateur->getId(); // id de l'utilisateur nouvellement inséré
-                $nouveauOrganisateurAuthentifie = OrganisateurDAO::findById($id); // Recherche de l'utilisateur par id
+                $id = $nouveauOrganisateur->getId(); 
+                $nouveauOrganisateurAuthentifie = OrganisateurDAO::findById($id); 
                 
                 if ($nouveauOrganisateurAuthentifie !== null) {
                     echo "<h3>Suppression de l'organisateur authentifié :</h3>";
 
-                    // Appeler la méthode delete
+                  
                     $testDelete = OrganisateurDAO::delete($nouveauOrganisateurAuthentifie);
 
                     if ($testDelete) {
                         echo "<ul><li>Suppression réussie pour l'organisateur avec ID : " . $nouveauOrganisateurAuthentifie->getId() . "</li></ul>";
 
-                        // Vérification de la suppression
                         $organisateurSupprime = OrganisateurDAO::findById($nouveauOrganisateurAuthentifie->getId());
                         echo "<ul><li>Organisateur supprimé : " . ($organisateurSupprime ? $organisateurSupprime : "n'existe plus") . "</li></ul>";
                     } else {

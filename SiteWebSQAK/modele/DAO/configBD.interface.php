@@ -1,6 +1,5 @@
 <?php	
-	/* Description : paramettres d'accès à la BD
-	*/
+
 	interface ConfigBD
 	{	
 

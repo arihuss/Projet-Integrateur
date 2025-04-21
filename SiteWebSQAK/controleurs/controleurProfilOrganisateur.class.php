@@ -9,7 +9,6 @@ class ProfilOrganisateur extends Controleur{
 
     
 	public function __construct() {
-		//appel du constructeur parent
 		parent::__construct();
 		$this->tabOrganisateurs=array();
 	}
@@ -18,13 +17,10 @@ class ProfilOrganisateur extends Controleur{
 		return $this->tabOrganisateurs;
 	}
 
-		// ******************* Méthode exécuter action
-		// implémenter la méthde executerAction
-		// retournez la page d'accueil
+		
 		public function executerAction():string
 		{
 			if (!isset($_SESSION['user_id'])) {
-				// Rediriger vers la page de login si non connecté
 				header("Location: index.php?action=accueil");
 				exit;
 			}

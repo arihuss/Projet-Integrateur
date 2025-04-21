@@ -41,14 +41,14 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/statistiques.class.php")
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/DAO/statistiqueDAO.php");
 include_once($_SERVER['DOCUMENT_ROOT'] . "/../../modele/ConnexionBD.php");
 
-// Créer une nouvelle statistique fictive
+
 $nouvelleStat = new Statistique(
-    0,    // id_statistique (sera défini après l'insertion)
-    10,   // nb_visiteurs
-    5,    // nb_benevoles
-    100,  // nb_likes
-    200,  // nb_vues
-    50    // nb_partages
+    0,   
+    10,   
+    5,   
+    100,  
+    200,  
+    50    
 );
 ?>
 
@@ -58,7 +58,7 @@ $nouvelleStat = new Statistique(
         <th>Résultat</th>
     </tr>
 
-    <!-- SAVE -->
+  
     <tr>
         <td>save()</td>
         <td>
@@ -71,7 +71,6 @@ $nouvelleStat = new Statistique(
         </td>
     </tr>
 
-    <!-- FIND BY ID -->
     <tr>
         <td>findById()</td>
         <td>
@@ -86,7 +85,7 @@ $nouvelleStat = new Statistique(
         </td>
     </tr>
 
-    <!-- FIND ALL -->
+  
     <tr>
         <td>findAll()</td>
         <td>
@@ -102,7 +101,7 @@ $nouvelleStat = new Statistique(
         </td>
     </tr>
 
-    <!-- UPDATE -->
+
     <tr>
         <td>update()</td>
         <td>

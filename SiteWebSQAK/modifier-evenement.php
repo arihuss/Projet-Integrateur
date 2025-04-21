@@ -1,6 +1,6 @@
 <?php
 include_once('modele/DAO/EvenementDAO.class.php');
-$event = EvenementDAO::findById($_GET['id']); // Ne pas oublier de valider l'entrée
+$event = EvenementDAO::findById($_GET['id']); 
 
 if (!$event) {
     echo "<h2>Événement non trouvé.</h2>";
@@ -9,7 +9,6 @@ if (!$event) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
 
-    // Tu peux ajouter des vérifications ici (ex: champs requis)
 
     $event->setNom($_POST['titre']);
     $event->setDescription($_POST['description']);
@@ -26,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier-event'])) {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         $fileType = $_FILES['photo']['type'];
         $fileSize = $_FILES['photo']['size'];
-            // Lire le contenu du fichier
+       
             $photo = file_get_contents($_FILES['photo']['tmp_name']);
             $event->setImageEvenement($photo);
         
     }
 
 
-    EvenementDAO::update($event); // Tu dois avoir cette méthode dans ton DAO
+    EvenementDAO::update($event); 
     
     header("Location: ?action=voirUnEvent&id=" . $event->getId());
     exit;

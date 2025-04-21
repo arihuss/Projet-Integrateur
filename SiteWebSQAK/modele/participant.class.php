@@ -5,7 +5,7 @@ class Participant implements JsonSerializable
     private int $id_inscription;
     private int $id_utilisateur;
     private int $id_evenement;
-    private string $role; // 'benevole', 'visiteur', 'appliquant'
+    private string $role; 
     private string $date_inscription; 
     
 
