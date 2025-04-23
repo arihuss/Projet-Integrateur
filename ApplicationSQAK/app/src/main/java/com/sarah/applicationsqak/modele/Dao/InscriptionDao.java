@@ -20,7 +20,7 @@ public class InscriptionDao {
         dbUtil = new DbUtil(context);
     }
 
-    public long inscrireUtilisateur(int idUser, int idEvent, String role) {
+    public long inscrireUtilisateur(long idUser, int idEvent, String role) {
         //// **** Les log sont à modifiés = pas encore implémenté
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
@@ -95,7 +95,7 @@ public class InscriptionDao {
     }
 
 
-    public boolean estInscrit(int idUser, int idEvent) {
+    public boolean estInscrit(long idUser, int idEvent) {
         SQLiteDatabase db = dbUtil.getReadableDatabase();
 
         Cursor cursor = db.query(BaseContrat.InscriptionTable.TABLE_NAME,

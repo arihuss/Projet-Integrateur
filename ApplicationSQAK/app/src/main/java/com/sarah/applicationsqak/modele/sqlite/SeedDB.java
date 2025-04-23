@@ -62,7 +62,7 @@ public class SeedDB {
         org1.put(BaseContrat.OrganisateurTable.BIO, "Organisatrice d’événements environnementaux à Montréal.");
         org1.put(BaseContrat.OrganisateurTable.MOT_DE_PASSE, "sophie1234");
         org1.put(BaseContrat.OrganisateurTable.NB_EVENTS, 2);
-        org1.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://exemple.com/images/sophie.jpg");
+        org1.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-organisateurs/1.png?raw=true");
 
         long id = db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org1);
         if(id == -1) {
@@ -78,7 +78,7 @@ public class SeedDB {
         org2.put(BaseContrat.OrganisateurTable.BIO, "Fervent défenseur des causes sociales.");
         org2.put(BaseContrat.OrganisateurTable.MOT_DE_PASSE, "entraideMax123");
         org2.put(BaseContrat.OrganisateurTable.NB_EVENTS, 1);
-        org2.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://exemple.com/images/maxime.jpg");
+        org2.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-organisateurs/2.jpg?raw=true");
 
         db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org2);
 
@@ -91,7 +91,7 @@ public class SeedDB {
         org3.put(BaseContrat.OrganisateurTable.BIO, "Coordonne les événements sportifs communautaires.");
         org3.put(BaseContrat.OrganisateurTable.MOT_DE_PASSE, "sport1234");
         org3.put(BaseContrat.OrganisateurTable.NB_EVENTS, 3);
-        org3.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://exemple.com/images/lina.jpg");
+        org3.put(BaseContrat.OrganisateurTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-organisateurs/3.png?raw=true");
 
         db.insert(BaseContrat.OrganisateurTable.TABLE_NAME, null, org3);
     }
@@ -160,9 +160,9 @@ public class SeedDB {
                 values.put(BaseContrat.EvenementTable.ETAT, "Disponible");
             }
 
-            String[] imageNames = {"1.png", "2.jpg", "3.png"};
+            String[] imageNames = {"1.jpg", "2.png", "3.jpg", "4.jpg", "5.png", "6.jpg", "7.jpg", "8.jpeg", "9.png"};
 
-            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-organisateurs/" + imageNames[(i%3)] + "?raw=true");
+            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-evenements/" + imageNames[i%imageNames.length] + "?raw=true");
 
             // Pour les dates au format dd/MM/yyyy
             Calendar cal = Calendar.getInstance();
@@ -215,7 +215,11 @@ public class SeedDB {
             values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, 1);
             values.put(BaseContrat.EvenementTable.CATEGORIE, "COMMUNAUTAIRE");
             values.put(BaseContrat.EvenementTable.DESCRIPTION, "Événement déjà complet à l'avance.");
-            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://exemple.com/image" + i + ".jpg");
+
+            // Pour les images
+            String[] imageNames = {"1.jpg", "2.png", "3.jpg", "4.jpg", "5.png", "6.jpg", "7.jpg", "8.jpeg", "9.png"};
+
+            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-evenements/" + imageNames[i%imageNames.length] + "?raw=true");
 
             // Dates
             cal.set(2025, Calendar.APRIL, 10 + i);  // 11, 12, 13 avril

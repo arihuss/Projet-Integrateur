@@ -225,6 +225,23 @@ public class EvenementDao {
         return nom;
     }
 
+    public String getImageOrganisateurParId(int id) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        Cursor cursor = db.query(BaseContrat.OrganisateurTable.TABLE_NAME,
+                new String[]{BaseContrat.OrganisateurTable.IMAGE_URL},
+                BaseContrat.OrganisateurTable.ID_ORGANISATEUR + "= ?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
+
+        String imageUrl = "";
+        if(cursor != null && cursor.moveToFirst()) {
+            imageUrl = cursor.getString(0);
+        }
+
+        cursor.close();
+        return imageUrl;
+    }
+
     // À appeler après chaque nouvelle inscription
     private void verifierComplet(int idEvenement) {
         SQLiteDatabase db = dbUtil.getWritableDatabase();

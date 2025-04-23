@@ -23,7 +23,7 @@ public class InscriptionViewModel extends AndroidViewModel {
         return message;
     }
 
-    public void inscrireUtilisateur(int idUtilisateur, int idEvenement, String role) {
+    public void inscrireUtilisateur(long idUtilisateur, int idEvenement, String role) {
         new Thread(() -> {
             if(!dao.estInscrit(idUtilisateur, idEvenement)) {
                 dao.inscrireUtilisateur(idUtilisateur, idEvenement, role);
