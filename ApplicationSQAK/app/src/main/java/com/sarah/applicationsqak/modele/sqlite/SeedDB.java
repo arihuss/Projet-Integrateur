@@ -9,6 +9,57 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class SeedDB {
+    private static final String[] nomEvents = {
+            "Nettoyage du parc municipal",
+            "Collecte de vêtements d'hiver",
+            "Distribution de repas aux sans-abri",
+            "Atelier de soutien scolaire",
+            "Marche pour la santé mentale",
+            "Tri des dons alimentaires",
+            "Bénévolat en refuge animalier",
+            "Plantation d'arbres en milieu urbain",
+            "Organisation d’un tournoi jeunesse",
+            "Soutien technologique pour aînés",
+            "Visite en résidence pour personnes âgées",
+            "Bénévolat au centre communautaire",
+            "Opération sacs de Noël",
+            "Création de trousses d’hygiène",
+            "Journée sportive inclusive",
+            "Aide aux devoirs en bibliothèque",
+            "Bénévolat dans un hôpital local",
+            "Réparation de vélos pour enfants",
+            "Peinture d’un centre jeunesse",
+            "Accueil et inscription à une course caritative",
+            "Atelier de cuisine intergénérationnel",
+            "Nettoyage des berges d’une rivière",
+            "Animation d’une soirée jeux de société"
+    };
+
+    private static final String[] descriptions = {
+            "Joignez-vous à une équipe pour ramasser les déchets dans le parc et préserver la nature urbaine.",
+            "Aidez à collecter, trier et emballer des vêtements chauds pour les familles dans le besoin.",
+            "Participez à la distribution de repas chauds dans un centre pour sans-abri de votre quartier.",
+            "Offrez du soutien scolaire à des enfants du primaire dans un cadre bienveillant et structuré.",
+            "Encadrez les participants lors d'une marche visant à sensibiliser à la santé mentale.",
+            "Contribuez au tri et à l'emballage de denrées alimentaires pour des familles défavorisées.",
+            "Passez du temps avec les animaux d’un refuge, aidez à les nourrir et à les promener.",
+            "Participez à une opération de plantation d’arbres pour reverdir un quartier résidentiel.",
+            "Aidez à encadrer des jeunes lors d’un tournoi sportif local visant à promouvoir l’inclusion.",
+            "Soutenez des aînés dans l’utilisation de leurs téléphones ou tablettes dans un atelier techno.",
+            "Participez à une visite sociale dans une résidence pour personnes âgées et brisez l’isolement.",
+             "Aidez à animer des activités et accueillir les visiteurs dans un centre communautaire local.",
+            "Préparez et distribuez des sacs cadeaux remplis de surprises pour les familles à Noël.",
+            "Assemblez des trousses d’hygiène personnelle pour les personnes vivant dans la rue.",
+            "Encadrez une journée sportive inclusive rassemblant jeunes et personnes à mobilité réduite.",
+            "Offrez du soutien aux enfants pour faire leurs devoirs dans une bibliothèque de quartier.",
+            "Aidez le personnel hospitalier avec des tâches simples non médicales dans un hôpital local.",
+            "Participez à la réparation et au nettoyage de vélos donnés à des enfants issus de milieux modestes.",
+            "Mettez de la couleur dans un centre jeunesse en repeignant des murs et des espaces communs.",
+            "Aidez à accueillir les coureurs, distribuer les dossards et gérer les inscriptions le jour J.",
+            "Cuisinez en duo avec un aîné ou un enfant et partagez un repas préparé ensemble.",
+            "Participez au nettoyage des berges d’une rivière locale pour protéger la faune et la flore.",
+            "Aidez à animer une soirée conviviale de jeux de société pour rassembler des citoyens de tous âges."
+    };
 
     public static void insererDonneesInitiales(SQLiteDatabase db) {
         Log.d("SEED", "Insertion des données initiales....");
@@ -117,12 +168,12 @@ public class SeedDB {
             values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, (i % 3) + 1); // Alternance entre 3 organisateurs
             values.put(BaseContrat.EvenementTable.ID_STATISTIQUE, i); // ou une valeur fixe si tu as une stat
 
-            values.put(BaseContrat.EvenementTable.NOM_EVENT, "Événement #" + i);
+            values.put(BaseContrat.EvenementTable.NOM_EVENT, nomEvents[i-1]);
 
             // Lieux
             String[] lieux = {"Laval", "Montreal", "Brossard", "Quebec"};
             values.put(BaseContrat.EvenementTable.LIEU, i + " rue Principale, " + lieux[i % lieux.length]);
-            values.put(BaseContrat.EvenementTable.DESCRIPTION, "Description de l'événement #" + i);
+            values.put(BaseContrat.EvenementTable.DESCRIPTION, descriptions[i-1]);
             values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, (i % 2)); // 0 ou 1
 
             // Catégorie parmi ton enum
@@ -192,7 +243,8 @@ public class SeedDB {
 
             values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, i);
             values.put(BaseContrat.EvenementTable.ID_STATISTIQUE, 20 + i);
-            values.put(BaseContrat.EvenementTable.NOM_EVENT, "Événement Complet #" + i);
+            values.put(BaseContrat.EvenementTable.NOM_EVENT, nomEvents[i+19]);
+            values.put(BaseContrat.EvenementTable.DESCRIPTION, descriptions[i+19]);
 
             values.put(BaseContrat.EvenementTable.LIEU, "123 rue Principale, Montreal");
 
@@ -214,7 +266,7 @@ public class SeedDB {
 
             values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, 1);
             values.put(BaseContrat.EvenementTable.CATEGORIE, "COMMUNAUTAIRE");
-            values.put(BaseContrat.EvenementTable.DESCRIPTION, "Événement déjà complet à l'avance.");
+
 
             // Pour les images
             String[] imageNames = {"1.jpg", "2.png", "3.jpg", "4.jpg", "5.png", "6.jpg", "7.jpg", "8.jpeg", "9.png"};

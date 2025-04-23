@@ -91,9 +91,6 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
                     .error(R.drawable.placeholder)
                     .into(imgProfileOrg);
 
-            // Affichage de l'image du profil organisateur -- TEMPORAIRE
-            //imgProfileOrg.setImageResource(R.drawable.placeholder);
-            //imgEvent.setImageResource(R.drawable.placeholder);
 
             // Affichage de 'COMPLET' s'il n'y a plus de place
             if (event.getCompletBenevole() == 1 && event.getCompletVisiteur() == 1) {
