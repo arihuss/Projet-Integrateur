@@ -26,7 +26,7 @@
             <h3>Travaillons ensemble pour l'avenir...</h3>
             <div id="btn-container">
                 <a href="?action=seConnecter" class="btn-jaune">Se connecter</a>
-                <a href="?action=seInscrire" class="btn-jaune">S'Inscrire</a>
+                <a href="?action=seInscrire" class="btn-jaune">S'inscrire</a>
             </div>
         </div>
         <h2>Fonctionnalités</h2>

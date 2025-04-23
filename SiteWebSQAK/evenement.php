@@ -49,25 +49,41 @@
     }
 
     if ($event) {
-      echo "<h1>" . $event->getNom() . "</h1>";
-      echo "<p class='content'>" . $event->getDescription() . "</p>";
-
-      echo "<div id='info-eve'>";
-
-      echo "<div class='content' id='date'>";
-      echo "<div class='inner-content'>";
-      echo "<h3><i class='fa-regular fa-clock'></i> Quand?</h3>";
-      echo "<p><b>Date de début: </b>" . $event->getDateDebut() . "<br>";
-      echo "<b>Date de fin: </b>" . $event->getDateFin() . "<br>";
-      echo "<b>Heure: </b>" . $event->getHeureDebut() . " -> " . $event->getHeureFin() . "</p>";
-
-      $nom = urlencode($event->getNom());
-      $dateDebut = date("Ymd\THis\Z", strtotime($event->getDateDebut()));
-      $dateFin = date("Ymd\THis\Z", strtotime($event->getDateFin()));
-      $description = urlencode($event->getDescription());
-      $lieu = urlencode($event->getLieu());
-
-      echo "<a class='btn-rose' href='https://calendar.google.com/calendar/r/eventedit?text=$nom&dates=$dateDebut/$dateFin&details=$description&location=$lieu' target='_blank'>Rajouter à mon Google calendrier</a>";
+        echo "<h1>" . $event->getNom() . "</h1>";
+        echo "<p class='content'>" . $event->getDescription() . "</p>";
+    
+        echo "<div id='info-eve'>";
+    
+        echo "<div class='content' id='date'>";
+        echo "<div class='inner-content'>";
+        echo "<h3><i class='fa-regular fa-clock'></i> Quand?</h3>";
+        echo "<p><b>Date de début: </b>" . $event->getDateDebut() . "<br>";
+        echo "<b>Date de fin: </b>" . $event->getDateFin() . "<br>";
+        echo "<b>Heure: </b>" . $event->getHeureDebut() . " -> " . $event->getHeureFin() . "</p>";
+    
+        $nom = urlencode($event->getNom());
+    
+        // Définir les fuseaux horaires
+        $timezone = new DateTimeZone('America/Toronto'); // ou autre selon ton contexte
+        $utc = new DateTimeZone('UTC');
+    
+        // Créer les objets DateTime
+        $start = new DateTime($event->getDateDebut() . ' ' . $event->getHeureDebut(), $timezone);
+        $end = new DateTime($event->getDateFin() . ' ' . $event->getHeureFin(), $timezone);
+    
+        // Convertir en UTC
+        $start->setTimezone($utc);
+        $end->setTimezone($utc);
+    
+        // Formatter au format Google Calendar
+        $dateDebut = $start->format("Ymd\THis\Z");
+        $dateFin = $end->format("Ymd\THis\Z");
+    
+        $description = urlencode($event->getDescription());
+        $lieu = urlencode($event->getLieu());
+    
+        echo "<a class='btn-rose' href='https://calendar.google.com/calendar/r/eventedit?text=$nom&dates=$dateDebut/$dateFin&details=$description&location=$lieu' target='_blank'>Rajouter à mon Google calendrier</a>";
+        
       echo "</div></div>";
 
       echo "<div class='content' id='lieu'>";
