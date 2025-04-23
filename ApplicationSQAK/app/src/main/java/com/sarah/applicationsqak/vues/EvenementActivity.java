@@ -117,6 +117,12 @@ public class EvenementActivity extends AppCompatActivity {
             startActivity(intentOrg);
         });
 
+        imgProfileOrg.setOnClickListener(v -> {
+            Intent intentOrg = new Intent(EvenementActivity.this, ProfilOrganisateurActivity.class);
+            intentOrg.putExtra("ID_ORGANISATEUR", (long) evenement.getId_organisateur());
+            startActivity(intentOrg);
+        });
+
 
         imgRetour.setOnClickListener(v -> {
             finish();

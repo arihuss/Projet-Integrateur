@@ -95,12 +95,12 @@ public class EventFilterView extends LinearLayout {
                     (view, year, month, dayOfMonth) -> {
                         dateChoisie = String.format(Locale.CANADA, "%02d/%02d/%04d", dayOfMonth, (month + 1), year);
                         btnDate.setText(dateChoisie);
+                        notifyFilterChanged();
                     },
                     annee, mois, jour
             );
 
             datePicker.show();
-            notifyFilterChanged();
         });
 
         btnRecherche.setOnClickListener(v -> {
@@ -144,6 +144,7 @@ public class EventFilterView extends LinearLayout {
     public void resetFilters() {
         spLocation.setSelection(0);
         spEtat.setSelection(0);
+        roleSelectionne = "tout";
         searchBar.setText("");
         dateChoisie = "";
         btnDate.setText("Date");

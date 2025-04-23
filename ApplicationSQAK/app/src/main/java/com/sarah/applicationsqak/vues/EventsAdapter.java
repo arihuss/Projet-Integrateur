@@ -77,14 +77,14 @@ public class EventsAdapter extends ArrayAdapter<Evenement> {
             txtOrganisateur.setText(nomOrganisateur);
 
             // Affichage des images selon l'url
-//            Glide.with(contexte)
-//                    .load(event.getImageUrl())
-//                    .placeholder(R.drawable.placeholder)
-//                    .error(R.drawable.placeholder)
-//                    .into(imgEvent);
+            Glide.with(contexte)
+                    .load(event.getImageUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
+                    .into(imgEvent);
 
             // Affichage de l'image du profil organisateur -- TEMPORAIRE
-            imgProfileOrg.setImageResource(R.drawable.placeholder);
+            //imgProfileOrg.setImageResource(R.drawable.placeholder);
             imgEvent.setImageResource(R.drawable.placeholder);
 
             // Affichage de 'COMPLET' s'il n'y a plus de place

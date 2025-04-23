@@ -45,7 +45,7 @@ public class EvenementViewModel extends AndroidViewModel {
             try {
                 List<Evenement> liste = dao.getEvenements();
                 evenements.postValue(liste);
-                message.postValue("Evenements chargés avec succès");
+                message.postValue("Evenements chargés avec succès (" + liste.size() + ")" );
             }
             catch(Exception e) {
                 message.postValue("Erreur de chargement des événements: " + e.getMessage());

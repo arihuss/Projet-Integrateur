@@ -35,7 +35,7 @@ public enum Categorie {
 
     public static Categorie fromLabel(String label) {
         for(Categorie c : values()) {
-            if(c.label.equalsIgnoreCase(label)) {
+            if(c.getLabel().equalsIgnoreCase(label.trim())) {
                 return c;
             }
         }

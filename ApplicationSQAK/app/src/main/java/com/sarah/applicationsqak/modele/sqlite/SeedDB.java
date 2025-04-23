@@ -16,6 +16,7 @@ public class SeedDB {
         insererOrganisateurs(db);
         insererStatistiques(db);
         insererEvenements(db);
+        insererEvenementsComplets(db);
         insererInscriptions(db);
     }
 
@@ -96,7 +97,7 @@ public class SeedDB {
     }
 
     private static void insererStatistiques(SQLiteDatabase db) {
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 23; i++) {
             ContentValues values = new ContentValues();
             values.put(BaseContrat.StatistiqueTable.NB_VISITEURS, 0);
             values.put(BaseContrat.StatistiqueTable.NB_BENEVOLES, 0);
@@ -121,10 +122,7 @@ public class SeedDB {
             // Lieux
             String[] lieux = {"Laval", "Montreal", "Brossard", "Quebec"};
             values.put(BaseContrat.EvenementTable.LIEU, i + " rue Principale, " + lieux[i % lieux.length]);
-
-
-            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_MAX, 5 + (i % 6));  // entre 5 et 10
-            values.put(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX, 10 + (i % 11)); // entre 10 et 20
+            values.put(BaseContrat.EvenementTable.DESCRIPTION, "Description de l'événement #" + i);
             values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, (i % 2)); // 0 ou 1
 
             // Catégorie parmi ton enum
@@ -135,16 +133,36 @@ public class SeedDB {
             values.put(BaseContrat.EvenementTable.CATEGORIE, categories[i % categories.length]);
 
 
-            values.put(BaseContrat.EvenementTable.DESCRIPTION, "Description de l'événement #" + i);
-            values.put(BaseContrat.EvenementTable.ETAT, (i % 5 == 0) ? "Complet" : "Disponible"); // 1 sur 5 complet
+            int nbInscriptions = i % 5;
+            int nbParticipantsMax = 10 + (i % 11);
 
-            values.put(BaseContrat.EvenementTable.NB_INSCRIPTIONS, i % 5);
-            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES, i % 3);
+            int nbBenevolesAcceptes = i % 3;
+            int nbBenevolesMax = 5 + (i % 6);
 
-            values.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, (i % 4 == 0) ? 1 : 0);
-            values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, (i % 6 == 0) ? 1 : 0);
+            // Ajouter les valeurs dans le ContentValues
+            values.put(BaseContrat.EvenementTable.NB_INSCRIPTIONS, nbInscriptions);
+            values.put(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX, nbParticipantsMax);
 
-            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://exemple.com/image" + i + ".jpg");
+            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES, nbBenevolesAcceptes);
+            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_MAX, nbBenevolesMax);
+
+            // Calcul dynamique des complétions
+            int completVisiteur = (nbInscriptions >= nbParticipantsMax) ? 1 : 0;
+            int completBenevole = (nbBenevolesAcceptes >= nbBenevolesMax) ? 1 : 0;
+
+            values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, completVisiteur);
+            values.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, completBenevole);
+
+            // État général
+            if (completVisiteur == 1 && completBenevole == 1) {
+                values.put(BaseContrat.EvenementTable.ETAT, "Complet");
+            } else {
+                values.put(BaseContrat.EvenementTable.ETAT, "Disponible");
+            }
+
+            String[] imageNames = {"1.png", "2.jpg", "3.png"};
+
+            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/images-organisateurs/" + imageNames[(i%3)] + "?raw=true");
 
             // Pour les dates au format dd/MM/yyyy
             Calendar cal = Calendar.getInstance();
@@ -163,6 +181,61 @@ public class SeedDB {
                 Log.d("SEED", "Échec d'insertion des événements");
             }
         }
+    }
+
+    private static void insererEvenementsComplets(SQLiteDatabase db) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
+        Calendar cal = Calendar.getInstance();
+
+        for (int i = 1; i <= 3; i++) {
+            ContentValues values = new ContentValues();
+
+            values.put(BaseContrat.EvenementTable.ID_ORGANISATEUR, i);
+            values.put(BaseContrat.EvenementTable.ID_STATISTIQUE, 20 + i);
+            values.put(BaseContrat.EvenementTable.NOM_EVENT, "Événement Complet #" + i);
+
+            values.put(BaseContrat.EvenementTable.LIEU, "123 rue Principale, Montreal");
+
+            int nbParticipantsMax = 20;
+            int nbBenevolesMax = 5;
+
+            // valeurs égales aux max pour marquer complet
+            int nbInscriptions = 20;
+            int nbBenevolesAcceptes = 5;
+
+            values.put(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX, nbParticipantsMax);
+            values.put(BaseContrat.EvenementTable.NB_INSCRIPTIONS, nbInscriptions);
+            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_MAX, nbBenevolesMax);
+            values.put(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES, nbBenevolesAcceptes);
+
+            values.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, 1);
+            values.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, 1);
+            values.put(BaseContrat.EvenementTable.ETAT, "Complet");
+
+            values.put(BaseContrat.EvenementTable.ETAT_BENEVOLE, 1);
+            values.put(BaseContrat.EvenementTable.CATEGORIE, "COMMUNAUTAIRE");
+            values.put(BaseContrat.EvenementTable.DESCRIPTION, "Événement déjà complet à l'avance.");
+            values.put(BaseContrat.EvenementTable.IMAGE_URL, "https://exemple.com/image" + i + ".jpg");
+
+            // Dates
+            cal.set(2025, Calendar.APRIL, 10 + i);  // 11, 12, 13 avril
+            String dateDebut = format.format(cal.getTime());
+
+            cal.set(Calendar.HOUR_OF_DAY, 20);
+            String dateFin = format.format(cal.getTime());
+
+            values.put(BaseContrat.EvenementTable.DATE_DEBUT, dateDebut);
+            values.put(BaseContrat.EvenementTable.DATE_FIN, dateFin);
+
+            long id = db.insert(BaseContrat.EvenementTable.TABLE_NAME, null, values);
+
+            if (id == -1) {
+                Log.d("INSERT", "Erreur d'insertion de l'événement complet #" + i);
+            } else {
+                Log.d("INSERT", "Événement complet #" + i + " inséré avec succès (id=" + id + ")");
+            }
+        }
+
     }
 
     private static void insererInscriptions(SQLiteDatabase db) {

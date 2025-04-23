@@ -120,12 +120,12 @@ public class EvenementDao {
         }
 
         if(role.equalsIgnoreCase("benevole")) {
-            conditions.add("NB_BENEVOLES_MAX > 0");
+            conditions.add("COMPLET_BENEVOLE = 0");
+
         }
         else if(role.equalsIgnoreCase("visiteur")) {
-            conditions.add("NB_PARTICIPANTS_MAX > 0");
+            conditions.add("COMPLET_VISITEUR = 0");
         }
-
 
 
         if (!date.isEmpty()) {
@@ -138,7 +138,7 @@ public class EvenementDao {
             try {
                 Categorie categorie = Categorie.fromLabel(recherche);
                 conditions.add("CATEGORIE = ?");
-                valeurs.add(categorie.getLabel());
+                valeurs.add(categorie.name());
             }
             catch(IllegalArgumentException e) {
                 // La catégorie n'existe pas, on ajoute aucun filtre
