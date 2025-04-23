@@ -10,6 +10,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Dao.InscriptionDao;
 
+import static com.sarah.applicationsqak.modele.Dao.InscriptionDao.InscriptionVisiteurResultat;
+import static com.sarah.applicationsqak.modele.Dao.InscriptionDao.InscriptionAppliquantResultat;
+
 public class InscriptionViewModel extends AndroidViewModel {
     private final MutableLiveData<String> message = new MutableLiveData<>();
     private InscriptionDao dao;
@@ -25,14 +28,54 @@ public class InscriptionViewModel extends AndroidViewModel {
 
     public void inscrireVisiteur(long idUtilisateur, int idEvenement) {
         new Thread(() -> {
-            if(!dao.estInscrit(idUtilisateur, idEvenement)) {
-                dao.inscrireUtilisateur(idUtilisateur, idEvenement, role);
-                message.postValue("Inscription réussi");
-            }
-            else {
-                message.postValue("Déjà inscrit à cet événement");
+            if (!dao.estInscrit(idUtilisateur, idEvenement)) {
+                InscriptionVisiteurResultat resultat = dao.inscrireVisiteur(idUtilisateur, idEvenement);
+
+                switch (resultat) {
+                    case SUCCES:
+                        message.postValue("Inscription réussie !");
+                        break;
+                    case LIMITE_ATTEINTE:
+                        message.postValue("Nombre maximum de participants atteint.");
+                        break;
+                    case EVENEMENT_INTROUVABLE:
+                        message.postValue("Événement introuvable.");
+                        break;
+                    case ERREUR_INSERTION:
+                        message.postValue("Erreur lors de l'insertion.");
+                        break;
+                }
+            } else {
+                message.postValue("Vous avez déjà envoyer une inscription pour cet événement.");
             }
         }).start();
+
+    }
+
+    public void inscrireAppliquant(long idUtilisateur, int idEvenement) {
+        new Thread(() -> {
+            if (!dao.estInscrit(idUtilisateur, idEvenement)) {
+                InscriptionAppliquantResultat resultat = dao.inscrireAppliquant(idUtilisateur, idEvenement);
+
+                switch (resultat) {
+                    case SUCCES:
+                        message.postValue("Application envoyée !");
+                        break;
+                    case LISTE_ATTENTE:
+                        message.postValue("Application envoyée dans la liste d’attente.");
+                        break;
+                    case EVENEMENT_INTROUVABLE:
+                        message.postValue("Événement introuvable.");
+                        break;
+                    case INSERTION_ECHEC:
+                        message.postValue("Erreur lors de l'envoi de l'application.");
+                        break;
+                }
+            } else {
+                message.postValue("Vous avez déjà envoyer une inscription pour cet événement.");
+            }
+        }).start();
+
     }
 
 

@@ -113,21 +113,17 @@ public class EvenementActivity extends AppCompatActivity {
         // Initialiser le dao
         modelInscription = new ViewModelProvider(this).get(InscriptionViewModel.class);
 
+        // Observer les messages
+        modelInscription.getMessage().observe(this, message -> {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        })
         // Chercher le id de l'utilisateur connecté
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         long idUser = prefs.getLong(PREF_USER_ID, -1);
 
         // Bouton pour s'inscire en tant que invité
         btnInscInvite.setOnClickListener(v -> {
-            modelInscription.inscrireUtilisateur(idUser, evenement.getId(), "visiteur");
-
-//            if(result != -1) {
-//                Toast.makeText(this, "Inscription envoyée!", Toast.LENGTH_SHORT).show();
-//            }
-//            else {
-//
-//            }
-
+            modelInscription.inscrireVisiteur(idUser, evenement.getId());
 
         });
 

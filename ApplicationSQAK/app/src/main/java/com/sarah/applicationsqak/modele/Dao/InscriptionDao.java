@@ -16,11 +16,30 @@ import java.util.Locale;
 public class InscriptionDao {
     private DbUtil dbUtil;
 
+    // Pour le retour de résultats
+    public enum InscriptionAppliquantResultat {
+        SUCCES,
+        INSERTION_ECHEC,
+        LISTE_ATTENTE,
+        EVENEMENT_INTROUVABLE
+    }
+
+    public enum InscriptionVisiteurResultat {
+        SUCCES,
+        LIMITE_ATTEINTE,
+        EVENEMENT_INTROUVABLE,
+        ERREUR_INSERTION
+    }
+
+
+
+
     public InscriptionDao(Context context) {
         dbUtil = new DbUtil(context);
     }
 
-    public long inscrireVisiteur(long idUser, int idEvent) {
+    public InscriptionVisiteurResultat inscrireVisiteur(long idUser, int idEvent) {
+
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
         Cursor cursor = db.query(
@@ -62,21 +81,74 @@ public class InscriptionDao {
                 String dateCourrante = formatDate.format(new Date());
                 values.put(BaseContrat.InscriptionTable.DATE_INSCRIPTION, dateCourrante);
 
+                long insertId = db.insert(BaseContrat.InscriptionTable.TABLE_NAME, null, values);
                 cursor.close();
 
-                return db.insert(BaseContrat.InscriptionTable.TABLE_NAME, null, values);
+                if(insertId != -1) {
+                    return InscriptionVisiteurResultat.SUCCES;
+                }
+                else {
+                    return InscriptionVisiteurResultat.ERREUR_INSERTION;
+                }
             } else {
                 // Nombre max d'inscriptions atteint
                 cursor.close();
-                return -1;
+                return InscriptionVisiteurResultat.LIMITE_ATTEINTE;
             }
 
         } else {
             // Evenement non trouvé
             if (cursor != null) cursor.close();
-            return -2;
+            return InscriptionVisiteurResultat.EVENEMENT_INTROUVABLE;
         }
     }
+
+    public InscriptionAppliquantResultat inscrireAppliquant(long idUser, int idEvent) {
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        Cursor cursor = db.query(
+                BaseContrat.EvenementTable.TABLE_NAME,
+                null,
+                BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
+                new String[]{String.valueOf(idEvent)},
+                null, null, null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int nbBenevolesMax = cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_MAX));
+            int nbBenevolesAcceptes = cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES));
+
+            boolean estListeAttente = nbBenevolesAcceptes >= nbBenevolesMax;
+
+            // Insertion dans la table Inscription
+            ContentValues values = new ContentValues();
+            values.put(BaseContrat.InscriptionTable.ID_UTILISATEUR, idUser);
+            values.put(BaseContrat.InscriptionTable.ID_EVENEMENT, idEvent);
+            values.put(BaseContrat.InscriptionTable.ROLE, "appliquant");
+
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+            values.put(BaseContrat.InscriptionTable.DATE_INSCRIPTION, formatDate.format(new Date()));
+
+            long insertId = db.insert(BaseContrat.InscriptionTable.TABLE_NAME, null, values);
+            cursor.close();
+
+            if (insertId == -1) {
+                return InscriptionAppliquantResultat.INSERTION_ECHEC;
+            }
+            else if(estListeAttente) {
+                return InscriptionAppliquantResultat.LISTE_ATTENTE;
+            }
+            else {
+                return InscriptionAppliquantResultat.SUCCES;
+            }
+
+        } else {
+            if (cursor != null) cursor.close();
+            return InscriptionAppliquantResultat.EVENEMENT_INTROUVABLE;
+        }
+    }
+
+
 
 
     public int annulerInscription(int idUser, int idEvent) {
@@ -95,6 +167,25 @@ public class InscriptionDao {
                 new String[]{String.valueOf(idUser), String.valueOf(idEvent)});
 
         return requete;
+    }
+
+    public boolean estInscrit(long idUser, int idEvent) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+
+        Cursor cursor = db.query(BaseContrat.InscriptionTable.TABLE_NAME,
+                null,
+                BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.InscriptionTable.ID_EVENEMENT + " = ?",
+                new String[]{String.valueOf(idUser), String.valueOf(idEvent)},
+                null, null, null);
+
+        boolean estInscrit = (cursor != null && cursor.moveToFirst());
+
+        if(cursor != null) {
+            cursor.close();
+        }
+
+        return estInscrit;
     }
 
 //    public List<Inscription> getInscriptionsParUtilisateur(long idUtilisateur) {
