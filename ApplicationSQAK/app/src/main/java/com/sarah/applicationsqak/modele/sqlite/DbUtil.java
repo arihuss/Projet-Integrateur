@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.bumptech.glide.Glide;
+
 public class DbUtil extends SQLiteOpenHelper {
 
     public DbUtil(Context context) {
@@ -215,6 +217,8 @@ public class DbUtil extends SQLiteOpenHelper {
 
         // Insertion des données initiales
         SeedDB.insererDonneesInitiales(db);
+
+
     }
 
     @Override
