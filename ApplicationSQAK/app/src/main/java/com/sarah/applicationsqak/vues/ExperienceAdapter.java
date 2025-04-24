@@ -13,6 +13,11 @@ import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.modele.Evenement;
 
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Locale;
+
 import java.util.List;
 
 public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.ExperienceViewHolder> {
@@ -54,8 +59,29 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
 
         // Badge date (format rapide)
         String dateDebut = evenement.getDateDebut();
-        if (dateDebut != null && dateDebut.length() >= 6) {
-            holder.txtDate.setText(dateDebut.substring(0, 6).replace(" ", "\n"));
+        if (dateDebut != null && !dateDebut.isEmpty()) {
+            try {
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
+                Date date = format.parse(dateDebut);
+
+
+                SimpleDateFormat jourFormat = new SimpleDateFormat("dd", Locale.FRENCH);
+                SimpleDateFormat moisFormat = new SimpleDateFormat("MMMM", Locale.FRENCH);
+                SimpleDateFormat anneeFormat = new SimpleDateFormat("yyyy", Locale.FRENCH);
+
+                String jour = jourFormat.format(date);
+                String mois = moisFormat.format(date);
+                String annee = anneeFormat.format(date);
+
+
+                String dateFormatee = jour + "\n" + mois + "\n" + annee;
+                holder.txtDate.setText(dateFormatee);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+                holder.txtDate.setText("Date invalide");
+            }
         }
 
         // aller sur la page de l'événement cliqué
