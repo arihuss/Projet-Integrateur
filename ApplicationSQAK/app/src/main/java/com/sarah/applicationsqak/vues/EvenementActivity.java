@@ -261,7 +261,27 @@ public class EvenementActivity extends AppCompatActivity {
 
         // Gestion du click sur le coeur
         imgPartage.setOnClickListener(v -> {
+            // Récupère les infos de l’événement (tu peux adapter selon tes objets)
+            String nomEvent = tvNomEvent.getText().toString();
+            String date = tvDateEvent.getText().toString();
+            String lieu = tvLieuEvent.getText().toString();
+            String description = tvDescEvent.getText().toString();
 
+            // Texte à partager
+            String message = "Viens participer à l’événement : " + nomEvent +
+                    "\n📅 Date : " + date +
+                    "\n📍 Lieu : " + lieu +
+                    "\nℹ️ " + description;
+
+            // Création de l'intent
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+            sendIntent.setType("text/plain");
+
+            // Lancer le menu de partage
+            Intent shareIntent = Intent.createChooser(sendIntent, "Partager l'événement avec...");
+            startActivity(shareIntent);
         });
 
     }
