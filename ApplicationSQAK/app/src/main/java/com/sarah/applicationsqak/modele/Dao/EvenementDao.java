@@ -474,6 +474,75 @@ public class EvenementDao {
         return commentaires;
     }
 
+    public boolean aDejaLike(long idUser, int idStatistique) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                BaseContrat.LikeUtilisateurTable.TABLE_NAME,
+                null,
+                BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE + " = ?",
+                new String[]{String.valueOf(idUser), String.valueOf(idStatistique)},
+                null, null, null
+        );
+
+        boolean aLike = cursor.moveToFirst();
+        cursor.close();
+        return aLike;
+    }
+
+    public boolean ajouterLike(long idUser, int idStatistique) {
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        // Insérer dans LikeUtilisateur
+        ContentValues values = new ContentValues();
+        values.put(BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR, idUser);
+        values.put(BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE, idStatistique);
+
+        long resultat = db.insert(BaseContrat.LikeUtilisateurTable.TABLE_NAME, null, values);
+
+        if(resultat != -1) {
+            // Incrémenter le nombre de likes dans Statistique
+            db.execSQL("UPDATE " + BaseContrat.StatistiqueTable.TABLE_NAME +
+                    " SET " + BaseContrat.StatistiqueTable.NB_LIKES + " = " + BaseContrat.StatistiqueTable.NB_LIKES + " + 1 " +
+                    " WHERE " + BaseContrat.StatistiqueTable.ID_STATISTIQUE + " = " + idStatistique);
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    public boolean retirerLike(long idUser, int idStatistique) {
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        // Supprimer dans LikeUtilisateur
+        int lignesSupprimees = db.delete(
+                BaseContrat.LikeUtilisateurTable.TABLE_NAME,
+                BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE + " = ?",
+                new String[]{String.valueOf(idUser), String.valueOf(idStatistique)}
+        );
+
+        if(lignesSupprimees > 0) {
+            // Décrémenter le nombre de likes
+            db.execSQL("UPDATE " + BaseContrat.StatistiqueTable.TABLE_NAME +
+                    " SET " + BaseContrat.StatistiqueTable.NB_LIKES + " = " + BaseContrat.StatistiqueTable.NB_LIKES + " - 1 " +
+                    " WHERE " + BaseContrat.StatistiqueTable.ID_STATISTIQUE + " = " + idStatistique);
+
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+
+
+
+
 
 
 }

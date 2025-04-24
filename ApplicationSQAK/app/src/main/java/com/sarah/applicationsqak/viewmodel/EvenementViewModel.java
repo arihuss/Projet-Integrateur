@@ -133,6 +133,8 @@ public class EvenementViewModel extends AndroidViewModel {
         }).start();
     }
 
+    // Méthodes pour le like
+
 
 
 

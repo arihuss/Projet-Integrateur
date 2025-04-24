@@ -195,6 +195,24 @@ public class DbUtil extends SQLiteOpenHelper {
         );
         db.execSQL(requeteCreationMessage);
 
+        String requeteCreationLikeUtilisateur = String.format(
+                "CREATE TABLE %s (" +
+                        "%s INTEGER, " +
+                        "%s INTEGER, " +
+                        "PRIMARY KEY (%s, %s), " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE, " +
+                        "FOREIGN KEY (%s) REFERENCES %s(%s) ON DELETE CASCADE)",
+                BaseContrat.LikeUtilisateurTable.TABLE_NAME,
+                BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE,
+                BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE,
+                BaseContrat.LikeUtilisateurTable.ID_UTILISATEUR, BaseContrat.UtilisateurTable.TABLE_NAME, BaseContrat.UtilisateurTable.ID_UTILISATEUR,
+                BaseContrat.LikeUtilisateurTable.ID_STATISTIQUE, BaseContrat.StatistiqueTable.TABLE_NAME, BaseContrat.StatistiqueTable.ID_STATISTIQUE
+        );
+        db.execSQL(requeteCreationLikeUtilisateur);
+
+
         // Insertion des données initiales
         SeedDB.insererDonneesInitiales(db);
     }
