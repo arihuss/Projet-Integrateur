@@ -95,7 +95,7 @@ public class SeedDB {
         userRoma.put(BaseContrat.UtilisateurTable.NUM_TEL, "450-888-1912");
         userRoma.put(BaseContrat.UtilisateurTable.BIO, "Directrice de Camp de Jour Camp Académie Laval Souvenir");
         userRoma.put(BaseContrat.UtilisateurTable.MOT_DE_PASSE, "roma1234");
-        userRoma.put(BaseContrat.UtilisateurTable.IMAGE_URL, "https://exemple.com/images/sophie.jpg");
+        userRoma.put(BaseContrat.UtilisateurTable.IMAGE_URL, "https://github.com/romadr199/images-sqak/blob/main/image%20profile.png?raw=true");
 
         db.insert(BaseContrat.UtilisateurTable.TABLE_NAME, null, userRoma);
     }
