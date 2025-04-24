@@ -89,7 +89,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/liste_des_exp_riences_de_b_n_volat"
-        android:paddingHorizontal="16dp"
+        android:paddingHorizontal="0dp"
         android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/txtExperienceBenevolat"
         app:layout_constraintBottom_toBottomOf="parent"

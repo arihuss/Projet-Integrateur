@@ -27,7 +27,7 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
     @Override
     public ExperienceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Utiliser parent.getContext() ET NE PAS PASSER false pour attacher manuellement
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_experience_user, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.experience_benevolat_item, parent, false);
         return new ExperienceViewHolder(view);
     }
 
@@ -61,10 +61,11 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
 
         public ExperienceViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtDate = itemView.findViewById(R.id.txtDateExperience);
-            txtTitre = itemView.findViewById(R.id.txtTitreExperience);
-            txtLieu = itemView.findViewById(R.id.txtLieuExperience);
-            txtOrganisation = itemView.findViewById(R.id.txtOrganisationExperience);
+            txtDate = itemView.findViewById(R.id.txtDateExp);
+            txtTitre = itemView.findViewById(R.id.txtNomEventUser);
+            txtLieu = itemView.findViewById(R.id.txtLieuUser);
+            txtOrganisation = itemView.findViewById(R.id.txtOrganisationUser);
+
         }
     }
 }
