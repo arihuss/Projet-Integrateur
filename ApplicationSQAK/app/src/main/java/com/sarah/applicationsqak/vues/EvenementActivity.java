@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,7 +27,9 @@ import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Dao.InscriptionDao;
+import com.sarah.applicationsqak.modele.Dao.UtilisateurDao;
 import com.sarah.applicationsqak.modele.Evenement;
+import com.sarah.applicationsqak.modele.Utilisateur;
 import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 import com.sarah.applicationsqak.viewmodel.InscriptionViewModel;
 
@@ -47,6 +51,8 @@ public class EvenementActivity extends AppCompatActivity {
     private static final String PREF_USER_ID = "utilisateur_id";
     private InscriptionViewModel modelInscription;
     private EvenementViewModel modelEvent;
+    private UtilisateurDao daoUser;
+    long idUser; // id de l'utilisateur connecté
 
 
     @Override
@@ -136,7 +142,7 @@ public class EvenementActivity extends AppCompatActivity {
 
         // Chercher le id de l'utilisateur connecté
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        long idUser = prefs.getLong(PREF_USER_ID, -1);
+        idUser = prefs.getLong(PREF_USER_ID, -1);
 
         // Bouton pour s'inscire en tant que invité
         btnInscInvite.setOnClickListener(v -> {
@@ -185,21 +191,19 @@ public class EvenementActivity extends AppCompatActivity {
             if(commentaire.isEmpty()) {
                 Toast.makeText(this, "Commentaire invalide", Toast.LENGTH_SHORT).show();
             }
+            else if(idUser == -1) {
+                Toast.makeText(this, "Aucun utilisateur connecté", Toast.LENGTH_SHORT).show();
+            }
             else {
                 modelEvent = new ViewModelProvider(this).get(EvenementViewModel.class);
                 modelEvent.ajouterCommentaire(idUser, idEvent, commentaire,() -> runOnUiThread(() -> {
                     // Création d'un TextView avec le commentaire
-                    creerTextView(commentaire);
+                    ajouterCommentaireUI(commentaire);
                     Toast.makeText(this, "Commentaire publié!", Toast.LENGTH_SHORT).show();
                     txtComment.setText("");  // Effacer le champ après avoir publier la commentaire
                 }));
-
-
             }
-
         });
-
-
     }
 
     private String convertirDatePourAffichage(String dateBrute) {
@@ -216,13 +220,34 @@ public class EvenementActivity extends AppCompatActivity {
         }
     }
 
-    private void creerTextView(String commentaire) {
-        TextView nouveau = new TextView(this);
-        nouveau.setText(commentaire);
-        nouveau.setTextColor(ContextCompat.getColor(this, R.color.textsurbg));
-        nouveau.setBackgroundResource(R.drawable.background_text);
-        nouveau.setPadding(8, 8, 8, 8);
-        layoutCommentaires.addView(nouveau);
+    private void ajouterCommentaireUI(String commentaire) {
+        View commentaireView = LayoutInflater.from(this).inflate(R.layout.comment_list_item, layoutCommentaires, false);
+
+        // Liaison des composantes avec le view
+        TextView tvNomUser = commentaireView.findViewById(R.id.tvNomComment);
+        TextView tvMessage = commentaireView.findViewById(R.id.tvComment);
+        TextView tvDate = commentaireView.findViewById(R.id.tvDateComment);
+        ImageView imgProfile = commentaireView.findViewById(R.id.imgProfileComment);
+
+        // Retrouver le nom de l'utilisateur connecté
+        daoUser = new UtilisateurDao(this);
+        Utilisateur utilisateur = daoUser.getUtilisateurParId(idUser);
+        String nomComplet = utilisateur.getPrenom() + " " + utilisateur.getNom();
+
+        tvNomUser.setText(nomComplet);
+        tvMessage.setText(commentaire);
+
+        // Charger image avec Glide
+        Glide.with(this)
+                .load(utilisateur.getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(imgProfile);
+
+        // Mettre la date courrante
+        String dateCourrante = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH).format(new Date());
+        tvDate.setText(dateCourrante);
+
+        layoutCommentaires.addView(commentaireView);
 
     }
 

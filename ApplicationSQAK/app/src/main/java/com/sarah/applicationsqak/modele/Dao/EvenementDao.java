@@ -445,6 +445,10 @@ public class EvenementDao {
         return db.insert(BaseContrat.CommentaireTable.TABLE_NAME, null, values);
     }
 
+    public List<Commentaire> getCommentairesPourEvenement(int idEvent) {
+
+    }
+
 
 
 }

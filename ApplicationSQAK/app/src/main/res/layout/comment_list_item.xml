@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/imgProfileComment"
+    android:id="@+id/main2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_text"
@@ -16,14 +16,16 @@
 
         <TextView
             android:id="@+id/tvNomComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="336dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="12dp"
             android:fontFamily="@font/inter_bold"
             android:text="Gilles Tremblay"
             android:textColor="@color/textvignette"
-            app:layout_constraintStart_toEndOf="@+id/cvProfilOrg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvProfilUser"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -51,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvProfilOrg"
+            android:id="@+id/cvProfilUser"
             android:layout_width="50dp"
             android:layout_height="49dp"
             android:layout_marginLeft="6dp"
