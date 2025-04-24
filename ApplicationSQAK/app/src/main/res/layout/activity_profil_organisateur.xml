@@ -116,18 +116,18 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/guideline9" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMesEventsOrg"
-        android:layout_width="409dp"
-        android:layout_height="465dp"
-        android:paddingHorizontal="10dp"
+        android:layout_width="413dp"
+        android:layout_height="461dp"
+        android:layout_marginTop="36dp"
+        android:paddingHorizontal="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline15"
-        tools:listitem="@layout/experience_benevolat_item"/>
-
-
+        app:layout_constraintTop_toTopOf="@+id/textView13"
+        tools:listitem="@layout/experience_benevolat_item" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
