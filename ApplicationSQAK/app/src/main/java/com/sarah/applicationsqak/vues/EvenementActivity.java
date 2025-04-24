@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.sarah.applicationsqak.R;
+import com.sarah.applicationsqak.modele.Commentaire;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Dao.InscriptionDao;
 import com.sarah.applicationsqak.modele.Dao.UtilisateurDao;
@@ -140,6 +141,16 @@ public class EvenementActivity extends AppCompatActivity {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         });
 
+        // Observer les commentaires
+        modelEvent = new ViewModelProvider(this).get(EvenementViewModel.class);
+        modelEvent.getCommentaires().observe(this, commentaires -> {
+            layoutCommentaires.removeAllViews();
+            for(Commentaire c : commentaires) {
+                ajouterCommentaireExistant(c);
+            }
+        });
+        modelEvent.chargerCommentaires(idEvent);
+
         // Chercher le id de l'utilisateur connecté
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         idUser = prefs.getLong(PREF_USER_ID, -1);
@@ -250,6 +261,31 @@ public class EvenementActivity extends AppCompatActivity {
         layoutCommentaires.addView(commentaireView);
 
     }
+
+    private void ajouterCommentaireExistant(Commentaire commentaire) {
+        View commentaireView = LayoutInflater.from(this).inflate(R.layout.comment_list_item, layoutCommentaires, false);
+
+        TextView tvNomUser = commentaireView.findViewById(R.id.tvNomComment);
+        TextView tvMessage = commentaireView.findViewById(R.id.tvComment);
+        TextView tvDate = commentaireView.findViewById(R.id.tvDateComment);
+        ImageView imgProfile = commentaireView.findViewById(R.id.imgProfileComment);
+
+        daoUser = new UtilisateurDao(this);
+        Utilisateur utilisateur = daoUser.getUtilisateurParId(commentaire.getId_utilisateur());
+        String nomComplet = utilisateur.getPrenom() + " " + utilisateur.getNom();
+
+        tvNomUser.setText(nomComplet);
+        tvMessage.setText(commentaire.getMessage());
+        tvDate.setText(commentaire.getDate_envoi());
+
+        Glide.with(this)
+                .load(utilisateur.getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(imgProfile);
+
+        layoutCommentaires.addView(commentaireView);
+    }
+
 
 
 }

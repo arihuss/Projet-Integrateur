@@ -99,6 +99,11 @@ public class BaseContrat {
         public static final String MESSAGE = "MESSAGE";
         public static final String DATE_ENVOI = "DATE_ENVOI";
 
+    }
 
+    public static final class LikeUtilisateurTable {
+        public static final String TABLE_NAME = "LikeUtilisateur";
+        public static final String ID_UTILISATEUR = "ID_UTILISATEUR";  // clé primaire composite
+        public static final String ID_STATISTIQUE = "ID_STATISTIQUE";  // clé primaire composite
     }
 }

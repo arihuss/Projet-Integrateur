@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.sarah.applicationsqak.modele.Categorie;
+import com.sarah.applicationsqak.modele.Commentaire;
 import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.sqlite.BaseContrat;
 import com.sarah.applicationsqak.modele.sqlite.DbUtil;
@@ -446,7 +447,31 @@ public class EvenementDao {
     }
 
     public List<Commentaire> getCommentairesPourEvenement(int idEvent) {
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+        List<Commentaire> commentaires = new ArrayList<>();
 
+        Cursor cursor = db.query(BaseContrat.CommentaireTable.TABLE_NAME,
+                null,
+                BaseContrat.CommentaireTable.ID_EVENEMENT + " = ?",
+                new String[]{String.valueOf(idEvent)},
+                null, null,
+                BaseContrat.CommentaireTable.DATE_ENVOI  // trier par date d'envoi
+                );
+
+        if(cursor != null && cursor.moveToFirst()) {
+            do {
+                Commentaire c = new Commentaire();
+                c.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.CommentaireTable.ID_COMMENTAIRE)));
+                c.setId_utilisateur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.CommentaireTable.ID_UTILISATEUR)));
+                c.setId_evenement(idEvent);
+                c.setMessage(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.CommentaireTable.MESSAGE)));
+                c.setDate_envoi(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.CommentaireTable.DATE_ENVOI)));
+                commentaires.add(c);
+            } while(cursor.moveToNext());
+            cursor.close();
+        }
+
+        return commentaires;
     }
 
 

@@ -167,27 +167,19 @@
                 android:textColor="@color/textsurbg"
                 android:textSize="24sp" />
 
-            <LinearLayout
-                android:id="@+id/layoutCommentaires"
+            <EditText
+                android:id="@+id/etNouvComment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/etNouvComment"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/background_text"
-                    android:fontFamily="@font/inter"
-                    android:gravity="top|start"
-                    android:hint="Écrire un commentaire..."
-                    android:inputType="textMultiLine"
-                    android:padding="10dp"
-                    android:textColor="@color/textvignette"
-                    android:textColorHint="@color/textsurbg" />
-            </LinearLayout>
-
+                android:layout_height="100dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_text"
+                android:fontFamily="@font/inter"
+                android:gravity="top|start"
+                android:hint="Écrire un commentaire..."
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/textvignette"
+                android:textColorHint="@color/textsurbg" />
 
             <Button
                 android:id="@+id/btnPublier"
@@ -202,9 +194,15 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <ListView
+            <LinearLayout
+                android:id="@+id/layoutCommentaires"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

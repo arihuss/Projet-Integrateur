@@ -12,6 +12,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.sarah.applicationsqak.modele.Commentaire;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Evenement;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class EvenementViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Evenement>> evenements = new MutableLiveData<>();
+    private final MutableLiveData<List<Commentaire>> commentaires = new MutableLiveData<>();
     private final MutableLiveData<String> message = new MutableLiveData<>();
     private EvenementDao dao;
 
@@ -33,6 +35,9 @@ public class EvenementViewModel extends AndroidViewModel {
 
     public LiveData<List<Evenement>> getEvenements() {
         return evenements;
+    }
+    public LiveData<List<Commentaire>> getCommentaires() {
+        return commentaires;
     }
 
     public LiveData<String> getMessage() {
@@ -118,6 +123,13 @@ public class EvenementViewModel extends AndroidViewModel {
             else {
                 message.postValue("Erreur lors de la publication");
             }
+        }).start();
+    }
+
+    public void chargerCommentaires(int idEvent) {
+        new Thread(() -> {
+            List<Commentaire> commentairesCharges = dao.getCommentairesPourEvenement(idEvent);
+            commentaires.postValue(commentairesCharges);
         }).start();
     }
 
