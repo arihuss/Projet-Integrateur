@@ -150,24 +150,78 @@ public class InscriptionDao {
 
 
 
-
     public int annulerInscription(int idUser, int idEvent) {
         SQLiteDatabase db = dbUtil.getWritableDatabase();
 
+        // Lire le rôle de l'inscription
+        Cursor cursor = db.query(
+                BaseContrat.InscriptionTable.TABLE_NAME,
+                new String[]{BaseContrat.InscriptionTable.ROLE},
+                BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.InscriptionTable.ID_EVENEMENT + " = ?",
+                new String[]{String.valueOf(idUser), String.valueOf(idEvent)},
+                null, null, null
+        );
+
+        if (cursor == null || !cursor.moveToFirst()) {
+            if (cursor != null) cursor.close();
+            return 0; // Aucune inscription retrouvée
+        }
+
+        // Récupère le rôle
+        String role = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.ROLE));
+        cursor.close();
+
+        // Mettre à jour la date d'annulation
         ContentValues values = new ContentValues();
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+        values.put(BaseContrat.InscriptionTable.DATE_ANNULATION, formatDate.format(new Date()));
 
-        SimpleDateFormat formatDate = new SimpleDateFormat("d MMM yyyy hha", Locale.CANADA);
-        String dateCourrante = formatDate.format(new Date());
-        values.put(BaseContrat.InscriptionTable.DATE_ANNULATION, dateCourrante);
-
-        int requete = db.update(BaseContrat.InscriptionTable.TABLE_NAME,
+        int result = db.update(BaseContrat.InscriptionTable.TABLE_NAME,
                 values,
-                BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND" +
-                BaseContrat.InscriptionTable.ID_EVENEMENT + " = ?",
+                BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.InscriptionTable.ID_EVENEMENT + " = ?",
                 new String[]{String.valueOf(idUser), String.valueOf(idEvent)});
 
-        return requete;
+        // Mettre à jour les compteurs dans la table Evenement
+        Cursor eventCursor = db.query(
+                BaseContrat.EvenementTable.TABLE_NAME,
+                null,
+                BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
+                new String[]{String.valueOf(idEvent)},
+                null, null, null
+        );
+
+        if (eventCursor != null && eventCursor.moveToFirst()) {
+            ContentValues updateEvent = new ContentValues();
+
+            if (role.equalsIgnoreCase("visiteur")) {
+                int current = eventCursor.getInt(eventCursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_INSCRIPTIONS));
+                if (current > 0) {
+                    updateEvent.put(BaseContrat.EvenementTable.NB_INSCRIPTIONS, current - 1);
+                    updateEvent.put(BaseContrat.EvenementTable.COMPLET_VISITEUR, 0);
+                }
+            } else if (role.equalsIgnoreCase("benevole")) {
+                int current = eventCursor.getInt(eventCursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES));
+                if (current > 0) {
+                    updateEvent.put(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES, current - 1);
+                    updateEvent.put(BaseContrat.EvenementTable.COMPLET_BENEVOLE, 0);
+                }
+            }
+
+            db.update(
+                    BaseContrat.EvenementTable.TABLE_NAME,
+                    updateEvent,
+                    BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
+                    new String[]{String.valueOf(idEvent)}
+            );
+
+            eventCursor.close();
+        }
+
+        return result;
     }
+
 
     public boolean estInscrit(long idUser, int idEvent) {
         SQLiteDatabase db = dbUtil.getReadableDatabase();

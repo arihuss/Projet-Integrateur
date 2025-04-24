@@ -429,6 +429,22 @@ public class EvenementDao {
 
     }
 
+    public long ajouterCommentaire(long idUser, int idEvent, String commentaire) {
+        SQLiteDatabase db = dbUtil.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(BaseContrat.CommentaireTable.ID_UTILISATEUR, idUser);
+        values.put(BaseContrat.CommentaireTable.ID_EVENEMENT, idEvent);
+        values.put(BaseContrat.CommentaireTable.MESSAGE, commentaire);
+
+        // Formater la date
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
+        String dateEnvoi = format.format(new Date());
+        values.put(BaseContrat.CommentaireTable.DATE_ENVOI, dateEnvoi);
+
+        return db.insert(BaseContrat.CommentaireTable.TABLE_NAME, null, values);
+    }
+
 
 
 }

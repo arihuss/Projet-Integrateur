@@ -3,15 +3,19 @@ package com.sarah.applicationsqak.vues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,6 +26,7 @@ import com.sarah.applicationsqak.R;
 import com.sarah.applicationsqak.modele.Dao.EvenementDao;
 import com.sarah.applicationsqak.modele.Dao.InscriptionDao;
 import com.sarah.applicationsqak.modele.Evenement;
+import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 import com.sarah.applicationsqak.viewmodel.InscriptionViewModel;
 
 import java.text.ParseException;
@@ -31,14 +36,17 @@ import java.util.Locale;
 
 public class EvenementActivity extends AppCompatActivity {
 
-    private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes, tvComment;
+    private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes;
+    private EditText txtComment;
     private ImageView imgProfileOrg, imgEvent, imgRetour;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
+    LinearLayout layoutCommentaires;
     private Evenement evenement;
     EvenementDao dao;
     private static final String PREFS_NAME = "AppPrefs";
     private static final String PREF_USER_ID = "utilisateur_id";
     private InscriptionViewModel modelInscription;
+    private EvenementViewModel modelEvent;
 
 
     @Override
@@ -64,9 +72,11 @@ public class EvenementActivity extends AppCompatActivity {
         tvNomEvent = findViewById(R.id.tvNomEvent);
         tvNomOrganisateur = findViewById(R.id.tvNomOrganisateur);
         tvNbLikes = findViewById(R.id.tvNbLikes);
-        tvComment = findViewById(R.id.tvNouvComment);
+        txtComment = findViewById(R.id.etNouvComment);
         imgEvent = findViewById(R.id.imgAfficheEvent);
         imgRetour = findViewById(R.id.imgRetour);
+        layoutCommentaires = findViewById(R.id.layoutCommentaires);
+
 
         // Récupérer l'id de l'événement passer en intent
         int idEvent = getIntent().getIntExtra("ID_EVENEMENT", -1);
@@ -93,6 +103,12 @@ public class EvenementActivity extends AppCompatActivity {
             tvNomOrganisateur.setText(dao.getNomOrganisateurParId(evenement.getId_organisateur()));
             tvNbLikes.setText(String.valueOf(dao.getNbLikesParIdStatistique(evenement.getId_statistique())));
 
+            // Changement couleur bouton si inscription max atteint
+            if(evenement.getCompletVisiteur() == 1) {
+                btnInscInvite.setBackgroundTintList(
+                        ContextCompat.getColorStateList(this, R.color.btndesactive));
+                btnInscInvite.setTextColor(Color.WHITE);
+            }
             // Image header de l'événement
             Glide.with(this)
                     .load(evenement.getImageUrl())
@@ -142,16 +158,6 @@ public class EvenementActivity extends AppCompatActivity {
             }
         });
 
-        btnPublier.setOnClickListener(v -> {
-            if(!tvComment.toString().trim().isEmpty()) {
-                String commentaire = tvComment.toString().trim();
-                Toast.makeText(this, "Commentaire publié!", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, "Commentaire invalide", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
 
         //Quand on clique le nom de l'organisateur (ou l'image de l'organisateur), ça nous redirige vers la page de l'organisateur
@@ -173,6 +179,27 @@ public class EvenementActivity extends AppCompatActivity {
         });
 
 
+        // Publication de commentaire
+        btnPublier.setOnClickListener(v -> {
+            String commentaire = txtComment.getText().toString().trim();
+            if(commentaire.isEmpty()) {
+                Toast.makeText(this, "Commentaire invalide", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                modelEvent = new ViewModelProvider(this).get(EvenementViewModel.class);
+                modelEvent.ajouterCommentaire(idUser, idEvent, commentaire,() -> runOnUiThread(() -> {
+                    // Création d'un TextView avec le commentaire
+                    creerTextView(commentaire);
+                    Toast.makeText(this, "Commentaire publié!", Toast.LENGTH_SHORT).show();
+                    txtComment.setText("");  // Effacer le champ après avoir publier la commentaire
+                }));
+
+
+            }
+
+        });
+
+
     }
 
     private String convertirDatePourAffichage(String dateBrute) {
@@ -188,4 +215,16 @@ public class EvenementActivity extends AppCompatActivity {
             return dateBrute;  // Retourne la date originale si échec
         }
     }
+
+    private void creerTextView(String commentaire) {
+        TextView nouveau = new TextView(this);
+        nouveau.setText(commentaire);
+        nouveau.setTextColor(ContextCompat.getColor(this, R.color.textsurbg));
+        nouveau.setBackgroundResource(R.drawable.background_text);
+        nouveau.setPadding(8, 8, 8, 8);
+        layoutCommentaires.addView(nouveau);
+
+    }
+
+
 }

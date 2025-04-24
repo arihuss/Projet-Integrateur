@@ -106,6 +106,21 @@ public class EvenementViewModel extends AndroidViewModel {
         }
     }
 
+    public void ajouterCommentaire(long idUser, int idEvent, String texte, Runnable onSuccess) {
+        // Runnable onSuccess: contient le code à excéuter (ajout du commentaire dans le UI), si l'insertion fonctionne
+
+        new Thread(() -> {
+            long resultat = dao.ajouterCommentaire(idUser, idEvent, texte);
+            if(resultat != -1) {
+                message.postValue("Commentaire publié!");
+                onSuccess.run();
+            }
+            else {
+                message.postValue("Erreur lors de la publication");
+            }
+        }).start();
+    }
+
 
 
 
