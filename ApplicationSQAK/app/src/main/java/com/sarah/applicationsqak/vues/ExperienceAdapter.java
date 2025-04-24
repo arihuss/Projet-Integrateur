@@ -57,6 +57,13 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
         if (dateDebut != null && dateDebut.length() >= 6) {
             holder.txtDate.setText(dateDebut.substring(0, 6).replace(" ", "\n"));
         }
+
+        // aller sur la page de l'événement cliqué
+        holder.itemView.setOnClickListener(v -> {
+            android.content.Intent intent = new android.content.Intent(v.getContext(), EvenementActivity.class);
+            intent.putExtra("ID_EVENEMENT", evenement.getId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
