@@ -44,6 +44,14 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
         // Nom organisateur
         holder.txtOrganisation.setText("Organisation : " + "à charger");
 
+        //Image
+        if (evenement.getImageUrl() != null && !evenement.getImageUrl().isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(evenement.getImageUrl())
+                    .placeholder(R.drawable.placeholder)
+                    .into(holder.ImgEvent);
+        }
+
         // Badge date (format rapide)
         String dateDebut = evenement.getDateDebut();
         if (dateDebut != null && dateDebut.length() >= 6) {
@@ -58,6 +66,7 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
 
     public static class ExperienceViewHolder extends RecyclerView.ViewHolder {
         TextView txtDate, txtTitre, txtLieu, txtOrganisation;
+        ImageView ImgEvent;
 
         public ExperienceViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +74,8 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Ex
             txtTitre = itemView.findViewById(R.id.txtNomEventUser);
             txtLieu = itemView.findViewById(R.id.txtLieuUser);
             txtOrganisation = itemView.findViewById(R.id.txtOrganisationUser);
+            ImgEvent = itemView.findViewById(R.id.imgEventUser);
+
 
         }
     }
