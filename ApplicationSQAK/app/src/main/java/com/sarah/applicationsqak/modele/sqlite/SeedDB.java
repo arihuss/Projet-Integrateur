@@ -68,7 +68,7 @@ public class SeedDB {
         insererStatistiques(db);
         insererEvenements(db);
         insererEvenementsComplets(db);
-        insererInscriptions(db);
+
     }
 
     private static void insererUtilisateurs(SQLiteDatabase db) {
@@ -294,7 +294,5 @@ public class SeedDB {
 
     }
 
-    private static void insererInscriptions(SQLiteDatabase db) {
 
-    }
 }

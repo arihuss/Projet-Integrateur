@@ -43,7 +43,7 @@ public class EvenementActivity extends AppCompatActivity {
 
     private TextView tvDescEvent, tvDateEvent, tvLieuEvent, tvNomEvent, tvNomOrganisateur, tvNbLikes;
     private EditText txtComment;
-    private ImageView imgProfileOrg, imgEvent, imgRetour;
+    private ImageView imgProfileOrg, imgEvent, imgRetour, imgCoeur, imgPartage;
     private Button btnInscInvite, btnInscBenevole, btnPublier;
     LinearLayout layoutCommentaires;
     private Evenement evenement;
@@ -53,7 +53,8 @@ public class EvenementActivity extends AppCompatActivity {
     private InscriptionViewModel modelInscription;
     private EvenementViewModel modelEvent;
     private UtilisateurDao daoUser;
-    long idUser; // id de l'utilisateur connecté
+    private long idUser; // id de l'utilisateur connecté
+    private int idStat;  // id de la statistique associé à cet evenement
 
 
     @Override
@@ -79,9 +80,11 @@ public class EvenementActivity extends AppCompatActivity {
         tvNomEvent = findViewById(R.id.tvNomEvent);
         tvNomOrganisateur = findViewById(R.id.tvNomOrganisateur);
         tvNbLikes = findViewById(R.id.tvNbLikes);
+        imgCoeur = findViewById(R.id.imgCoeurLike);
         txtComment = findViewById(R.id.etNouvComment);
         imgEvent = findViewById(R.id.imgAfficheEvent);
         imgRetour = findViewById(R.id.imgRetour);
+        imgPartage = findViewById(R.id.imgPartage);
         layoutCommentaires = findViewById(R.id.layoutCommentaires);
 
 
@@ -151,6 +154,9 @@ public class EvenementActivity extends AppCompatActivity {
         });
         modelEvent.chargerCommentaires(idEvent);
 
+
+
+        // INSCRIPTIONS
         // Chercher le id de l'utilisateur connecté
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         idUser = prefs.getLong(PREF_USER_ID, -1);
@@ -196,6 +202,7 @@ public class EvenementActivity extends AppCompatActivity {
         });
 
 
+
         // Publication de commentaire
         btnPublier.setOnClickListener(v -> {
             String commentaire = txtComment.getText().toString().trim();
@@ -215,6 +222,48 @@ public class EvenementActivity extends AppCompatActivity {
                 }));
             }
         });
+
+
+        // LIKES
+        idStat = evenement.getId_statistique();
+
+        // Charger état initial du like
+        modelEvent.chargerEtatLike(idUser, idStat);
+
+        // Observer le nb de likes
+        modelEvent.getNbLikes().observe(this, compteur -> {
+            tvNbLikes.setText(String.valueOf(compteur));
+        });
+
+        // Observer si l'utilisateur a liker
+        modelEvent.getEstLike().observe(this, liked -> {
+            if(liked) {
+                imgCoeur.setColorFilter(ContextCompat.getColor(this, R.color.accent2active));
+            }
+            else {
+                imgCoeur.clearColorFilter();
+            }
+        });
+
+        // Gestion du click sur le coeur
+        imgCoeur.setOnClickListener(v -> {
+           Boolean liked = modelEvent.getEstLike().getValue();
+           if(liked != null && liked) {
+               modelEvent.retirerLike(idUser, idStat);
+           }
+           else {
+               modelEvent.ajouterLike(idUser, idStat);
+           }
+        });
+
+
+        // PARTAGE D'EVENT
+
+        // Gestion du click sur le coeur
+        imgPartage.setOnClickListener(v -> {
+
+        });
+
     }
 
     private String convertirDatePourAffichage(String dateBrute) {

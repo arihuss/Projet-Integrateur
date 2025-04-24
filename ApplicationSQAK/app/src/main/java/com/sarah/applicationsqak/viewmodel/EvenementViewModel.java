@@ -23,6 +23,8 @@ public class EvenementViewModel extends AndroidViewModel {
     private final MutableLiveData<List<Evenement>> evenements = new MutableLiveData<>();
     private final MutableLiveData<List<Commentaire>> commentaires = new MutableLiveData<>();
     private final MutableLiveData<String> message = new MutableLiveData<>();
+    private final MutableLiveData<Integer> nbLikes = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> estLike = new MutableLiveData<>();
     private EvenementDao dao;
 
     public EvenementViewModel(@NonNull Application application) {
@@ -39,7 +41,12 @@ public class EvenementViewModel extends AndroidViewModel {
     public LiveData<List<Commentaire>> getCommentaires() {
         return commentaires;
     }
-
+    public LiveData<Integer> getNbLikes() {
+        return nbLikes;
+    }
+    public LiveData<Boolean> getEstLike() {
+        return estLike;
+    }
     public LiveData<String> getMessage() {
         return message;
     }
@@ -134,6 +141,40 @@ public class EvenementViewModel extends AndroidViewModel {
     }
 
     // Méthodes pour le like
+    // Charge l’état initial : nombre de likes et si l'utilisateur a liké
+    public void chargerEtatLike(long idUtilisateur, int idStatistique) {
+        new Thread(() -> {
+            int likes = dao.getNbLikesParIdStatistique(idStatistique);
+            boolean liked = dao.aDejaLike(idUtilisateur, idStatistique);
+
+            nbLikes.postValue(likes);
+            estLike.postValue(liked);
+        }).start();
+    }
+
+    // Ajouter un like
+    public void ajouterLike(long idUtilisateur, int idStatistique) {
+        new Thread(() -> {
+            boolean success = dao.ajouterLike(idUtilisateur, idStatistique);
+            if (success) {
+                int likes = dao.getNbLikesParIdStatistique(idStatistique);
+                nbLikes.postValue(likes);
+                estLike.postValue(true);
+            }
+        }).start();
+    }
+
+    // Retirer un like
+    public void retirerLike(long idUtilisateur, int idStatistique) {
+        new Thread(() -> {
+            boolean success = dao.retirerLike(idUtilisateur, idStatistique);
+            if (success) {
+                int likes = dao.getNbLikesParIdStatistique(idStatistique);
+                nbLikes.postValue(likes);
+                estLike.postValue(false);
+            }
+        }).start();
+    }
 
 
 
