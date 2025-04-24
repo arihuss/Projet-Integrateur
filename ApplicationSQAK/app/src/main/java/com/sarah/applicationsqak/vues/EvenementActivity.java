@@ -116,20 +116,30 @@ public class EvenementActivity extends AppCompatActivity {
         // Observer les messages
         modelInscription.getMessage().observe(this, message -> {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        })
+        });
+
         // Chercher le id de l'utilisateur connecté
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         long idUser = prefs.getLong(PREF_USER_ID, -1);
 
         // Bouton pour s'inscire en tant que invité
         btnInscInvite.setOnClickListener(v -> {
-            modelInscription.inscrireVisiteur(idUser, evenement.getId());
-
+            if(idUser != -1) {
+                modelInscription.inscrireVisiteur(idUser, evenement.getId());
+            }
+            else {
+                Toast.makeText(this, "Aucun utilisateur connecté", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Bouton pour envoyer une application
         btnInscBenevole.setOnClickListener(v -> {
-            Toast.makeText(this, "Application bénévolat envoyée!", Toast.LENGTH_SHORT).show();
+            if(idUser != -1) {
+                modelInscription.inscrireAppliquant(idUser, evenement.getId());
+            }
+            else {
+                Toast.makeText(this, "Aucun utilisateur connecté", Toast.LENGTH_SHORT).show();
+            }
         });
 
         btnPublier.setOnClickListener(v -> {
