@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +57,13 @@ public class ConfirmationActivity extends AppCompatActivity {
             startActivity(retourIntent);
             finish();
         });
+
+        TextView txtRenvoyerCode = findViewById(R.id.txtRenvoyerCode);
+
+        txtRenvoyerCode.setOnClickListener(v -> {
+            Toast.makeText(this, "Code renvoyé : " + codeEnvoye, Toast.LENGTH_SHORT).show();
+        });
+
 
         // Confirmation
         btnConfirmer.setOnClickListener(v -> {
