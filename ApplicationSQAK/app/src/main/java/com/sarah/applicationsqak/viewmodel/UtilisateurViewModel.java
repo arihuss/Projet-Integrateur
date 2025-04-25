@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.sarah.applicationsqak.modele.Utilisateur;
 import com.sarah.applicationsqak.modele.Dao.UtilisateurDao;
@@ -11,6 +13,7 @@ import com.sarah.applicationsqak.modele.Dao.UtilisateurDao;
 public class UtilisateurViewModel extends AndroidViewModel {
 
     private final UtilisateurDao utilisateurDao;
+    private final MutableLiveData<String> courrielUtilisateur = new MutableLiveData<>();
 
     public UtilisateurViewModel(@NonNull Application application) {
         super(application);
@@ -36,13 +39,30 @@ public class UtilisateurViewModel extends AndroidViewModel {
     public void mettreAJourUtilisateur(Utilisateur utilisateur) {
         utilisateurDao.mettreAJourUtilisateur(utilisateur);
     }
-    public Utilisateur getUtilisateurParId(long id) {
-        return utilisateurDao.getUtilisateurParId(id);
-    }
 
-    //Supprimer utilisateur par ID
+    // Supprimer utilisateur
     public void supprimerUtilisateur(long id) {
         utilisateurDao.supprimerUtilisateur(id);
     }
 
+    // Récupérer utilisateur complet
+    public Utilisateur getUtilisateurParId(long id) {
+        return utilisateurDao.getUtilisateurParId(id);
+    }
+
+    // Nouvelle méthode MVVM : expose le courriel via LiveData
+    public LiveData<String> getCourrielUtilisateur() {
+        return courrielUtilisateur;
+    }
+
+    public void chargerCourrielParId(long id) {
+        new Thread(() -> {
+            Utilisateur utilisateur = utilisateurDao.getUtilisateurParId(id);
+            if (utilisateur != null) {
+                courrielUtilisateur.postValue(utilisateur.getCourriel());
+            } else {
+                courrielUtilisateur.postValue(null);
+            }
+        }).start();
+    }
 }

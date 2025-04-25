@@ -6,11 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.sarah.applicationsqak.modele.Inscription;
 import com.sarah.applicationsqak.modele.sqlite.BaseContrat;
 import com.sarah.applicationsqak.modele.sqlite.DbUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class InscriptionDao {
@@ -165,23 +168,32 @@ public class InscriptionDao {
 
         if (cursor == null || !cursor.moveToFirst()) {
             if (cursor != null) cursor.close();
-            return 0; // Aucune inscription retrouvée
+            Log.e("INSCRIPTION_DAO", "Impossible de trouver l'inscription à annuler !");
+            return 0;
         }
 
         // Récupère le rôle
         String role = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.ROLE));
         cursor.close();
 
+        // Sécuriser : ne pas continuer si le rôle est null ou vide
+        if (role == null || role.isEmpty()) {
+            Log.e("INSCRIPTION_DAO", "Rôle introuvable, annulation impossible.");
+            return 0;
+        }
+
         // Mettre à jour la date d'annulation
         ContentValues values = new ContentValues();
         SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA);
         values.put(BaseContrat.InscriptionTable.DATE_ANNULATION, formatDate.format(new Date()));
 
-        int result = db.update(BaseContrat.InscriptionTable.TABLE_NAME,
+        int result = db.update(
+                BaseContrat.InscriptionTable.TABLE_NAME,
                 values,
                 BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND " +
                         BaseContrat.InscriptionTable.ID_EVENEMENT + " = ?",
-                new String[]{String.valueOf(idUser), String.valueOf(idEvent)});
+                new String[]{String.valueOf(idUser), String.valueOf(idEvent)}
+        );
 
         // Mettre à jour les compteurs dans la table Evenement
         Cursor eventCursor = db.query(
@@ -209,18 +221,22 @@ public class InscriptionDao {
                 }
             }
 
-            db.update(
-                    BaseContrat.EvenementTable.TABLE_NAME,
-                    updateEvent,
-                    BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
-                    new String[]{String.valueOf(idEvent)}
-            );
+            if (updateEvent.size() > 0) {
+                db.update(
+                        BaseContrat.EvenementTable.TABLE_NAME,
+                        updateEvent,
+                        BaseContrat.EvenementTable.ID_EVENEMENT + " = ?",
+                        new String[]{String.valueOf(idEvent)}
+                );
+            }
 
             eventCursor.close();
         }
 
         return result;
     }
+
+
 
 
     public boolean estInscrit(long idUser, int idEvent) {
@@ -240,6 +256,35 @@ public class InscriptionDao {
         }
 
         return estInscrit;
+    }
+
+    public List<Inscription> getInscriptionsParUtilisateur(long idUtilisateur) {
+        List<Inscription> inscriptions = new ArrayList<>();
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                BaseContrat.InscriptionTable.TABLE_NAME,
+                null,
+                BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? AND " +
+                        BaseContrat.InscriptionTable.DATE_ANNULATION + " IS NULL",
+                new String[]{String.valueOf(idUtilisateur)},
+                null, null, null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                Inscription inscription = new Inscription();
+                inscription.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.ID_INSCRIPTION)));
+                inscription.setId_evenement(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.ID_EVENEMENT)));
+                inscription.setRole(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.ROLE)));
+                inscription.setDate_inscription(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.DATE_INSCRIPTION)));
+                inscription.setDate_annulation(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.InscriptionTable.DATE_ANNULATION)));
+                inscriptions.add(inscription);
+            } while (cursor.moveToNext());
+        }
+
+        if (cursor != null) cursor.close();
+        return inscriptions;
     }
 
 //    public List<Inscription> getInscriptionsParUtilisateur(long idUtilisateur) {

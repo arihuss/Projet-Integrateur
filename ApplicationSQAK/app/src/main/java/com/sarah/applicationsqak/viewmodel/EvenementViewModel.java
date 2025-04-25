@@ -176,6 +176,11 @@ public class EvenementViewModel extends AndroidViewModel {
         }).start();
     }
 
+    public List<Evenement> getEvenementsActifsParUtilisateur(long id) {
+        return dao.getEvenementsActifsParUtilisateur(id);
+    }
+
+
 
 
 

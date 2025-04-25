@@ -539,9 +539,51 @@ public class EvenementDao {
 
     }
 
+    public List<Evenement> getEvenementsActifsParUtilisateur(long userId) {
+        List<Evenement> evenements = new ArrayList<>();
+        SQLiteDatabase db = dbUtil.getReadableDatabase();
 
+        String query = "SELECT e.* FROM " + BaseContrat.EvenementTable.TABLE_NAME + " e " +
+                "JOIN " + BaseContrat.InscriptionTable.TABLE_NAME + " i " +
+                "ON e." + BaseContrat.EvenementTable.ID_EVENEMENT + " = i." + BaseContrat.InscriptionTable.ID_EVENEMENT + " " +
+                "WHERE i." + BaseContrat.InscriptionTable.ID_UTILISATEUR + " = ? " +
+                "AND i." + BaseContrat.InscriptionTable.DATE_ANNULATION + " IS NULL " +
+                "ORDER BY e." + BaseContrat.EvenementTable.DATE_DEBUT + " DESC";
 
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
 
+        if (cursor.moveToFirst()) {
+            do {
+                Evenement e = new Evenement();
+                e.setId(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_EVENEMENT)));
+                e.setId_organisateur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_ORGANISATEUR)));
+                e.setId_statistique(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ID_STATISTIQUE)));
+                e.setNomEvent(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NOM_EVENT)));
+                e.setLieu(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.LIEU)));
+                e.setDateDebut(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_DEBUT)));
+                e.setDateFin(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DATE_FIN)));
+                e.setNbBenevolesMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_MAX)));
+                e.setNbParticipantsMax(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_PARTICIPANTS_MAX)));
+                e.setEtatBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT_BENEVOLE)));
+                e.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.DESCRIPTION)));
+                e.setEtat(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.ETAT)));
+                e.setNbInscriptions(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_INSCRIPTIONS)));
+                e.setNbBenevolesAcceptes(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.NB_BENEVOLES_ACCEPTES)));
+                e.setCompletBenevole(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_BENEVOLE)));
+                e.setCompletVisiteur(cursor.getInt(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.COMPLET_VISITEUR)));
+                e.setImageUrl(cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.IMAGE_URL)));
+
+                String nomCategorie = cursor.getString(cursor.getColumnIndexOrThrow(BaseContrat.EvenementTable.CATEGORIE));
+                Categorie categorie = Categorie.valueOf(nomCategorie);
+                e.setCategorie(categorie);
+
+                evenements.add(e);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return evenements;
+    }
 
 
 

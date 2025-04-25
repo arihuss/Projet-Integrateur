@@ -13,8 +13,14 @@ import com.sarah.applicationsqak.modele.Dao.InscriptionDao;
 import static com.sarah.applicationsqak.modele.Dao.InscriptionDao.InscriptionVisiteurResultat;
 import static com.sarah.applicationsqak.modele.Dao.InscriptionDao.InscriptionAppliquantResultat;
 
+import androidx.lifecycle.LiveData;
+import com.sarah.applicationsqak.modele.Inscription;
+import java.util.List;
+
 public class InscriptionViewModel extends AndroidViewModel {
+
     private final MutableLiveData<String> message = new MutableLiveData<>();
+    private final MutableLiveData<List<Inscription>> inscriptions = new MutableLiveData<>();
     private InscriptionDao dao;
 
     public InscriptionViewModel(@NonNull Application application) {
@@ -24,6 +30,17 @@ public class InscriptionViewModel extends AndroidViewModel {
 
     public LiveData<String> getMessage() {
         return message;
+    }
+
+    public LiveData<List<Inscription>> getInscriptions() {
+        return inscriptions;
+    }
+
+    public void chargerInscriptionsPourUtilisateur(long idUtilisateur) {
+        new Thread(() -> {
+            List<Inscription> liste = dao.getInscriptionsParUtilisateur(idUtilisateur);
+            inscriptions.postValue(liste);
+        }).start();
     }
 
     public void inscrireVisiteur(long idUtilisateur, int idEvenement) {
@@ -77,6 +94,14 @@ public class InscriptionViewModel extends AndroidViewModel {
         }).start();
 
     }
+
+    public void annulerInscription(long idUtilisateur, int idEvenement) {
+        new Thread(() -> {
+            dao.annulerInscription((int) idUtilisateur, idEvenement);
+            message.postValue("Inscription annulée !");
+        }).start();
+    }
+
 
 
 }

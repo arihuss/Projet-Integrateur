@@ -33,6 +33,7 @@ import com.sarah.applicationsqak.modele.Evenement;
 import com.sarah.applicationsqak.modele.Utilisateur;
 import com.sarah.applicationsqak.viewmodel.EvenementViewModel;
 import com.sarah.applicationsqak.viewmodel.InscriptionViewModel;
+import com.sarah.applicationsqak.viewmodel.UtilisateurViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -137,12 +138,44 @@ public class EvenementActivity extends AppCompatActivity {
         }
 
         // Initialiser le dao
+        UtilisateurViewModel utilisateurViewModel = new ViewModelProvider(this).get(UtilisateurViewModel.class);
         modelInscription = new ViewModelProvider(this).get(InscriptionViewModel.class);
 
-        // Observer les messages
+        // NOTIFICATION DINSCRIPTION !
         modelInscription.getMessage().observe(this, message -> {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+            if (message.toLowerCase().contains("inscription réussie") ||
+                    message.toLowerCase().contains("application envoyée")) {
+
+                // Charger le courriel de l'utilisateur connecté
+                utilisateurViewModel.chargerCourrielParId(idUser);
+
+                utilisateurViewModel.getCourrielUtilisateur().observe(this, courriel -> {
+                    if (courriel != null && !courriel.isEmpty()) {
+                        String sujet = "Nouvelle inscription à l’événement SQAK";
+                        String corps = "Un utilisateur vient de s’inscrire à l’événement : " + evenement.getNomEvent() +
+                                "\nDate : " + evenement.getDateDebut() +
+                                "\nLieu : " + evenement.getLieu() +
+                                "\n\nMerci de vérifier sur la plateforme.";
+
+                        Intent emailIntent = new Intent();
+                        emailIntent.setType("message/rfc822");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{courriel});
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, sujet);
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, corps);
+
+                        try {
+                            startActivity(Intent.createChooser(emailIntent, "Notifier par courriel..."));
+                            Toast.makeText(this, "Notification Mail envoyé", Toast.LENGTH_SHORT).show();
+                        } catch (android.content.ActivityNotFoundException e) {
+                            Toast.makeText(this, "Aucune application de courriel installée.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
         });
+
 
         // Observer les commentaires
         modelEvent = new ViewModelProvider(this).get(EvenementViewModel.class);

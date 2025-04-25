@@ -86,7 +86,7 @@ public class ProfilUserFragment extends Fragment {
 
         // Charger les événements
         rvExpUser.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<Evenement> evenements = evenementViewModel.getEvenementsParUtilisateur(userId);
+        List<Evenement> evenements = evenementViewModel.getEvenementsActifsParUtilisateur(userId);
         rvExpUser.setAdapter(new ExperienceAdapter(evenements));
 
         return view;

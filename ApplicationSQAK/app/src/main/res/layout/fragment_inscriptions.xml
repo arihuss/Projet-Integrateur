@@ -8,6 +8,7 @@
     tools:context=".vues.InscriptionsFragment">
 
     <com.sarah.applicationsqak.vues.EventFilterView
+        android:id="@+id/eventFilterView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
