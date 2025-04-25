@@ -35,6 +35,7 @@
     <string name="visiteur">Visiteur</string>
     <string name="recherche">Recherche</string>
     <string name="liste_des_exp_riences_de_b_n_volat">Liste des expériences de bénévolat</string>
+    <string name="visiteurbtn">Visiteur</string>
 
 
     <string-array name="event_locations">

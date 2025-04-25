@@ -135,7 +135,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_button"
                     android:fontFamily="@font/inter_bold"
-                    android:text="@string/invit"
+                    android:text="@string/visiteurbtn"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:backgroundTint="@color/accent3" />
