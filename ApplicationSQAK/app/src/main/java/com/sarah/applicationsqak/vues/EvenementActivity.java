@@ -166,7 +166,7 @@ public class EvenementActivity extends AppCompatActivity {
                         emailIntent.putExtra(Intent.EXTRA_TEXT, corps);
 
                         try {
-                            startActivity(Intent.createChooser(emailIntent, "Notifier par courriel..."));
+                            // startActivity(Intent.createChooser(emailIntent, "Notifier par courriel..."));
                             Toast.makeText(this, "Notification Mail envoyé", Toast.LENGTH_SHORT).show();
                         } catch (android.content.ActivityNotFoundException e) {
                             Toast.makeText(this, "Aucune application de courriel installée.", Toast.LENGTH_SHORT).show();
