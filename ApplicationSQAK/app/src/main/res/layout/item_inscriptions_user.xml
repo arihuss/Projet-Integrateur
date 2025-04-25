@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Colonne gauche : date -->
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="113dp"
+        android:background="@drawable/bg_left"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvDateInscr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/inter_bold"
+            android:text="27 Janvier 2025"
+            android:textColor="@color/primary"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <!-- Colonne droite : contenu + bouton désinscription -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="113dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_right"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imgEventInscr"
+                android:layout_width="98dp"
+                android:layout_height="99dp"
+                android:layout_marginStart="8dp"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingStart="10dp">
+
+                <TextView
+                    android:id="@+id/tvNomEventInscr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Ramassage déchets"
+                    android:textColor="@color/textvignette" />
+
+                <TextView
+                    android:id="@+id/tvLieuEventInscr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Lieu: Plage Oka"
+                    android:textColor="@color/textvignette" />
+
+                <TextView
+                    android:id="@+id/tvNomOrgInscr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Organisation: Terre-Sauve"
+                    android:textColor="@color/textvignette" />
+
+                <TextView
+                    android:id="@+id/tvStatutInscription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Statut : Appliquant"
+                    android:textColor="@color/textvignette" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Bouton X rose en haut à droite -->
+        <ImageButton
+            android:id="@+id/btnSupprimerInscription"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="end|top"
+            android:layout_margin="6dp"
+            android:background="@null"
+            android:src="@drawable/ic_close_pink"
+            android:contentDescription="Supprimer inscription"
+            android:scaleType="centerInside"
+            android:clickable="true"
+            android:focusable="true" />
+    </FrameLayout>
+</LinearLayout>
